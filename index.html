@@ -1479,13 +1479,35 @@
             }
         });
 
-        function searchGames() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = activeGames.filter(game => {
-                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
-                const genre = (currentLang === 'ar' ? game.genreAr : game.genreEn).toLowerCase();
-                return title.includes(query) || genre.includes(query);
+    function searchGames() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            // لو خانة البحث فاضية، رجع كل الألعاب المعروضة حالياً
+            if (!query) {
+                displayGames(activeGames);
+                return;
+            }
+
+            const filtered = gamesData.filter(game => {
+                const titleAr = (game.titleAr || '').toLowerCase();
+                const titleEn = (game.titleEn || '').toLowerCase();
+                const genreAr = (game.genreAr || '').toLowerCase();
+                const genreEn = (game.genreEn || '').toLowerCase();
+                
+                // البحث الذكي: لو كاتب بيس أو pes، هيفهم لوحده إنه يدور على pro
+                let searchKeyword = query;
+                if (query === 'بيس' || query === 'pes') {
+                    searchKeyword = 'pro';
+                }
+
+                return titleAr.includes(searchKeyword) || 
+                       titleEn.includes(searchKeyword) || 
+                       genreAr.includes(searchKeyword) || 
+                       genreEn.includes(searchKeyword) ||
+                       titleEn.includes(query) ||
+                       titleAr.includes(query);
             });
+            
             displayGames(filtered);
         }
 
