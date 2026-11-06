@@ -12,7 +12,6 @@
             --accent-color: #06b6d4;
             --secondary-text: #94a3b8;
             --hover-color: #0891b2;
-            --heart-color: #f43f5e;
             --success-color: #10b981;
         }
 
@@ -23,7 +22,6 @@
             --accent-color: #2563eb;
             --secondary-text: #64748b;
             --hover-color: #1d4ed8;
-            --heart-color: #e11d48;
             --success-color: #059669;
         }
 
@@ -64,39 +62,25 @@
             flex-wrap: wrap;
         }
 
-        .icon-btn, .controls button, .login-btn {
+        .icon-btn, .controls button {
             background-color: var(--card-bg);
             color: var(--text-color);
             border: 1px solid var(--secondary-text);
-            padding: 8px 14px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             cursor: pointer;
             font-weight: bold;
             transition: 0.2s;
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 14px;
+            justify-content: center;
+            font-size: 16px;
         }
 
-        .icon-btn:hover, .controls button:hover, .login-btn:hover {
+        .icon-btn:hover, .controls button:hover {
             border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .login-btn {
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-        }
-
-        .login-btn:hover {
-            background-color: var(--hover-color);
-            color: #fff;
-        }
-
-        .heart-icon {
-            color: var(--heart-color);
+            transform: scale(1.05);
         }
 
         .hero {
@@ -320,19 +304,15 @@
         <div class="logo">MK GAMES</div>
         <div class="nav-controls">
             <!-- زر المفضلة (القلب) -->
-            <button class="icon-btn" onclick="openFavModal()">
-                <span class="heart-icon">❤️</span> <span id="favText">المفضلة</span>
-            </button>
-            <!-- زر الإشعارات -->
-            <button class="icon-btn" onclick="openNotifModal()">
-                🔔 <span id="notifText">الإشعارات</span>
-            </button>
+            <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
+            <!-- زر الإشعارات (الجرس) -->
+            <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات">🔔</button>
             <!-- زر الوضع الليلي/النهاري -->
-            <button onclick="toggleTheme()" id="themeBtn">🌙</button>
+            <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
             <!-- زر اللغة -->
-            <button onclick="toggleLanguage()" id="langBtn">EN</button>
-            <!-- زر تسجيل الدخول (غير إلزامي) -->
-            <button class="login-btn" onclick="openLoginModal()" id="loginBtnText">تسجيل الدخول</button>
+            <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
+            <!-- زر تسجيل الدخول (علامة الشخص) -->
+            <button class="icon-btn" onclick="openLoginModal()" title="تسجيل الدخول">👤</button>
         </div>
     </header>
 
@@ -420,103 +400,4 @@
                     <div class="game-content">
                         <h3>${title}</h3>
                         <p>${desc}</p>
-                        <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function toggleFav(index) {
-            const pos = favorites.indexOf(index);
-            if (pos > -1) {
-                favorites.splice(pos, 1);
-            } else {
-                favorites.push(index);
-            }
-            displayGames(gamesData);
-        }
-
-        function searchGames() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = gamesData.filter(game => {
-                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
-                return title.includes(query);
-            });
-            displayGames(filtered);
-        }
-
-        function toggleTheme() {
-            const root = document.getElementById('htmlRoot');
-            const themeBtn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark') {
-                root.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
-                themeBtn.innerText = '☀️';
-            } else {
-                root.removeAttribute('data-theme');
-                currentTheme = 'dark';
-                themeBtn.innerText = '🌙';
-            }
-        }
-
-        function toggleLanguage() {
-            const htmlRoot = document.getElementById('htmlRoot');
-            const langBtn = document.getElementById('langBtn');
-            const mainHeading = document.getElementById('mainHeading');
-            const mainDesc = document.getElementById('mainDesc');
-            const searchInput = document.getElementById('searchInput');
-            const loginBtnText = document.getElementById('loginBtnText');
-            const favText = document.getElementById('favText');
-            const notifText = document.getElementById('notifText');
-            const prayerText = document.getElementById('prayerText');
-
-            if (currentLang === 'ar') {
-                currentLang = 'en';
-                htmlRoot.setAttribute('lang', 'en');
-                htmlRoot.setAttribute('dir', 'ltr');
-                langBtn.innerText = 'AR';
-                prayerText.innerText = 'Do not let games distract you from prayer';
-                mainHeading.innerText = 'Welcome to MK GAMES Download Portal';
-                mainDesc.innerText = 'Download the latest and best free games via direct and fast links.';
-                searchInput.placeholder = 'Search for a game to download...';
-                loginBtnText.innerText = 'Login';
-                favText.innerText = 'Favorites';
-                notifText.innerText = 'Notifications';
-            } else {
-                currentLang = 'ar';
-                htmlRoot.setAttribute('lang', 'ar');
-                htmlRoot.setAttribute('dir', 'rtl');
-                langBtn.innerText = 'EN';
-                prayerText.innerText = 'لا تدع الألعاب تلهيك عن الصلاة';
-                mainHeading.innerText = 'مرحباً بك في موقع تحميل الألعاب MK GAMES';
-                mainDesc.innerText = 'حمّل أحدث وأقوى الألعاب المجانية بروابط مباشرة وسريعة.';
-                searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
-                loginBtnText.innerText = 'تسجيل الدخول';
-                favText.innerText = 'المفضلة';
-                notifText.innerText = 'الإشعارات';
-            }
-            displayGames(gamesData);
-        }
-
-        function handleLogin() {
-            const alertBox = document.getElementById('loginAlert');
-            alertBox.style.display = 'block';
-            setTimeout(() => {
-                alertBox.style.display = 'none';
-                closeModals();
-            }, 2000);
-        }
-
-        function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
-        function openFavModal() { document.getElementById('favModal').style.display = 'flex'; }
-        function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
-        function closeModals() {
-            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-            document.getElementById('loginAlert').style.display = 'none';
-        }
-
-        fetchGames();
-    </script>
-</body>
-</html>
+                        <a href="${game.url
