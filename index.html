@@ -12,6 +12,7 @@
             --accent-color: #06b6d4;
             --secondary-text: #94a3b8;
             --hover-color: #0891b2;
+            --heart-color: #f43f5e;
         }
 
         [data-theme="light"] {
@@ -21,6 +22,7 @@
             --accent-color: #2563eb;
             --secondary-text: #64748b;
             --hover-color: #1d4ed8;
+            --heart-color: #e11d48;
         }
 
         body {
@@ -36,39 +38,63 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
+            padding: 15px 30px;
             background-color: var(--card-bg);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .logo {
-            font-size: 26px;
+            font-size: 24px;
             font-weight: bold;
             color: var(--accent-color);
             letter-spacing: 1px;
         }
 
-        .controls {
+        .nav-controls {
             display: flex;
-            gap: 12px;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
-        .controls button {
-            background-color: var(--accent-color);
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
+        .icon-btn, .controls button, .login-btn {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--secondary-text);
+            padding: 8px 14px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
             transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
         }
 
-        .controls button:hover {
+        .icon-btn:hover, .controls button:hover, .login-btn:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .login-btn {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+        }
+
+        .login-btn:hover {
             background-color: var(--hover-color);
+            color: #fff;
+        }
+
+        .heart-icon {
+            color: var(--heart-color);
         }
 
         .hero {
@@ -77,7 +103,7 @@
         }
 
         .hero h1 {
-            font-size: 36px;
+            font-size: 34px;
             margin-bottom: 10px;
         }
 
@@ -128,11 +154,33 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
         }
 
         .game-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        .fav-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+
+        .fav-btn:hover {
+            transform: scale(1.1);
         }
 
         .game-img {
@@ -181,6 +229,62 @@
             background-color: var(--hover-color);
         }
 
+        /* نافذة منبثقة بسيطة (Modal) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-size: 22px;
+            cursor: pointer;
+            color: var(--secondary-text);
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid var(--secondary-text);
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 10px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
         .no-results {
             text-align: center;
             grid-column: 1 / -1;
@@ -194,9 +298,21 @@
 
     <header>
         <div class="logo">MK GAMES</div>
-        <div class="controls">
-            <button onclick="toggleTheme()" id="themeBtn">🌙 الوضع الليلي</button>
-            <button onclick="toggleLanguage()" id="langBtn">English</button>
+        <div class="nav-controls">
+            <!-- زر المفضلة (القلب) -->
+            <button class="icon-btn" onclick="openFavModal()">
+                <span class="heart-icon">❤️</span> <span id="favText">المفضلة</span>
+            </button>
+            <!-- زر الإشعارات -->
+            <button class="icon-btn" onclick="openNotifModal()">
+                🔔 <span id="notifText">الإشعارات</span>
+            </button>
+            <!-- زر الوضع الليلي/النهاري -->
+            <button onclick="toggleTheme()" id="themeBtn">🌙</button>
+            <!-- زر اللغة -->
+            <button onclick="toggleLanguage()" id="langBtn">EN</button>
+            <!-- زر تسجيل الدخول (غير إلزامي) -->
+            <button class="login-btn" onclick="openLoginModal()" id="loginBtnText">تسجيل الدخول</button>
         </div>
     </header>
 
@@ -208,7 +324,37 @@
 
     <div class="container">
         <div class="games-grid" id="gamesGrid">
-            <!-- الألعاب هتتضاف هنا تلقائياً من ملف games.json -->
+            <!-- سيتم تحميل الألعاب هنا ديناميكياً -->
+        </div>
+    </div>
+
+    <!-- نافذة تسجيل الدخول -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModals()">&times;</span>
+            <h3 id="loginTitle">تسجيل الدخول</h3>
+            <p id="loginSub" style="font-size: 13px; color: var(--secondary-text);">اختياري تماماً للاستمتاع بالموقع وحفظ الألعاب</p>
+            <input type="text" id="usernameInput" placeholder="اسم المستخدم أو البريد">
+            <input type="password" placeholder="كلمة المرور">
+            <button onclick="alert('تم تسجيل الدخول بنجاح يا بطل!')">دخول</button>
+        </div>
+    </div>
+
+    <!-- نافذة المفضلة -->
+    <div class="modal" id="favModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModals()">&times;</span>
+            <h3 id="favModalTitle">الألعاب المفضلة</h3>
+            <p id="favModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
+        </div>
+    </div>
+
+    <!-- نافذة الإشعارات -->
+    <div class="modal" id="notifModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModals()">&times;</span>
+            <h3 id="notifModalTitle">الإشعارات</h3>
+            <p id="notifModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لا توجد إشعارات جديدة حالياً، استمتع باللعب! 🚀</p>
         </div>
     </div>
 
@@ -216,8 +362,8 @@
         let currentLang = 'ar';
         let currentTheme = 'dark';
         let gamesData = [];
+        let favorites = [];
 
-        // جلب الألعاب من ملف games.json
         async function fetchGames() {
             try {
                 const response = await fetch('games.json');
@@ -234,18 +380,20 @@
             grid.innerHTML = '';
 
             if (games.length === 0) {
-                grid.innerHTML = `<div class="no-results" id="noResText">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لبحثك' : 'No games found'}</div>`;
+                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لبحثك' : 'No games found'}</div>`;
                 return;
             }
 
-            games.forEach(game => {
+            games.forEach((game, index) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const desc = currentLang === 'ar' ? game.descAr : game.descEn;
                 const btnText = currentLang === 'ar' ? 'العب الآن' : 'Play Now';
+                const isFav = favorites.includes(index);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
                 card.innerHTML = `
+                    <button class="fav-btn" onclick="toggleFav(${index})">${isFav ? '❤️' : '🤍'}</button>
                     <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     <div class="game-content">
                         <h3>${title}</h3>
@@ -255,6 +403,16 @@
                 `;
                 grid.appendChild(card);
             });
+        }
+
+        function toggleFav(index) {
+            const pos = favorites.indexOf(index);
+            if (pos > -1) {
+                favorites.splice(pos, 1);
+            } else {
+                favorites.push(index);
+            }
+            displayGames(gamesData);
         }
 
         function searchGames() {
@@ -272,35 +430,59 @@
             if (currentTheme === 'dark') {
                 root.setAttribute('data-theme', 'light');
                 currentTheme = 'light';
-                themeBtn.innerText = currentLang === 'ar' ? '☀️ الوضع النهارى' : '☀️ Light Mode';
+                themeBtn.innerText = '☀️';
             } else {
                 root.removeAttribute('data-theme');
                 currentTheme = 'dark';
-                themeBtn.innerText = currentLang === 'ar' ? '🌙 الوضع الليلي' : '🌙 Dark Mode';
+                themeBtn.innerText = '🌙';
             }
         }
 
         function toggleLanguage() {
             const htmlRoot = document.getElementById('htmlRoot');
-            const themeBtn = document.getElementById('themeBtn');
             const langBtn = document.getElementById('langBtn');
             const mainHeading = document.getElementById('mainHeading');
             const mainDesc = document.getElementById('mainDesc');
             const searchInput = document.getElementById('searchInput');
+            const loginBtnText = document.getElementById('loginBtnText');
+            const favText = document.getElementById('favText');
+            const notifText = document.getElementById('notifText');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
                 htmlRoot.setAttribute('lang', 'en');
                 htmlRoot.setAttribute('dir', 'ltr');
-                langBtn.innerText = 'العربية';
+                langBtn.innerText = 'AR';
                 mainHeading.innerText = 'Welcome to MK GAMES';
                 mainDesc.innerText = 'Enjoy the best free games directly in your browser.';
                 searchInput.placeholder = 'Search for a game...';
-                themeBtn.innerText = currentTheme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode';
+                loginBtnText.innerText = 'Login';
+                favText.innerText = 'Favorites';
+                notifText.innerText = 'Notifications';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
                 htmlRoot.setAttribute('dir', 'rtl');
-                langBtn.innerText = 'English';
+                langBtn.innerText = 'EN';
                 mainHeading.innerText = 'أهلاً بك في منصة MK GAMES';
-                mainDesc.innerText = 'است
+                mainDesc.innerText = 'استمتع بأقوى وأحلى الألعاب المجانية مباشرة عبر المتصفح.';
+                searchInput.placeholder = 'ابحث عن لعبة...';
+                loginBtnText.innerText = 'تسجيل الدخول';
+                favText.innerText = 'المفضلة';
+                notifText.innerText = 'الإشعارات';
+            }
+            displayGames(gamesData);
+        }
+
+        // دوال النوافذ المنبثقة
+        function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
+        function openFavModal() { document.getElementById('favModal').style.display = 'flex'; }
+        function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
+        function closeModals() {
+            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        }
+
+        fetchGames();
+    </script>
+</body>
+</html>
