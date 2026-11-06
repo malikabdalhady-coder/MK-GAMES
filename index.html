@@ -891,25 +891,44 @@
             </div>
         </div>
 
-        <!-- شريط التصنيفات -->
+        <!-- شريط التصنيفات الشامل والمستعاد -->
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
                 <button class="filter-chip active" onclick="filterByTag('all')" id="fAll">الكل</button>
-                <button class="filter-chip" onclick="filterByTag('sports')" id="fSport">الرياضة</button>
                 <button class="filter-chip" onclick="filterByTag('action')" id="fAction">الأكشن</button>
+                <button class="filter-chip" onclick="filterByTag('adventure')" id="fAdv">مغامرات</button>
+                <button class="filter-chip" onclick="filterByTag('open-world')" id="fOpen">العالم المفتوح</button>
+                <button class="filter-chip" onclick="filterByTag('rpg')" id="fRpg">RPG</button>
+                <button class="filter-chip" onclick="filterByTag('survival')" id="fSurv">النجاة</button>
+                <button class="filter-chip" onclick="filterByTag('horror')" id="fHor">الرعب</button>
+                <button class="filter-chip" onclick="filterByTag('strategy')" id="fStrat">الاستراتيجية</button>
+                <button class="filter-chip" onclick="filterByTag('stealth')" id="fSteal">التخفي</button>
+                <button class="filter-chip" onclick="filterByTag('puzzle')" id="fPuz">الألغاز</button>
                 <button class="filter-chip" onclick="filterByTag('simulation')" id="fSim">المحاكاة</button>
+                <button class="filter-chip" onclick="filterByTag('sports')" id="fSport">الرياضة</button>
+                <button class="filter-chip" onclick="filterByTag('superhero')" id="fSuper">الأبطال الخارقين</button>
+                <button class="filter-chip" onclick="filterByTag('sci-fi')" id="fSci">الخيال العلمي</button>
+                <button class="filter-chip" onclick="filterByTag('indie')" id="fIndie">المستقلين</button>
+                <button class="filter-chip" onclick="filterByTag('co-op')" id="fCoop">جماعية</button>
+                <button class="filter-chip" onclick="filterByTag('2d')" id="f2d">ثنائية الأبعاد</button>
+                <button class="filter-chip" onclick="filterByTag('3d')" id="f3d">ثلاثية الأبعاد</button>
+                <button class="filter-chip" onclick="filterByTag('fpp')" id="fFpp">المنظور الأول</button>
+                <button class="filter-chip" onclick="filterByTag('tpp')" id="fTpp">المنظور الثالث</button>
                 <button class="filter-chip" onclick="filterByTag('classic')" id="fClassic">كلاسيك</button>
             </div>
             
             <div class="filter-row" id="sizeFilters">
                 <button class="filter-chip" onclick="filterBySize('<1')" id="s1">&lt; 1 <span class="size-unit">جيجا</span></button>
                 <button class="filter-chip" onclick="filterBySize('1-5')" id="s2">1 - 5 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('5+')" id="s3">5+ <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('5-10')" id="s3">5 - 10 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('10-20')" id="s4">10 - 20 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('20+')" id="s5">20+ <span class="size-unit">جيجا</span></button>
             </div>
 
             <div class="filter-row" id="specsFilters">
                 <button class="filter-chip" onclick="filterBySpecs('low')" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
                 <button class="filter-chip" onclick="filterBySpecs('mid')" id="specMid">⚡ أجهزة متوسطة</button>
+                <button class="filter-chip" onclick="filterBySpecs('high')" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
             </div>
         </div>
 
@@ -1258,7 +1277,9 @@
 
                 if (currentSizeFilter === '<1') matchSize = game.sizeNum < 1;
                 else if (currentSizeFilter === '1-5') matchSize = game.sizeNum >= 1 && game.sizeNum <= 5;
-                else if (currentSizeFilter === '5+') matchSize = game.sizeNum > 5;
+                else if (currentSizeFilter === '5-10') matchSize = game.sizeNum > 5 && game.sizeNum <= 10;
+                else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
+                else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
 
                 return matchTag && matchSize && matchSpecs;
             });
