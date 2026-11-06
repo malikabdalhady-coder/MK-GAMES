@@ -77,7 +77,6 @@
             transform: scale(1.05);
         }
 
-        /* زر حل المشاكل في الهيدر */
         .troubleshoot-nav-btn {
             background: linear-gradient(135deg, #a855f7, #3b82f6);
             color: white;
@@ -202,7 +201,7 @@
         /* شريط التصنيفات المتقدم */
         .filters-container {
             max-width: 1100px;
-            margin: 0 auto 35px;
+            margin: 0 auto 30px;
             padding: 0 20px;
             display: flex;
             flex-direction: column;
@@ -289,7 +288,7 @@
             padding: 0 20px 40px;
         }
 
-        /* صفحة حل المشاكل (مخفية افتراضياً وتظهر عند الضغط على الزر) */
+        /* صفحة حل المشاكل */
         #troubleshootPageView {
             display: none;
             max-width: 1100px;
@@ -487,6 +486,32 @@
 
         .download-btn:hover { opacity: 0.9; box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
 
+        /* زر عرض كل الألعاب في نهاية الصفحة */
+        .show-all-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .show-all-btn {
+            background: transparent;
+            color: #a855f7;
+            border: 2px solid #a855f7;
+            padding: 12px 35px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15);
+        }
+
+        .show-all-btn:hover {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            transform: translateY(-2px);
+        }
+
         /* Footer */
         .site-footer {
             background-color: var(--card-bg);
@@ -656,14 +681,14 @@
             </div>
         </div>
 
-        <!-- شريط التصنيفات المتقدم -->
+        <!-- شريط التصنيفات المتقدم (النوع + الحجم + قوة الجهاز) -->
         <div class="filters-container">
             <div class="filter-row" id="genreFilters">
-                <button class="filter-chip active" onclick="filterBy('genre', 'all')">الكل</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'action')">أكشن</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'adventure')">مغامرات</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'racing')">سباقات</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'puzzle')">ألغاز</button>
+                <button class="filter-chip active" onclick="filterBy('genre', 'all')" id="gAll">الكل</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'action')" id="gAction">أكشن</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'adventure')" id="gAdv">مغامرات</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'racing')" id="gRace">سباقات</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'puzzle')" id="gPuz">ألغاز</button>
             </div>
             <div class="filter-row" id="sizeFilters">
                 <button class="filter-chip" onclick="filterBy('size', '<1')">&lt; 1 جيجا</button>
@@ -672,14 +697,24 @@
                 <button class="filter-chip" onclick="filterBy('size', '10-20')">10 - 20 جيجا</button>
                 <button class="filter-chip" onclick="filterBy('size', '20+')">20+ جيجا</button>
             </div>
+            <!-- تصنيف حسب قوة الجهاز -->
+            <div class="filter-row" id="specsFilters">
+                <button class="filter-chip" onclick="filterBy('specs', 'low')" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
+                <button class="filter-chip" onclick="filterBy('specs', 'mid')" id="specMid">⚡ أجهزة متوسطة</button>
+                <button class="filter-chip" onclick="filterBy('specs', 'high')" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
+            </div>
         </div>
 
         <div class="container">
             <div class="games-grid" id="gamesGrid"></div>
+            <!-- زر عرض كل الألعاب في نهاية الشبكة -->
+            <div class="show-all-container">
+                <button class="show-all-btn" onclick="resetAllFilters()" id="showAllBtn">عرض كل الألعاب (Show All Games)</button>
+            </div>
         </div>
     </div>
 
-    <!-- صفحة حل المشاكل المستقلة (تفتح عند الضغط على زر حل المشاكل) -->
+    <!-- صفحة حل المشاكل المستقلة -->
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
@@ -776,6 +811,7 @@
                 "genreKey": "adventure",
                 "sizeNum": 21.0,
                 "size": "21 جيجا",
+                "specs": "high",
                 "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
@@ -788,6 +824,7 @@
                 "genreKey": "puzzle",
                 "sizeNum": 4.1,
                 "size": "4.1 جيجا",
+                "specs": "low",
                 "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
@@ -800,6 +837,7 @@
                 "genreKey": "racing",
                 "sizeNum": 14.1,
                 "size": "14.1 جيجا",
+                "specs": "mid",
                 "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
@@ -812,6 +850,7 @@
                 "genreKey": "action",
                 "sizeNum": 51.6,
                 "size": "51.6 جيجا",
+                "specs": "high",
                 "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
@@ -824,6 +863,7 @@
                 "genreKey": "action",
                 "sizeNum": 35.0,
                 "size": "35.0 جيجا",
+                "specs": "high",
                 "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
@@ -836,6 +876,7 @@
                 "genreKey": "adventure",
                 "sizeNum": 0.8,
                 "size": "0.8 جيجا",
+                "specs": "low",
                 "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             }
@@ -845,6 +886,7 @@
         let currentTheme = 'dark';
         let currentGenreFilter = 'all';
         let currentSizeFilter = 'all';
+        let currentSpecsFilter = 'all';
 
         let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
@@ -863,7 +905,6 @@
         displayGames(activeGames);
         buildTrendingList();
 
-        // دوال التنقل بين صفحة حل المشاكل والرئيسية
         function openTroubleshootPage() {
             document.getElementById('mainHeaderView').style.display = 'none';
             document.getElementById('troubleshootPageView').style.display = 'block';
@@ -890,15 +931,37 @@
                     document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
                     event.target.classList.add('active');
                 }
+            } else if (type === 'specs') {
+                if (currentSpecsFilter === value) {
+                    currentSpecsFilter = 'all';
+                    event.target.classList.remove('active');
+                } else {
+                    currentSpecsFilter = value;
+                    document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+                    event.target.classList.add('active');
+                }
             }
 
             applyFilters();
+        }
+
+        function resetAllFilters() {
+            currentGenreFilter = 'all';
+            currentSizeFilter = 'all';
+            currentSpecsFilter = 'all';
+            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('gAll').classList.add('active');
+            document.getElementById('searchInput').value = '';
+            activeGames = [...gamesData];
+            displayGames(activeGames);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function applyFilters() {
             let filtered = gamesData.filter(game => {
                 let matchGenre = (currentGenreFilter === 'all' || game.genreKey === currentGenreFilter);
                 let matchSize = true;
+                let matchSpecs = (currentSpecsFilter === 'all' || game.specs === currentSpecsFilter);
 
                 if (currentSizeFilter === '<1') matchSize = game.sizeNum < 1;
                 else if (currentSizeFilter === '1-5') matchSize = game.sizeNum >= 1 && game.sizeNum <= 5;
@@ -906,7 +969,7 @@
                 else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
                 else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
 
-                return matchGenre && matchSize;
+                return matchGenre && matchSize && matchSpecs;
             });
 
             activeGames = filtered;
@@ -951,7 +1014,7 @@
 
         function goHome() {
             closeTroubleshootPage();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            resetAllFilters();
         }
 
         function toggleFav(id) {
@@ -1074,14 +1137,17 @@
             const tsPageTitle = document.getElementById('tsPageTitle');
             const tsPageSub = document.getElementById('tsPageSub');
             const backBtn = document.getElementById('backBtn');
-            const desc1 = document.getElementById('desc1');
-            const desc2 = document.getElementById('desc2');
-            const desc3 = document.getElementById('desc3');
-            const desc4 = document.getElementById('desc4');
-            const btn1 = document.getElementById('btn1');
-            const btn2 = document.getElementById('btn2');
-            const btn3 = document.getElementById('btn3');
-            const btn4 = document.getElementById('btn4');
+            const showAllBtn = document.getElementById('showAllBtn');
+            
+            const gAll = document.getElementById('gAll');
+            const gAction = document.getElementById('gAction');
+            const gAdv = document.getElementById('gAdv');
+            const gRace = document.getElementById('gRace');
+            const gPuz = document.getElementById('gPuz');
+            
+            const specLow = document.getElementById('specLow');
+            const specMid = document.getElementById('specMid');
+            const specHigh = document.getElementById('specHigh');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -1099,16 +1165,17 @@
                 tsPageTitle.innerText = 'Troubleshooting & Essential Tools Center';
                 tsPageSub.innerText = 'Essential software and runtimes required to run all PC games and fix crashes and black screen issues.';
                 backBtn.innerText = 'Back to Games';
-                
-                desc1.innerText = 'Essential package for fixing game graphics errors, failure to launch, and famous error messages (d3dcompiler, xinput).';
-                desc2.innerText = 'Fixes error code (0xc000007b) or games failing to boot due to missing system runtime files.';
-                desc3.innerText = 'Tools designed to extract compressed game archives (ISO, RAR, ZIP) without errors or corrupt files.';
-                desc4.innerText = 'Update your graphics card driver to the latest version for maximum FPS and performance in heavy games.';
-                
-                btn1.innerText = 'Download Runtimes';
-                btn2.innerText = 'Download Packages';
-                btn3.innerText = 'Download Extractor';
-                btn4.innerText = 'Update GPU Driver';
+                showAllBtn.innerText = 'Show All Games';
+
+                gAll.innerText = 'All';
+                gAction.innerText = 'Action';
+                gAdv.innerText = 'Adventure';
+                gRace.innerText = 'Racing';
+                gPuz.innerText = 'Puzzle';
+
+                specLow.innerText = '💻 Low-End / Light Games';
+                specMid.innerText = '⚡ Mid-Range PC';
+                specHigh.innerText = '🔥 High-End / RTX Games';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -1125,16 +1192,17 @@
                 tsPageTitle.innerText = 'مركز حل المشاكل والبرامج الأساسية';
                 tsPageSub.innerText = 'أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.';
                 backBtn.innerText = 'العودة للألعاب';
-                
-                desc1.innerText = 'حزمة أساسية لا غنى عنها لحل مشاكل رسومات الألعاب، وعدم تشغيل اللعبة، ورسائل الخطأ الشهيرة (d3dcompiler, xinput).';
-                desc2.innerText = 'يحل مشكلة ظهور رسالة الخطأ (0xc000007b) أو عدم قدرة اللعبة على الإقلاع بسبب نقص ملفات النظام البرمجية.';
-                desc3.innerText = 'برامج مخصصة لفك ضغط الألعاب (ISO و RAR و ZIP) المرفوعة على الموقع بدون أخطاء أو ملفات تالفة أثناء التثبيت.';
-                desc4.innerText = 'تحديث تعريف كرت الشاشة لأحدث إصدار لضمان أعلى أداء (FPS) وحل مشاكل التهنيج والتخطيط في الألعاب الضخمة.';
-                
-                btn1.innerText = 'تحميل الحزمة الأساسية';
-                btn2.innerText = 'تحميل الحزم البرمجية';
-                btn3.innerText = 'تحميل برنامج فك الضغط';
-                btn4.innerText = 'تحديث كرت الشاشة';
+                showAllBtn.innerText = 'عرض كل الألعاب';
+
+                gAll.innerText = 'الكل';
+                gAction.innerText = 'أكشن';
+                gAdv.innerText = 'مغامرات';
+                gRace.innerText = 'سباقات';
+                gPuz.innerText = 'ألغاز';
+
+                specLow.innerText = '💻 أجهزة ضعيفة / خفيفة';
+                specMid.innerText = '⚡ أجهزة متوسطة';
+                specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
             }
             buildTrendingList();
             displayGames(activeGames);
