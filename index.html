@@ -685,26 +685,26 @@
         <div class="filters-container">
             <!-- صف التصنيفات والأنواع الرئيسية -->
             <div class="filter-row" id="tagFilters">
-                <button class="filter-chip active" onclick="filterByTag('all')" id="fAll">الكل</button>
-                <button class="filter-chip" onclick="filterByTag('action')">الأكشن</button>
-                <button class="filter-chip" onclick="filterByTag('adventure')">مغامرات</button>
-                <button class="filter-chip" onclick="filterByTag('open-world')">العالم المفتوح</button>
-                <button class="filter-chip" onclick="filterByTag('rpg')">RPG</button>
-                <button class="filter-chip" onclick="filterByTag('survival')">النجاة</button>
-                <button class="filter-chip" onclick="filterByTag('horror')">الرعب</button>
-                <button class="filter-chip" onclick="filterByTag('strategy')">الاستراتيجية</button>
-                <button class="filter-chip" onclick="filterByTag('stealth')">التخفي</button>
-                <button class="filter-chip" onclick="filterByTag('puzzle')">الألغاز</button>
-                <button class="filter-chip" onclick="filterByTag('simulation')">المحاكاة</button>
-                <button class="filter-chip" onclick="filterByTag('sports')">الرياضة</button>
-                <button class="filter-chip" onclick="filterByTag('superhero')">الأبطال الخارقين</button>
-                <button class="filter-chip" onclick="filterByTag('sci-fi')">الخيال العلمي</button>
-                <button class="filter-chip" onclick="filterByTag('indie')">المستقلين</button>
-                <button class="filter-chip" onclick="filterByTag('co-op')">جماعية</button>
-                <button class="filter-chip" onclick="filterByTag('2d')">ثنائية الأبعاد</button>
-                <button class="filter-chip" onclick="filterByTag('3d')">ثلاثية الأبعاد</button>
-                <button class="filter-chip" onclick="filterByTag('fpp')">المنظور الأول</button>
-                <button class="filter-chip" onclick="filterByTag('tpp')">المنظور الثالث</button>
+                <button class="filter-chip active" onclick="filterByTag('all')" id="tagAll">الكل</button>
+                <button class="filter-chip" onclick="filterByTag('action')" id="tagAction">الأكشن</button>
+                <button class="filter-chip" onclick="filterByTag('adventure')" id="tagAdv">مغامرات</button>
+                <button class="filter-chip" onclick="filterByTag('open-world')" id="tagOpen">العالم المفتوح</button>
+                <button class="filter-chip" onclick="filterByTag('rpg')" id="tagRpg">RPG</button>
+                <button class="filter-chip" onclick="filterByTag('survival')" id="tagSurv">النجاة</button>
+                <button class="filter-chip" onclick="filterByTag('horror')" id="tagHor">الرعب</button>
+                <button class="filter-chip" onclick="filterByTag('strategy')" id="tagStrat">الاستراتيجية</button>
+                <button class="filter-chip" onclick="filterByTag('stealth')" id="tagStealth">التخفي</button>
+                <button class="filter-chip" onclick="filterByTag('puzzle')" id="tagPuz">الألغاز</button>
+                <button class="filter-chip" onclick="filterByTag('simulation')" id="tagSim">المحاكاة</button>
+                <button class="filter-chip" onclick="filterByTag('sports')" id="tagSport">الرياضة</button>
+                <button class="filter-chip" onclick="filterByTag('superhero')" id="tagSuper">الأبطال الخارقين</button>
+                <button class="filter-chip" onclick="filterByTag('sci-fi')" id="tagSci">الخيال العلمي</button>
+                <button class="filter-chip" onclick="filterByTag('indie')" id="tagIndie">المستقلين</button>
+                <button class="filter-chip" onclick="filterByTag('co-op')" id="tagCoop">جماعية</button>
+                <button class="filter-chip" onclick="filterByTag('2d')" id="tag2d">ثنائية الأبعاد</button>
+                <button class="filter-chip" onclick="filterByTag('3d')" id="tag3d">ثلاثية الأبعاد</button>
+                <button class="filter-chip" onclick="filterByTag('fpp')" id="tagFpp">المنظور الأول</button>
+                <button class="filter-chip" onclick="filterByTag('tpp')" id="tagTpp">المنظور الثالث</button>
             </div>
             
             <!-- تصنيف حسب الحجم -->
@@ -718,9 +718,9 @@
 
             <!-- تصنيف حسب قوة الجهاز -->
             <div class="filter-row" id="specsFilters">
-                <button class="filter-chip" onclick="filterBySpecs('low')">💻 أجهزة ضعيفة / خفيفة</button>
-                <button class="filter-chip" onclick="filterBySpecs('mid')">⚡ أجهزة متوسطة</button>
-                <button class="filter-chip" onclick="filterBySpecs('high')">🔥 أجهزة قوية / عالية الجرافيك</button>
+                <button class="filter-chip" onclick="filterBySpecs('low')" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
+                <button class="filter-chip" onclick="filterBySpecs('mid')" id="specMid">⚡ أجهزة متوسطة</button>
+                <button class="filter-chip" onclick="filterBySpecs('high')" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
             </div>
         </div>
 
@@ -728,7 +728,7 @@
             <div class="games-grid" id="gamesGrid"></div>
             <!-- زر عرض كل الألعاب في نهاية الشبكة -->
             <div class="show-all-container">
-                <button class="show-all-btn" onclick="resetAllFilters()" id="showAllBtn">عرض كل الألعاب (Show All Games)</button>
+                <button class="show-all-btn" onclick="resetAllFilters()" id="showAllBtn">عرض كل الألعاب</button>
             </div>
         </div>
     </div>
@@ -950,361 +950,3 @@
             } else {
                 currentSizeFilter = value;
                 document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-            }
-            applyFilters();
-        }
-
-        function filterBySpecs(value) {
-            if (currentSpecsFilter === value) {
-                currentSpecsFilter = 'all';
-                event.target.classList.remove('active');
-            } else {
-                currentSpecsFilter = value;
-                document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-            }
-            applyFilters();
-        }
-
-        function resetAllFilters() {
-            currentTagFilter = 'all';
-            currentSizeFilter = 'all';
-            currentSpecsFilter = 'all';
-            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('fAll').classList.add('active');
-            document.getElementById('searchInput').value = '';
-            activeGames = [...gamesData];
-            displayGames(activeGames);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function applyFilters() {
-            let filtered = gamesData.filter(game => {
-                let matchTag = (currentTagFilter === 'all' || (game.tags && game.tags.includes(currentTagFilter)));
-                let matchSize = true;
-                let matchSpecs = (currentSpecsFilter === 'all' || game.specs === currentSpecsFilter);
-
-                if (currentSizeFilter === '<1') matchSize = game.sizeNum < 1;
-                else if (currentSizeFilter === '1-5') matchSize = game.sizeNum >= 1 && game.sizeNum <= 5;
-                else if (currentSizeFilter === '5-10') matchSize = game.sizeNum > 5 && game.sizeNum <= 10;
-                else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
-                else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
-
-                return matchTag && matchSize && matchSpecs;
-            });
-
-            activeGames = filtered;
-            displayGames(activeGames);
-        }
-
-        function displayGames(games) {
-            const grid = document.getElementById('gamesGrid');
-            if (!grid) return;
-            grid.innerHTML = '';
-
-            if (!games || games.length === 0) {
-                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لتصنيفك' : 'No games match your filter'}</div>`;
-                return;
-            }
-
-            games.forEach((game) => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
-                const isFav = favorites.some(fav => fav.id === game.id);
-
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.innerHTML = `
-                    <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="إضافة للمفضلة">${isFav ? '❤️' : '🤍'}</button>
-                    <div class="game-img-container" onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">
-                        <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    </div>
-                    <div class="game-content">
-                        <h3 onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">${title}</h3>
-                        <div class="game-info">
-                            <span class="game-genre">${genre}</span>
-                            <span class="game-size">${game.size}</span>
-                        </div>
-                        <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function goHome() {
-            closeTroubleshootPage();
-            resetAllFilters();
-        }
-
-        function toggleFav(id) {
-            if (!currentUser) {
-                alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول أولاً لتتمكن من حفظ الألعاب في المفضلة!' : '⚠️ You must log in first to save games to favorites!');
-                openAuthModal();
-                return;
-            }
-
-            const gameObj = gamesData.find(g => g.id === id);
-            const index = favorites.findIndex(fav => fav.id === id);
-
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(gameObj);
-            }
-            
-            localStorage.setItem('mk_favorites', JSON.stringify(favorites));
-            displayGames(activeGames);
-        }
-
-        function openFavModal() {
-            const modalBody = document.getElementById('favModalBody');
-            modalBody.innerHTML = '';
-
-            if (favorites.length === 0) {
-                modalBody.innerHTML = `<p style="color: var(--secondary-text);">${currentLang === 'ar' ? 'لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️' : 'No favorite games added yet ❤️'}</p>`;
-            } else {
-                favorites.forEach(game => {
-                    const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                    const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                    const row = document.createElement('div');
-                    row.className = 'fav-item-row';
-                    row.innerHTML = `
-                        <img src="${game.image}" class="fav-item-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                        <div class="fav-item-info">
-                            <h4>${title}</h4>
-                            <span>${genre} • ${game.size}</span>
-                        </div>
-                        <button onclick="event.stopPropagation(); toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;" title="إزالة">❌</button>
-                    `;
-                    modalBody.appendChild(row);
-                });
-            }
-            document.getElementById('favModal').style.display = 'flex';
-        }
-
-        function buildTrendingList() {
-            const listContainer = document.getElementById('trendingList');
-            listContainer.innerHTML = '';
-            const trendingItems = gamesData.slice(0, 4);
-            
-            trendingItems.forEach(game => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                
-                const item = document.createElement('div');
-                item.className = 'trending-item';
-                item.onclick = function() {
-                    document.getElementById('searchInput').value = title;
-                    searchGames();
-                    hideTrending();
-                };
-                item.innerHTML = `
-                    <img src="${game.image}" class="trending-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    <div class="trending-info">
-                        <h4 style="margin:0 0 3px; font-size:14px; color:var(--text-color);">${title}</h4>
-                        <span style="font-size:11px; color:var(--secondary-text);">${genre} • ${game.size}</span>
-                    </div>
-                `;
-                listContainer.appendChild(item);
-            });
-        }
-
-        function showTrending() { document.getElementById('trendingDropdown').style.display = 'block'; }
-        function hideTrending() { setTimeout(() => { document.getElementById('trendingDropdown').style.display = 'none'; }, 200); }
-
-        document.addEventListener('click', function(e) {
-            const searchContainer = document.querySelector('.search-container');
-            if (!searchContainer.contains(e.target)) {
-                document.getElementById('trendingDropdown').style.display = 'none';
-            }
-        });
-
-        function searchGames() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = activeGames.filter(game => {
-                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
-                const genre = (currentLang === 'ar' ? game.genreAr : game.genreEn).toLowerCase();
-                return title.includes(query) || genre.includes(query);
-            });
-            displayGames(filtered);
-        }
-
-        function toggleTheme() {
-            const root = document.getElementById('htmlRoot');
-            const themeBtn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark') {
-                root.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
-                themeBtn.innerText = '☀️';
-            } else {
-                root.removeAttribute('data-theme');
-                currentTheme = 'dark';
-                themeBtn.innerText = '🌙';
-            }
-        }
-
-        function toggleLanguage() {
-            const htmlRoot = document.getElementById('htmlRoot');
-            const langBtn = document.getElementById('langBtn');
-            const searchInput = document.getElementById('searchInput');
-            const prayerText = document.getElementById('prayerText');
-            const subTitle = document.getElementById('subTitle');
-            const trendingTitle = document.getElementById('trendingTitle');
-            const footerDesc = document.getElementById('footerDesc');
-            const loginBtn = document.getElementById('loginBtn');
-            const troubleshootBtnText = document.getElementById('troubleshootBtnText');
-            const tsPageTitle = document.getElementById('tsPageTitle');
-            const tsPageSub = document.getElementById('tsPageSub');
-            const backBtn = document.getElementById('backBtn');
-            const showAllBtn = document.getElementById('showAllBtn');
-            const fAll = document.getElementById('fAll');
-
-            if (currentLang === 'ar') {
-                currentLang = 'en';
-                htmlRoot.setAttribute('lang', 'en');
-                htmlRoot.setAttribute('dir', 'ltr');
-                langBtn.innerText = 'AR';
-                prayerText.innerText = 'Do not let games distract you from prayer';
-                subTitle.innerText = 'Explore Games';
-                searchInput.placeholder = 'Search for a game to download...';
-                trendingTitle.innerText = '🔥 Trending Games';
-                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading. Here you will also find patches, mods, and updates, along with installation guides and troubleshooting solutions.';
-                loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
-                
-                troubleshootBtnText.innerText = 'Troubleshooting & Tools';
-                tsPageTitle.innerText = 'Troubleshooting & Essential Tools Center';
-                tsPageSub.innerText = 'Essential software and runtimes required to run all PC games and fix crashes and black screen issues.';
-                backBtn.innerText = 'Back to Games';
-                showAllBtn.innerText = 'Show All Games';
-                fAll.innerText = 'All';
-            } else {
-                currentLang = 'ar';
-                htmlRoot.setAttribute('lang', 'ar');
-                htmlRoot.setAttribute('dir', 'rtl');
-                langBtn.innerText = 'EN';
-                prayerText.innerText = 'لا تدع الألعاب تلهيك عن الصلاة';
-                subTitle.innerText = 'Explore Games';
-                searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
-                trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
-                footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.';
-                loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
-                
-                troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
-                tsPageTitle.innerText = 'مركز حل المشاكل والبرامج الأساسية';
-                tsPageSub.innerText = 'أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.';
-                backBtn.innerText = 'العودة للألعاب';
-                showAllBtn.innerText = 'عرض كل الألعاب';
-                fAll.innerText = 'الكل';
-            }
-            buildTrendingList();
-            displayGames(activeGames);
-        }
-
-        function toggleAuthMode() {
-            isSignUpMode = !isSignUpMode;
-            const title = document.getElementById('authModalTitle');
-            const sub = document.getElementById('authModalSub');
-            const btn = document.getElementById('authSubmitBtn');
-            const switchText = document.getElementById('authSwitchText');
-            
-            document.getElementById('authErrorMsg').style.display = 'none';
-            document.getElementById('authSuccessMsg').style.display = 'none';
-
-            if (isSignUpMode) {
-                title.innerText = currentLang === 'ar' ? 'إنشاء حساب جديد' : 'Sign Up';
-                sub.innerText = currentLang === 'ar' ? 'أنشئ حساباً جديداً باستخدام بريدك الإلكتروني' : 'Create a new account with your email';
-                btn.innerText = currentLang === 'ar' ? 'تسجيل حساب' : 'Register';
-                switchText.innerHTML = currentLang === 'ar' ? 'لديك حساب بالفعل؟ <span>اضغط هنا لتسجيل الدخول</span>' : 'Already have an account? <span>Login here</span>';
-            } else {
-                title.innerText = currentLang === 'ar' ? 'تسجيل الدخول' : 'Login';
-                sub.innerText = currentLang === 'ar' ? 'أدخل بريدك الإلكتروني وكلمة المرور' : 'Enter your email and password';
-                btn.innerText = currentLang === 'ar' ? 'دخول' : 'Login';
-                switchText.innerHTML = currentLang === 'ar' ? 'ليس لديك حساب؟ <span>اضغط هنا لإنشاء حساب جديد</span>' : "Don't have an account? <span>Sign up here</span>";
-            }
-        }
-
-        function handleAuthSubmit() {
-            const email = document.getElementById('authEmail').value.trim();
-            const password = document.getElementById('authPassword').value.trim();
-            const errorBox = document.getElementById('authErrorMsg');
-            const successBox = document.getElementById('authSuccessMsg');
-
-            errorBox.style.display = 'none';
-            successBox.style.display = 'none';
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errorBox.innerText = currentLang === 'ar' ? '⚠️ يرجى إدخال بريد إلكتروني صحيح!' : '⚠️ Please enter a valid email address!';
-                errorBox.style.display = 'block';
-                return;
-            }
-
-            if (password.length < 6) {
-                errorBox.innerText = currentLang === 'ar' ? '⚠️ كلمة المرور يجب ألا تقل عن 6 أحرف!' : '⚠️ Password must be at least 6 characters!';
-                errorBox.style.display = 'block';
-                return;
-            }
-
-            if (isSignUpMode) {
-                const existingUser = registeredUsers.find(u => u.email === email);
-                if (existingUser) {
-                    errorBox.innerText = currentLang === 'ar' ? '⚠️ هذا البريد مسجل مسبقاً، حاول تسجيل الدخول!' : '⚠️ Email already registered, try logging in!';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-
-                registeredUsers.push({ email, password });
-                localStorage.setItem('mk_users', JSON.stringify(registeredUsers));
-
-                successBox.innerText = currentLang === 'ar' ? '✅ تم إنشاء الحساب بنجاح! يمكنك الدخول الآن.' : '✅ Account created successfully! You can login now.';
-                successBox.style.display = 'block';
-                
-                setTimeout(() => { toggleAuthMode(); }, 1500);
-
-            } else {
-                const foundUser = registeredUsers.find(u => u.email === email && u.password === password);
-                if (!foundUser) {
-                    errorBox.innerText = currentLang === 'ar' ? '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة أو الحساب غير موجود!' : '❌ Incorrect email/password or account not found!';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-
-                currentUser = foundUser;
-                localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
-
-                successBox.innerText = currentLang === 'ar' ? `✅ أهلاً بك! تم تسجيل الدخول بنجاح.` : `✅ Welcome back! Logged in successfully.`;
-                successBox.style.display = 'block';
-
-                const loginBtn = document.getElementById('loginBtn');
-                loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
-                loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
-
-                setTimeout(() => { closeModals(); displayGames(activeGames); }, 1500);
-            }
-        }
-
-        function openAuthModal() { 
-            if (currentUser) {
-                alert(currentLang === 'ar' ? `أهلاً بك يا ${currentUser.email}، أنت مسجل بالفعل بالموقع! 🟢` : `Welcome ${currentUser.email}, you are already logged in! 🟢`);
-                return;
-            }
-            document.getElementById('authModal').style.display = 'flex'; 
-        }
-
-        function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
-        
-        function closeModals() {
-            document.getElementById('authModal').style.display = 'none';
-            document.getElementById('favModal').style.display = 'none';
-            document.getElementById('notifModal').style.display = 'none';
-            document.getElementById('authErrorMsg').style.display = 'none';
-            document.getElementById('authSuccessMsg').style.display = 'none';
-            document.getElementById('authEmail').value = '';
-            document.getElementById('authPassword').value = '';
-        }
-    </script>
-</body>
-</html>
