@@ -154,7 +154,7 @@
             max-width: 800px;
             padding: 0 20px;
             box-sizing: border-box;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px;
             position: relative;
         }
 
@@ -175,6 +175,42 @@
         .search-box:focus {
             border-color: #a855f7;
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+        }
+
+        /* شريط التصنيفات المتقدم */
+        .filters-container {
+            max-width: 1100px;
+            margin: 0 auto 35px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-chip {
+            background-color: var(--card-bg);
+            color: var(--secondary-text);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
         }
 
         .trending-dropdown {
@@ -506,6 +542,26 @@
             </div>
         </div>
 
+        <!-- شريط التصنيفات المتقدم (الحجم + النوع + قوة الجهاز) -->
+        <div class="filters-container">
+            <!-- تصنيف حسب النوع -->
+            <div class="filter-row" id="genreFilters">
+                <button class="filter-chip active" onclick="filterBy('genre', 'all')">الكل</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'action')">أكشن</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'adventure')">مغامرات</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'racing')">سباقات</button>
+                <button class="filter-chip" onclick="filterBy('genre', 'puzzle')">ألغاز</button>
+            </div>
+            <!-- تصنيف حسب الحجم -->
+            <div class="filter-row" id="sizeFilters">
+                <button class="filter-chip" onclick="filterBy('size', '<1')">&lt; 1 جيجا</button>
+                <button class="filter-chip" onclick="filterBy('size', '1-5')">1 - 5 جيجا</button>
+                <button class="filter-chip" onclick="filterBy('size', '5-10')">5 - 10 جيجا</button>
+                <button class="filter-chip" onclick="filterBy('size', '10-20')">10 - 20 جيجا</button>
+                <button class="filter-chip" onclick="filterBy('size', '20+')">20+ جيجا</button>
+            </div>
+        </div>
+
         <div class="container">
             <div class="games-grid" id="gamesGrid"></div>
         </div>
@@ -523,7 +579,7 @@
         </div>
     </footer>
 
-    <!-- نافذة المصادقة (تسجيل الدخول / إنشاء حساب) -->
+    <!-- نافذة المصادقة -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -571,6 +627,8 @@
                 "titleEn": "Grand Adventure",
                 "genreAr": "مغامرات - أكشن",
                 "genreEn": "Adventure - Action",
+                "genreKey": "adventure",
+                "sizeNum": 21.0,
                 "size": "21 جيجا",
                 "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -581,6 +639,8 @@
                 "titleEn": "Puzzle Challenge",
                 "genreAr": "ألغاز - ذكاء",
                 "genreEn": "Puzzle - IQ",
+                "genreKey": "puzzle",
+                "sizeNum": 4.1,
                 "size": "4.1 جيجا",
                 "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -591,6 +651,8 @@
                 "titleEn": "Super Speed Racing",
                 "genreAr": "سباقات - سيارات",
                 "genreEn": "Racing - Cars",
+                "genreKey": "racing",
+                "sizeNum": 14.1,
                 "size": "14.1 جيجا",
                 "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -601,6 +663,8 @@
                 "titleEn": "Group Warfare",
                 "genreAr": "تصويب - أكشن",
                 "genreEn": "Shooter - Action",
+                "genreKey": "action",
+                "sizeNum": 51.6,
                 "size": "51.6 جيجا",
                 "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -611,6 +675,8 @@
                 "titleEn": "Cyberpunk Nights",
                 "genreAr": "عالم مفتوح - تقمص أدوار",
                 "genreEn": "Open World - RPG",
+                "genreKey": "action",
+                "sizeNum": 35.0,
                 "size": "35.0 جيجا",
                 "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -621,7 +687,9 @@
                 "titleEn": "Shadow Hunter",
                 "genreAr": "اجواء مظلمة - مغامرات",
                 "genreEn": "Dark - Adventure",
-                "size": "11.2 جيجا",
+                "genreKey": "adventure",
+                "sizeNum": 0.8,
+                "size": "0.8 جيجا",
                 "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             }
@@ -629,6 +697,8 @@
 
         let currentLang = 'ar';
         let currentTheme = 'dark';
+        let currentGenreFilter = 'all';
+        let currentSizeFilter = 'all';
 
         let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
@@ -643,18 +713,47 @@
             }
         });
 
-        function getRandomGames(arr) {
-            let shuffled = [...arr];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                let j = Math.floor(Math.random() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        }
-
-        let activeGames = getRandomGames(gamesData);
+        let activeGames = [...gamesData];
         displayGames(activeGames);
         buildTrendingList();
+
+        function filterBy(type, value) {
+            if (type === 'genre') {
+                currentGenreFilter = value;
+                // تحديث الزر النشط في فئة النوع
+                document.querySelectorAll('#genreFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            } else if (type === 'size') {
+                if (currentSizeFilter === value) {
+                    currentSizeFilter = 'all';
+                    event.target.classList.remove('active');
+                } else {
+                    currentSizeFilter = value;
+                    document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+                    event.target.classList.add('active');
+                }
+            }
+
+            applyFilters();
+        }
+
+        function applyFilters() {
+            let filtered = gamesData.filter(game => {
+                let matchGenre = (currentGenreFilter === 'all' || game.genreKey === currentGenreFilter);
+                let matchSize = true;
+
+                if (currentSizeFilter === '<1') matchSize = game.sizeNum < 1;
+                else if (currentSizeFilter === '1-5') matchSize = game.sizeNum >= 1 && game.sizeNum <= 5;
+                else if (currentSizeFilter === '5-10') matchSize = game.sizeNum > 5 && game.sizeNum <= 10;
+                else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
+                else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
+
+                return matchGenre && matchSize;
+            });
+
+            activeGames = filtered;
+            displayGames(activeGames);
+        }
 
         function displayGames(games) {
             const grid = document.getElementById('gamesGrid');
@@ -662,7 +761,7 @@
             grid.innerHTML = '';
 
             if (!games || games.length === 0) {
-                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لبحثك' : 'No games found'}</div>`;
+                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لتصنيفك' : 'No games match your filter'}</div>`;
                 return;
             }
 
@@ -934,7 +1033,10 @@
         function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
         
         function closeModals() {
-            document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            document.querySelectorAll('.modal').forEach(m => m.style.display, 'none');
+            document.getElementById('authModal').style.display = 'none';
+            document.getElementById('favModal').style.display = 'none';
+            document.getElementById('notifModal').style.display = 'none';
             document.getElementById('authErrorMsg').style.display = 'none';
             document.getElementById('authSuccessMsg').style.display = 'none';
             document.getElementById('authEmail').value = '';
