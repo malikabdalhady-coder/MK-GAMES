@@ -288,7 +288,7 @@
             padding: 0 20px 40px;
         }
 
-        /* صفحة حل المشاكل بتصميم المستطيل الشامل الواحد */
+        /* صفحة حل المشاكل بتصميم المستطيلات المتعددة والمنظمة */
         #troubleshootPageView {
             display: none;
             max-width: 900px;
@@ -323,39 +323,40 @@
             color: #a855f7;
         }
 
-        /* المستطيل الشامل الكبير */
-        .master-troubleshoot-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 35px;
-            border: 1px solid rgba(168, 85, 247, 0.4);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: right;
+        .troubleshoot-container-grid {
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 20px;
+            text-align: right;
         }
 
-        [dir="ltr"] .master-troubleshoot-card { text-align: left; }
+        [dir="ltr"] .troubleshoot-container-grid { text-align: left; }
 
-        .master-card-title {
-            font-size: 24px;
+        .troubleshoot-box-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .box-title {
+            font-size: 20px;
             font-weight: 800;
             color: #a855f7;
-            margin: 0 0 5px;
+            margin: 0 0 8px;
         }
 
-        .master-card-desc {
+        .box-desc {
             font-size: 14px;
             color: var(--secondary-text);
-            margin: 0 0 15px;
-            line-height: 1.6;
+            margin: 0 0 20px;
         }
 
         .tools-list-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .tool-row-item {
@@ -363,7 +364,7 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(255, 255, 255, 0.02);
-            padding: 15px 20px;
+            padding: 14px 18px;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: 0.2s;
@@ -407,6 +408,47 @@
         .tool-action-btn:hover {
             opacity: 0.9;
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+
+        /* قوائم الخطوات داخل المربعات العادية */
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .steps-list li {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-color);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .steps-list li::before {
+            content: "🔹";
+            font-size: 12px;
+        }
+
+        /* تنويه التواصل */
+        .support-notice-card {
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px dashed #a855f7;
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--text-color);
+            font-size: 15px;
+            line-height: 1.6;
         }
 
         /* شبكة الألعاب */
@@ -760,68 +802,92 @@
         </div>
     </div>
 
-    <!-- صفحة حل المشاكل والبرامج بتصميم مستطيل شامل واحد -->
+    <!-- صفحة حل المشاكل والبرامج المتكاملة -->
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
-                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز البرامج والأدوات</h2>
-                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">كل ما تحتاجه لتشغيل الألعاب بكفاءة عالية.</p>
+                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز البرامج والتعليمات الشامل</h2>
+                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.</p>
             </div>
             <button class="back-to-home-btn" onclick="closeTroubleshootPage()" id="backBtn">العودة للألعاب</button>
         </div>
 
-        <!-- المستطيل الشامل للبرامج الأساسية -->
-        <div class="master-troubleshoot-card">
-            <div>
-                <h3 class="master-card-title" id="masterTitle">برامج تشغيل الالعاب وفك الضغط</h3>
-                <p class="master-card-desc" id="masterDesc">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
+        <div class="troubleshoot-container-grid">
+            <!-- المربع الأول: برامج التشغيل وفك الضغط -->
+            <div class="troubleshoot-box-card">
+                <h3 class="box-title" id="box1Title">برامج تشغيل الالعاب وفك الضغط</h3>
+                <p class="box-desc" id="box1Desc">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
+                <div class="tools-list-container">
+                    <div class="tool-row-item">
+                        <div class="tool-info">
+                            <h4 id="tool1Title">Visual C++</h4>
+                            <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
+                        </div>
+                        <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-action-btn" target="_blank" id="btn1">تحميل Visual C++</a>
+                    </div>
+                    <div class="tool-row-item">
+                        <div class="tool-info">
+                            <h4 id="tool2Title">DirectX</h4>
+                            <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
+                        </div>
+                        <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-action-btn" target="_blank" id="btn2">تحميل DirectX</a>
+                    </div>
+                    <div class="tool-row-item">
+                        <div class="tool-info">
+                            <h4 id="tool3Title">.NET Framework</h4>
+                            <p id="desc3">حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.</p>
+                        </div>
+                        <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-action-btn" target="_blank" id="btn3">تحميل .NET Framework</a>
+                    </div>
+                    <div class="tool-row-item">
+                        <div class="tool-info">
+                            <h4 id="tool4Title">.NET Runtime</h4>
+                            <p id="desc4">ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.</p>
+                        </div>
+                        <a href="https://dotnet.microsoft.com/en-us/download/dotnet" class="tool-action-btn" target="_blank" id="btn4">تحميل .NET Runtime</a>
+                    </div>
+                    <div class="tool-row-item">
+                        <div class="tool-info">
+                            <h4 id="tool5Title">Winrar</h4>
+                            <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.</p>
+                        </div>
+                        <a href="https://www.rarlab.com/download.htm" class="tool-action-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="tools-list-container">
-                <!-- Visual C++ -->
-                <div class="tool-row-item">
-                    <div class="tool-info">
-                        <h4 id="tool1Title">Visual C++</h4>
-                        <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
-                    </div>
-                    <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-action-btn" target="_blank" id="btn1">تحميل Visual C++</a>
-                </div>
+            <!-- المربع الثاني: قبل تثبيت اي لعبة -->
+            <div class="troubleshoot-box-card">
+                <h3 class="box-title" id="box2Title">قبل تثبيت اي لعبة :</h3>
+                <ul class="steps-list">
+                    <li id="step2_1">ايقاف الحماية (Windows Defender / Antivirus) لتجنب حذف ملفات التفعيل (Crack).</li>
+                    <li id="step2_2">اغلاق اي تطبيق يعمل بما في ذلك تطبيقات الخلفية لضمان كامل أداء الجهاز أثناء التثبيت.</li>
+                </ul>
+            </div>
 
-                <!-- DirectX -->
-                <div class="tool-row-item">
-                    <div class="tool-info">
-                        <h4 id="tool2Title">DirectX</h4>
-                        <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
-                    </div>
-                    <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-action-btn" target="_blank" id="btn2">تحميل DirectX</a>
-                </div>
+            <!-- المربع الثالث: اللعبة تتجمد و فيها بطئ شديد -->
+            <div class="troubleshoot-box-card">
+                <h3 class="box-title" id="box3Title">اللعبة تتجمد و فيها بطئ شديد :</h3>
+                <ul class="steps-list">
+                    <li id="step3_1">تقليل الجودة من الاعدادات (Graphics Settings) لرفع معدل الإطارات (FPS).</li>
+                    <li id="step3_2">تحديث تعريفات كرت الشاشة (NVIDIA / AMD) لأحدث إصدار لضمان الاستقرار.</li>
+                    <li id="step3_3">المقارنة بين متطلبات التشغيل للعبة و جهازك للتأكد من قدرة هاردوير جهازك.</li>
+                </ul>
+            </div>
 
-                <!-- .NET Framework -->
-                <div class="tool-row-item">
-                    <div class="tool-info">
-                        <h4 id="tool3Title">.NET Framework</h4>
-                        <p id="desc3">حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.</p>
-                    </div>
-                    <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-action-btn" target="_blank" id="btn3">تحميل .NET Framework</a>
-                </div>
+            <!-- المربع الرابع: اللعبة يحدث لها كراش و تغلق -->
+            <div class="troubleshoot-box-card">
+                <h3 class="box-title" id="box4Title">اللعبة يحدث لها كراش و تغلق :</h3>
+                <ul class="steps-list">
+                    <li id="step4_1">التاكد من صحة الملفات وعدم تلفها أثناء التحميل أو فك الضغط.</li>
+                    <li id="step4_2">تشغيلها ك مسؤول (Run as Administrator) لإعطاء اللعبة الصلاحيات الكاملة.</li>
+                    <li id="step4_3">مراجعة صفحة اللعبة و كيفية تثبيتها من الفيديو المرفق والشروحات الخاصة بها.</li>
+                </ul>
+            </div>
 
-                <!-- .NET Runtime -->
-                <div class="tool-row-item">
-                    <div class="tool-info">
-                        <h4 id="tool4Title">.NET Runtime</h4>
-                        <p id="desc4">ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.</p>
-                    </div>
-                    <a href="https://dotnet.microsoft.com/en-us/download/dotnet" class="tool-action-btn" target="_blank" id="btn4">تحميل .NET Runtime</a>
-                </div>
-
-                <!-- Winrar -->
-                <div class="tool-row-item">
-                    <div class="tool-info">
-                        <h4 id="tool5Title">Winrar</h4>
-                        <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.</p>
-                    </div>
-                    <a href="https://www.rarlab.com/download.htm" class="tool-action-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
-                </div>
+            <!-- تنويه التواصل -->
+            <div class="support-notice-card" id="supportNoticeText">
+                💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!
             </div>
         </div>
     </div>
@@ -1241,8 +1307,21 @@
             const notifModalTitle = document.getElementById('notifModalTitle');
             const notifModalDesc = document.getElementById('notifModalDesc');
             
-            const masterTitle = document.getElementById('masterTitle');
-            const masterDesc = document.getElementById('masterDesc');
+            const box1Title = document.getElementById('box1Title');
+            const box1Desc = document.getElementById('box1Desc');
+            const box2Title = document.getElementById('box2Title');
+            const box3Title = document.getElementById('box3Title');
+            const box4Title = document.getElementById('box4Title');
+
+            const step2_1 = document.getElementById('step2_1');
+            const step2_2 = document.getElementById('step2_2');
+            const step3_1 = document.getElementById('step3_1');
+            const step3_2 = document.getElementById('step3_2');
+            const step3_3 = document.getElementById('step3_3');
+            const step4_1 = document.getElementById('step4_1');
+            const step4_2 = document.getElementById('step4_2');
+            const step4_3 = document.getElementById('step4_3');
+            const supportNoticeText = document.getElementById('supportNoticeText');
 
             const sizeUnits = document.querySelectorAll('.size-unit');
 
@@ -1304,11 +1383,25 @@
                 notifModalTitle.innerText = 'Notifications';
                 notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
                 
-                troubleshootBtnText.innerText = 'Tools & Runtimes';
-                tsPageTitle.innerText = 'Software & Tools Center';
-                tsPageSub.innerText = 'Everything you need to run games efficiently.';
-                masterTitle.innerText = 'Game Runtimes & Extractors';
-                masterDesc.innerText = 'Essential software required to run all games efficiently and smoothly.';
+                troubleshootBtnText.innerText = 'Tools & Instructions';
+                tsPageTitle.innerText = 'Software & Instructions Center';
+                tsPageSub.innerText = 'Everything you need to install and run games smoothly.';
+                box1Title.innerText = 'Game Runtimes & Extractors';
+                box1Desc.innerText = 'Essential software required to run all games efficiently and smoothly.';
+                box2Title.innerText = 'Before Installing Any Game:';
+                box3Title.innerText = 'Game Freezes & Severe Lag:';
+                box4Title.innerText = 'Game Crashes & Unexpected Close:';
+
+                step2_1.innerText = 'Disable antivirus/protection to avoid deleting activation files (Crack).';
+                step2_2.innerText = 'Close any running applications including background apps to ensure peak performance.';
+                step3_1.innerText = 'Lower graphics settings to increase FPS and performance.';
+                step3_2.innerText = 'Update GPU drivers (NVIDIA / AMD) to the latest version for stability.';
+                step3_3.innerText = 'Compare game system requirements with your PC specs.';
+                step4_1.innerText = 'Verify file integrity to ensure no corruption during download/extraction.';
+                step4_2.innerText = 'Run the game as Administrator to grant full system permissions.';
+                step4_3.innerText = 'Review the game page and installation guide from the attached video.';
+                supportNoticeText.innerText = '💬 In case of any issues or inquiries, please contact us via our social accounts below and we will be happy to help!';
+
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
 
@@ -1374,10 +1467,24 @@
                 notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
                 
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
-                tsPageTitle.innerText = 'مركز البرامج والأدوات';
-                tsPageSub.innerText = 'كل ما تحتاجه لتشغيل الألعاب بكفاءة عالية.';
-                masterTitle.innerText = 'برامج تشغيل الالعاب وفك الضغط';
-                masterDesc.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
+                tsPageTitle.innerText = 'مركز البرامج والتعليمات الشامل';
+                tsPageSub.innerText = 'كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.';
+                box1Title.innerText = 'برامج تشغيل الالعاب وفك الضغط';
+                box1Desc.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
+                box2Title.innerText = 'قبل تثبيت اي لعبة :';
+                box3Title.innerText = 'اللعبة تتجمد و فيها بطئ شديد :';
+                box4Title.innerText = 'اللعبة يحدث لها كراش و تغلق :';
+
+                step2_1.innerText = 'ايقاف الحماية (Windows Defender / Antivirus) لتجنب حذف ملفات التفعيل (Crack).';
+                step2_2.innerText = 'اغلاق اي تطبيق يعمل بما في ذلك تطبيقات الخلفية لضمان كامل أداء الجهاز أثناء التثبيت.';
+                step3_1.innerText = 'تقليل الجودة من الاعدادات (Graphics Settings) لرفع معدل الإطارات (FPS).';
+                step3_2.innerText = 'تحديث تعريفات كرت الشاشة (NVIDIA / AMD) لأحدث إصدار لضمان الاستقرار.';
+                step3_3.innerText = 'المقارنة بين متطلبات التشغيل للعبة و جهازك للتأكد من قدرة هاردوير جهازك.';
+                step4_1.innerText = 'التاكد من صحة الملفات وعدم تلفها أثناء التحميل أو فك الضغط.';
+                step4_2.innerText = 'تشغيلها ك مسؤول (Run as Administrator) لإعطاء اللعبة الصلاحيات الكاملة.';
+                step4_3.innerText = 'مراجعة صفحة اللعبة و كيفية تثبيتها من الفيديو المرفق والشروحات الخاصة بها.';
+                supportNoticeText.innerText = '💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!';
+
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
 
