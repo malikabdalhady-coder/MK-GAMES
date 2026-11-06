@@ -62,7 +62,7 @@
             flex-wrap: wrap;
         }
 
-        .icon-btn, .controls button {
+        .icon-btn {
             background-color: var(--card-bg);
             color: var(--text-color);
             border: 1px solid var(--secondary-text);
@@ -78,7 +78,7 @@
             font-size: 16px;
         }
 
-        .icon-btn:hover, .controls button:hover {
+        .icon-btn:hover {
             border-color: var(--accent-color);
             transform: scale(1.05);
         }
@@ -325,7 +325,7 @@
 
     <div class="container">
         <div class="games-grid" id="gamesGrid">
-            <!-- سيتم تحميل الألعاب هنا ديناميكياً -->
+            <!-- سيتم تحميل الألعاب ديناميكياً هنا -->
         </div>
     </div>
 
@@ -361,21 +361,40 @@
     </div>
 
     <script>
+        // قاعدة البيانات المدمجة مباشرة لضمان ظهور الألعاب بدون أخطاء
+        const gamesData = [
+            {
+                "titleAr": "لعبة المغامرة الكبرى",
+                "titleEn": "Grand Adventure",
+                "descAr": "خوض مغامرة ممتعة ومثيرة في عوالم افتراضية رائعة.",
+                "descEn": "Embark on an exciting adventure in amazing virtual worlds.",
+                "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
+                "url": "#"
+            },
+            {
+                "titleAr": "تحدي الذكاء والألغاز",
+                "titleEn": "Puzzle Challenge",
+                "descAr": "اختبر ذكائك وحل الألغاز الصعبة بأسرع وقت ممكن.",
+                "descEn": "Test your IQ and solve challenging puzzles quickly.",
+                "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
+                "url": "#"
+            },
+            {
+                "titleAr": "سباق السرعة الخارق",
+                "titleEn": "Super Speed Racing",
+                "descAr": "أقوى ألعاب السيارات والسباقات الحماسية.",
+                "descEn": "The most intense car and racing game.",
+                "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
+                "url": "#"
+            }
+        ];
+
         let currentLang = 'ar';
         let currentTheme = 'dark';
-        let gamesData = [];
         let favorites = [];
 
-        async function fetchGames() {
-            try {
-                const response = await fetch('games.json');
-                gamesData = await response.json();
-                displayGames(gamesData);
-            } catch (error) {
-                console.error("خطأ في جلب الألعاب:", error);
-                document.getElementById('gamesGrid').innerHTML = '<div class="no-results">تعذر تحميل الألعاب حالياً. تأكد من وجود ملف games.json</div>';
-            }
-        }
+        // عرض الألعاب عند تشغيل الصفحة فوراً
+        displayGames(gamesData);
 
         function displayGames(games) {
             const grid = document.getElementById('gamesGrid');
@@ -400,4 +419,34 @@
                     <div class="game-content">
                         <h3>${title}</h3>
                         <p>${desc}</p>
-                        <a href="${game.url
+                        <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleFav(index) {
+            const pos = favorites.indexOf(index);
+            if (pos > -1) {
+                favorites.splice(pos, 1);
+            } else {
+                favorites.push(index);
+            }
+            displayGames(gamesData);
+        }
+
+        function searchGames() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = gamesData.filter(game => {
+                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
+                return title.includes(query);
+            });
+            displayGames(filtered);
+        }
+
+        function toggleTheme() {
+            const root = document.getElementById('htmlRoot');
+            const themeBtn = document.getElementById('themeBtn');
+            if (currentTheme === 'dark') {
+                root.setAttribute('data-
