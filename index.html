@@ -82,7 +82,6 @@
             position: relative;
         }
 
-        /* اللوجو النيون الفخم مكان العنوان */
         .main-brand-logo {
             font-size: 44px;
             font-weight: 900;
@@ -367,11 +366,11 @@
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
-        /* قسم معلومات الموقع في الأسفل (Footer) */
+        /* قسم معلومات الموقع في الأسفل (Footer) مع صورة اللوجو */
         .site-footer {
             background-color: var(--card-bg);
             border-top: 1px solid rgba(168, 85, 247, 0.2);
-            padding: 40px 20px;
+            padding: 45px 20px;
             text-align: center;
             margin-top: 40px;
         }
@@ -379,13 +378,24 @@
         .footer-content {
             max-width: 900px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-logo-img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
         }
 
         .footer-text {
             color: var(--secondary-text);
             font-size: 15px;
             line-height: 1.8;
-            margin-bottom: 20px;
+            margin: 0;
         }
 
         .footer-copy {
@@ -393,6 +403,7 @@
             font-weight: bold;
             font-size: 14px;
             letter-spacing: 1px;
+            margin-top: 5px;
         }
 
         /* Modal Styles */
@@ -487,7 +498,7 @@
 
     <div class="hero">
         <div class="neon-glow-bg"></div>
-        <!-- اللوجو النيون الأساسي مكان العنوان الرئيسي -->
+        <!-- اللوجو النيون الأساسي أعلى الصفحة -->
         <div class="main-brand-logo">MK GAMES</div>
         <div class="hero-subtitle" id="subTitle">Explore Games</div>
         <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
@@ -508,9 +519,11 @@
         </div>
     </div>
 
-    <!-- قسم معلومات الموقع (Footer) -->
+    <!-- قسم معلومات الموقع (Footer) مع صورة اللوجو الرسمية -->
     <footer class="site-footer">
         <div class="footer-content">
+            <!-- صورة اللوجو تحت الكلام -->
+            <img src="logo.png" alt="MK GAMES Logo" class="footer-logo-img" onerror="this.style.display='none'">
             <p class="footer-text" id="footerDesc">
                 MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.
             </p>
