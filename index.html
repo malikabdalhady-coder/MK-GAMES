@@ -198,9 +198,9 @@
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
         }
 
-        /* شريط التصنيفات المتقدم */
+        /* شريط التصنيفات الشامل */
         .filters-container {
-            max-width: 1100px;
+            max-width: 1250px;
             margin: 0 auto 30px;
             padding: 0 20px;
             display: flex;
@@ -210,7 +210,7 @@
 
         .filter-row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -219,10 +219,10 @@
             background-color: var(--card-bg);
             color: var(--secondary-text);
             border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 8px 16px;
+            padding: 7px 14px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             transition: 0.2s;
         }
@@ -231,7 +231,7 @@
             background: linear-gradient(135deg, #a855f7, #3b82f6);
             color: white;
             border-color: transparent;
-            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
         }
 
         .trending-dropdown {
@@ -681,27 +681,46 @@
             </div>
         </div>
 
-        <!-- شريط التصنيفات المتقدم (النوع + الحجم + قوة الجهاز) -->
+        <!-- شريط التصنيفات الشامل -->
         <div class="filters-container">
-            <div class="filter-row" id="genreFilters">
-                <button class="filter-chip active" onclick="filterBy('genre', 'all')" id="gAll">الكل</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'action')" id="gAction">أكشن</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'adventure')" id="gAdv">مغامرات</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'racing')" id="gRace">سباقات</button>
-                <button class="filter-chip" onclick="filterBy('genre', 'puzzle')" id="gPuz">ألغاز</button>
+            <!-- صف التصنيفات والأنواع الرئيسية -->
+            <div class="filter-row" id="tagFilters">
+                <button class="filter-chip active" onclick="filterByTag('all')" id="fAll">الكل</button>
+                <button class="filter-chip" onclick="filterByTag('action')">الأكشن</button>
+                <button class="filter-chip" onclick="filterByTag('adventure')">مغامرات</button>
+                <button class="filter-chip" onclick="filterByTag('open-world')">العالم المفتوح</button>
+                <button class="filter-chip" onclick="filterByTag('rpg')">RPG</button>
+                <button class="filter-chip" onclick="filterByTag('survival')">النجاة</button>
+                <button class="filter-chip" onclick="filterByTag('horror')">الرعب</button>
+                <button class="filter-chip" onclick="filterByTag('strategy')">الاستراتيجية</button>
+                <button class="filter-chip" onclick="filterByTag('stealth')">التخفي</button>
+                <button class="filter-chip" onclick="filterByTag('puzzle')">الألغاز</button>
+                <button class="filter-chip" onclick="filterByTag('simulation')">المحاكاة</button>
+                <button class="filter-chip" onclick="filterByTag('sports')">الرياضة</button>
+                <button class="filter-chip" onclick="filterByTag('superhero')">الأبطال الخارقين</button>
+                <button class="filter-chip" onclick="filterByTag('sci-fi')">الخيال العلمي</button>
+                <button class="filter-chip" onclick="filterByTag('indie')">المستقلين</button>
+                <button class="filter-chip" onclick="filterByTag('co-op')">جماعية</button>
+                <button class="filter-chip" onclick="filterByTag('2d')">ثنائية الأبعاد</button>
+                <button class="filter-chip" onclick="filterByTag('3d')">ثلاثية الأبعاد</button>
+                <button class="filter-chip" onclick="filterByTag('fpp')">المنظور الأول</button>
+                <button class="filter-chip" onclick="filterByTag('tpp')">المنظور الثالث</button>
             </div>
+            
+            <!-- تصنيف حسب الحجم -->
             <div class="filter-row" id="sizeFilters">
-                <button class="filter-chip" onclick="filterBy('size', '<1')">&lt; 1 جيجا</button>
-                <button class="filter-chip" onclick="filterBy('size', '1-5')">1 - 5 جيجا</button>
-                <button class="filter-chip" onclick="filterBy('size', '5-10')">5 - 10 جيجا</button>
-                <button class="filter-chip" onclick="filterBy('size', '10-20')">10 - 20 جيجا</button>
-                <button class="filter-chip" onclick="filterBy('size', '20+')">20+ جيجا</button>
+                <button class="filter-chip" onclick="filterBySize('<1')">&lt; 1 جيجا</button>
+                <button class="filter-chip" onclick="filterBySize('1-5')">1 - 5 جيجا</button>
+                <button class="filter-chip" onclick="filterBySize('5-10')">5 - 10 جيجا</button>
+                <button class="filter-chip" onclick="filterBySize('10-20')">10 - 20 جيجا</button>
+                <button class="filter-chip" onclick="filterBySize('20+')">20+ جيجا</button>
             </div>
+
             <!-- تصنيف حسب قوة الجهاز -->
             <div class="filter-row" id="specsFilters">
-                <button class="filter-chip" onclick="filterBy('specs', 'low')" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
-                <button class="filter-chip" onclick="filterBy('specs', 'mid')" id="specMid">⚡ أجهزة متوسطة</button>
-                <button class="filter-chip" onclick="filterBy('specs', 'high')" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
+                <button class="filter-chip" onclick="filterBySpecs('low')">💻 أجهزة ضعيفة / خفيفة</button>
+                <button class="filter-chip" onclick="filterBySpecs('mid')">⚡ أجهزة متوسطة</button>
+                <button class="filter-chip" onclick="filterBySpecs('high')">🔥 أجهزة قوية / عالية الجرافيك</button>
             </div>
         </div>
 
@@ -806,9 +825,9 @@
                 "id": 1,
                 "titleAr": "Grand Adventure",
                 "titleEn": "Grand Adventure",
-                "genreAr": "مغامرات - أكشن",
-                "genreEn": "Adventure - Action",
-                "genreKey": "adventure",
+                "genreAr": "مغامرات - أكشن - عالم مفتوح",
+                "genreEn": "Adventure - Action - Open World",
+                "tags": ["action", "adventure", "open-world", "3d", "tpp"],
                 "sizeNum": 21.0,
                 "size": "21 جيجا",
                 "specs": "high",
@@ -819,9 +838,9 @@
                 "id": 2,
                 "titleAr": "Puzzle Challenge",
                 "titleEn": "Puzzle Challenge",
-                "genreAr": "ألغاز - ذكاء",
-                "genreEn": "Puzzle - IQ",
-                "genreKey": "puzzle",
+                "genreAr": "ألغاز - ذكاء - مستقلين",
+                "genreEn": "Puzzle - IQ - Indie",
+                "tags": ["puzzle", "indie", "2d"],
                 "sizeNum": 4.1,
                 "size": "4.1 جيجا",
                 "specs": "low",
@@ -832,9 +851,9 @@
                 "id": 3,
                 "titleAr": "Super Speed Racing",
                 "titleEn": "Super Speed Racing",
-                "genreAr": "سباقات - سيارات",
-                "genreEn": "Racing - Cars",
-                "genreKey": "racing",
+                "genreAr": "سباقات - محاكاة - رياضية",
+                "genreEn": "Racing - Simulation - Sports",
+                "tags": ["racing", "simulation", "sports", "3d", "tpp"],
                 "sizeNum": 14.1,
                 "size": "14.1 جيجا",
                 "specs": "mid",
@@ -845,9 +864,9 @@
                 "id": 4,
                 "titleAr": "Group Warfare",
                 "titleEn": "Group Warfare",
-                "genreAr": "تصويب - أكشن",
-                "genreEn": "Shooter - Action",
-                "genreKey": "action",
+                "genreAr": "تصويب - أكشن - جماعية - منظور أول",
+                "genreEn": "Shooter - Action - Co-op - FPP",
+                "tags": ["action", "co-op", "fpp", "3d"],
                 "sizeNum": 51.6,
                 "size": "51.6 جيجا",
                 "specs": "high",
@@ -858,9 +877,9 @@
                 "id": 5,
                 "titleAr": "Cyberpunk Nights",
                 "titleEn": "Cyberpunk Nights",
-                "genreAr": "عالم مفتوح - تقمص أدوار",
-                "genreEn": "Open World - RPG",
-                "genreKey": "action",
+                "genreAr": "عالم مفتوح - خيال علمي - RPG",
+                "genreEn": "Open World - Sci-Fi - RPG",
+                "tags": ["open-world", "sci-fi", "rpg", "action", "3d", "fpp"],
                 "sizeNum": 35.0,
                 "size": "35.0 جيجا",
                 "specs": "high",
@@ -871,9 +890,9 @@
                 "id": 6,
                 "titleAr": "Shadow Hunter",
                 "titleEn": "Shadow Hunter",
-                "genreAr": "اجواء مظلمة - مغامرات",
-                "genreEn": "Dark - Adventure",
-                "genreKey": "adventure",
+                "genreAr": "رعب - نجاة - تخفي",
+                "genreEn": "Horror - Survival - Stealth",
+                "tags": ["horror", "survival", "stealth", "3d", "tpp"],
                 "sizeNum": 0.8,
                 "size": "0.8 جيجا",
                 "specs": "low",
@@ -884,7 +903,7 @@
 
         let currentLang = 'ar';
         let currentTheme = 'dark';
-        let currentGenreFilter = 'all';
+        let currentTagFilter = 'all';
         let currentSizeFilter = 'all';
         let currentSpecsFilter = 'all';
 
@@ -917,40 +936,43 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function filterBy(type, value) {
-            if (type === 'genre') {
-                currentGenreFilter = value;
-                document.querySelectorAll('#genreFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-            } else if (type === 'size') {
-                if (currentSizeFilter === value) {
-                    currentSizeFilter = 'all';
-                    event.target.classList.remove('active');
-                } else {
-                    currentSizeFilter = value;
-                    document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                    event.target.classList.add('active');
-                }
-            } else if (type === 'specs') {
-                if (currentSpecsFilter === value) {
-                    currentSpecsFilter = 'all';
-                    event.target.classList.remove('active');
-                } else {
-                    currentSpecsFilter = value;
-                    document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                    event.target.classList.add('active');
-                }
-            }
+        function filterByTag(tag) {
+            currentTagFilter = tag;
+            document.querySelectorAll('#tagFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            applyFilters();
+        }
 
+        function filterBySize(value) {
+            if (currentSizeFilter === value) {
+                currentSizeFilter = 'all';
+                event.target.classList.remove('active');
+            } else {
+                currentSizeFilter = value;
+                document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            }
+            applyFilters();
+        }
+
+        function filterBySpecs(value) {
+            if (currentSpecsFilter === value) {
+                currentSpecsFilter = 'all';
+                event.target.classList.remove('active');
+            } else {
+                currentSpecsFilter = value;
+                document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            }
             applyFilters();
         }
 
         function resetAllFilters() {
-            currentGenreFilter = 'all';
+            currentTagFilter = 'all';
             currentSizeFilter = 'all';
             currentSpecsFilter = 'all';
             document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('gAll').classList.add('active');
+            document.getElementById('fAll').classList.add('active');
             document.getElementById('searchInput').value = '';
             activeGames = [...gamesData];
             displayGames(activeGames);
@@ -959,7 +981,7 @@
 
         function applyFilters() {
             let filtered = gamesData.filter(game => {
-                let matchGenre = (currentGenreFilter === 'all' || game.genreKey === currentGenreFilter);
+                let matchTag = (currentTagFilter === 'all' || (game.tags && game.tags.includes(currentTagFilter)));
                 let matchSize = true;
                 let matchSpecs = (currentSpecsFilter === 'all' || game.specs === currentSpecsFilter);
 
@@ -969,7 +991,7 @@
                 else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
                 else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
 
-                return matchGenre && matchSize && matchSpecs;
+                return matchTag && matchSize && matchSpecs;
             });
 
             activeGames = filtered;
@@ -1138,16 +1160,7 @@
             const tsPageSub = document.getElementById('tsPageSub');
             const backBtn = document.getElementById('backBtn');
             const showAllBtn = document.getElementById('showAllBtn');
-            
-            const gAll = document.getElementById('gAll');
-            const gAction = document.getElementById('gAction');
-            const gAdv = document.getElementById('gAdv');
-            const gRace = document.getElementById('gRace');
-            const gPuz = document.getElementById('gPuz');
-            
-            const specLow = document.getElementById('specLow');
-            const specMid = document.getElementById('specMid');
-            const specHigh = document.getElementById('specHigh');
+            const fAll = document.getElementById('fAll');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -1166,16 +1179,7 @@
                 tsPageSub.innerText = 'Essential software and runtimes required to run all PC games and fix crashes and black screen issues.';
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
-
-                gAll.innerText = 'All';
-                gAction.innerText = 'Action';
-                gAdv.innerText = 'Adventure';
-                gRace.innerText = 'Racing';
-                gPuz.innerText = 'Puzzle';
-
-                specLow.innerText = '💻 Low-End / Light Games';
-                specMid.innerText = '⚡ Mid-Range PC';
-                specHigh.innerText = '🔥 High-End / RTX Games';
+                fAll.innerText = 'All';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -1193,16 +1197,7 @@
                 tsPageSub.innerText = 'أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.';
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
-
-                gAll.innerText = 'الكل';
-                gAction.innerText = 'أكشن';
-                gAdv.innerText = 'مغامرات';
-                gRace.innerText = 'سباقات';
-                gPuz.innerText = 'ألغاز';
-
-                specLow.innerText = '💻 أجهزة ضعيفة / خفيفة';
-                specMid.innerText = '⚡ أجهزة متوسطة';
-                specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
+                fAll.innerText = 'الكل';
             }
             buildTrendingList();
             displayGames(activeGames);
