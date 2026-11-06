@@ -69,11 +69,11 @@
         }
 
         .icon-btn:hover {
-            border-color: var(--accent-color);
+            border-color: #a855f7;
             transform: scale(1.05);
         }
 
-        /* Hero Section مع إضاءة النيون الخلفية (موف، أزرق، بنبي مع Blur) */
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 50px 20px 20px;
@@ -82,7 +82,6 @@
             position: relative;
         }
 
-        /* هالة النيون الخلفية */
         .neon-glow-bg {
             position: absolute;
             top: 50%;
@@ -132,7 +131,7 @@
             border: 1px solid #a855f7;
         }
 
-        /* شريط البحث العريض */
+        /* شريط البحث */
         .search-container {
             width: 100%;
             padding: 0 20px;
@@ -188,7 +187,7 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.25);
         }
 
-        .fav-btn {
+        .fav-card-btn {
             position: absolute;
             top: 10px;
             left: 10px;
@@ -205,7 +204,7 @@
             transition: 0.2s;
         }
 
-        .fav-btn:hover {
+        .fav-card-btn:hover {
             transform: scale(1.1);
         }
 
@@ -213,285 +212,3 @@
             width: 100%;
             height: 160px;
             object-fit: cover;
-            background-color: #334155;
-        }
-
-        .game-content {
-            padding: 20px;
-            text-align: right;
-        }
-
-        [dir="ltr"] .game-content {
-            text-align: left;
-        }
-
-        .game-card h3 {
-            color: #a855f7;
-            margin: 0 0 10px;
-            font-size: 20px;
-        }
-
-        .game-card p {
-            color: var(--secondary-text);
-            font-size: 14px;
-            margin: 0 0 20px;
-            line-height: 1.5;
-        }
-
-        .download-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 0;
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.2s;
-            box-sizing: border-box;
-        }
-
-        .download-btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            position: relative;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 22px;
-            cursor: pointer;
-            color: var(--secondary-text);
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: 1px solid var(--secondary-text);
-            background: var(--bg-color);
-            color: var(--text-color);
-            box-sizing: border-box;
-        }
-
-        .modal-content button {
-            width: 100%;
-            padding: 10px;
-            background: #a855f7;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .login-alert {
-            margin-top: 15px;
-            font-weight: bold;
-            color: var(--success-color);
-            display: none;
-        }
-
-        .no-results {
-            text-align: center;
-            grid-column: 1 / -1;
-            color: var(--secondary-text);
-            font-size: 18px;
-            padding: 40px;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div style="font-weight: bold; color: #a855f7;">MK GAMES</div>
-        <div class="nav-controls">
-            <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
-            <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات">🔔</button>
-            <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
-            <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
-            <button class="icon-btn" onclick="openLoginModal()" title="تسجيل الدخول">👤</button>
-        </div>
-    </header>
-
-    <div class="hero">
-        <!-- خلفية النيون الموف في أزرق و بنبي مع Blur -->
-        <div class="neon-glow-bg"></div>
-        
-        <h1 id="mainTitle">MK GAMES</h1>
-        <div class="hero-subtitle" id="subTitle">Explore Games</div>
-        <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
-    </div>
-
-    <!-- شريط البحث العريض -->
-    <div class="search-container">
-        <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة للتحميل..." onkeyup="searchGames()">
-    </div>
-
-    <div class="container">
-        <div class="games-grid" id="gamesGrid">
-            <!-- الألعاب ستعرض هنا -->
-        </div>
-    </div>
-
-    <!-- نافذة تسجيل الدخول -->
-    <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="loginTitle">تسجيل الدخول</h3>
-            <p id="loginSub" style="font-size: 13px; color: var(--secondary-text);">اختياري تماماً لحفظ الألعاب المفضلة</p>
-            <input type="text" id="usernameInput" placeholder="اسم المستخدم أو البريد">
-            <input type="password" placeholder="كلمة المرور">
-            <button onclick="handleLogin()">دخول</button>
-            <div class="login-alert" id="loginAlert">تم تسجيل الدخول بنجاح ✅</div>
-        </div>
-    </div>
-
-    <!-- نافذة المفضلة -->
-    <div class="modal" id="favModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="favModalTitle">الألعاب المفضلة</h3>
-            <p id="favModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
-        </div>
-    </div>
-
-    <!-- نافذة الإشعارات -->
-    <div class="modal" id="notifModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="notifModalTitle">الإشعارات</h3>
-            <p id="notifModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</p>
-        </div>
-    </div>
-
-    <script>
-        const gamesData = [
-            {
-                "titleAr": "لعبة المغامرة الكبرى",
-                "titleEn": "Grand Adventure",
-                "descAr": "خوض مغامرة ممتعة ومثيرة في عوالم افتراضية رائعة.",
-                "descEn": "Embark on an exciting adventure in amazing virtual worlds.",
-                "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "titleAr": "تحدي الذكاء والألغاز",
-                "titleEn": "Puzzle Challenge",
-                "descAr": "اختبر ذكائك وحل الألغاز الصعبة بأسرع وقت ممكن.",
-                "descEn": "Test your IQ and solve challenging puzzles quickly.",
-                "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "titleAr": "سباق السرعة الخارق",
-                "titleEn": "Super Speed Racing",
-                "descAr": "أقوى ألعاب السيارات والسباقات الحماسية.",
-                "descEn": "The most intense car and racing game.",
-                "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            }
-        ];
-
-        let currentLang = 'ar';
-        let currentTheme = 'dark';
-        let favorites = [];
-
-        displayGames(gamesData);
-
-        function displayGames(games) {
-            const grid = document.getElementById('gamesGrid');
-            grid.innerHTML = '';
-
-            if (games.length === 0) {
-                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لبحثك' : 'No games found'}</div>`;
-                return;
-            }
-
-            games.forEach((game, index) => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const desc = currentLang === 'ar' ? game.descAr : game.descEn;
-                const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
-                const isFav = favorites.includes(index);
-
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.innerHTML = `
-                    <button class="fav-btn" onclick="toggleFav(${index})">${isFav ? '❤️' : '🤍'}</button>
-                    <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    <div class="game-content">
-                        <h3>${title}</h3>
-                        <p>${desc}</p>
-                        <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function toggleFav(index) {
-            const pos = favorites.indexOf(index);
-            if (pos > -1) {
-                favorites.splice(pos, 1);
-            } else {
-                favorites.push(index);
-            }
-            displayGames(gamesData);
-        }
-
-        function searchGames() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = gamesData.filter(game => {
-                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
-                return title.includes(query);
-            });
-            displayGames(filtered);
-        }
-
-        function toggleTheme() {
-            const root = document.getElementById('htmlRoot');
-            const themeBtn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark') {
-                root.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
-                themeBtn.innerText = '☀️';
-            } else {
-                root.removeAttribute('data-theme');
-                currentTheme = 'dark';
-                themeBtn.innerText = '🌙';
-            }
-        }
-
-        function toggleLanguage() {
-            const htmlRoot = document.getElementById('htmlRoot');
-            const langBtn = document.getElementById('langBtn');
-            const searchInput = document.getElementById
