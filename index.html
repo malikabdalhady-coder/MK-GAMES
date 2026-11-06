@@ -1,17 +1,193 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" id="htmlRoot">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MK GAMES - منصة الألعاب</title>
     <style>
-        body { font-family: Tahoma, sans-serif; background-color: #121212; color: #fff; text-align: center; padding: 50px; }
-        h1 { color: #00ffcc; }
-        p { color: #ccc; }
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #ffffff;
+            --accent-color: #00ffcc;
+            --secondary-text: #b0b0b0;
+        }
+
+        [data-theme="light"] {
+            --bg-color: #f4f4f9;
+            --card-bg: #ffffff;
+            --text-color: #222222;
+            --accent-color: #007bff;
+            --secondary-text: #666666;
+        }
+
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .controls button {
+            background-color: var(--accent-color);
+            color: #121212;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .controls button:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .game-card h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .game-card p {
+            color: var(--secondary-text);
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <h1>مرحباً بك في موقع MK GAMES</h1>
-    <p>منصة الألعاب المجانية تعمل بنجاح!</p>
+
+    <header>
+        <div class="logo" id="siteTitle">MK GAMES</div>
+        <div class="controls">
+            <button onclick="toggleTheme()" id="themeBtn">🌙 الوضع الليلي</button>
+            <button onclick="toggleLanguage()" id="langBtn">English</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1 id="mainHeading">أهلاً بك في منصة الألعاب</h1>
+        <p id="mainDesc">استمتع بأفضل الألعاب المجانية مباشرة على متصفحك.</p>
+
+        <div class="games-grid">
+            <div class="game-card">
+                <h3 id="game1Title">لعبة المغامرة</h3>
+                <p id="game1Desc">خوض مغامرة ممتعة ومثيرة الآن.</p>
+            </div>
+            <div class="game-card">
+                <h3 id="game2Title">لعبة الذكاء</h3>
+                <p id="game2Desc">اختبر ذكائك وحل الألغاز الصعبة.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLang = 'ar';
+        let currentTheme = 'dark';
+
+        function toggleTheme() {
+            const root = document.getElementById('htmlRoot');
+            const themeBtn = document.getElementById('themeBtn');
+            if (currentTheme === 'dark') {
+                root.setAttribute('data-theme', 'light');
+                currentTheme = 'light';
+                themeBtn.innerText = currentLang === 'ar' ? '☀️ الوضع النهارى' : '☀️ Light Mode';
+            } else {
+                root.removeAttribute('data-theme');
+                currentTheme = 'dark';
+                themeBtn.innerText = currentLang === 'ar' ? '🌙 الوضع الليلي' : '🌙 Dark Mode';
+            }
+        }
+
+        function toggleLanguage() {
+            const htmlRoot = document.getElementById('htmlRoot');
+            const themeBtn = document.getElementById('themeBtn');
+            const langBtn = document.getElementById('langBtn');
+            const mainHeading = document.getElementById('mainHeading');
+            const mainDesc = document.getElementById('mainDesc');
+            const game1Title = document.getElementById('game1Title');
+            const game1Desc = document.getElementById('game1Desc');
+            const game2Title = document.getElementById('game2Title');
+            const game2Desc = document.getElementById('game2Desc');
+
+            if (currentLang === 'ar') {
+                currentLang = 'en';
+                htmlRoot.setAttribute('lang', 'en');
+                htmlRoot.setAttribute('dir', 'ltr');
+                langBtn.innerText = 'العربية';
+                mainHeading.innerText = 'Welcome to MK Games';
+                mainDesc.innerText = 'Enjoy the best free games directly in your browser.';
+                game1Title.innerText = 'Adventure Game';
+                game1Desc.innerText = 'Embark on an exciting adventure now.';
+                game2Title.innerText = 'Puzzle Game';
+                game2Desc.innerText = 'Test your IQ and solve challenging puzzles.';
+                themeBtn.innerText = currentTheme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode';
+            } else {
+                currentLang = 'ar';
+                htmlRoot.setAttribute('lang', 'ar');
+                htmlRoot.setAttribute('dir', 'rtl');
+                langBtn.innerText = 'English';
+                mainHeading.innerText = 'أهلاً بك في منصة الألعاب';
+                mainDesc.innerText = 'استمتع بأفضل الألعاب المجانية مباشرة على متصفحك.';
+                game1Title.innerText = 'لعبة المغامرة';
+                game1Desc.innerText = 'خوض مغامرة ممتعة ومثيرة الآن.';
+                game2Title.innerText = 'لعبة الذكاء';
+                game2Desc.innerText = 'اختبر ذكائك وحل الألغاز الصعبة.';
+                themeBtn.innerText = currentTheme === 'dark' ? '🌙 الوضع الليلي' : '☀️ الوضع النهارى';
+            }
+        }
+    </script>
+
 </body>
 </html>
