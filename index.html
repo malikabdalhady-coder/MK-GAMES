@@ -891,7 +891,7 @@
             </div>
         </div>
 
-        <!-- شريط التصنيفات الشامل والمستعاد -->
+        <!-- شريط التصنيفات الشامل -->
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
                 <button class="filter-chip active" onclick="filterByTag('all')" id="fAll">الكل</button>
@@ -963,14 +963,34 @@
             <p id="detailsDesc">وصف تفصيلي للعبة...</p>
         </div>
 
+        <!-- جدول اللغات المدعومة -->
+        <div class="section-card">
+            <h3 id="langSectionTitle">🌐 اللغات المدعومة في اللعبة</h3>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; text-align: center; margin-top: 10px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid rgba(168, 85, 247, 0.4); color: #a855f7;">
+                            <th id="thLang" style="padding: 10px;">اللغة</th>
+                            <th id="thMenu" style="padding: 10px;">القوائم (Menus)</th>
+                            <th id="thAudio" style="padding: 10px;">التعليق/الصوت (Audio)</th>
+                            <th id="thSub" style="padding: 10px;">الحوارات/الترجمة (Subtitles)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="languagesTableBody">
+                        <!-- هيتعبى أوتوماتيك -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="section-card">
             <h3 id="reqTitle">💻 متطلبات التشغيل الدنيا (Minimum Requirements)</h3>
             <ul id="detailsReqs">
-                <li><strong>نظام التشغيل (OS):</strong> Windows 7 / 8 / 10 / 11</li>
-                <li><strong>المعالج (CPU):</strong> Intel Pentium 4 1.4GHz أو ما يعادله</li>
-                <li><strong>الذاكرة العشوائية (RAM):</strong> 512 ميجابايت أو أعلى</li>
-                <li><strong>كارت الشاشة (GPU):</strong> 64 ميجابايت متوافق مع DirectX 9.0c</li>
-                <li><strong>مساحة التخزين (Storage):</strong> 2 جيجابايت متاحة</li>
+                <li><strong id="osLabel">نظام التشغيل (OS):</strong> <span id="osVal">Windows 7 / 8 / 10 / 11</span></li>
+                <li><strong id="cpuLabel">المعالج (CPU):</strong> <span id="cpuVal">Intel Pentium 4 1.4GHz أو ما يعادله</span></li>
+                <li><strong id="ramLabel">الذاكرة العشوائية (RAM):</strong> <span id="ramVal">512 ميجابايت أو أعلى</span></li>
+                <li><strong id="gpuLabel">كارت الشاشة (GPU):</strong> <span id="gpuVal">64 ميجابايت متوافق مع DirectX 9.0c</span></li>
+                <li><strong id="storageLabel">مساحة التخزين (Storage):</strong> <span id="storageVal">2 جيجابايت متاحة</span></li>
             </ul>
         </div>
 
@@ -1141,8 +1161,8 @@
                 "titleEn": "Pro Evolution Soccer 2006 (PES 6)",
                 "genreAr": "رياضة - كلاسيك - محاكاة كرة قدم",
                 "genreEn": "Sports - Classic - Football Simulation",
-                "descAr": "لعبة كرة القدم الأسطورية PES 6 النسخة الكاملة والمضغوطة برابط مباشر صاروخ. استمتع بأجواء المتعة الكلاسيكية واللعب السلس مع أصدقائك.",
-                "descEn": "The legendary football game PES 6 full compressed version. Enjoy classic gameplay and smooth matches.",
+                "descAr": "لعبة كرة القدم الأسطورية PES 6 (صادر سنة 2006)، النسخة الكاملة والمضغوطة برابط مباشر. استمتع بأجواء المتعة الكلاسيكية واللعب السلس مع أصدقائك.",
+                "descEn": "The legendary football game PES 6 (Released in 2006), full compressed version with direct download link. Enjoy classic gameplay.",
                 "tags": ["sports", "classic", "simulation", "action"],
                 "sizeNum": 1.2,
                 "sizeAr": "1.2 جيجا",
@@ -1150,7 +1170,26 @@
                 "specs": "low",
                 "image": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1000&auto=format&fit=crop&q=80",
                 "directUrl": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file",
-                "torrentUrl": "magnet:?xt=urn:btih:PES6_MK_GAMES_HASH"
+                "torrentUrl": "magnet:?xt=urn:btih:PES6_MK_GAMES_HASH",
+                "langs": [
+                    { "nameAr": "العربية", "nameEn": "Arabic", "menu": true, "audio": false, "subtitles": true },
+                    { "nameAr": "الإنجليزية", "nameEn": "English", "menu": true, "audio": true, "subtitles": true },
+                    { "nameAr": "الفرنسية", "nameEn": "French", "menu": true, "audio": true, "subtitles": true }
+                ],
+                "reqsAr": {
+                    "os": "Windows 7 / 8 / 10 / 11",
+                    "cpu": "Intel Pentium 4 1.4GHz أو ما يعادله",
+                    "ram": "512 ميجابايت أو أعلى",
+                    "gpu": "64 ميجابايت متوافق مع DirectX 9.0c",
+                    "storage": "2 جيجابايت متاحة"
+                },
+                "reqsEn": {
+                    "os": "Windows 7 / 8 / 10 / 11",
+                    "cpu": "Intel Pentium 4 1.4GHz or equivalent",
+                    "ram": "512 MB or higher",
+                    "gpu": "64 MB DirectX 9.0c compatible",
+                    "storage": "2 GB available space"
+                }
             }
         ];
 
@@ -1159,6 +1198,7 @@
         let currentTagFilter = 'all';
         let currentSizeFilter = 'all';
         let currentSpecsFilter = 'all';
+        let currentGameId = null;
 
         let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
@@ -1178,6 +1218,7 @@
         buildTrendingList();
 
         function openGameDetails(id) {
+            currentGameId = id;
             const game = gamesData.find(g => g.id === id);
             if (!game) return;
 
@@ -1199,6 +1240,17 @@
                 <span class="genre-badge">${currentLang === 'ar' ? 'الحجم:' : 'Size:'} ${sizeStr}</span>
             `;
 
+            // تعبئة المتطلبات
+            const reqs = currentLang === 'ar' ? game.reqsAr : game.reqsEn;
+            document.getElementById('osVal').innerText = reqs.os;
+            document.getElementById('cpuVal').innerText = reqs.cpu;
+            document.getElementById('ramVal').innerText = reqs.ram;
+            document.getElementById('gpuVal').innerText = reqs.gpu;
+            document.getElementById('storageVal').innerText = reqs.storage;
+
+            // تعبئة جدول اللغات
+            renderLanguagesTable(game);
+
             const favBtn = document.getElementById('detailsFavBtn');
             favBtn.innerHTML = isFav ? '❤️' : '🤍';
             favBtn.onclick = function() {
@@ -1212,6 +1264,24 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function renderLanguagesTable(game) {
+            const langTableBody = document.getElementById('languagesTableBody');
+            langTableBody.innerHTML = '';
+            if (game.langs) {
+                game.langs.forEach(l => {
+                    const tr = document.createElement('tr');
+                    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                    tr.innerHTML = `
+                        <td style="padding: 12px; font-weight: bold; color: var(--text-color);">${currentLang === 'ar' ? l.nameAr : l.nameEn}</td>
+                        <td style="padding: 12px; font-size: 18px;">${l.menu ? '✅' : '❌'}</td>
+                        <td style="padding: 12px; font-size: 18px;">${l.audio ? '✅' : '❌'}</td>
+                        <td style="padding: 12px; font-size: 18px;">${l.subtitles ? '✅' : '❌'}</td>
+                    `;
+                    langTableBody.appendChild(tr);
+                });
+            }
+        }
+
         function openTroubleshootPage() {
             document.getElementById('mainHeaderView').style.display = 'none';
             document.getElementById('gameDetailsView').style.display = 'none';
@@ -1220,6 +1290,7 @@
         }
 
         function goHome() {
+            currentGameId = null;
             document.getElementById('troubleshootPageView').style.display = 'none';
             document.getElementById('gameDetailsView').style.display = 'none';
             document.getElementById('mainHeaderView').style.display = 'block';
@@ -1464,6 +1535,18 @@
             const directText = document.getElementById('directText');
             const torrentText = document.getElementById('torrentText');
 
+            const langSectionTitle = document.getElementById('langSectionTitle');
+            const thLang = document.getElementById('thLang');
+            const thMenu = document.getElementById('thMenu');
+            const thAudio = document.getElementById('thAudio');
+            const thSub = document.getElementById('thSub');
+
+            const osLabel = document.getElementById('osLabel');
+            const cpuLabel = document.getElementById('cpuLabel');
+            const ramLabel = document.getElementById('ramLabel');
+            const gpuLabel = document.getElementById('gpuLabel');
+            const storageLabel = document.getElementById('storageLabel');
+
             const notifModalTitle = document.getElementById('notifModalTitle');
             const notifModalDesc = document.getElementById('notifModalDesc');
             
@@ -1494,7 +1577,7 @@
                 subTitle.innerText = 'Explore Games';
                 searchInput.placeholder = 'Search for a game to download...';
                 trendingTitle.innerText = '🔥 Trending Games';
-                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading. Here you will also find patches, mods, and updates, along with installation guides and troubleshooting solutions.';
+                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading.';
                 loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
                 favBtn.title = 'Favorites';
                 notifBtn.title = 'Notifications';
@@ -1509,7 +1592,19 @@
                 detailsHeaderTitle.innerText = 'Game Details';
                 backToGamesText.innerText = 'Back to Games';
                 aboutTitle.innerText = '📖 About the Game';
+                langSectionTitle.innerText = '🌐 Supported Languages';
+                thLang.innerText = 'Language';
+                thMenu.innerText = 'Menus';
+                thAudio.innerText = 'Audio';
+                thSub.innerText = 'Subtitles';
+
                 reqTitle.innerText = '💻 Minimum System Requirements';
+                osLabel.innerText = 'OS:';
+                cpuLabel.innerText = 'CPU:';
+                ramLabel.innerText = 'RAM:';
+                gpuLabel.innerText = 'GPU:';
+                storageLabel.innerText = 'Storage:';
+
                 vidTitle.innerText = '🎥 Installation Guide Video';
                 vidSub.innerText = 'Watch the step-by-step guide to ensure smooth installation:';
                 dlTitle.innerText = '🚀 Fast Download Links';
@@ -1560,7 +1655,19 @@
                 detailsHeaderTitle.innerText = 'تفاصيل اللعبة';
                 backToGamesText.innerText = 'العودة للألعاب';
                 aboutTitle.innerText = '📖 نبذة عن اللعبة';
+                langSectionTitle.innerText = '🌐 اللغات المدعومة في اللعبة';
+                thLang.innerText = 'اللغة';
+                thMenu.innerText = 'القوائم (Menus)';
+                thAudio.innerText = 'التعليق/الصوت (Audio)';
+                thSub.innerText = 'الحوارات/الترجمة (Subtitles)';
+
                 reqTitle.innerText = '💻 متطلبات التشغيل الدنيا (Minimum Requirements)';
+                osLabel.innerText = 'نظام التشغيل (OS):';
+                cpuLabel.innerText = 'المعالج (CPU):';
+                ramLabel.innerText = 'الذاكرة العشوائية (RAM):';
+                gpuLabel.innerText = 'كارت الشاشة (GPU):';
+                storageLabel.innerText = 'مساحة التخزين (Storage):';
+
                 vidTitle.innerText = '🎥 فيديو كيفية تنصيب وتثبيت اللعبة';
                 vidSub.innerText = 'شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:';
                 dlTitle.innerText = '🚀 روابط التحميل السريع';
@@ -1590,6 +1697,9 @@
             }
             buildTrendingList();
             displayGames(activeGames);
+            if (currentGameId) {
+                openGameDetails(currentGameId);
+            }
         }
 
         function toggleAuthMode() {
