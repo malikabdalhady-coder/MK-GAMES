@@ -288,10 +288,10 @@
             padding: 0 20px 40px;
         }
 
-        /* صفحة حل المشاكل */
+        /* صفحة حل المشاكل بتصميم المستطيل الشامل الواحد */
         #troubleshootPageView {
             display: none;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 30px auto;
             padding: 0 20px;
         }
@@ -300,7 +300,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             background: var(--card-bg);
             padding: 20px 30px;
             border-radius: 16px;
@@ -323,58 +323,90 @@
             color: #a855f7;
         }
 
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
-
-        .tool-card {
+        /* المستطيل الشامل الكبير */
+        .master-troubleshoot-card {
             background-color: var(--card-bg);
-            border-radius: 14px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 35px;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: right;
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            text-align: right;
+            gap: 25px;
         }
 
-        [dir="ltr"] .tool-card { text-align: left; }
+        [dir="ltr"] .master-troubleshoot-card { text-align: left; }
 
-        .tool-card h3 {
-            margin: 0;
+        .master-card-title {
+            font-size: 24px;
+            font-weight: 800;
             color: #a855f7;
-            font-size: 20px;
+            margin: 0 0 5px;
         }
 
-        .tool-card p {
-            margin: 0;
-            color: var(--secondary-text);
+        .master-card-desc {
             font-size: 14px;
+            color: var(--secondary-text);
+            margin: 0 0 15px;
             line-height: 1.6;
         }
 
-        .tool-link-btn {
-            display: inline-block;
-            background: rgba(168, 85, 247, 0.15);
-            color: #a855f7;
-            text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            text-decoration: none;
+        .tools-list-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tool-row-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.2s;
+            gap: 15px;
+        }
+
+        .tool-row-item:hover {
+            background: rgba(168, 85, 247, 0.08);
+            border-color: rgba(168, 85, 247, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .tool-row-item { flex-direction: column; align-items: flex-start; }
+        }
+
+        .tool-info h4 {
+            margin: 0 0 4px;
+            color: var(--text-color);
+            font-size: 16px;
             font-weight: bold;
-            margin-top: 10px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .tool-info p {
+            margin: 0;
+            color: var(--secondary-text);
+            font-size: 13px;
+        }
+
+        .tool-action-btn {
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
+            color: white;
+            text-decoration: none;
+            padding: 8px 18px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 13px;
+            white-space: nowrap;
             transition: 0.2s;
         }
 
-        .tool-link-btn:hover {
-            background: #a855f7;
-            color: white;
+        .tool-action-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         /* شبكة الألعاب */
@@ -728,41 +760,68 @@
         </div>
     </div>
 
-    <!-- صفحة حل المشاكل المستقلة -->
+    <!-- صفحة حل المشاكل والبرامج بتصميم مستطيل شامل واحد -->
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
-                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">برامج تشغيل الالعاب وفك الضغط</h2>
-                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
+                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز البرامج والأدوات</h2>
+                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">كل ما تحتاجه لتشغيل الألعاب بكفاءة عالية.</p>
             </div>
             <button class="back-to-home-btn" onclick="closeTroubleshootPage()" id="backBtn">العودة للألعاب</button>
         </div>
 
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h3 id="tool1Title">Visual C++</h3>
-                <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
-                <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-link-btn" target="_blank" id="btn1">تحميل Visual C++</a>
+        <!-- المستطيل الشامل للبرامج الأساسية -->
+        <div class="master-troubleshoot-card">
+            <div>
+                <h3 class="master-card-title" id="masterTitle">برامج تشغيل الالعاب وفك الضغط</h3>
+                <p class="master-card-desc" id="masterDesc">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
             </div>
-            <div class="tool-card">
-                <h3 id="tool2Title">DirectX</h3>
-                <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
-                <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-link-btn" target="_blank" id="btn2">تحميل DirectX</a>
-            </div>
-            <div class="tool-card">
-                <h3 id="tool3Title">.NET Framework</h3>
-                <p id="desc3">حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.</p>
-                <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-link-btn" target="_blank" id="btn3">تحميل .NET Framework</a>
-            </div>
-            <div class="tool-card">
-                <h3 id="tool4Title">.NET Runtime</h3>
-                <p id="desc4">ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.</p>
-                <a href="https://dotnet.microsoft.com/en-us/download/dotnet" class="tool-link-btn" target="_blank" id="btn4">تحميل .NET Runtime</a>
-            </div>
-            <div class="tool-card" style="grid-column: 1 / -1;">
-                <h3 id="tool5Title">Winrar</h3>
-                <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.</p>
-                <a href="https://www.rarlab.com/download.htm" class="tool-link-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
+
+            <div class="tools-list-container">
+                <!-- Visual C++ -->
+                <div class="tool-row-item">
+                    <div class="tool-info">
+                        <h4 id="tool1Title">Visual C++</h4>
+                        <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
+                    </div>
+                    <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-action-btn" target="_blank" id="btn1">تحميل Visual C++</a>
+                </div>
+
+                <!-- DirectX -->
+                <div class="tool-row-item">
+                    <div class="tool-info">
+                        <h4 id="tool2Title">DirectX</h4>
+                        <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
+                    </div>
+                    <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-action-btn" target="_blank" id="btn2">تحميل DirectX</a>
+                </div>
+
+                <!-- .NET Framework -->
+                <div class="tool-row-item">
+                    <div class="tool-info">
+                        <h4 id="tool3Title">.NET Framework</h4>
+                        <p id="desc3">حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.</p>
+                    </div>
+                    <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-action-btn" target="_blank" id="btn3">تحميل .NET Framework</a>
+                </div>
+
+                <!-- .NET Runtime -->
+                <div class="tool-row-item">
+                    <div class="tool-info">
+                        <h4 id="tool4Title">.NET Runtime</h4>
+                        <p id="desc4">ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.</p>
+                    </div>
+                    <a href="https://dotnet.microsoft.com/en-us/download/dotnet" class="tool-action-btn" target="_blank" id="btn4">تحميل .NET Runtime</a>
+                </div>
+
+                <!-- Winrar -->
+                <div class="tool-row-item">
+                    <div class="tool-info">
+                        <h4 id="tool5Title">Winrar</h4>
+                        <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.</p>
+                    </div>
+                    <a href="https://www.rarlab.com/download.htm" class="tool-action-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
+                </div>
             </div>
         </div>
     </div>
@@ -1182,6 +1241,9 @@
             const notifModalTitle = document.getElementById('notifModalTitle');
             const notifModalDesc = document.getElementById('notifModalDesc');
             
+            const masterTitle = document.getElementById('masterTitle');
+            const masterDesc = document.getElementById('masterDesc');
+
             const sizeUnits = document.querySelectorAll('.size-unit');
 
             const fAll = document.getElementById('fAll');
@@ -1242,9 +1304,11 @@
                 notifModalTitle.innerText = 'Notifications';
                 notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
                 
-                troubleshootBtnText.innerText = 'Troubleshooting & Tools';
-                tsPageTitle.innerText = 'Game Runtimes & Extractors';
-                tsPageSub.innerText = 'Essential software required to run all games efficiently and smoothly.';
+                troubleshootBtnText.innerText = 'Tools & Runtimes';
+                tsPageTitle.innerText = 'Software & Tools Center';
+                tsPageSub.innerText = 'Everything you need to run games efficiently.';
+                masterTitle.innerText = 'Game Runtimes & Extractors';
+                masterDesc.innerText = 'Essential software required to run all games efficiently and smoothly.';
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
 
@@ -1310,8 +1374,10 @@
                 notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
                 
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
-                tsPageTitle.innerText = 'برامج تشغيل الالعاب وفك الضغط';
-                tsPageSub.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
+                tsPageTitle.innerText = 'مركز البرامج والأدوات';
+                tsPageSub.innerText = 'كل ما تحتاجه لتشغيل الألعاب بكفاءة عالية.';
+                masterTitle.innerText = 'برامج تشغيل الالعاب وفك الضغط';
+                masterDesc.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
 
