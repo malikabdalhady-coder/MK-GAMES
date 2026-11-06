@@ -159,15 +159,28 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1350px;
             margin: 0 auto;
             padding: 0 20px 60px;
         }
 
+        /* هنا جعلنا الشبكة تعرض 4 ألعاب في كل صف بالعرض */
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        /* لضبط التجاوب مع الشاشات الأصغر (الموبايل والتابلت) */
+        @media (max-width: 1024px) {
+            .games-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .game-card {
@@ -210,13 +223,13 @@
 
         .game-img {
             width: 100%;
-            height: 160px;
+            height: 150px;
             object-fit: cover;
             background-color: #334155;
         }
 
         .game-content {
-            padding: 20px;
+            padding: 15px;
             text-align: right;
         }
 
@@ -226,15 +239,15 @@
 
         .game-card h3 {
             color: #a855f7;
-            margin: 0 0 10px;
-            font-size: 20px;
+            margin: 0 0 8px;
+            font-size: 18px;
         }
 
         .game-card p {
             color: var(--secondary-text);
-            font-size: 14px;
-            margin: 0 0 20px;
-            line-height: 1.5;
+            font-size: 13px;
+            margin: 0 0 15px;
+            line-height: 1.4;
         }
 
         .download-btn {
@@ -361,7 +374,7 @@
 
     <div class="container">
         <div class="games-grid" id="gamesGrid">
-            <!-- الألعاب ستعرض هنا تلقائياً -->
+            <!-- اقتراحات الألعاب ستعرض هنا 4 في كل صف -->
         </div>
     </div>
 
@@ -397,6 +410,7 @@
     </div>
 
     <script>
+        // قائمة اقتراحات الألعاب
         const gamesData = [
             {
                 "titleAr": "لعبة المغامرة الكبرى",
@@ -420,6 +434,14 @@
                 "descAr": "أقوى ألعاب السيارات والسباقات الحماسية.",
                 "descEn": "The most intense car and racing game.",
                 "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
+                "url": "#"
+            },
+            {
+                "titleAr": "حرب المجموعات",
+                "titleEn": "Group Warfare",
+                "descAr": "لعبة أكشن قوية تجمع الأصدقاء في معارك ملحمية.",
+                "descEn": "An intense action game bringing friends into epic battles.",
+                "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             }
         ];
@@ -536,7 +558,7 @@
             document.getElementById('loginAlert').style.display = 'none';
         }
 
-        // تشغيل فوري وآمن للموقع
+        // تشغيل عرض الألعاب فوراً
         displayGames(gamesData);
     </script>
 </body>
