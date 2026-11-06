@@ -976,9 +976,7 @@
                             <th id="thSub" style="padding: 10px;">الحوارات/الترجمة (Subtitles)</th>
                         </tr>
                     </thead>
-                    <tbody id="languagesTableBody">
-                        <!-- هيتعبى أوتوماتيك -->
-                    </tbody>
+                    <tbody id="languagesTableBody"></tbody>
                 </table>
             </div>
         </div>
@@ -1240,7 +1238,6 @@
                 <span class="genre-badge">${currentLang === 'ar' ? 'الحجم:' : 'Size:'} ${sizeStr}</span>
             `;
 
-            // تعبئة المتطلبات
             const reqs = currentLang === 'ar' ? game.reqsAr : game.reqsEn;
             document.getElementById('osVal').innerText = reqs.os;
             document.getElementById('cpuVal').innerText = reqs.cpu;
@@ -1248,7 +1245,6 @@
             document.getElementById('gpuVal').innerText = reqs.gpu;
             document.getElementById('storageVal').innerText = reqs.storage;
 
-            // تعبئة جدول اللغات
             renderLanguagesTable(game);
 
             const favBtn = document.getElementById('detailsFavBtn');
@@ -1566,6 +1562,33 @@
             const step4_3 = document.getElementById('step4_3');
             const supportNoticeText = document.getElementById('supportNoticeText');
 
+            // عناصر التصنيفات (Tags, Size, Specs)
+            const fAll = document.getElementById('fAll');
+            const fAction = document.getElementById('fAction');
+            const fAdv = document.getElementById('fAdv');
+            const fOpen = document.getElementById('fOpen');
+            const fRpg = document.getElementById('fRpg');
+            const fSurv = document.getElementById('fSurv');
+            const fHor = document.getElementById('fHor');
+            const fStrat = document.getElementById('fStrat');
+            const fSteal = document.getElementById('fSteal');
+            const fPuz = document.getElementById('fPuz');
+            const fSim = document.getElementById('fSim');
+            const fSport = document.getElementById('fSport');
+            const fSuper = document.getElementById('fSuper');
+            const fSci = document.getElementById('fSci');
+            const fIndie = document.getElementById('fIndie');
+            const fCoop = document.getElementById('fCoop');
+            const f2d = document.getElementById('f2d');
+            const f3d = document.getElementById('f3d');
+            const fFpp = document.getElementById('fFpp');
+            const fTpp = document.getElementById('fTpp');
+            const fClassic = document.getElementById('fClassic');
+
+            const specLow = document.getElementById('specLow');
+            const specMid = document.getElementById('specMid');
+            const specHigh = document.getElementById('specHigh');
+
             const sizeUnits = document.querySelectorAll('.size-unit');
 
             if (currentLang === 'ar') {
@@ -1627,6 +1650,33 @@
                 step4_2.innerText = 'Run the game as Administrator to grant full system permissions.';
                 step4_3.innerText = 'Review the game page and installation guide from the attached video.';
                 supportNoticeText.innerText = '💬 In case of any issues or inquiries, please contact us via our social accounts below and we will be happy to help!';
+
+                // ترجمة الفئات والأجهزة
+                fAll.innerText = 'All';
+                fAction.innerText = 'Action';
+                fAdv.innerText = 'Adventure';
+                fOpen.innerText = 'Open World';
+                fRpg.innerText = 'RPG';
+                fSurv.innerText = 'Survival';
+                fHor.innerText = 'Horror';
+                fStrat.innerText = 'Strategy';
+                fSteal.innerText = 'Stealth';
+                fPuz.innerText = 'Puzzle';
+                fSim.innerText = 'Simulation';
+                fSport.innerText = 'Sports';
+                fSuper.innerText = 'Superhero';
+                fSci.innerText = 'Sci-Fi';
+                fIndie.innerText = 'Indie';
+                fCoop.innerText = 'Co-op';
+                f2d.innerText = '2D';
+                f3d.innerText = '3D';
+                fFpp.innerText = 'FPP';
+                fTpp.innerText = 'TPP';
+                fClassic.innerText = 'Classic';
+
+                specLow.innerText = '💻 Low Spec / Light PCs';
+                specMid.innerText = '⚡ Mid Spec PCs';
+                specHigh.innerText = '🔥 High Spec / High Graphics';
 
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
@@ -1690,6 +1740,33 @@
                 step4_2.innerText = 'تشغيلها ك مسؤول (Run as Administrator) لإعطاء اللعبة الصلاحيات الكاملة.';
                 step4_3.innerText = 'مراجعة صفحة اللعبة و كيفية تثبيتها من الفيديو المرفق والشروحات الخاصة بها.';
                 supportNoticeText.innerText = '💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!';
+
+                // إعادة الفئات والأجهزة للعربية
+                fAll.innerText = 'الكل';
+                fAction.innerText = 'الأكشن';
+                fAdv.innerText = 'مغامرات';
+                fOpen.innerText = 'العالم المفتوح';
+                fRpg.innerText = 'RPG';
+                fSurv.innerText = 'النجاة';
+                fHor.innerText = 'الرعب';
+                fStrat.innerText = 'الاستراتيجية';
+                fSteal.innerText = 'التخفي';
+                fPuz.innerText = 'الألغاز';
+                fSim.innerText = 'المحاكاة';
+                fSport.innerText = 'الرياضة';
+                fSuper.innerText = 'الأبطال الخارقين';
+                fSci.innerText = 'الخيال العلمي';
+                fIndie.innerText = 'المستقلين';
+                fCoop.innerText = 'جماعية';
+                f2d.innerText = 'ثنائية الأبعاد';
+                f3d.innerText = 'ثلاثية الأبعاد';
+                fFpp.innerText = 'المنظور الأول';
+                fTpp.innerText = 'المنظور الثالث';
+                fClassic.innerText = 'كلاسيك';
+
+                specLow.innerText = '💻 أجهزة ضعيفة / خفيفة';
+                specMid.innerText = '⚡ أجهزة متوسطة';
+                specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
 
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
