@@ -194,9 +194,7 @@
             text-align: right;
         }
 
-        [dir="ltr"] .trending-dropdown {
-            text-align: left;
-        }
+        [dir="ltr"] .trending-dropdown { text-align: left; }
 
         .trending-header {
             padding: 10px 16px;
@@ -217,9 +215,7 @@
             border-bottom: 1px solid rgba(51, 65, 85, 0.4);
         }
 
-        .trending-item:hover {
-            background-color: rgba(168, 85, 247, 0.15);
-        }
+        .trending-item:hover { background-color: rgba(168, 85, 247, 0.15); }
 
         .trending-img {
             width: 38px;
@@ -242,12 +238,8 @@
             gap: 25px;
         }
 
-        @media (max-width: 1024px) {
-            .games-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 600px) {
-            .games-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 1024px) { .games-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .games-grid { grid-template-columns: 1fr; } }
 
         .game-card {
             background-color: var(--card-bg);
@@ -284,10 +276,7 @@
             z-index: 10;
         }
 
-        .game-img-container {
-            cursor: pointer;
-            overflow: hidden;
-        }
+        .game-img-container { cursor: pointer; overflow: hidden; }
 
         .game-img {
             width: 100%;
@@ -297,9 +286,7 @@
             transition: transform 0.3s;
         }
 
-        .game-card:hover .game-img {
-            transform: scale(1.03);
-        }
+        .game-card:hover .game-img { transform: scale(1.03); }
 
         .game-content {
             padding: 16px;
@@ -352,64 +339,6 @@
         }
 
         .download-btn:hover { opacity: 0.9; box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
-
-        /* صفحة تفاصيل اللعبة المستقلة (Game Page View) */
-        #gamePageView {
-            display: none;
-            max-width: 1000px;
-            margin: 20px auto 60px;
-            padding: 0 20px;
-            text-align: right;
-        }
-
-        [dir="ltr"] #gamePageView { text-align: left; }
-
-        .back-btn {
-            background: rgba(168, 85, 247, 0.2);
-            border: 1px solid #a855f7;
-            color: var(--text-color);
-            padding: 8px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 25px;
-            transition: 0.2s;
-        }
-
-        .back-btn:hover { background: #a855f7; color: white; }
-
-        .game-page-layout {
-            display: flex;
-            gap: 40px;
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            flex-wrap: wrap;
-        }
-
-        .game-page-poster {
-            width: 320px;
-            height: 440px;
-            object-fit: cover;
-            border-radius: 14px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            flex-shrink: 0;
-        }
-
-        .game-page-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .game-page-details h1 {
-            margin: 0;
-            font-size: 32px;
-            color: #ffffff;
-        }
 
         /* Footer */
         .site-footer {
@@ -508,21 +437,8 @@
         }
         .auth-switch span { color: #a855f7; font-weight: bold; }
 
-        .auth-error {
-            color: var(--error-color);
-            font-size: 13px;
-            margin-top: 5px;
-            font-weight: bold;
-            display: none;
-        }
-
-        .auth-success {
-            color: var(--success-color);
-            font-size: 13px;
-            margin-top: 5px;
-            font-weight: bold;
-            display: none;
-        }
+        .auth-error { color: var(--error-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
+        .auth-success { color: var(--success-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
 
         .fav-item-row {
             display: flex;
@@ -578,24 +494,6 @@
         </div>
     </div>
 
-    <!-- صفحة تفاصيل اللعبة المستقلة (Game Page) -->
-    <div id="gamePageView">
-        <button class="back-btn" onclick="goHome()">← العودة للرئيسية</button>
-        <div class="game-page-layout">
-            <img id="pageGameImg" src="" class="game-page-poster" alt="Game Poster">
-            <div class="game-page-details">
-                <h1 id="pageGameTitle">عنوان اللعبة</h1>
-                <p><strong>التصنيف:</strong> <span id="pageGameGenre" style="color: #a855f7;"></span></p>
-                <p><strong>حجم اللعبة:</strong> <span id="pageGameSize" style="color: #06b6d4;"></span></p>
-                <p><strong>متطلبات التشغيل:</strong> <span style="color: var(--secondary-text);">ويندوز 10 / 11، معالج Intel Core i5، كارت شاشة Nvidia GTX 1060، مساحة تخزين 30 جيجا.</span></p>
-                <p><strong>شرح التثبيت:</strong> <span style="color: var(--secondary-text);">قم بفك الضغط باستخدام برنامج WinRAR، ثم شغل ملف التثبيت واستمتع باللعبة بكامل الملحقات! 🚀</span></p>
-                <div style="margin-top: 20px;">
-                    <a id="pageGameDownloadBtn" href="#" target="_blank" class="download-btn" style="max-width: 250px; text-align: center;">تحميل اللعبة الآن</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- الفوتر -->
     <footer class="site-footer">
         <div class="footer-content">
@@ -607,7 +505,7 @@
         </div>
     </footer>
 
-    <!-- نافذة المصادقة الحقيقية (تسجيل الدخول / إنشاء حساب) -->
+    <!-- نافذة المصادقة (تسجيل الدخول / إنشاء حساب) مع حفظ دائم -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -714,11 +612,20 @@
         let currentLang = 'ar';
         let currentTheme = 'dark';
         let favorites = [];
-        
-        // نظام الحسابات والمصادقة الحقيقية
-        let registeredUsers = []; // تخزين الحسابات المسجلة
-        let currentUser = null;   // المستخدم الحالي المسجل دجوله
-        let isSignUpMode = false; // هل نحن في وضع إنشاء حساب جديد أم تسجيل دخول؟
+
+        // استرجاع الحسابات المسجلة وحالة المستخدم الحالي من LocalStorage مباشرة لمنع فقدان البيانات عند الريفرش
+        let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('mk_current_user')) || null;
+        let isSignUpMode = false;
+
+        // التحقق عند تحميل الصفحة لو فيه مستخدم مسجل دخول مسبقاً لتثبيت الأيقونة الخضراء
+        window.addEventListener('DOMContentLoaded', () => {
+            if (currentUser) {
+                const loginBtn = document.getElementById('loginBtn');
+                loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
+                loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
+            }
+        });
 
         function getRandomGames(arr) {
             let shuffled = [...arr];
@@ -753,11 +660,11 @@
                 card.className = 'game-card';
                 card.innerHTML = `
                     <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="إضافة للمفضلة">${isFav ? '❤️' : '🤍'}</button>
-                    <div class="game-img-container" onclick="openGamePage(${game.id})">
+                    <div class="game-img-container" onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">
                         <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     </div>
                     <div class="game-content">
-                        <h3 onclick="openGamePage(${game.id})">${title}</h3>
+                        <h3 onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">${title}</h3>
                         <div class="game-info">
                             <span class="game-genre">${genre}</span>
                             <span class="game-size">${game.size}</span>
@@ -769,34 +676,7 @@
             });
         }
 
-        // الانتقال لصفحة اللعبة المستقلة
-        function openGamePage(id) {
-            const game = gamesData.find(g => g.id === id);
-            if (!game) return;
-
-            const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-            const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-            const btnText = currentLang === 'ar' ? 'تحميل اللعبة الآن' : 'Download Game Now';
-
-            document.getElementById('pageGameTitle').innerText = title;
-            document.getElementById('pageGameImg').src = game.image;
-            document.getElementById('pageGameGenre').innerText = genre;
-            document.getElementById('pageGameSize').innerText = game.size;
-
-            const dlBtn = document.getElementById('pageGameDownloadBtn');
-            dlBtn.href = game.url;
-            dlBtn.innerText = btnText;
-
-            // إخفاء الرئيسية وإظهار صفحة اللعبة
-            document.getElementById('mainHeaderView').style.display = 'none';
-            document.getElementById('gamePageView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // العودة للرئيسية
         function goHome() {
-            document.getElementById('gamePageView').style.display = 'none';
-            document.getElementById('mainHeaderView').style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -826,7 +706,7 @@
                     row.className = 'fav-item-row';
                     row.innerHTML = `
                         <img src="${game.image}" class="fav-item-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                        <div class="fav-item-info" onclick="closeModals(); openGamePage(${game.id});">
+                        <div class="fav-item-info">
                             <h4>${title}</h4>
                             <span>${genre} • ${game.size}</span>
                         </div>
@@ -936,7 +816,6 @@
             displayGames(activeGames);
         }
 
-        // تبديل واجهة المودال بين تسجيل الدخول (Login) وإنشاء حساب (Sign Up)
         function toggleAuthMode() {
             isSignUpMode = !isSignUpMode;
             const title = document.getElementById('authModalTitle');
@@ -960,7 +839,7 @@
             }
         }
 
-        // معالجة إرسال نموذج المصادقة (مع التحقق الحقيقي من الجيميل والباسورد)
+        // معالجة وحفظ البيانات بذاكرة المتصفح (LocalStorage)
         function handleAuthSubmit() {
             const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value.trim();
@@ -970,15 +849,13 @@
             errorBox.style.display = 'none';
             successBox.style.display = 'none';
 
-            // التحقق من صحة البريد الإلكتروني (يجب أن يحتوي على @ و .gmail.com أو صيغة بريد صحيحة)
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                errorBox.innerText = currentLang === 'ar' ? '⚠️ يرجى إدخال بريد إلكتروني (Gmail) صحيح!' : '⚠️ Please enter a valid email address!';
+                errorBox.innerText = currentLang === 'ar' ? '⚠️ يرجى إدخال بريد إلكتروني صحيح!' : '⚠️ Please enter a valid email address!';
                 errorBox.style.display = 'block';
                 return;
             }
 
-            // التحقق من قوة وطول كلمة المرور (أقل شي 6 أحرف)
             if (password.length < 6) {
                 errorBox.innerText = currentLang === 'ar' ? '⚠️ كلمة المرور يجب ألا تقل عن 6 أحرف!' : '⚠️ Password must be at least 6 characters!';
                 errorBox.style.display = 'block';
@@ -986,7 +863,6 @@
             }
 
             if (isSignUpMode) {
-                // التحقق هل الحساب موجود مسبقاً؟
                 const existingUser = registeredUsers.find(u => u.email === email);
                 if (existingUser) {
                     errorBox.innerText = currentLang === 'ar' ? '⚠️ هذا البريد مسجل مسبقاً، حاول تسجيل الدخول!' : '⚠️ Email already registered, try logging in!';
@@ -994,17 +870,17 @@
                     return;
                 }
 
-                // إنشاء الحساب بنجاح
+                // حفظ الحساب الجديد في قائمة الحسابات وتخزينها بالمتصفح
                 registeredUsers.push({ email, password });
+                localStorage.setItem('mk_users', JSON.stringify(registeredUsers));
+
                 successBox.innerText = currentLang === 'ar' ? '✅ تم إنشاء الحساب بنجاح! يمكنك الدخول الآن.' : '✅ Account created successfully! You can login now.';
                 successBox.style.display = 'block';
                 
-                setTimeout(() => {
-                    toggleAuthMode(); // تحويل لوضع الدخول تلقائياً
-                }, 1500);
+                setTimeout(() => { toggleAuthMode(); }, 1500);
 
             } else {
-                // تسجيل الدخول والتحقق من المطابقة
+                // التحقق من وجود الحساب وتطابق الباسورد
                 const foundUser = registeredUsers.find(u => u.email === email && u.password === password);
                 if (!foundUser) {
                     errorBox.innerText = currentLang === 'ar' ? '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة أو الحساب غير موجود!' : '❌ Incorrect email/password or account not found!';
@@ -1012,19 +888,17 @@
                     return;
                 }
 
-                // نجاح الدخول
                 currentUser = foundUser;
+                localStorage.setItem('mk_current_user', JSON.stringify(currentUser)); // تثبيت الجلسة
+
                 successBox.innerText = currentLang === 'ar' ? `✅ أهلاً بك! تم تسجيل الدخول بنجاح.` : `✅ Welcome back! Logged in successfully.`;
                 successBox.style.display = 'block';
 
-                // تحويل زر الدخول إلى الدائرة الخضراء وإعطائه التلميح المناسب
                 const loginBtn = document.getElementById('loginBtn');
                 loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
                 loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
 
-                setTimeout(() => {
-                    closeModals();
-                }, 1500);
+                setTimeout(() => { closeModals(); }, 1500);
             }
         }
 
