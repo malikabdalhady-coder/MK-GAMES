@@ -73,27 +73,51 @@
             transform: scale(1.05);
         }
 
-        /* Hero Section المعدل حسب طلبك */
+        /* Hero Section مع إضاءة النيون الخلفية (موف، أزرق، بنبي مع Blur) */
         .hero {
             text-align: center;
-            padding: 40px 20px 20px;
+            padding: 50px 20px 20px;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        /* هالة النيون الخلفية */
+        .neon-glow-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 120px;
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
+            filter: blur(60px);
+            opacity: 0.55;
+            z-index: 0;
+            pointer-events: none;
+            border-radius: 50%;
+        }
+
+        .hero h1, .hero-subtitle, .prayer-reminder {
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-size: 42px;
+            font-size: 46px;
             margin: 0 0 5px;
-            color: var(--accent-color);
-            letter-spacing: 2px;
+            color: #ffffff;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(59, 130, 246, 0.4);
         }
 
         .hero-subtitle {
             font-size: 14px;
-            color: var(--secondary-text);
+            color: #f472b6;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .prayer-reminder {
@@ -101,14 +125,14 @@
             font-size: 14px;
             font-weight: bold;
             margin-bottom: 25px;
-            background: rgba(6, 182, 212, 0.15);
+            background: rgba(168, 85, 247, 0.15);
             display: inline-block;
             padding: 6px 20px;
             border-radius: 20px;
-            border: 1px solid var(--accent-color);
+            border: 1px solid #a855f7;
         }
 
-        /* شريط السيرش العريض */
+        /* شريط البحث العريض */
         .search-container {
             width: 100%;
             padding: 0 20px;
@@ -118,7 +142,6 @@
 
         .search-box {
             width: 100%;
-            max-width: 100%;
             padding: 16px 24px;
             font-size: 18px;
             border-radius: 16px;
@@ -132,8 +155,8 @@
         }
 
         .search-box:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
+            border-color: #a855f7;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
         }
 
         .container {
@@ -203,7 +226,7 @@
         }
 
         .game-card h3 {
-            color: var(--accent-color);
+            color: #a855f7;
             margin: 0 0 10px;
             font-size: 20px;
         }
@@ -219,7 +242,7 @@
             display: block;
             width: 100%;
             padding: 10px 0;
-            background-color: var(--accent-color);
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
             color: white;
             text-align: center;
             text-decoration: none;
@@ -230,7 +253,8 @@
         }
 
         .download-btn:hover {
-            background-color: var(--hover-color);
+            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         /* Modal Styles */
@@ -281,7 +305,7 @@
         .modal-content button {
             width: 100%;
             padding: 10px;
-            background: var(--accent-color);
+            background: #a855f7;
             color: white;
             border: none;
             border-radius: 8px;
@@ -309,28 +333,26 @@
 <body>
 
     <header>
-        <div style="font-weight: bold; color: var(--accent-color);">MK GAMES</div>
+        <div style="font-weight: bold; color: #a855f7;">MK GAMES</div>
         <div class="nav-controls">
-            <!-- المفضلة -->
             <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
-            <!-- الإشعارات -->
             <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات">🔔</button>
-            <!-- الوضع الليلي/النهاري -->
             <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
-            <!-- اللغة -->
             <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
-            <!-- تسجيل الدخول -->
             <button class="icon-btn" onclick="openLoginModal()" title="تسجيل الدخول">👤</button>
         </div>
     </header>
 
     <div class="hero">
+        <!-- خلفية النيون الموف في أزرق و بنبي مع Blur -->
+        <div class="neon-glow-bg"></div>
+        
         <h1 id="mainTitle">MK GAMES</h1>
         <div class="hero-subtitle" id="subTitle">Explore Games</div>
         <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
     </div>
 
-    <!-- شريط البحث العريض ب عرض الصفحة -->
+    <!-- شريط البحث العريض -->
     <div class="search-container">
         <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة للتحميل..." onkeyup="searchGames()">
     </div>
@@ -458,4 +480,18 @@
         function toggleTheme() {
             const root = document.getElementById('htmlRoot');
             const themeBtn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark
+            if (currentTheme === 'dark') {
+                root.setAttribute('data-theme', 'light');
+                currentTheme = 'light';
+                themeBtn.innerText = '☀️';
+            } else {
+                root.removeAttribute('data-theme');
+                currentTheme = 'dark';
+                themeBtn.innerText = '🌙';
+            }
+        }
+
+        function toggleLanguage() {
+            const htmlRoot = document.getElementById('htmlRoot');
+            const langBtn = document.getElementById('langBtn');
+            const searchInput = document.getElementById
