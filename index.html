@@ -229,6 +229,7 @@
             height: 52px;
             border-radius: 6px;
             object-fit: cover;
+            flex-shrink: 0;
         }
 
         .trending-info h4 {
@@ -306,11 +307,21 @@
             transform: scale(1.1);
         }
 
+        .game-img-container {
+            cursor: pointer;
+            overflow: hidden;
+        }
+
         .game-img {
             width: 100%;
             height: 320px;
             object-fit: cover;
             background-color: #1e293b;
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover .game-img {
+            transform: scale(1.03);
         }
 
         .game-content {
@@ -333,6 +344,12 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .game-card h3:hover {
+            color: #a855f7;
         }
 
         .game-info {
@@ -377,37 +394,53 @@
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
-        /* قائمة المفضلة داخل المودال */
+        /* قائمة المفضلة داخل المودال (مع تعديل وتنسيق الصورة لتظهر تماماً) */
         .fav-item-row {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 12px;
             background: rgba(255,255,255,0.03);
-            padding: 8px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 10px;
             text-align: right;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        [dir="ltr"] .fav-item-row {
+            text-align: left;
         }
 
         .fav-item-img {
-            width: 40px;
-            height: 50px;
+            width: 50px;
+            height: 65px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 6px;
+            flex-shrink: 0;
         }
 
-        .fav-item-info h5 {
+        .fav-item-info {
+            flex: 1;
+            cursor: pointer;
+        }
+
+        .fav-item-info h4 {
             margin: 0 0 4px;
             font-size: 14px;
             color: var(--text-color);
+            transition: color 0.2s;
+        }
+
+        .fav-item-info h4:hover {
+            color: #a855f7;
         }
 
         .fav-item-info span {
-            font-size: 11px;
+            font-size: 12px;
             color: var(--secondary-text);
         }
 
-        /* قسم معلومات الموقع في الأسفل (Footer) مع لوجو النيون */
+        /* قسم معلومات الموقع في الأسفل (Footer) */
         .site-footer {
             background-color: var(--card-bg);
             border-top: 1px solid rgba(168, 85, 247, 0.2);
@@ -450,7 +483,7 @@
             margin-top: 5px;
         }
 
-        /* Modal Styles */
+        /* Modal Styles العامة */
         .modal {
             display: none;
             position: fixed;
@@ -458,10 +491,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.7);
             justify-content: center;
             align-items: center;
             z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .modal-content {
@@ -469,26 +504,74 @@
             padding: 30px;
             border-radius: 16px;
             width: 90%;
-            max-width: 400px;
+            max-width: 420px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             position: relative;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        /* نافذة تفاصيل اللعبة الكبيرة والفخمة */
+        .game-details-content {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 650px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            position: relative;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            text-align: right;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        [dir="ltr"] .game-details-content {
+            text-align: left;
+        }
+
+        .details-grid {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .details-img {
+            width: 200px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        .details-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .close-modal {
             position: absolute;
-            top: 10px;
-            left: 15px;
-            font-size: 22px;
+            top: 15px;
+            left: 20px;
+            font-size: 24px;
             cursor: pointer;
             color: var(--secondary-text);
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--text-color);
         }
 
         .modal-content input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 8px;
+            border-radius: 10px;
             border: 1px solid var(--secondary-text);
             background: var(--bg-color);
             color: var(--text-color);
@@ -497,11 +580,11 @@
 
         .modal-content button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             background: #a855f7;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
@@ -535,7 +618,7 @@
             <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
             <!-- اللغة -->
             <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
-            <!-- تسجيل الدخول (يتفاعل ويتحول لدائرة خضراء عند الدخول) -->
+            <!-- تسجيل الدخول -->
             <button class="icon-btn" id="loginBtn" onclick="openLoginModal()" title="تسجيل الدخول">👤</button>
         </div>
     </header>
@@ -563,7 +646,7 @@
         </div>
     </div>
 
-    <!-- قسم معلومات الموقع (Footer) مع لوجو النيون -->
+    <!-- قسم معلومات الموقع (Footer) -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo">MK GAMES</div>
@@ -573,6 +656,26 @@
             <div class="footer-copy">&copy; 2026 MK GAMES</div>
         </div>
     </footer>
+
+    <!-- نافذة تفاصيل اللعبة الكاملة (Game Details Modal) -->
+    <div class="modal" id="gameDetailsModal">
+        <div class="game-details-content">
+            <span class="close-modal" onclick="closeModals()">&times;</span>
+            <h2 id="modalGameTitle" style="margin-top: 0; color: #ffffff;">اسم اللعبة</h2>
+            <div class="details-grid">
+                <img id="modalGameImg" src="" class="details-img" alt="Game Poster">
+                <div class="details-info">
+                    <p><strong>التصنيف:</strong> <span id="modalGameGenre" style="color: #a855f7;"></span></p>
+                    <p><strong>حجم اللعبة:</strong> <span id="modalGameSize" style="color: #06b6d4;"></span></p>
+                    <p><strong>متطلبات التشغيل:</strong> <span id="modalGameReq" style="color: var(--secondary-text); font-size: 13px;">ويندوز 10/11، معالج Core i5، كارت شاشة GTX 1060، مساحة تخزين كافية.</span></p>
+                    <p><strong>شرح التثبيت:</strong> <span style="color: var(--secondary-text); font-size: 13px;">قم بفك الضغط، ثبت اللعبة، واستمتع باللعب مباشرة! 🚀</span></p>
+                </div>
+            </div>
+            <div style="margin-top: 25px;">
+                <a id="modalGameDownloadBtn" href="#" target="_blank" class="download-btn">تحميل اللعبة الآن</a>
+            </div>
+        </div>
+    </div>
 
     <!-- نافذة تسجيل الدخول -->
     <div class="modal" id="loginModal">
@@ -587,7 +690,7 @@
         </div>
     </div>
 
-    <!-- نافذة المفضلة (تم تفعيلها لعرض الألعاب المحفوظة) -->
+    <!-- نافذة المفضلة -->
     <div class="modal" id="favModal">
         <div class="modal-content" style="max-width: 450px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -710,9 +813,11 @@
                 card.className = 'game-card';
                 card.innerHTML = `
                     <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="إضافة للمفضلة">${isFav ? '❤️' : '🤍'}</button>
-                    <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
+                    <div class="game-img-container" onclick="openGameDetails(${game.id})">
+                        <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
+                    </div>
                     <div class="game-content">
-                        <h3>${title}</h3>
+                        <h3 onclick="openGameDetails(${game.id})">${title}</h3>
                         <div class="game-info">
                             <span class="game-genre">${genre}</span>
                             <span class="game-size">${game.size}</span>
@@ -724,7 +829,28 @@
             });
         }
 
-        // تفعيل حفظ الألعاب في المفضلة بذكاء
+        // فتح نافذة تفاصيل اللعبة مع كامل المعلومات
+        function openGameDetails(id) {
+            const game = gamesData.find(g => g.id === id);
+            if (!game) return;
+
+            const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
+            const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
+            const btnText = currentLang === 'ar' ? 'تحميل اللعبة الآن' : 'Download Game Now';
+
+            document.getElementById('modalGameTitle').innerText = title;
+            document.getElementById('modalGameImg').src = game.image;
+            document.getElementById('modalGameGenre').innerText = genre;
+            document.getElementById('modalGameSize').innerText = game.size;
+            
+            const dlBtn = document.getElementById('modalGameDownloadBtn');
+            dlBtn.href = game.url;
+            dlBtn.innerText = btnText;
+
+            document.getElementById('gameDetailsModal').style.display = 'flex';
+        }
+
+        // تفعيل حفظ الألعاب في المفضلة
         function toggleFav(id) {
             const gameObj = gamesData.find(g => g.id === id);
             const index = favorites.findIndex(fav => fav.id === id);
@@ -737,7 +863,7 @@
             displayGames(activeGames);
         }
 
-        // بناء محتوى نافذة المفضلة ديناميكياً
+        // بناء محتوى نافذة المفضلة مع ضبط عرض الصور بشكل احترافي
         function openFavModal() {
             const modalBody = document.getElementById('favModalBody');
             modalBody.innerHTML = '';
@@ -751,12 +877,12 @@
                     const row = document.createElement('div');
                     row.className = 'fav-item-row';
                     row.innerHTML = `
-                        <img src="${game.image}" class="fav-item-img" alt="${title}">
-                        <div class="fav-item-info" style="flex: 1;">
+                        <img src="${game.image}" class="fav-item-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
+                        <div class="fav-item-info" onclick="closeModals(); openGameDetails(${game.id});">
                             <h4>${title}</h4>
                             <span>${genre} • ${game.size}</span>
                         </div>
-                        <button onclick="toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;" title="إزالة">❌</button>
+                        <button onclick="event.stopPropagation(); toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;" title="إزالة">❌</button>
                     `;
                     modalBody.appendChild(row);
                 });
@@ -781,7 +907,7 @@
                     hideTrending();
                 };
                 item.innerHTML = `
-                    <img src="${game.image}" class="trending-img" alt="${title}">
+                    <img src="${game.image}" class="trending-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     <div class="trending-info">
                         <h4>${title}</h4>
                         <span>${genre} • ${game.size}</span>
@@ -869,7 +995,6 @@
             displayGames(activeGames);
         }
 
-        // تفاعل تسجيل الدخول وتحويل الأيقونة لدائرة خضراء
         function handleLogin() {
             const usernameVal = document.getElementById('usernameInput').value.trim();
             loggedUser = usernameVal !== '' ? usernameVal : (currentLang === 'ar' ? 'مستخدم' : 'User');
@@ -878,7 +1003,6 @@
             const alertBox = document.getElementById('loginAlert');
             alertBox.style.display = 'block';
 
-            // تحويل زر الدخول إلى الدائرة الخضراء وإعطائه تلميح "مسجل بالفعل"
             const loginBtn = document.getElementById('loginBtn');
             loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
             loginBtn.title = currentLang === 'ar' ? `مسجل بالفعل (${loggedUser})` : `Already Logged In (${loggedUser})`;
