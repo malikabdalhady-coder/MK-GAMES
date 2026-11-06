@@ -38,7 +38,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 30px;
+            padding: 10px 30px;
             background-color: var(--card-bg);
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             position: sticky;
@@ -46,11 +46,18 @@
             z-index: 1000;
         }
 
-        .logo {
-            font-weight: bold;
-            color: #a855f7;
-            font-size: 20px;
-            letter-spacing: 1px;
+        /* تنسيق اللوجو في الهيدر */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
         }
 
         .nav-controls {
@@ -189,7 +196,7 @@
             }
         }
 
-        /* كارت اللعبة بستايل البوسترات الطولية */
+        /* كارت اللعبة بوستر طولي */
         .game-card {
             background-color: var(--card-bg);
             border-radius: 14px;
@@ -229,7 +236,6 @@
             transform: scale(1.1);
         }
 
-        /* بوستر اللعبة الطولي */
         .game-img {
             width: 100%;
             height: 320px;
@@ -259,7 +265,6 @@
             text-overflow: ellipsis;
         }
 
-        /* معلومات اللعبة (النوع والحجم) تحت الاسم */
         .game-info {
             display: flex;
             justify-content: space-between;
@@ -378,7 +383,10 @@
 <body>
 
     <header>
-        <div class="logo">MK GAMES</div>
+        <!-- اللوجو الجديد -->
+        <a href="#" class="logo-container">
+            <img src="logo.png" alt="MK GAMES Logo" class="logo-img">
+        </a>
         <div class="nav-controls">
             <!-- المفضلة -->
             <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
@@ -443,7 +451,6 @@
     </div>
 
     <script>
-        // قاعدة بيانات الألعاب (أي لعبة هتضيفها هنا مستقبلاً هتظهر وتتوزع عشوائياً تلقائياً)
         const gamesData = [
             {
                 "titleAr": "Grand Adventure",
@@ -505,7 +512,6 @@
         let currentTheme = 'dark';
         let favorites = [];
 
-        // خلط الألعاب عشوائياً عند كل فتح للصفحة
         function getRandomGames(arr) {
             let shuffled = [...arr];
             for (let i = shuffled.length - 1; i > 0; i--) {
