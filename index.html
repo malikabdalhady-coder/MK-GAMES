@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">MK GAMES - موقع تحميل الألعاب</title>
+    <title id="pageTitle">MK GAMES - تفاصيل اللعبة</title>
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -75,513 +75,208 @@
             transform: scale(1.05);
         }
 
-        .troubleshoot-nav-btn {
+        .back-home-link {
             background: linear-gradient(135deg, #a855f7, #3b82f6);
             color: white;
             border: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 13px;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .troubleshoot-nav-btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
-        }
-
-        .logged-in-indicator {
-            width: 16px;
-            height: 16px;
-            background-color: #10b981;
-            border-radius: 50%;
-            display: inline-block;
-            box-shadow: 0 0 10px #10b981;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 40px 20px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .main-brand-logo {
-            font-size: 44px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
-            letter-spacing: 3px;
-            margin-bottom: 5px;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .neon-glow-bg {
-            position: absolute;
-            top: 40%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 320px;
-            height: 120px;
-            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
-            filter: blur(60px);
-            opacity: 0.55;
-            z-index: 0;
-            pointer-events: none;
-            border-radius: 50%;
-        }
-
-        .hero-subtitle, .prayer-reminder, .main-brand-logo {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-subtitle {
-            font-size: 14px;
-            color: #f472b6;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-
-        .prayer-reminder {
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 25px;
-            background: rgba(168, 85, 247, 0.15);
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 20px;
-            border: 1px solid #a855f7;
-        }
-
-        /* البحث */
-        .search-container {
-            width: 100%;
-            max-width: 800px;
-            padding: 0 20px;
-            box-sizing: border-box;
-            margin: 0 auto 20px;
-            position: relative;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 16px 24px;
-            font-size: 18px;
-            border-radius: 16px;
-            border: 2px solid var(--secondary-text);
-            background-color: var(--card-bg);
-            color: var(--text-color);
-            outline: none;
-            transition: 0.3s;
-            box-sizing: border-box;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .search-box:focus {
-            border-color: #a855f7;
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-        }
-
-        /* شريط التصنيفات الشامل */
-        .filters-container {
-            max-width: 1300px;
-            margin: 0 auto 30px;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .filter-row {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .filter-chip {
-            background-color: var(--card-bg);
-            color: var(--secondary-text);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 7px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        .filter-chip:hover, .filter-chip.active {
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
-        }
-
-        .trending-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 20px;
-            right: 20px;
-            background-color: var(--card-bg);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            margin-top: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            z-index: 1500;
-            display: none;
-            max-height: 300px;
-            overflow-y: auto;
-            text-align: right;
-        }
-
-        [dir="ltr"] .trending-dropdown { text-align: left; }
-
-        .trending-header {
-            padding: 10px 16px;
-            font-size: 13px;
-            color: #a855f7;
-            font-weight: bold;
-            border-bottom: 1px solid #334155;
-            background: rgba(168, 85, 247, 0.05);
-        }
-
-        .trending-item {
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
-        }
-
-        .trending-item:hover { background-color: rgba(168, 85, 247, 0.15); }
-
-        .trending-img {
-            width: 38px;
-            height: 52px;
-            border-radius: 6px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .container {
-            max-width: 1350px;
-            margin: 0 auto;
-            padding: 0 20px 40px;
-        }
-
-        /* صفحة حل المشاكل بتصميم المستطيلات المتعددة والمنظمة */
-        #troubleshootPageView {
-            display: none;
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .troubleshoot-header-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            background: var(--card-bg);
-            padding: 20px 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .back-to-home-btn {
-            background: transparent;
-            color: var(--text-color);
-            border: 1px solid var(--secondary-text);
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .back-to-home-btn:hover {
-            border-color: #a855f7;
-            color: #a855f7;
-        }
-
-        .troubleshoot-container-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            text-align: right;
-        }
-
-        [dir="ltr"] .troubleshoot-container-grid { text-align: left; }
-
-        .troubleshoot-box-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        }
-
-        .box-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: #a855f7;
-            margin: 0 0 8px;
-        }
-
-        .box-desc {
-            font-size: 14px;
-            color: var(--secondary-text);
-            margin: 0 0 20px;
-        }
-
-        .tools-list-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .tool-row-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.2s;
-            gap: 15px;
-        }
-
-        .tool-row-item:hover {
-            background: rgba(168, 85, 247, 0.08);
-            border-color: rgba(168, 85, 247, 0.3);
-        }
-
-        @media (max-width: 600px) {
-            .tool-row-item { flex-direction: column; align-items: flex-start; }
-        }
-
-        .tool-info h4 {
-            margin: 0 0 4px;
-            color: var(--text-color);
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .tool-info p {
-            margin: 0;
-            color: var(--secondary-text);
-            font-size: 13px;
-        }
-
-        .tool-action-btn {
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            text-decoration: none;
             padding: 8px 18px;
-            border-radius: 10px;
+            border-radius: 20px;
             font-weight: bold;
             font-size: 13px;
-            white-space: nowrap;
+            cursor: pointer;
+            text-decoration: none;
             transition: 0.2s;
         }
 
-        .tool-action-btn:hover {
+        .back-home-link:hover {
             opacity: 0.9;
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
-        /* قوائم الخطوات داخل المربعات العادية */
-        .steps-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        /* صفحة تفاصيل اللعبة */
+        .game-details-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 30px;
         }
 
-        .steps-list li {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .steps-list li::before {
-            content: "🔹";
-            font-size: 12px;
-        }
-
-        /* تنويه التواصل */
-        .support-notice-card {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
-            border: 1px dashed #a855f7;
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            font-weight: bold;
-            color: var(--text-color);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* شبكة الألعاب */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
-
-        @media (max-width: 1024px) { .games-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .games-grid { grid-template-columns: 1fr; } }
-
-        .game-card {
+        .game-hero-section {
             background-color: var(--card-bg);
-            border-radius: 14px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             position: relative;
         }
 
-        .game-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(168, 85, 247, 0.25);
+        .game-poster-wrapper {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            background: #1e293b;
         }
 
-        .fav-card-btn {
+        .game-poster {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-fav-btn {
             position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            width: 36px;
-            height: 36px;
+            width: 45px;
+            height: 45px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 20px;
             transition: 0.2s;
             z-index: 10;
         }
 
-        .game-img-container { cursor: pointer; overflow: hidden; }
-
-        .game-img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            background-color: #1e293b;
-            transition: transform 0.3s;
+        .game-fav-btn:hover {
+            transform: scale(1.1);
+            border-color: #a855f7;
         }
 
-        .game-card:hover .game-img { transform: scale(1.03); }
-
-        .game-content {
-            padding: 16px;
+        .game-meta-info {
+            padding: 30px;
             text-align: right;
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 15px;
         }
 
-        [dir="ltr"] .game-content { text-align: left; }
+        [dir="ltr"] .game-meta-info { text-align: left; }
 
-        .game-card h3 {
+        .game-title {
+            font-size: 32px;
+            font-weight: 900;
             color: #ffffff;
             margin: 0;
-            font-size: 17px;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
         }
 
-        .game-card h3:hover { color: #a855f7; }
-
-        .game-info {
+        .game-genres-tags {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: var(--secondary-text);
-            margin-bottom: 10px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
-        .game-genre { color: #a855f7; font-weight: 600; }
-        .game-size { background: rgba(6, 182, 212, 0.1); color: var(--accent-color); padding: 2px 8px; border-radius: 6px; font-size: 12px; }
-
-        .download-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 0;
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.2s;
-            box-sizing: border-box;
-            font-size: 14px;
-        }
-
-        .download-btn:hover { opacity: 0.9; box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
-
-        .show-all-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .show-all-btn {
-            background: transparent;
+        .genre-badge {
+            background: rgba(168, 85, 247, 0.15);
             color: #a855f7;
-            border: 2px solid #a855f7;
-            padding: 12px 35px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15);
+            padding: 6px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(168, 85, 247, 0.3);
         }
 
-        .show-all-btn:hover {
-            background: #a855f7;
+        .section-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            text-align: right;
+        }
+
+        [dir="ltr"] .section-card { text-align: left; }
+
+        .section-card h3 {
+            color: #a855f7;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding-bottom: 8px;
+        }
+
+        .section-card p, .section-card ul {
+            color: var(--secondary-text);
+            font-size: 15px;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .section-card ul {
+            padding-right: 20px;
+        }
+
+        [dir="ltr"] .section-card ul {
+            padding-right: 0;
+            padding-left: 20px;
+        }
+
+        /* تنسيق الفيديو */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.5%; /* نسبة 16:9 */
+            height: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            margin-top: 10px;
+        }
+
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* أزرار التحميل المزدوجة */
+        .download-buttons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .download-buttons-grid { grid-template-columns: 1fr; }
+        }
+
+        .dl-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
             color: white;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .dl-direct {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .dl-direct:hover {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .dl-torrent {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        }
+        .dl-torrent:hover {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
             transform: translateY(-2px);
         }
 
@@ -609,1036 +304,108 @@
             background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
             letter-spacing: 2px;
         }
 
         .footer-text { color: var(--secondary-text); font-size: 15px; line-height: 1.8; margin: 0; }
-        
-        .footer-copy {
-            color: var(--text-color);
-            font-weight: bold;
-            font-size: 14px;
-        }
-
+        .footer-copy { color: var(--text-color); font-weight: bold; font-size: 14px; }
         .developer-signature {
             color: #a855f7;
             font-weight: bold;
             font-size: 14px;
-            letter-spacing: 0.5px;
             background: rgba(168, 85, 247, 0.1);
             padding: 4px 16px;
             border-radius: 15px;
             border: 1px solid rgba(168, 85, 247, 0.3);
-            display: inline-block;
         }
-
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            position: relative;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--secondary-text);
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 1px solid var(--secondary-text);
-            background: var(--bg-color);
-            color: var(--text-color);
-            box-sizing: border-box;
-        }
-
-        .modal-content button {
-            width: 100%;
-            padding: 12px;
-            background: #a855f7;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .auth-switch {
-            margin-top: 15px;
-            font-size: 13px;
-            color: var(--secondary-text);
-            cursor: pointer;
-        }
-        .auth-switch span { color: #a855f7; font-weight: bold; }
-
-        .auth-error { color: var(--error-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
-        .auth-success { color: var(--success-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
-
-        .fav-item-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            background: rgba(255,255,255,0.03);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: right;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        [dir="ltr"] .fav-item-row { text-align: left; }
-        .fav-item-img { width: 50px; height: 65px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
-        .fav-item-info { flex: 1; cursor: pointer; }
-        .fav-item-info h4 { margin: 0 0 4px; font-size: 14px; color: var(--text-color); }
-        .fav-item-info span { font-size: 12px; color: var(--secondary-text); }
-        .no-results { text-align: center; grid-column: 1 / -1; color: var(--secondary-text); font-size: 18px; padding: 40px; }
     </style>
 </head>
 <body>
 
     <header>
-        <button class="troubleshoot-nav-btn" onclick="openTroubleshootPage()" id="troubleshootNavBtn">
-            <span>🛠️</span> <span id="troubleshootBtnText">حل المشاكل والبرامج</span>
-        </button>
+        <a href="#" class="back-home-link" onclick="alert('العودة للصفحة الرئيسية')">⬅ العودة للألعاب</a>
         <div class="nav-controls">
-            <button class="icon-btn" onclick="openFavModal()" title="المفضلة" id="favBtn">❤️</button>
-            <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات" id="notifBtn">🔔</button>
-            <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
-            <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
-            <button class="icon-btn" id="loginBtn" onclick="openAuthModal()" title="تسجيل الدخول">👤</button>
+            <button class="icon-btn" title="تغيير الوضع">🌙</button>
+            <button class="icon-btn" title="تغيير اللغة">EN</button>
         </div>
     </header>
 
-    <!-- الهيدر الرئيسي للموقع وأقسام الألعاب -->
-    <div id="mainHeaderView">
-        <div class="hero">
-            <div class="neon-glow-bg"></div>
-            <div class="main-brand-logo" onclick="goHome()">MK GAMES</div>
-            <div class="hero-subtitle" id="subTitle">Explore Games</div>
-            <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
-        </div>
-
-        <div class="search-container">
-            <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة للتحميل..." onfocus="showTrending()" onkeyup="searchGames()">
-            <div class="trending-dropdown" id="trendingDropdown">
-                <div class="trending-header" id="trendingTitle">🔥 الألعاب الرائجة حالياً</div>
-                <div id="trendingList"></div>
+    <!-- محتوى صفحة عرض اللعبة -->
+    <div class="game-details-container">
+        
+        <!-- 1. بوستر اللعبة واسمها والمفضلة -->
+        <div class="game-hero-section">
+            <div class="game-poster-wrapper">
+                <button class="game-fav-btn" title="إضافة للمفضلة">❤️</button>
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1000&auto=format&fit=crop&q=80" alt="Cyber Legends" class="game-poster">
             </div>
-        </div>
-
-        <!-- شريط التصنيفات الشامل -->
-        <div class="filters-container">
-            <div class="filter-row" id="tagFilters">
-                <button class="filter-chip active" onclick="filterByTag('all')" id="fAll">الكل</button>
-                <button class="filter-chip" onclick="filterByTag('action')" id="fAction">الأكشن</button>
-                <button class="filter-chip" onclick="filterByTag('adventure')" id="fAdv">مغامرات</button>
-                <button class="filter-chip" onclick="filterByTag('open-world')" id="fOpen">العالم المفتوح</button>
-                <button class="filter-chip" onclick="filterByTag('rpg')" id="fRpg">RPG</button>
-                <button class="filter-chip" onclick="filterByTag('survival')" id="fSurv">النجاة</button>
-                <button class="filter-chip" onclick="filterByTag('horror')" id="fHor">الرعب</button>
-                <button class="filter-chip" onclick="filterByTag('strategy')" id="fStrat">الاستراتيجية</button>
-                <button class="filter-chip" onclick="filterByTag('stealth')" id="fSteal">التخفي</button>
-                <button class="filter-chip" onclick="filterByTag('puzzle')" id="fPuz">الألغاز</button>
-                <button class="filter-chip" onclick="filterByTag('simulation')" id="fSim">المحاكاة</button>
-                <button class="filter-chip" onclick="filterByTag('sports')" id="fSport">الرياضة</button>
-                <button class="filter-chip" onclick="filterByTag('superhero')" id="fSuper">الأبطال الخارقين</button>
-                <button class="filter-chip" onclick="filterByTag('sci-fi')" id="fSci">الخيال العلمي</button>
-                <button class="filter-chip" onclick="filterByTag('indie')" id="fIndie">المستقلين</button>
-                <button class="filter-chip" onclick="filterByTag('co-op')" id="fCoop">جماعية</button>
-                <button class="filter-chip" onclick="filterByTag('2d')" id="f2d">ثنائية الأبعاد</button>
-                <button class="filter-chip" onclick="filterByTag('3d')" id="f3d">ثلاثية الأبعاد</button>
-                <button class="filter-chip" onclick="filterByTag('fpp')" id="fFpp">المنظور الأول</button>
-                <button class="filter-chip" onclick="filterByTag('tpp')" id="fTpp">المنظور الثالث</button>
-            </div>
-            
-            <div class="filter-row" id="sizeFilters">
-                <button class="filter-chip" onclick="filterBySize('<1')" id="s1">&lt; 1 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('1-5')" id="s2">1 - 5 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('5-10')" id="s3">5 - 10 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('10-20')" id="s4">10 - 20 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('20+')" id="s5">20+ <span class="size-unit">جيجا</span></button>
-            </div>
-
-            <div class="filter-row" id="specsFilters">
-                <button class="filter-chip" onclick="filterBySpecs('low')" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
-                <button class="filter-chip" onclick="filterBySpecs('mid')" id="specMid">⚡ أجهزة متوسطة</button>
-                <button class="filter-chip" onclick="filterBySpecs('high')" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="games-grid" id="gamesGrid"></div>
-            <div class="show-all-container">
-                <button class="show-all-btn" onclick="resetAllFilters()" id="showAllBtn">عرض كل الألعاب (Show All Games)</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة حل المشاكل والبرامج المتكاملة -->
-    <div id="troubleshootPageView">
-        <div class="troubleshoot-header-box">
-            <div>
-                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز البرامج والتعليمات الشامل</h2>
-                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.</p>
-            </div>
-            <button class="back-to-home-btn" onclick="closeTroubleshootPage()" id="backBtn">العودة للألعاب</button>
-        </div>
-
-        <div class="troubleshoot-container-grid">
-            <!-- المربع الأول: برامج التشغيل وفك الضغط -->
-            <div class="troubleshoot-box-card">
-                <h3 class="box-title" id="box1Title">برامج تشغيل الالعاب وفك الضغط</h3>
-                <p class="box-desc" id="box1Desc">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
-                <div class="tools-list-container">
-                    <div class="tool-row-item">
-                        <div class="tool-info">
-                            <h4 id="tool1Title">Visual C++</h4>
-                            <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
-                        </div>
-                        <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-action-btn" target="_blank" id="btn1">تحميل Visual C++</a>
-                    </div>
-                    <div class="tool-row-item">
-                        <div class="tool-info">
-                            <h4 id="tool2Title">DirectX</h4>
-                            <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
-                        </div>
-                        <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-action-btn" target="_blank" id="btn2">تحميل DirectX</a>
-                    </div>
-                    <div class="tool-row-item">
-                        <div class="tool-info">
-                            <h4 id="tool3Title">.NET Framework</h4>
-                            <p id="desc3">حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.</p>
-                        </div>
-                        <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-action-btn" target="_blank" id="btn3">تحميل .NET Framework</a>
-                    </div>
-                    <div class="tool-row-item">
-                        <div class="tool-info">
-                            <h4 id="tool4Title">.NET Runtime</h4>
-                            <p id="desc4">ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.</p>
-                        </div>
-                        <a href="https://dotnet.microsoft.com/en-us/download/dotnet" class="tool-action-btn" target="_blank" id="btn4">تحميل .NET Runtime</a>
-                    </div>
-                    <div class="tool-row-item">
-                        <div class="tool-info">
-                            <h4 id="tool5Title">Winrar</h4>
-                            <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.</p>
-                        </div>
-                        <a href="https://www.rarlab.com/download.htm" class="tool-action-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
-                    </div>
+            <div class="game-meta-info">
+                <h1 class="game-title">Cyber Legends: Ultimate Edition</h1>
+                <!-- 2. التصنيف حسب الفئات -->
+                <div class="game-genres-tags">
+                    <span class="genre-badge">أكشن (Action)</span>
+                    <span class="genre-badge">عالم مفتوح (Open World)</span>
+                    <span class="genre-badge">مغامرات (Adventure)</span>
+                    <span class="genre-badge">الحجم: 24.5 جيجا</span>
                 </div>
             </div>
+        </div>
 
-            <!-- المربع الثاني: قبل تثبيت اي لعبة -->
-            <div class="troubleshoot-box-card">
-                <h3 class="box-title" id="box2Title">قبل تثبيت اي لعبة :</h3>
-                <ul class="steps-list">
-                    <li id="step2_1">ايقاف الحماية (Windows Defender / Antivirus) لتجنب حذف ملفات التفعيل (Crack).</li>
-                    <li id="step2_2">اغلاق اي تطبيق يعمل بما في ذلك تطبيقات الخلفية لضمان كامل أداء الجهاز أثناء التثبيت.</li>
-                </ul>
-            </div>
+        <!-- 3. نبذة عن اللعبة -->
+        <div class="section-card">
+            <h3>📖 نبذة عن اللعبة</h3>
+            <p>
+                لعبة أكشن ومغامرات في عالم مستقبل مظلم مليء بالتحديات والمهام الحماسية. عش قصة ملحمية مع جرافيك خارق وتصميم مراحل فريد يضع مهاراتك على المحك. النسخة كاملة ومضمونة ومرفقة بكل التحديثات والإضافات.
+            </p>
+        </div>
 
-            <!-- المربع الثالث: اللعبة تتجمد و فيها بطئ شديد -->
-            <div class="troubleshoot-box-card">
-                <h3 class="box-title" id="box3Title">اللعبة تتجمد و فيها بطئ شديد :</h3>
-                <ul class="steps-list">
-                    <li id="step3_1">تقليل الجودة من الاعدادات (Graphics Settings) لرفع معدل الإطارات (FPS).</li>
-                    <li id="step3_2">تحديث تعريفات كرت الشاشة (NVIDIA / AMD) لأحدث إصدار لضمان الاستقرار.</li>
-                    <li id="step3_3">المقارنة بين متطلبات التشغيل للعبة و جهازك للتأكد من قدرة هاردوير جهازك.</li>
-                </ul>
-            </div>
+        <!-- 4. متطلبات التشغيل الدنيا -->
+        <div class="section-card">
+            <h3>💻 متطلبات التشغيل الدنيا (Minimum Requirements)</h3>
+            <ul>
+                <li><strong>نظام التشغيل (OS):</strong> Windows 10 / 11 (64-bit)</li>
+                <li><strong>المعالج (CPU):</strong> Intel Core i5-6600K أو AMD Ryzen 5 1600</li>
+                <li><strong>الذاكرة العشوائية (RAM):</strong> 8 جيجابايت</li>
+                <li><strong>كارت الشاشة (GPU):</strong> NVIDIA GeForce GTX 1060 أو AMD Radeon RX 580</li>
+                <li><strong>مساحة التخزين (Storage):</strong> 30 جيجابايت متاحة على الهارد</li>
+            </ul>
+        </div>
 
-            <!-- المربع الرابع: اللعبة يحدث لها كراش و تغلق -->
-            <div class="troubleshoot-box-card">
-                <h3 class="box-title" id="box4Title">اللعبة يحدث لها كراش و تغلق :</h3>
-                <ul class="steps-list">
-                    <li id="step4_1">التاكد من صحة الملفات وعدم تلفها أثناء التحميل أو فك الضغط.</li>
-                    <li id="step4_2">تشغيلها ك مسؤول (Run as Administrator) لإعطاء اللعبة الصلاحيات الكاملة.</li>
-                    <li id="step4_3">مراجعة صفحة اللعبة و كيفية تثبيتها من الفيديو المرفق والشروحات الخاصة بها.</li>
-                </ul>
-            </div>
-
-            <!-- تنويه التواصل -->
-            <div class="support-notice-card" id="supportNoticeText">
-                💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!
+        <!-- 5. فيديو كيفية التنصيب والتثبيت -->
+        <div class="section-card">
+            <h3>🎥 فيديو كيفية تنصيب وتثبيت اللعبة</h3>
+            <p style="margin-bottom: 12px;">شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:</p>
+            <div class="video-container">
+                <!-- مكان فيديو الشرح الخاص بك لاحقاً -->
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
             </div>
         </div>
+
+        <!-- 6. روابط التحميل (مباشر + تورنت) -->
+        <div class="section-card">
+            <h3>🚀 روابط التحميل السريع</h3>
+            <p style="margin-bottom: 15px;">اختر الطريقة المناسبة لك للتحميل (مباشر صاروخ أو تورنت دائم):</p>
+            <div class="download-buttons-grid">
+                <a href="https://www.mediafire.com" target="_blank" class="dl-btn dl-direct">
+                    <span>⚡</span> تحميل مباشر (MediaFire / Server)
+                </a>
+                <a href="magnet:?xt=urn:btih:EXAMPLE_HASH" class="dl-btn dl-torrent">
+                    <span>🧲</span> تحميل تورنت (Torrent Magnet)
+                </a>
+            </div>
+        </div>
+
     </div>
 
     <!-- الفوتر -->
     <footer class="site-footer">
         <div class="footer-content">
-            <div class="footer-logo" onclick="goHome()" style="cursor:pointer;">MK GAMES</div>
-            <p class="footer-text" id="footerDesc">
-                MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.
-            </p>
+            <div class="footer-logo">MK GAMES</div>
+            <p class="footer-text">MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة بكل احترافية.</p>
             <div class="footer-copy">&copy; 2026 MK GAMES</div>
-            <div class="developer-signature" id="devSignature">Developed 💻 by Malik Abdalhady</div>
+            <div class="developer-signature">Developed 💻 by Malik Abdalhady</div>
         </div>
     </footer>
 
-    <!-- نافذة المصادقة -->
-    <div class="modal" id="authModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="authModalTitle">تسجيل الدخول</h3>
-            <p id="authModalSub" style="font-size: 13px; color: var(--secondary-text);">أدخل بريدك الإلكتروني وكلمة المرور الحقيقية</p>
-            
-            <input type="email" id="authEmail" placeholder="البريد الإلكتروني (Gmail)">
-            <input type="password" id="authPassword" placeholder="كلمة المرور (6 أحرف على الأقل)">
-            
-            <button id="authSubmitBtn" onclick="handleAuthSubmit()">دخول</button>
-            <div class="auth-error" id="authErrorMsg"></div>
-            <div class="auth-success" id="authSuccessMsg"></div>
-
-            <div class="auth-switch" onclick="toggleAuthMode()">
-                <span id="authSwitchText">ليس لديك حساب؟ اضغط هنا لإنشاء حساب جديد</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة المفضلة -->
-    <div class="modal" id="favModal">
-        <div class="modal-content" style="max-width: 450px;">
-            <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="favModalTitle">الألعاب المفضلة</h3>
-            <div id="favModalBody" style="margin-top: 15px; max-height: 350px; overflow-y: auto;">
-                <p id="favModalDesc" style="color: var(--secondary-text);">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- نافذة الإشعارات -->
-    <div class="modal" id="notifModal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="notifModalTitle">الإشعارات</h3>
-            <p id="notifModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</p>
-        </div>
-    </div>
-
-    <script>
-        const gamesData = [
-            {
-                "id": 1,
-                "titleAr": "Grand Adventure",
-                "titleEn": "Grand Adventure",
-                "genreAr": "مغامرات - أكشن - عالم مفتوح",
-                "genreEn": "Adventure - Action - Open World",
-                "tags": ["action", "adventure", "open-world", "3d", "tpp"],
-                "sizeNum": 21.0,
-                "sizeAr": "21 جيجا",
-                "sizeEn": "21 GB",
-                "specs": "high",
-                "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "id": 2,
-                "titleAr": "Puzzle Challenge",
-                "titleEn": "Puzzle Challenge",
-                "genreAr": "ألغاز - ذكاء - مستقلين",
-                "genreEn": "Puzzle - IQ - Indie",
-                "tags": ["puzzle", "indie", "2d"],
-                "sizeNum": 4.1,
-                "sizeAr": "4.1 جيجا",
-                "sizeEn": "4.1 GB",
-                "specs": "low",
-                "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "id": 3,
-                "titleAr": "Super Speed Racing",
-                "titleEn": "Super Speed Racing",
-                "genreAr": "سباقات - محاكاة - رياضية",
-                "genreEn": "Racing - Simulation - Sports",
-                "tags": ["racing", "simulation", "sports", "3d", "tpp"],
-                "sizeNum": 14.1,
-                "sizeAr": "14.1 جيجا",
-                "sizeEn": "14.1 GB",
-                "specs": "mid",
-                "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "id": 4,
-                "titleAr": "Group Warfare",
-                "titleEn": "Group Warfare",
-                "genreAr": "تصويب - أكشن - جماعية - منظور أول",
-                "genreEn": "Shooter - Action - Co-op - FPP",
-                "tags": ["action", "co-op", "fpp", "3d"],
-                "sizeNum": 51.6,
-                "sizeAr": "51.6 جيجا",
-                "sizeEn": "51.6 GB",
-                "specs": "high",
-                "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "id": 5,
-                "titleAr": "Cyberpunk Nights",
-                "titleEn": "Cyberpunk Nights",
-                "genreAr": "عالم مفتوح - خيال علمي - RPG",
-                "genreEn": "Open World - Sci-Fi - RPG",
-                "tags": ["open-world", "sci-fi", "rpg", "action", "3d", "fpp"],
-                "sizeNum": 35.0,
-                "sizeAr": "35.0 جيجا",
-                "sizeEn": "35.0 GB",
-                "specs": "high",
-                "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            },
-            {
-                "id": 6,
-                "titleAr": "Shadow Hunter",
-                "titleEn": "Shadow Hunter",
-                "genreAr": "رعب - نجاة - تخفي",
-                "genreEn": "Horror - Survival - Stealth",
-                "tags": ["horror", "survival", "stealth", "3d", "tpp"],
-                "sizeNum": 0.8,
-                "sizeAr": "0.8 جيجا",
-                "sizeEn": "0.8 GB",
-                "specs": "low",
-                "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
-                "url": "#"
-            }
-        ];
-
-        let currentLang = 'ar';
-        let currentTheme = 'dark';
-        let currentTagFilter = 'all';
-        let currentSizeFilter = 'all';
-        let currentSpecsFilter = 'all';
-
-        let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
-        let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
-        let currentUser = JSON.parse(localStorage.getItem('mk_current_user')) || null;
-        let isSignUpMode = false;
-
-        window.addEventListener('DOMContentLoaded', () => {
-            if (currentUser) {
-                const loginBtn = document.getElementById('loginBtn');
-                loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
-                loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
-            }
-        });
-
-        let activeGames = [...gamesData];
-        displayGames(activeGames);
-        buildTrendingList();
-
-        function openTroubleshootPage() {
-            document.getElementById('mainHeaderView').style.display = 'none';
-            document.getElementById('troubleshootPageView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function closeTroubleshootPage() {
-            document.getElementById('troubleshootPageView').style.display = 'none';
-            document.getElementById('mainHeaderView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function filterByTag(tag) {
-            currentTagFilter = tag;
-            document.querySelectorAll('#tagFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            applyFilters();
-        }
-
-        function filterBySize(value) {
-            if (currentSizeFilter === value) {
-                currentSizeFilter = 'all';
-                event.target.classList.remove('active');
-            } else {
-                currentSizeFilter = value;
-                document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-            }
-            applyFilters();
-        }
-
-        function filterBySpecs(value) {
-            if (currentSpecsFilter === value) {
-                currentSpecsFilter = 'all';
-                event.target.classList.remove('active');
-            } else {
-                currentSpecsFilter = value;
-                document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-            }
-            applyFilters();
-        }
-
-        function resetAllFilters() {
-            currentTagFilter = 'all';
-            currentSizeFilter = 'all';
-            currentSpecsFilter = 'all';
-            document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('fAll').classList.add('active');
-            document.getElementById('searchInput').value = '';
-            activeGames = [...gamesData];
-            displayGames(activeGames);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function applyFilters() {
-            let filtered = gamesData.filter(game => {
-                let matchTag = (currentTagFilter === 'all' || (game.tags && game.tags.includes(currentTagFilter)));
-                let matchSize = true;
-                let matchSpecs = (currentSpecsFilter === 'all' || game.specs === currentSpecsFilter);
-
-                if (currentSizeFilter === '<1') matchSize = game.sizeNum < 1;
-                else if (currentSizeFilter === '1-5') matchSize = game.sizeNum >= 1 && game.sizeNum <= 5;
-                else if (currentSizeFilter === '5-10') matchSize = game.sizeNum > 5 && game.sizeNum <= 10;
-                else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
-                else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
-
-                return matchTag && matchSize && matchSpecs;
-            });
-
-            activeGames = filtered;
-            displayGames(activeGames);
-        }
-
-        function displayGames(games) {
-            const grid = document.getElementById('gamesGrid');
-            if (!grid) return;
-            grid.innerHTML = '';
-
-            if (!games || games.length === 0) {
-                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لتصنيفك' : 'No games match your filter'}</div>`;
-                return;
-            }
-
-            games.forEach((game) => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-                const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
-                const isFav = favorites.some(fav => fav.id === game.id);
-
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.innerHTML = `
-                    <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="${currentLang === 'ar' ? 'إضافة للمفضلة' : 'Add to Favorites'}">${isFav ? '❤️' : '🤍'}</button>
-                    <div class="game-img-container" onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">
-                        <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    </div>
-                    <div class="game-content">
-                        <h3 onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">${title}</h3>
-                        <div class="game-info">
-                            <span class="game-genre">${genre}</span>
-                            <span class="game-size">${sizeStr}</span>
-                        </div>
-                        <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        function goHome() {
-            closeTroubleshootPage();
-            resetAllFilters();
-        }
-
-        function toggleFav(id) {
-            if (!currentUser) {
-                alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول أولاً لتتمكن من حفظ الألعاب في المفضلة!' : '⚠️ You must log in first to save games to favorites!');
-                openAuthModal();
-                return;
-            }
-
-            const gameObj = gamesData.find(g => g.id === id);
-            const index = favorites.findIndex(fav => fav.id === id);
-
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(gameObj);
-            }
-            
-            localStorage.setItem('mk_favorites', JSON.stringify(favorites));
-            displayGames(activeGames);
-        }
-
-        function openFavModal() {
-            const modalBody = document.getElementById('favModalBody');
-            modalBody.innerHTML = '';
-
-            if (favorites.length === 0) {
-                modalBody.innerHTML = `<p style="color: var(--secondary-text);" id="emptyFavText">${currentLang === 'ar' ? 'لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️' : 'No favorite games added yet ❤️'}</p>`;
-            } else {
-                favorites.forEach(game => {
-                    const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                    const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                    const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-                    const row = document.createElement('div');
-                    row.className = 'fav-item-row';
-                    row.innerHTML = `
-                        <img src="${game.image}" class="fav-item-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                        <div class="fav-item-info">
-                            <h4>${title}</h4>
-                            <span>${genre} • ${sizeStr}</span>
-                        </div>
-                        <button onclick="event.stopPropagation(); toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;" title="إزالة">❌</button>
-                    `;
-                    modalBody.appendChild(row);
-                });
-            }
-            document.getElementById('favModalTitle').innerText = currentLang === 'ar' ? 'الألعاب المفضلة' : 'Favorite Games';
-            document.getElementById('favModal').style.display = 'flex';
-        }
-
-        function openNotifModal() {
-            document.getElementById('notifModalTitle').innerText = currentLang === 'ar' ? 'الإشعارات' : 'Notifications';
-            document.getElementById('notifModalDesc').innerText = currentLang === 'ar' ? 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀' : 'No new notifications right now, enjoy downloading! 🚀';
-            document.getElementById('notifModal').style.display = 'flex';
-        }
-
-        function buildTrendingList() {
-            const listContainer = document.getElementById('trendingList');
-            listContainer.innerHTML = '';
-            const trendingItems = gamesData.slice(0, 4);
-            
-            trendingItems.forEach(game => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-                
-                const item = document.createElement('div');
-                item.className = 'trending-item';
-                item.onclick = function() {
-                    document.getElementById('searchInput').value = title;
-                    searchGames();
-                    hideTrending();
-                };
-                item.innerHTML = `
-                    <img src="${game.image}" class="trending-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    <div class="trending-info">
-                        <h4 style="margin:0 0 3px; font-size:14px; color:var(--text-color);">${title}</h4>
-                        <span style="font-size:11px; color:var(--secondary-text);">${genre} • ${sizeStr}</span>
-                    </div>
-                `;
-                listContainer.appendChild(item);
-            });
-        }
-
-        function showTrending() { document.getElementById('trendingDropdown').style.display = 'block'; }
-        function hideTrending() { setTimeout(() => { document.getElementById('trendingDropdown').style.display = 'none'; }, 200); }
-
-        document.addEventListener('click', function(e) {
-            const searchContainer = document.querySelector('.search-container');
-            if (!searchContainer.contains(e.target)) {
-                document.getElementById('trendingDropdown').style.display = 'none';
-            }
-        });
-
-        function searchGames() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = activeGames.filter(game => {
-                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
-                const genre = (currentLang === 'ar' ? game.genreAr : game.genreEn).toLowerCase();
-                return title.includes(query) || genre.includes(query);
-            });
-            displayGames(filtered);
-        }
-
-        function toggleTheme() {
-            const root = document.getElementById('htmlRoot');
-            const themeBtn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark') {
-                root.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
-                themeBtn.innerText = '☀️';
-            } else {
-                root.removeAttribute('data-theme');
-                currentTheme = 'dark';
-                themeBtn.innerText = '🌙';
-            }
-        }
-
-        function toggleLanguage() {
-            const htmlRoot = document.getElementById('htmlRoot');
-            const langBtn = document.getElementById('langBtn');
-            const searchInput = document.getElementById('searchInput');
-            const prayerText = document.getElementById('prayerText');
-            const subTitle = document.getElementById('subTitle');
-            const trendingTitle = document.getElementById('trendingTitle');
-            const footerDesc = document.getElementById('footerDesc');
-            const loginBtn = document.getElementById('loginBtn');
-            const troubleshootBtnText = document.getElementById('troubleshootBtnText');
-            const tsPageTitle = document.getElementById('tsPageTitle');
-            const tsPageSub = document.getElementById('tsPageSub');
-            const backBtn = document.getElementById('backBtn');
-            const showAllBtn = document.getElementById('showAllBtn');
-            const favBtn = document.getElementById('favBtn');
-            const notifBtn = document.getElementById('notifBtn');
-            
-            const notifModalTitle = document.getElementById('notifModalTitle');
-            const notifModalDesc = document.getElementById('notifModalDesc');
-            
-            const box1Title = document.getElementById('box1Title');
-            const box1Desc = document.getElementById('box1Desc');
-            const box2Title = document.getElementById('box2Title');
-            const box3Title = document.getElementById('box3Title');
-            const box4Title = document.getElementById('box4Title');
-
-            const step2_1 = document.getElementById('step2_1');
-            const step2_2 = document.getElementById('step2_2');
-            const step3_1 = document.getElementById('step3_1');
-            const step3_2 = document.getElementById('step3_2');
-            const step3_3 = document.getElementById('step3_3');
-            const step4_1 = document.getElementById('step4_1');
-            const step4_2 = document.getElementById('step4_2');
-            const step4_3 = document.getElementById('step4_3');
-            const supportNoticeText = document.getElementById('supportNoticeText');
-
-            const sizeUnits = document.querySelectorAll('.size-unit');
-
-            const fAll = document.getElementById('fAll');
-            const fAction = document.getElementById('fAction');
-            const fAdv = document.getElementById('fAdv');
-            const fOpen = document.getElementById('fOpen');
-            const fRpg = document.getElementById('fRpg');
-            const fSurv = document.getElementById('fSurv');
-            const fHor = document.getElementById('fHor');
-            const fStrat = document.getElementById('fStrat');
-            const fSteal = document.getElementById('fSteal');
-            const fPuz = document.getElementById('fPuz');
-            const fSim = document.getElementById('fSim');
-            const fSport = document.getElementById('fSport');
-            const fSuper = document.getElementById('fSuper');
-            const fSci = document.getElementById('fSci');
-            const fIndie = document.getElementById('fIndie');
-            const fCoop = document.getElementById('fCoop');
-            const f2d = document.getElementById('f2d');
-            const f3d = document.getElementById('f3d');
-            const fFpp = document.getElementById('fFpp');
-            const fTpp = document.getElementById('fTpp');
-
-            const specLow = document.getElementById('specLow');
-            const specMid = document.getElementById('specMid');
-            const specHigh = document.getElementById('specHigh');
-
-            const tool1Title = document.getElementById('tool1Title');
-            const tool2Title = document.getElementById('tool2Title');
-            const tool3Title = document.getElementById('tool3Title');
-            const tool4Title = document.getElementById('tool4Title');
-            const tool5Title = document.getElementById('tool5Title');
-            const desc1 = document.getElementById('desc1');
-            const desc2 = document.getElementById('desc2');
-            const desc3 = document.getElementById('desc3');
-            const desc4 = document.getElementById('desc4');
-            const desc5 = document.getElementById('desc5');
-            const btn1 = document.getElementById('btn1');
-            const btn2 = document.getElementById('btn2');
-            const btn3 = document.getElementById('btn3');
-            const btn4 = document.getElementById('btn4');
-            const btn5 = document.getElementById('btn5');
-
-            if (currentLang === 'ar') {
-                currentLang = 'en';
-                htmlRoot.setAttribute('lang', 'en');
-                htmlRoot.setAttribute('dir', 'ltr');
-                langBtn.innerText = 'AR';
-                prayerText.innerText = 'Do not let games distract you from prayer';
-                subTitle.innerText = 'Explore Games';
-                searchInput.placeholder = 'Search for a game to download...';
-                trendingTitle.innerText = '🔥 Trending Games';
-                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading. Here you will also find patches, mods, and updates, along with installation guides and troubleshooting solutions.';
-                loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
-                favBtn.title = 'Favorites';
-                notifBtn.title = 'Notifications';
-                
-                notifModalTitle.innerText = 'Notifications';
-                notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
-                
-                troubleshootBtnText.innerText = 'Tools & Instructions';
-                tsPageTitle.innerText = 'Software & Instructions Center';
-                tsPageSub.innerText = 'Everything you need to install and run games smoothly.';
-                box1Title.innerText = 'Game Runtimes & Extractors';
-                box1Desc.innerText = 'Essential software required to run all games efficiently and smoothly.';
-                box2Title.innerText = 'Before Installing Any Game:';
-                box3Title.innerText = 'Game Freezes & Severe Lag:';
-                box4Title.innerText = 'Game Crashes & Unexpected Close:';
-
-                step2_1.innerText = 'Disable antivirus/protection to avoid deleting activation files (Crack).';
-                step2_2.innerText = 'Close any running applications including background apps to ensure peak performance.';
-                step3_1.innerText = 'Lower graphics settings to increase FPS and performance.';
-                step3_2.innerText = 'Update GPU drivers (NVIDIA / AMD) to the latest version for stability.';
-                step3_3.innerText = 'Compare game system requirements with your PC specs.';
-                step4_1.innerText = 'Verify file integrity to ensure no corruption during download/extraction.';
-                step4_2.innerText = 'Run the game as Administrator to grant full system permissions.';
-                step4_3.innerText = 'Review the game page and installation guide from the attached video.';
-                supportNoticeText.innerText = '💬 In case of any issues or inquiries, please contact us via our social accounts below and we will be happy to help!';
-
-                backBtn.innerText = 'Back to Games';
-                showAllBtn.innerText = 'Show All Games';
-
-                sizeUnits.forEach(el => el.innerText = 'GB');
-
-                fAll.innerText = 'All';
-                fAction.innerText = 'Action';
-                fAdv.innerText = 'Adventure';
-                fOpen.innerText = 'Open World';
-                fRpg.innerText = 'RPG';
-                fSurv.innerText = 'Survival';
-                fHor.innerText = 'Horror';
-                fStrat.innerText = 'Strategy';
-                fSteal.innerText = 'Stealth';
-                fPuz.innerText = 'Puzzle';
-                fSim.innerText = 'Simulation';
-                fSport.innerText = 'Sports';
-                fSuper.innerText = 'Superheroes';
-                fSci.innerText = 'Sci-Fi';
-                fIndie.innerText = 'Indie';
-                fCoop.innerText = 'Co-op';
-                f2d.innerText = '2D';
-                f3d.innerText = '3D';
-                fFpp.innerText = 'First Person';
-                fTpp.innerText = 'Third Person';
-
-                specLow.innerText = '💻 Low-End / Light';
-                specMid.innerText = '⚡ Mid-Range PC';
-                specHigh.innerText = '🔥 High-End / RTX';
-
-                tool1Title.innerText = 'Visual C++';
-                tool2Title.innerText = 'DirectX';
-                tool3Title.innerText = '.NET Framework';
-                tool4Title.innerText = '.NET Runtime';
-                tool5Title.innerText = 'Winrar';
-
-                desc1.innerText = 'Essential runtime packages for fixing game boot errors and missing system files (0xc000007b).';
-                desc2.innerText = 'DirectX graphics library to ensure smooth graphics and prevent black screen issues.';
-                desc3.innerText = 'Microsoft framework required to run applications and games smoothly.';
-                desc4.innerText = 'Modern runtime files for .NET environment to support modern apps and games.';
-                desc5.innerText = 'The official and most popular tool to extract compressed game archives safely.';
-
-                btn1.innerText = 'Download Visual C++';
-                btn2.innerText = 'Download DirectX';
-                btn3.innerText = 'Download .NET Framework';
-                btn4.innerText = 'Download .NET Runtime';
-                btn5.innerText = 'Download Official Winrar';
-            } else {
-                currentLang = 'ar';
-                htmlRoot.setAttribute('lang', 'ar');
-                htmlRoot.setAttribute('dir', 'rtl');
-                langBtn.innerText = 'EN';
-                prayerText.innerText = 'لا تدع الألعاب تلهيك عن الصلاة';
-                subTitle.innerText = 'Explore Games';
-                searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
-                trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
-                footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.';
-                loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
-                favBtn.title = 'المفضلة';
-                notifBtn.title = 'الإشعارات';
-                
-                notifModalTitle.innerText = 'الإشعارات';
-                notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
-                
-                troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
-                tsPageTitle.innerText = 'مركز البرامج والتعليمات الشامل';
-                tsPageSub.innerText = 'كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.';
-                box1Title.innerText = 'برامج تشغيل الالعاب وفك الضغط';
-                box1Desc.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
-                box2Title.innerText = 'قبل تثبيت اي لعبة :';
-                box3Title.innerText = 'اللعبة تتجمد و فيها بطئ شديد :';
-                box4Title.innerText = 'اللعبة يحدث لها كراش و تغلق :';
-
-                step2_1.innerText = 'ايقاف الحماية (Windows Defender / Antivirus) لتجنب حذف ملفات التفعيل (Crack).';
-                step2_2.innerText = 'اغلاق اي تطبيق يعمل بما في ذلك تطبيقات الخلفية لضمان كامل أداء الجهاز أثناء التثبيت.';
-                step3_1.innerText = 'تقليل الجودة من الاعدادات (Graphics Settings) لرفع معدل الإطارات (FPS).';
-                step3_2.innerText = 'تحديث تعريفات كرت الشاشة (NVIDIA / AMD) لأحدث إصدار لضمان الاستقرار.';
-                step3_3.innerText = 'المقارنة بين متطلبات التشغيل للعبة و جهازك للتأكد من قدرة هاردوير جهازك.';
-                step4_1.innerText = 'التاكد من صحة الملفات وعدم تلفها أثناء التحميل أو فك الضغط.';
-                step4_2.innerText = 'تشغيلها ك مسؤول (Run as Administrator) لإعطاء اللعبة الصلاحيات الكاملة.';
-                step4_3.innerText = 'مراجعة صفحة اللعبة و كيفية تثبيتها من الفيديو المرفق والشروحات الخاصة بها.';
-                supportNoticeText.innerText = '💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!';
-
-                backBtn.innerText = 'العودة للألعاب';
-                showAllBtn.innerText = 'عرض كل الألعاب';
-
-                sizeUnits.forEach(el => el.innerText = 'جيجا');
-
-                fAll.innerText = 'الكل';
-                fAction.innerText = 'الأكشن';
-                fAdv.innerText = 'مغامرات';
-                fOpen.innerText = 'العالم المفتوح';
-                fRpg.innerText = 'RPG';
-                fSurv.innerText = 'النجاة';
-                fHor.innerText = 'الرعب';
-                fStrat.innerText = 'الاستراتيجية';
-                fSteal.innerText = 'التخفي';
-                fPuz.innerText = 'الألغاز';
-                fSim.innerText = 'المحاكاة';
-                fSport.innerText = 'الرياضة';
-                fSuper.innerText = 'الأبطال الخارقين';
-                fSci.innerText = 'الخيال العلمي';
-                fIndie.innerText = 'المستقلين';
-                fCoop.innerText = 'جماعية';
-                f2d.innerText = 'ثنائية الأبعاد';
-                f3d.innerText = 'ثلاثية الأبعاد';
-                fFpp.innerText = 'المنظور الأول';
-                fTpp.innerText = 'المنظور الثالث';
-
-                specLow.innerText = '💻 أجهزة ضعيفة / خفيفة';
-                specMid.innerText = '⚡ أجهزة متوسطة';
-                specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
-
-                tool1Title.innerText = 'Visual C++';
-                tool2Title.innerText = 'DirectX';
-                tool3Title.innerText = '.NET Framework';
-                tool4Title.innerText = '.NET Runtime';
-                tool5Title.innerText = 'Winrar';
-
-                desc1.innerText = 'حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).';
-                desc2.innerText = 'مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).';
-                desc3.innerText = 'حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.';
-                desc4.innerText = 'ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.';
-                desc5.innerText = 'البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.';
-
-                btn1.innerText = 'تحميل Visual C++';
-                btn2.innerText = 'تحميل DirectX';
-                btn3.innerText = 'تحميل .NET Framework';
-                btn4.innerText = 'تحميل .NET Runtime';
-                btn5.innerText = 'تحميل Winrar الرسمي';
-            }
-            buildTrendingList();
-            displayGames(activeGames);
-        }
-
-        function toggleAuthMode() {
-            isSignUpMode = !isSignUpMode;
-            const title = document.getElementById('authModalTitle');
-            const sub = document.getElementById('authModalSub');
-            const btn = document.getElementById('authSubmitBtn');
-            const switchText = document.getElementById('authSwitchText');
-            
-            document.getElementById('authErrorMsg').style.display = 'none';
-            document.getElementById('authSuccessMsg').style.display = 'none';
-
-            if (isSignUpMode) {
-                title.innerText = currentLang === 'ar' ? 'إنشاء حساب جديد' : 'Sign Up';
-                sub.innerText = currentLang === 'ar' ? 'أنشئ حساباً جديداً باستخدام بريدك الإلكتروني' : 'Create a new account with your email';
-                btn.innerText = currentLang === 'ar' ? 'تسجيل حساب' : 'Register';
-                switchText.innerHTML = currentLang === 'ar' ? 'لديك حساب بالفعل؟ <span>اضغط هنا لتسجيل الدخول</span>' : 'Already have an account? <span>Login here</span>';
-            } else {
-                title.innerText = currentLang === 'ar' ? 'تسجيل الدخول' : 'Login';
-                sub.innerText = currentLang === 'ar' ? 'أدخل بريدك الإلكتروني وكلمة المرور' : 'Enter your email and password';
-                btn.innerText = currentLang === 'ar' ? 'دخول' : 'Login';
-                switchText.innerHTML = currentLang === 'ar' ? 'ليس لديك حساب؟ <span>اضغط هنا لإنشاء حساب جديد</span>' : "Don't have an account? <span>Sign up here</span>";
-            }
-        }
-
-        function handleAuthSubmit() {
-            const email = document.getElementById('authEmail').value.trim();
-            const password = document.getElementById('authPassword').value.trim();
-            const errorBox = document.getElementById('authErrorMsg');
-            const successBox = document.getElementById('authSuccessMsg');
-
-            errorBox.style.display = 'none';
-            successBox.style.display = 'none';
-
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                errorBox.innerText = currentLang === 'ar' ? '⚠️ يرجى إدخال بريد إلكتروني صحيح!' : '⚠️ Please enter a valid email address!';
-                errorBox.style.display = 'block';
-                return;
-            }
-
-            if (password.length < 6) {
-                errorBox.innerText = currentLang === 'ar' ? '⚠️ كلمة المرور يجب ألا تقل عن 6 أحرف!' : '⚠️ Password must be at least 6 characters!';
-                errorBox.style.display = 'block';
-                return;
-            }
-
-            if (isSignUpMode) {
-                const existingUser = registeredUsers.find(u => u.email === email);
-                if (existingUser) {
-                    errorBox.innerText = currentLang === 'ar' ? '⚠️ هذا البريد مسجل مسبقاً، حاول تسجيل الدخول!' : '⚠️ Email already registered, try logging in!';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-
-                registeredUsers.push({ email, password });
-                localStorage.setItem('mk_users', JSON.stringify(registeredUsers));
-
-                successBox.innerText = currentLang === 'ar' ? '✅ تم إنشاء الحساب بنجاح! يمكنك الدخول الآن.' : '✅ Account created successfully! You can login now.';
-                successBox.style.display = 'block';
-                
-                setTimeout(() => { toggleAuthMode(); }, 1500);
-
-            } else {
-                const foundUser = registeredUsers.find(u => u.email === email && u.password === password);
-                if (!foundUser) {
-                    errorBox.innerText = currentLang === 'ar' ? '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة أو الحساب غير موجود!' : '❌ Incorrect email/password or account not found!';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-
-                currentUser = foundUser;
-                localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
-
-                successBox.innerText = currentLang === 'ar' ? `✅ أهلاً بك! تم تسجيل الدخول بنجاح.` : `✅ Welcome back! Logged in successfully.`;
-                successBox.style.display = 'block';
-
-                const loginBtn = document.getElementById('loginBtn');
-                loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
-                loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
-
-                setTimeout(() => { closeModals(); displayGames(activeGames); }, 1500);
-            }
-        }
-
-        function openAuthModal() { 
-            if (currentUser) {
-                alert(currentLang === 'ar' ? `أهلاً بك يا ${currentUser.email}، أنت مسجل بالفعل بالموقع! 🟢` : `Welcome ${currentUser.email}, you are already logged in! 🟢`);
-                return;
-            }
-            document.getElementById('authModal').style.display = 'flex'; 
-        }
-
-        function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
-        
-        function closeModals() {
-            document.getElementById('authModal').style.display = 'none';
-            document.getElementById('favModal').style.display = 'none';
-            document.getElementById('notifModal').style.display = 'none';
-            document.getElementById('authErrorMsg').style.display = 'none';
-            document.getElementById('authSuccessMsg').style.display = 'none';
-            document.getElementById('authEmail').value = '';
-            document.getElementById('authPassword').value = '';
-        }
-    </script>
 </body>
 </html>
