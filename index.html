@@ -612,13 +612,11 @@
         let currentLang = 'ar';
         let currentTheme = 'dark';
 
-        // تخزين المفضلة والحسابات بشكل دائم في LocalStorage عشان مبتتمسحش مع الريفرش
         let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
         let currentUser = JSON.parse(localStorage.getItem('mk_current_user')) || null;
         let isSignUpMode = false;
 
-        // تفعيل حالة تسجيل الدخول تلقائياً عند فتح الصفحة لو المستخدم مسجل مسبقاً
         window.addEventListener('DOMContentLoaded', () => {
             if (currentUser) {
                 const loginBtn = document.getElementById('loginBtn');
@@ -680,8 +678,14 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // حفظ المفضلة وتثبيتها في ذاكرة المتصفح الدائمة لمنع حذفها عند التحديث
+        // شرط حماية المفضلة: ممنوع الحفظ بدون تسجيل دخول!
         function toggleFav(id) {
+            if (!currentUser) {
+                alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول أولاً لتتمكن من حفظ الألعاب في المفضلة!' : '⚠️ You must log in first to save games to favorites!');
+                openAuthModal();
+                return;
+            }
+
             const gameObj = gamesData.find(g => g.id === id);
             const index = favorites.findIndex(fav => fav.id === id);
 
@@ -898,7 +902,7 @@
                 loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
                 loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
 
-                setTimeout(() => { closeModals(); }, 1500);
+                setTimeout(() => { closeModals(); displayGames(activeGames); }, 1500);
             }
         }
 
@@ -912,7 +916,7 @@
 
         function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
         
-        function closeModals() {
+        closeModals = function() {
             document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
             document.getElementById('authErrorMsg').style.display = 'none';
             document.getElementById('authSuccessMsg').style.display = 'none';
