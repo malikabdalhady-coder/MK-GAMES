@@ -46,6 +46,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            gap: 15px;
         }
 
         .nav-controls {
@@ -74,6 +75,27 @@
         .icon-btn:hover {
             border-color: #a855f7;
             transform: scale(1.05);
+        }
+
+        /* زر حل المشاكل في الهيدر */
+        .troubleshoot-nav-btn {
+            background: linear-gradient(135deg, #a855f7, #3b82f6);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .troubleshoot-nav-btn:hover {
+            opacity: 0.9;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
         .logged-in-indicator {
@@ -265,6 +287,95 @@
             max-width: 1350px;
             margin: 0 auto;
             padding: 0 20px 40px;
+        }
+
+        /* صفحة حل المشاكل (مخفية افتراضياً وتظهر عند الضغط على الزر) */
+        #troubleshootPageView {
+            display: none;
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .troubleshoot-header-box {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 20px 30px;
+            border-radius: 16px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+        }
+
+        .back-to-home-btn {
+            background: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--secondary-text);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .back-to-home-btn:hover {
+            border-color: #a855f7;
+            color: #a855f7;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border-radius: 14px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: right;
+        }
+
+        [dir="ltr"] .tool-card { text-align: left; }
+
+        .tool-card h3 {
+            margin: 0;
+            color: #a855f7;
+            font-size: 20px;
+        }
+
+        .tool-card p {
+            margin: 0;
+            color: var(--secondary-text);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .tool-link-btn {
+            display: inline-block;
+            background: rgba(168, 85, 247, 0.15);
+            color: #a855f7;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 10px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            transition: 0.2s;
+        }
+
+        .tool-link-btn:hover {
+            background: #a855f7;
+            color: white;
         }
 
         /* شبكة الألعاب */
@@ -516,6 +627,9 @@
 <body>
 
     <header>
+        <button class="troubleshoot-nav-btn" onclick="openTroubleshootPage()" id="troubleshootNavBtn">
+            <span>🛠️</span> <span id="troubleshootBtnText">حل المشاكل والبرامج</span>
+        </button>
         <div class="nav-controls">
             <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
             <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات">🔔</button>
@@ -525,7 +639,7 @@
         </div>
     </header>
 
-    <!-- الهيدر الرئيسي للموقع -->
+    <!-- الهيدر الرئيسي للموقع وأقسام الألعاب -->
     <div id="mainHeaderView">
         <div class="hero">
             <div class="neon-glow-bg"></div>
@@ -542,9 +656,8 @@
             </div>
         </div>
 
-        <!-- شريط التصنيفات المتقدم (الحجم + النوع + قوة الجهاز) -->
+        <!-- شريط التصنيفات المتقدم -->
         <div class="filters-container">
-            <!-- تصنيف حسب النوع -->
             <div class="filter-row" id="genreFilters">
                 <button class="filter-chip active" onclick="filterBy('genre', 'all')">الكل</button>
                 <button class="filter-chip" onclick="filterBy('genre', 'action')">أكشن</button>
@@ -552,7 +665,6 @@
                 <button class="filter-chip" onclick="filterBy('genre', 'racing')">سباقات</button>
                 <button class="filter-chip" onclick="filterBy('genre', 'puzzle')">ألغاز</button>
             </div>
-            <!-- تصنيف حسب الحجم -->
             <div class="filter-row" id="sizeFilters">
                 <button class="filter-chip" onclick="filterBy('size', '<1')">&lt; 1 جيجا</button>
                 <button class="filter-chip" onclick="filterBy('size', '1-5')">1 - 5 جيجا</button>
@@ -564,6 +676,40 @@
 
         <div class="container">
             <div class="games-grid" id="gamesGrid"></div>
+        </div>
+    </div>
+
+    <!-- صفحة حل المشاكل المستقلة (تفتح عند الضغط على زر حل المشاكل) -->
+    <div id="troubleshootPageView">
+        <div class="troubleshoot-header-box">
+            <div>
+                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز حل المشاكل والبرامج الأساسية</h2>
+                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.</p>
+            </div>
+            <button class="back-to-home-btn" onclick="closeTroubleshootPage()" id="backBtn">العودة للألعاب</button>
+        </div>
+
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h3>DirectX All-In-One Runtimes</h3>
+                <p id="desc1">حزمة أساسية لا غنى عنها لحل مشاكل رسومات الألعاب، وعدم تشغيل اللعبة، ورسائل الخطأ الشهيرة (d3dcompiler, xinput).</p>
+                <a href="#" class="tool-link-btn" target="_blank" id="btn1">تحميل الحزمة الأساسية</a>
+            </div>
+            <div class="tool-card">
+                <h3>Visual C++ Redistributable AIO</h3>
+                <p id="desc2">يحل مشكلة ظهور رسالة الخطأ (0xc000007b) أو عدم قدرة اللعبة على الإقلاع بسبب نقص ملفات النظام البرمجية.</p>
+                <a href="#" class="tool-link-btn" target="_blank" id="btn2">تحميل الحزم البرمجية</a>
+            </div>
+            <div class="tool-card">
+                <h3>WinRAR / 7-Zip (برامج فك الضغط)</h3>
+                <p id="desc3">برامج مخصصة لفك ضغط الألعاب (ISO و RAR و ZIP) المرفوعة على الموقع بدون أخطاء أو ملفات تالفة أثناء التثبيت.</p>
+                <a href="#" class="tool-link-btn" target="_blank" id="btn3">تحميل برنامج فك الضغط</a>
+            </div>
+            <div class="tool-card">
+                <h3>NVIDIA / AMD Graphic Drivers</h3>
+                <p id="desc4">تحديث تعريف كرت الشاشة لأحدث إصدار لضمان أعلى أداء (FPS) وحل مشاكل التهنيج والتخطيط في الألعاب الضخمة.</p>
+                <a href="#" class="tool-link-btn" target="_blank" id="btn4">تحديث كرت الشاشة</a>
+            </div>
         </div>
     </div>
 
@@ -717,10 +863,22 @@
         displayGames(activeGames);
         buildTrendingList();
 
+        // دوال التنقل بين صفحة حل المشاكل والرئيسية
+        function openTroubleshootPage() {
+            document.getElementById('mainHeaderView').style.display = 'none';
+            document.getElementById('troubleshootPageView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeTroubleshootPage() {
+            document.getElementById('troubleshootPageView').style.display = 'none';
+            document.getElementById('mainHeaderView').style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
         function filterBy(type, value) {
             if (type === 'genre') {
                 currentGenreFilter = value;
-                // تحديث الزر النشط في فئة النوع
                 document.querySelectorAll('#genreFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
                 event.target.classList.add('active');
             } else if (type === 'size') {
@@ -792,6 +950,7 @@
         }
 
         function goHome() {
+            closeTroubleshootPage();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -911,6 +1070,18 @@
             const trendingTitle = document.getElementById('trendingTitle');
             const footerDesc = document.getElementById('footerDesc');
             const loginBtn = document.getElementById('loginBtn');
+            const troubleshootBtnText = document.getElementById('troubleshootBtnText');
+            const tsPageTitle = document.getElementById('tsPageTitle');
+            const tsPageSub = document.getElementById('tsPageSub');
+            const backBtn = document.getElementById('backBtn');
+            const desc1 = document.getElementById('desc1');
+            const desc2 = document.getElementById('desc2');
+            const desc3 = document.getElementById('desc3');
+            const desc4 = document.getElementById('desc4');
+            const btn1 = document.getElementById('btn1');
+            const btn2 = document.getElementById('btn2');
+            const btn3 = document.getElementById('btn3');
+            const btn4 = document.getElementById('btn4');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -923,6 +1094,21 @@
                 trendingTitle.innerText = '🔥 Trending Games';
                 footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading. Here you will also find patches, mods, and updates, along with installation guides and troubleshooting solutions.';
                 loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
+                
+                troubleshootBtnText.innerText = 'Troubleshooting & Tools';
+                tsPageTitle.innerText = 'Troubleshooting & Essential Tools Center';
+                tsPageSub.innerText = 'Essential software and runtimes required to run all PC games and fix crashes and black screen issues.';
+                backBtn.innerText = 'Back to Games';
+                
+                desc1.innerText = 'Essential package for fixing game graphics errors, failure to launch, and famous error messages (d3dcompiler, xinput).';
+                desc2.innerText = 'Fixes error code (0xc000007b) or games failing to boot due to missing system runtime files.';
+                desc3.innerText = 'Tools designed to extract compressed game archives (ISO, RAR, ZIP) without errors or corrupt files.';
+                desc4.innerText = 'Update your graphics card driver to the latest version for maximum FPS and performance in heavy games.';
+                
+                btn1.innerText = 'Download Runtimes';
+                btn2.innerText = 'Download Packages';
+                btn3.innerText = 'Download Extractor';
+                btn4.innerText = 'Update GPU Driver';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -934,6 +1120,21 @@
                 trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
                 footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.';
                 loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
+                
+                troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
+                tsPageTitle.innerText = 'مركز حل المشاكل والبرامج الأساسية';
+                tsPageSub.innerText = 'أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.';
+                backBtn.innerText = 'العودة للألعاب';
+                
+                desc1.innerText = 'حزمة أساسية لا غنى عنها لحل مشاكل رسومات الألعاب، وعدم تشغيل اللعبة، ورسائل الخطأ الشهيرة (d3dcompiler, xinput).';
+                desc2.innerText = 'يحل مشكلة ظهور رسالة الخطأ (0xc000007b) أو عدم قدرة اللعبة على الإقلاع بسبب نقص ملفات النظام البرمجية.';
+                desc3.innerText = 'برامج مخصصة لفك ضغط الألعاب (ISO و RAR و ZIP) المرفوعة على الموقع بدون أخطاء أو ملفات تالفة أثناء التثبيت.';
+                desc4.innerText = 'تحديث تعريف كرت الشاشة لأحدث إصدار لضمان أعلى أداء (FPS) وحل مشاكل التهنيج والتخطيط في الألعاب الضخمة.';
+                
+                btn1.innerText = 'تحميل الحزمة الأساسية';
+                btn2.innerText = 'تحميل الحزم البرمجية';
+                btn3.innerText = 'تحميل برنامج فك الضغط';
+                btn4.innerText = 'تحديث كرت الشاشة';
             }
             buildTrendingList();
             displayGames(activeGames);
@@ -1033,7 +1234,6 @@
         function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
         
         function closeModals() {
-            document.querySelectorAll('.modal').forEach(m => m.style.display, 'none');
             document.getElementById('authModal').style.display = 'none';
             document.getElementById('favModal').style.display = 'none';
             document.getElementById('notifModal').style.display = 'none';
