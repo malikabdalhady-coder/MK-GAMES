@@ -196,7 +196,7 @@
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
         }
 
-        /* شريط التصنيفات الشامل والمضبوط أفقياً */
+        /* شريط التصنيفات الشامل */
         .filters-container {
             max-width: 1300px;
             margin: 0 auto 30px;
@@ -655,8 +655,8 @@
             <span>🛠️</span> <span id="troubleshootBtnText">حل المشاكل والبرامج</span>
         </button>
         <div class="nav-controls">
-            <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
-            <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات">🔔</button>
+            <button class="icon-btn" onclick="openFavModal()" title="المفضلة" id="favBtn">❤️</button>
+            <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات" id="notifBtn">🔔</button>
             <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
             <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
             <button class="icon-btn" id="loginBtn" onclick="openAuthModal()" title="تسجيل الدخول">👤</button>
@@ -706,11 +706,11 @@
             </div>
             
             <div class="filter-row" id="sizeFilters">
-                <button class="filter-chip" onclick="filterBySize('<1')" id="s1">&lt; 1 جيجا</button>
-                <button class="filter-chip" onclick="filterBySize('1-5')" id="s2">1 - 5 جيجا</button>
-                <button class="filter-chip" onclick="filterBySize('5-10')" id="s3">5 - 10 جيجا</button>
-                <button class="filter-chip" onclick="filterBySize('10-20')" id="s4">10 - 20 جيجا</button>
-                <button class="filter-chip" onclick="filterBySize('20+')" id="s5">20+ جيجا</button>
+                <button class="filter-chip" onclick="filterBySize('<1')" id="s1">&lt; 1 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('1-5')" id="s2">1 - 5 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('5-10')" id="s3">5 - 10 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('10-20')" id="s4">10 - 20 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('20+')" id="s5">20+ <span class="size-unit">جيجا</span></button>
             </div>
 
             <div class="filter-row" id="specsFilters">
@@ -824,7 +824,8 @@
                 "genreEn": "Adventure - Action - Open World",
                 "tags": ["action", "adventure", "open-world", "3d", "tpp"],
                 "sizeNum": 21.0,
-                "size": "21 جيجا",
+                "sizeAr": "21 جيجا",
+                "sizeEn": "21 GB",
                 "specs": "high",
                 "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -837,7 +838,8 @@
                 "genreEn": "Puzzle - IQ - Indie",
                 "tags": ["puzzle", "indie", "2d"],
                 "sizeNum": 4.1,
-                "size": "4.1 جيجا",
+                "sizeAr": "4.1 جيجا",
+                "sizeEn": "4.1 GB",
                 "specs": "low",
                 "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -850,7 +852,8 @@
                 "genreEn": "Racing - Simulation - Sports",
                 "tags": ["racing", "simulation", "sports", "3d", "tpp"],
                 "sizeNum": 14.1,
-                "size": "14.1 جيجا",
+                "sizeAr": "14.1 جيجا",
+                "sizeEn": "14.1 GB",
                 "specs": "mid",
                 "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -863,7 +866,8 @@
                 "genreEn": "Shooter - Action - Co-op - FPP",
                 "tags": ["action", "co-op", "fpp", "3d"],
                 "sizeNum": 51.6,
-                "size": "51.6 جيجا",
+                "sizeAr": "51.6 جيجا",
+                "sizeEn": "51.6 GB",
                 "specs": "high",
                 "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -876,7 +880,8 @@
                 "genreEn": "Open World - Sci-Fi - RPG",
                 "tags": ["open-world", "sci-fi", "rpg", "action", "3d", "fpp"],
                 "sizeNum": 35.0,
-                "size": "35.0 جيجا",
+                "sizeAr": "35.0 جيجا",
+                "sizeEn": "35.0 GB",
                 "specs": "high",
                 "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -889,7 +894,8 @@
                 "genreEn": "Horror - Survival - Stealth",
                 "tags": ["horror", "survival", "stealth", "3d", "tpp"],
                 "sizeNum": 0.8,
-                "size": "0.8 جيجا",
+                "sizeAr": "0.8 جيجا",
+                "sizeEn": "0.8 GB",
                 "specs": "low",
                 "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
@@ -1006,13 +1012,14 @@
             games.forEach((game) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
+                const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
                 const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
                 const isFav = favorites.some(fav => fav.id === game.id);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
                 card.innerHTML = `
-                    <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="إضافة للمفضلة">${isFav ? '❤️' : '🤍'}</button>
+                    <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="${currentLang === 'ar' ? 'إضافة للمفضلة' : 'Add to Favorites'}">${isFav ? '❤️' : '🤍'}</button>
                     <div class="game-img-container" onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">
                         <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     </div>
@@ -1020,7 +1027,7 @@
                         <h3 onclick="alert('${currentLang === 'ar' ? 'صفحة اللعبة قيد التطوير!' : 'Game page under development!'}')">${title}</h3>
                         <div class="game-info">
                             <span class="game-genre">${genre}</span>
-                            <span class="game-size">${game.size}</span>
+                            <span class="game-size">${sizeStr}</span>
                         </div>
                         <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
                     </div>
@@ -1064,13 +1071,14 @@
                 favorites.forEach(game => {
                     const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                     const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
+                    const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
                     const row = document.createElement('div');
                     row.className = 'fav-item-row';
                     row.innerHTML = `
                         <img src="${game.image}" class="fav-item-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                         <div class="fav-item-info">
                             <h4>${title}</h4>
-                            <span>${genre} • ${game.size}</span>
+                            <span>${genre} • ${sizeStr}</span>
                         </div>
                         <button onclick="event.stopPropagation(); toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;" title="إزالة">❌</button>
                     `;
@@ -1095,6 +1103,7 @@
             trendingItems.forEach(game => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
+                const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
                 
                 const item = document.createElement('div');
                 item.className = 'trending-item';
@@ -1107,7 +1116,7 @@
                     <img src="${game.image}" class="trending-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     <div class="trending-info">
                         <h4 style="margin:0 0 3px; font-size:14px; color:var(--text-color);">${title}</h4>
-                        <span style="font-size:11px; color:var(--secondary-text);">${genre} • ${game.size}</span>
+                        <span style="font-size:11px; color:var(--secondary-text);">${genre} • ${sizeStr}</span>
                     </div>
                 `;
                 listContainer.appendChild(item);
@@ -1162,6 +1171,11 @@
             const tsPageSub = document.getElementById('tsPageSub');
             const backBtn = document.getElementById('backBtn');
             const showAllBtn = document.getElementById('showAllBtn');
+            const favBtn = document.getElementById('favBtn');
+            const notifBtn = document.getElementById('notifBtn');
+            
+            const sizeUnits = document.querySelectorAll('.size-unit');
+
             const fAll = document.getElementById('fAll');
             const fAction = document.getElementById('fAction');
             const fAdv = document.getElementById('fAdv');
@@ -1211,12 +1225,16 @@
                 trendingTitle.innerText = '🔥 Trending Games';
                 footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading. Here you will also find patches, mods, and updates, along with installation guides and troubleshooting solutions.';
                 loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
+                favBtn.title = 'Favorites';
+                notifBtn.title = 'Notifications';
                 
                 troubleshootBtnText.innerText = 'Troubleshooting & Tools';
                 tsPageTitle.innerText = 'Troubleshooting & Essential Tools Center';
                 tsPageSub.innerText = 'Essential software and runtimes required to run all PC games and fix crashes and black screen issues.';
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
+
+                sizeUnits.forEach(el => el.innerText = 'GB');
 
                 fAll.innerText = 'All';
                 fAction.innerText = 'Action';
@@ -1268,12 +1286,16 @@
                 trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
                 footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.';
                 loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
+                favBtn.title = 'المفضلة';
+                notifBtn.title = 'الإشعارات';
                 
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
                 tsPageTitle.innerText = 'مركز حل المشاكل والبرامج الأساسية';
                 tsPageSub.innerText = 'أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.';
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
+
+                sizeUnits.forEach(el => el.innerText = 'جيجا');
 
                 fAll.innerText = 'الكل';
                 fAction.innerText = 'الأكشن';
@@ -1418,7 +1440,7 @@
             document.getElementById('notifModal').style.display = 'none';
             document.getElementById('authErrorMsg').style.display = 'none';
             document.getElementById('authSuccessMsg').style.display = 'none';
-            document.getElementById('authEmail').value, document.getElementById('authEmail').value = '';
+            document.getElementById('authEmail').value = '';
             document.getElementById('authPassword').value = '';
         }
     </script>
