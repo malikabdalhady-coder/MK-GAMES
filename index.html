@@ -66,11 +66,22 @@
             align-items: center;
             justify-content: center;
             font-size: 16px;
+            position: relative;
         }
 
         .icon-btn:hover {
             border-color: #a855f7;
             transform: scale(1.05);
+        }
+
+        /* مؤشر تسجيل الدخول الأخضر */
+        .logged-in-indicator {
+            width: 16px;
+            height: 16px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px #10b981;
         }
 
         /* Hero Section واللوجو النيون الأساسي */
@@ -366,7 +377,37 @@
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
 
-        /* قسم معلومات الموقع في الأسفل (Footer) مع لوجو النيون الفخم */
+        /* قائمة المفضلة داخل المودال */
+        .fav-item-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.03);
+            padding: 8px;
+            border-radius: 8px;
+            text-align: right;
+        }
+
+        .fav-item-img {
+            width: 40px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .fav-item-info h5 {
+            margin: 0 0 4px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+
+        .fav-item-info span {
+            font-size: 11px;
+            color: var(--secondary-text);
+        }
+
+        /* قسم معلومات الموقع في الأسفل (Footer) مع لوجو النيون */
         .site-footer {
             background-color: var(--card-bg);
             border-top: 1px solid rgba(168, 85, 247, 0.2);
@@ -494,8 +535,8 @@
             <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
             <!-- اللغة -->
             <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
-            <!-- تسجيل الدخول -->
-            <button class="icon-btn" onclick="openLoginModal()" title="تسجيل الدخول">👤</button>
+            <!-- تسجيل الدخول (يتفاعل ويتحول لدائرة خضراء عند الدخول) -->
+            <button class="icon-btn" id="loginBtn" onclick="openLoginModal()" title="تسجيل الدخول">👤</button>
         </div>
     </header>
 
@@ -522,10 +563,9 @@
         </div>
     </div>
 
-    <!-- قسم معلومات الموقع (Footer) مع لوجو النيون المضمون -->
+    <!-- قسم معلومات الموقع (Footer) مع لوجو النيون -->
     <footer class="site-footer">
         <div class="footer-content">
-            <!-- لوجو النيون الفخم تحت الوصف -->
             <div class="footer-logo">MK GAMES</div>
             <p class="footer-text" id="footerDesc">
                 MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.
@@ -539,7 +579,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="loginTitle">تسجيل الدخول</h3>
-            <p id="loginSub" style="font-size: 13px; color: var(--secondary-text);">اختياري تماماً لحفظ الألعاب المفضلة</p>
+            <p id="loginSub" style="font-size: 13px; color: var(--secondary-text);">اختياري لحفظ الألعاب المفضلة</p>
             <input type="text" id="usernameInput" placeholder="اسم المستخدم أو البريد">
             <input type="password" placeholder="كلمة المرور">
             <button onclick="handleLogin()">دخول</button>
@@ -547,12 +587,14 @@
         </div>
     </div>
 
-    <!-- نافذة المفضلة -->
+    <!-- نافذة المفضلة (تم تفعيلها لعرض الألعاب المحفوظة) -->
     <div class="modal" id="favModal">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 450px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="favModalTitle">الألعاب المفضلة</h3>
-            <p id="favModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
+            <div id="favModalBody" style="margin-top: 15px; max-height: 350px; overflow-y: auto;">
+                <p id="favModalDesc" style="color: var(--secondary-text);">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
+            </div>
         </div>
     </div>
 
@@ -568,6 +610,7 @@
     <script>
         const gamesData = [
             {
+                "id": 1,
                 "titleAr": "Grand Adventure",
                 "titleEn": "Grand Adventure",
                 "genreAr": "مغامرات - أكشن",
@@ -577,6 +620,7 @@
                 "url": "#"
             },
             {
+                "id": 2,
                 "titleAr": "Puzzle Challenge",
                 "titleEn": "Puzzle Challenge",
                 "genreAr": "ألغاز - ذكاء",
@@ -586,6 +630,7 @@
                 "url": "#"
             },
             {
+                "id": 3,
                 "titleAr": "Super Speed Racing",
                 "titleEn": "Super Speed Racing",
                 "genreAr": "سباقات - سيارات",
@@ -595,6 +640,7 @@
                 "url": "#"
             },
             {
+                "id": 4,
                 "titleAr": "Group Warfare",
                 "titleEn": "Group Warfare",
                 "genreAr": "تصويب - أكشن",
@@ -604,6 +650,7 @@
                 "url": "#"
             },
             {
+                "id": 5,
                 "titleAr": "Cyberpunk Nights",
                 "titleEn": "Cyberpunk Nights",
                 "genreAr": "عالم مفتوح - تقمص أدوار",
@@ -613,6 +660,7 @@
                 "url": "#"
             },
             {
+                "id": 6,
                 "titleAr": "Shadow Hunter",
                 "titleEn": "Shadow Hunter",
                 "genreAr": "اجواء مظلمة - مغامرات",
@@ -626,6 +674,8 @@
         let currentLang = 'ar';
         let currentTheme = 'dark';
         let favorites = [];
+        let isLoggedIn = false;
+        let loggedUser = '';
 
         function getRandomGames(arr) {
             let shuffled = [...arr];
@@ -650,16 +700,16 @@
                 return;
             }
 
-            games.forEach((game, index) => {
+            games.forEach((game) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
                 const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
-                const isFav = favorites.includes(index);
+                const isFav = favorites.some(fav => fav.id === game.id);
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
                 card.innerHTML = `
-                    <button class="fav-card-btn" onclick="toggleFav(${index})">${isFav ? '❤️' : '🤍'}</button>
+                    <button class="fav-card-btn" onclick="toggleFav(${game.id})" title="إضافة للمفضلة">${isFav ? '❤️' : '🤍'}</button>
                     <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     <div class="game-content">
                         <h3>${title}</h3>
@@ -674,10 +724,49 @@
             });
         }
 
+        // تفعيل حفظ الألعاب في المفضلة بذكاء
+        function toggleFav(id) {
+            const gameObj = gamesData.find(g => g.id === id);
+            const index = favorites.findIndex(fav => fav.id === id);
+
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(gameObj);
+            }
+            displayGames(activeGames);
+        }
+
+        // بناء محتوى نافذة المفضلة ديناميكياً
+        function openFavModal() {
+            const modalBody = document.getElementById('favModalBody');
+            modalBody.innerHTML = '';
+
+            if (favorites.length === 0) {
+                modalBody.innerHTML = `<p style="color: var(--secondary-text);">${currentLang === 'ar' ? 'لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️' : 'No favorite games added yet ❤️'}</p>`;
+            } else {
+                favorites.forEach(game => {
+                    const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
+                    const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
+                    const row = document.createElement('div');
+                    row.className = 'fav-item-row';
+                    row.innerHTML = `
+                        <img src="${game.image}" class="fav-item-img" alt="${title}">
+                        <div class="fav-item-info" style="flex: 1;">
+                            <h4>${title}</h4>
+                            <span>${genre} • ${game.size}</span>
+                        </div>
+                        <button onclick="toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;" title="إزالة">❌</button>
+                    `;
+                    modalBody.appendChild(row);
+                });
+            }
+            document.getElementById('favModal').style.display = 'flex';
+        }
+
         function buildTrendingList() {
             const listContainer = document.getElementById('trendingList');
             listContainer.innerHTML = '';
-            
             const trendingItems = gamesData.slice(0, 4);
             
             trendingItems.forEach(game => {
@@ -719,16 +808,6 @@
             }
         });
 
-        function toggleFav(index) {
-            const pos = favorites.indexOf(index);
-            if (pos > -1) {
-                favorites.splice(pos, 1);
-            } else {
-                favorites.push(index);
-            }
-            displayGames(activeGames);
-        }
-
         function searchGames() {
             const query = document.getElementById('searchInput').value.toLowerCase();
             const filtered = activeGames.filter(game => {
@@ -761,6 +840,7 @@
             const subTitle = document.getElementById('subTitle');
             const trendingTitle = document.getElementById('trendingTitle');
             const footerDesc = document.getElementById('footerDesc');
+            const loginBtn = document.getElementById('loginBtn');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -772,6 +852,7 @@
                 searchInput.placeholder = 'Search for a game to download...';
                 trendingTitle.innerText = '🔥 Trending Games';
                 footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English, and check its size and system requirements before downloading. Here you will also find patches, mods, and updates, along with installation guides and troubleshooting solutions.';
+                loginBtn.title = isLoggedIn ? `Already Logged In (${loggedUser})` : 'Login';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -782,23 +863,42 @@
                 searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
                 trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
                 footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.';
+                loginBtn.title = isLoggedIn ? `مسجل بالفعل (${loggedUser})` : 'تسجيل الدخول';
             }
             buildTrendingList();
             displayGames(activeGames);
         }
 
+        // تفاعل تسجيل الدخول وتحويل الأيقونة لدائرة خضراء
         function handleLogin() {
+            const usernameVal = document.getElementById('usernameInput').value.trim();
+            loggedUser = usernameVal !== '' ? usernameVal : (currentLang === 'ar' ? 'مستخدم' : 'User');
+            isLoggedIn = true;
+
             const alertBox = document.getElementById('loginAlert');
             alertBox.style.display = 'block';
+
+            // تحويل زر الدخول إلى الدائرة الخضراء وإعطائه تلميح "مسجل بالفعل"
+            const loginBtn = document.getElementById('loginBtn');
+            loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
+            loginBtn.title = currentLang === 'ar' ? `مسجل بالفعل (${loggedUser})` : `Already Logged In (${loggedUser})`;
+
             setTimeout(() => {
                 alertBox.style.display = 'none';
                 closeModals();
-            }, 2000);
+            }, 1800);
         }
 
-        function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
-        function openFavModal() { document.getElementById('favModal').style.display = 'flex'; }
+        function openLoginModal() { 
+            if (isLoggedIn) {
+                alert(currentLang === 'ar' ? `أهلاً بك يا ${loggedUser}، أنت مسجل بالفعل بالموقع! 🟢` : `Welcome back ${loggedUser}, you are already logged in! 🟢`);
+                return;
+            }
+            document.getElementById('loginModal').style.display = 'flex'; 
+        }
+
         function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
+        
         function closeModals() {
             document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
             document.getElementById('loginAlert').style.display = 'none';
