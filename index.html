@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MK GAMES - منصة الألعاب</title>
+    <title id="pageTitle">MK GAMES - منصة الألعاب</title>
     <style>
         :root {
-            --bg-color: #121212;
-            --card-bg: #1e1e1e;
-            --text-color: #ffffff;
-            --accent-color: #00ffcc;
-            --secondary-text: #b0b0b0;
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-color: #f8fafc;
+            --accent-color: #06b6d4;
+            --secondary-text: #94a3b8;
+            --hover-color: #0891b2;
         }
 
         [data-theme="light"] {
-            --bg-color: #f4f4f9;
+            --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --text-color: #222222;
-            --accent-color: #007bff;
-            --secondary-text: #666666;
+            --text-color: #0f172a;
+            --accent-color: #2563eb;
+            --secondary-text: #64748b;
+            --hover-color: #1d4ed8;
         }
 
         body {
-            font-family: Tahoma, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -36,25 +38,29 @@
             align-items: center;
             padding: 20px 40px;
             background-color: var(--card-bg);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             color: var(--accent-color);
+            letter-spacing: 1px;
         }
 
         .controls {
             display: flex;
-            gap: 15px;
+            gap: 12px;
         }
 
         .controls button {
             background-color: var(--accent-color);
-            color: #121212;
+            color: #fff;
             border: none;
-            padding: 10px 15px;
+            padding: 8px 16px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
@@ -62,79 +68,203 @@
         }
 
         .controls button:hover {
-            opacity: 0.8;
+            background-color: var(--hover-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 40px 20px 20px;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: var(--secondary-text);
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            border: 2px solid var(--secondary-text);
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            outline: none;
+            transition: 0.3s;
+            margin: 0 auto 40px;
+            display: block;
+        }
+
+        .search-box:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
         }
 
         .container {
             max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        h1 {
-            margin-bottom: 10px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .game-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .game-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        }
+
+        .game-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            background-color: #334155;
+        }
+
+        .game-content {
+            padding: 20px;
+            text-align: right;
+        }
+
+        [dir="ltr"] .game-content {
+            text-align: left;
         }
 
         .game-card h3 {
             color: var(--accent-color);
-            margin-bottom: 10px;
+            margin: 0 0 10px;
+            font-size: 20px;
         }
 
         .game-card p {
             color: var(--secondary-text);
             font-size: 14px;
+            margin: 0 0 20px;
+            line-height: 1.5;
+        }
+
+        .play-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        .play-btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        .no-results {
+            text-align: center;
+            grid-column: 1 / -1;
+            color: var(--secondary-text);
+            font-size: 18px;
+            padding: 40px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo" id="siteTitle">MK GAMES</div>
+        <div class="logo">MK GAMES</div>
         <div class="controls">
             <button onclick="toggleTheme()" id="themeBtn">🌙 الوضع الليلي</button>
             <button onclick="toggleLanguage()" id="langBtn">English</button>
         </div>
     </header>
 
-    <div class="container">
-        <h1 id="mainHeading">أهلاً بك في منصة الألعاب</h1>
-        <p id="mainDesc">استمتع بأفضل الألعاب المجانية مباشرة على متصفحك.</p>
+    <div class="hero">
+        <h1 id="mainHeading">أهلاً بك في منصة MK GAMES</h1>
+        <p id="mainDesc">استمتع بأقوى وأحلى الألعاب المجانية مباشرة عبر المتصفح.</p>
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة..." onkeyup="searchGames()">
+    </div>
 
-        <div class="games-grid">
-            <div class="game-card">
-                <h3 id="game1Title">لعبة المغامرة</h3>
-                <p id="game1Desc">خوض مغامرة ممتعة ومثيرة الآن.</p>
-            </div>
-            <div class="game-card">
-                <h3 id="game2Title">لعبة الذكاء</h3>
-                <p id="game2Desc">اختبر ذكائك وحل الألغاز الصعبة.</p>
-            </div>
+    <div class="container">
+        <div class="games-grid" id="gamesGrid">
+            <!-- الألعاب هتتضاف هنا تلقائياً من ملف games.json -->
         </div>
     </div>
 
     <script>
         let currentLang = 'ar';
         let currentTheme = 'dark';
+        let gamesData = [];
+
+        // جلب الألعاب من ملف games.json
+        async function fetchGames() {
+            try {
+                const response = await fetch('games.json');
+                gamesData = await response.json();
+                displayGames(gamesData);
+            } catch (error) {
+                console.error("خطأ في جلب الألعاب:", error);
+                document.getElementById('gamesGrid').innerHTML = '<div class="no-results">تعذر تحميل الألعاب حالياً. تأكد من وجود ملف games.json</div>';
+            }
+        }
+
+        function displayGames(games) {
+            const grid = document.getElementById('gamesGrid');
+            grid.innerHTML = '';
+
+            if (games.length === 0) {
+                grid.innerHTML = `<div class="no-results" id="noResText">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لبحثك' : 'No games found'}</div>`;
+                return;
+            }
+
+            games.forEach(game => {
+                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
+                const desc = currentLang === 'ar' ? game.descAr : game.descEn;
+                const btnText = currentLang === 'ar' ? 'العب الآن' : 'Play Now';
+
+                const card = document.createElement('div');
+                card.className = 'game-card';
+                card.innerHTML = `
+                    <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
+                    <div class="game-content">
+                        <h3>${title}</h3>
+                        <p>${desc}</p>
+                        <a href="${game.url}" target="_blank" class="play-btn">${btnText}</a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function searchGames() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = gamesData.filter(game => {
+                const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
+                return title.includes(query);
+            });
+            displayGames(filtered);
+        }
 
         function toggleTheme() {
             const root = document.getElementById('htmlRoot');
@@ -156,38 +286,21 @@
             const langBtn = document.getElementById('langBtn');
             const mainHeading = document.getElementById('mainHeading');
             const mainDesc = document.getElementById('mainDesc');
-            const game1Title = document.getElementById('game1Title');
-            const game1Desc = document.getElementById('game1Desc');
-            const game2Title = document.getElementById('game2Title');
-            const game2Desc = document.getElementById('game2Desc');
+            const searchInput = document.getElementById('searchInput');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
                 htmlRoot.setAttribute('lang', 'en');
                 htmlRoot.setAttribute('dir', 'ltr');
                 langBtn.innerText = 'العربية';
-                mainHeading.innerText = 'Welcome to MK Games';
+                mainHeading.innerText = 'Welcome to MK GAMES';
                 mainDesc.innerText = 'Enjoy the best free games directly in your browser.';
-                game1Title.innerText = 'Adventure Game';
-                game1Desc.innerText = 'Embark on an exciting adventure now.';
-                game2Title.innerText = 'Puzzle Game';
-                game2Desc.innerText = 'Test your IQ and solve challenging puzzles.';
+                searchInput.placeholder = 'Search for a game...';
                 themeBtn.innerText = currentTheme === 'dark' ? '🌙 Dark Mode' : '☀️ Light Mode';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
                 htmlRoot.setAttribute('dir', 'rtl');
                 langBtn.innerText = 'English';
-                mainHeading.innerText = 'أهلاً بك في منصة الألعاب';
-                mainDesc.innerText = 'استمتع بأفضل الألعاب المجانية مباشرة على متصفحك.';
-                game1Title.innerText = 'لعبة المغامرة';
-                game1Desc.innerText = 'خوض مغامرة ممتعة ومثيرة الآن.';
-                game2Title.innerText = 'لعبة الذكاء';
-                game2Desc.innerText = 'اختبر ذكائك وحل الألغاز الصعبة.';
-                themeBtn.innerText = currentTheme === 'dark' ? '🌙 الوضع الليلي' : '☀️ الوضع النهارى';
-            }
-        }
-    </script>
-
-</body>
-</html>
+                mainHeading.innerText = 'أهلاً بك في منصة MK GAMES';
+                mainDesc.innerText = 'است
