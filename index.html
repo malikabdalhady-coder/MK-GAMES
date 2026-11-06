@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="pageTitle">MK GAMES - منصة الألعاب</title>
+    <title id="pageTitle">MK GAMES - موقع تحميل الألعاب</title>
     <style>
         :root {
             --bg-color: #0f172a;
@@ -13,6 +13,7 @@
             --secondary-text: #94a3b8;
             --hover-color: #0891b2;
             --heart-color: #f43f5e;
+            --success-color: #10b981;
         }
 
         [data-theme="light"] {
@@ -23,6 +24,7 @@
             --secondary-text: #64748b;
             --hover-color: #1d4ed8;
             --heart-color: #e11d48;
+            --success-color: #059669;
         }
 
         body {
@@ -105,6 +107,17 @@
         .hero h1 {
             font-size: 34px;
             margin-bottom: 10px;
+        }
+
+        .prayer-reminder {
+            color: var(--accent-color);
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: rgba(6, 182, 212, 0.1);
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
         }
 
         .hero p {
@@ -212,7 +225,7 @@
             line-height: 1.5;
         }
 
-        .play-btn {
+        .download-btn {
             display: block;
             width: 100%;
             padding: 10px 0;
@@ -225,11 +238,11 @@
             transition: 0.2s;
         }
 
-        .play-btn:hover {
+        .download-btn:hover {
             background-color: var(--hover-color);
         }
 
-        /* نافذة منبثقة بسيطة (Modal) */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -285,6 +298,13 @@
             margin-top: 10px;
         }
 
+        .login-alert {
+            margin-top: 15px;
+            font-weight: bold;
+            color: var(--success-color);
+            display: none;
+        }
+
         .no-results {
             text-align: center;
             grid-column: 1 / -1;
@@ -317,9 +337,10 @@
     </header>
 
     <div class="hero">
-        <h1 id="mainHeading">أهلاً بك في منصة MK GAMES</h1>
-        <p id="mainDesc">استمتع بأقوى وأحلى الألعاب المجانية مباشرة عبر المتصفح.</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة..." onkeyup="searchGames()">
+        <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
+        <h1 id="mainHeading">مرحباً بك في موقع تحميل الألعاب MK GAMES</h1>
+        <p id="mainDesc">حمّل أحدث وأقوى الألعاب المجانية بروابط مباشرة وسريعة.</p>
+        <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة للتحميل..." onkeyup="searchGames()">
     </div>
 
     <div class="container">
@@ -333,10 +354,11 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="loginTitle">تسجيل الدخول</h3>
-            <p id="loginSub" style="font-size: 13px; color: var(--secondary-text);">اختياري تماماً للاستمتاع بالموقع وحفظ الألعاب</p>
+            <p id="loginSub" style="font-size: 13px; color: var(--secondary-text);">اختياري تماماً لحفظ الألعاب المفضلة</p>
             <input type="text" id="usernameInput" placeholder="اسم المستخدم أو البريد">
             <input type="password" placeholder="كلمة المرور">
-            <button onclick="alert('تم تسجيل الدخول بنجاح يا بطل!')">دخول</button>
+            <button onclick="handleLogin()">دخول</button>
+            <div class="login-alert" id="loginAlert">تم تسجيل الدخول بنجاح ✅</div>
         </div>
     </div>
 
@@ -354,7 +376,7 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="notifModalTitle">الإشعارات</h3>
-            <p id="notifModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لا توجد إشعارات جديدة حالياً، استمتع باللعب! 🚀</p>
+            <p id="notifModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</p>
         </div>
     </div>
 
@@ -387,7 +409,7 @@
             games.forEach((game, index) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const desc = currentLang === 'ar' ? game.descAr : game.descEn;
-                const btnText = currentLang === 'ar' ? 'العب الآن' : 'Play Now';
+                const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
                 const isFav = favorites.includes(index);
 
                 const card = document.createElement('div');
@@ -398,7 +420,7 @@
                     <div class="game-content">
                         <h3>${title}</h3>
                         <p>${desc}</p>
-                        <a href="${game.url}" target="_blank" class="play-btn">${btnText}</a>
+                        <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
                     </div>
                 `;
                 grid.appendChild(card);
@@ -447,15 +469,17 @@
             const loginBtnText = document.getElementById('loginBtnText');
             const favText = document.getElementById('favText');
             const notifText = document.getElementById('notifText');
+            const prayerText = document.getElementById('prayerText');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
                 htmlRoot.setAttribute('lang', 'en');
                 htmlRoot.setAttribute('dir', 'ltr');
                 langBtn.innerText = 'AR';
-                mainHeading.innerText = 'Welcome to MK GAMES';
-                mainDesc.innerText = 'Enjoy the best free games directly in your browser.';
-                searchInput.placeholder = 'Search for a game...';
+                prayerText.innerText = 'Do not let games distract you from prayer';
+                mainHeading.innerText = 'Welcome to MK GAMES Download Portal';
+                mainDesc.innerText = 'Download the latest and best free games via direct and fast links.';
+                searchInput.placeholder = 'Search for a game to download...';
                 loginBtnText.innerText = 'Login';
                 favText.innerText = 'Favorites';
                 notifText.innerText = 'Notifications';
@@ -464,9 +488,10 @@
                 htmlRoot.setAttribute('lang', 'ar');
                 htmlRoot.setAttribute('dir', 'rtl');
                 langBtn.innerText = 'EN';
-                mainHeading.innerText = 'أهلاً بك في منصة MK GAMES';
-                mainDesc.innerText = 'استمتع بأقوى وأحلى الألعاب المجانية مباشرة عبر المتصفح.';
-                searchInput.placeholder = 'ابحث عن لعبة...';
+                prayerText.innerText = 'لا تدع الألعاب تلهيك عن الصلاة';
+                mainHeading.innerText = 'مرحباً بك في موقع تحميل الألعاب MK GAMES';
+                mainDesc.innerText = 'حمّل أحدث وأقوى الألعاب المجانية بروابط مباشرة وسريعة.';
+                searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
                 loginBtnText.innerText = 'تسجيل الدخول';
                 favText.innerText = 'المفضلة';
                 notifText.innerText = 'الإشعارات';
@@ -474,12 +499,21 @@
             displayGames(gamesData);
         }
 
-        // دوال النوافذ المنبثقة
+        function handleLogin() {
+            const alertBox = document.getElementById('loginAlert');
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+                closeModals();
+            }, 2000);
+        }
+
         function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
         function openFavModal() { document.getElementById('favModal').style.display = 'flex'; }
         function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
         function closeModals() {
             document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+            document.getElementById('loginAlert').style.display = 'none';
         }
 
         fetchGames();
