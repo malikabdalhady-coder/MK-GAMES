@@ -394,6 +394,8 @@
             transition: 0.2s;
             box-sizing: border-box;
             font-size: 14px;
+            border: none;
+            cursor: pointer;
         }
 
         .download-btn:hover { opacity: 0.9; box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
@@ -423,7 +425,7 @@
             transform: translateY(-2px);
         }
 
-        /* صفحة تفاصيل اللعبة (تظهر عند النقر على لعبة) */
+        /* صفحة تفاصيل اللعبة */
         #gameDetailsView {
             display: none;
             max-width: 1000px;
@@ -893,39 +895,21 @@
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
                 <button class="filter-chip active" onclick="filterByTag('all')" id="fAll">الكل</button>
-                <button class="filter-chip" onclick="filterByTag('action')" id="fAction">الأكشن</button>
-                <button class="filter-chip" onclick="filterByTag('adventure')" id="fAdv">مغامرات</button>
-                <button class="filter-chip" onclick="filterByTag('open-world')" id="fOpen">العالم المفتوح</button>
-                <button class="filter-chip" onclick="filterByTag('rpg')" id="fRpg">RPG</button>
-                <button class="filter-chip" onclick="filterByTag('survival')" id="fSurv">النجاة</button>
-                <button class="filter-chip" onclick="filterByTag('horror')" id="fHor">الرعب</button>
-                <button class="filter-chip" onclick="filterByTag('strategy')" id="fStrat">الاستراتيجية</button>
-                <button class="filter-chip" onclick="filterByTag('stealth')" id="fSteal">التخفي</button>
-                <button class="filter-chip" onclick="filterByTag('puzzle')" id="fPuz">الألغاز</button>
-                <button class="filter-chip" onclick="filterByTag('simulation')" id="fSim">المحاكاة</button>
                 <button class="filter-chip" onclick="filterByTag('sports')" id="fSport">الرياضة</button>
-                <button class="filter-chip" onclick="filterByTag('superhero')" id="fSuper">الأبطال الخارقين</button>
-                <button class="filter-chip" onclick="filterByTag('sci-fi')" id="fSci">الخيال العلمي</button>
-                <button class="filter-chip" onclick="filterByTag('indie')" id="fIndie">المستقلين</button>
-                <button class="filter-chip" onclick="filterByTag('co-op')" id="fCoop">جماعية</button>
-                <button class="filter-chip" onclick="filterByTag('2d')" id="f2d">ثنائية الأبعاد</button>
-                <button class="filter-chip" onclick="filterByTag('3d')" id="f3d">ثلاثية الأبعاد</button>
-                <button class="filter-chip" onclick="filterByTag('fpp')" id="fFpp">المنظور الأول</button>
-                <button class="filter-chip" onclick="filterByTag('tpp')" id="fTpp">المنظور الثالث</button>
+                <button class="filter-chip" onclick="filterByTag('action')" id="fAction">الأكشن</button>
+                <button class="filter-chip" onclick="filterByTag('simulation')" id="fSim">المحاكاة</button>
+                <button class="filter-chip" onclick="filterByTag('classic')" id="fClassic">كلاسيك</button>
             </div>
             
             <div class="filter-row" id="sizeFilters">
                 <button class="filter-chip" onclick="filterBySize('<1')" id="s1">&lt; 1 <span class="size-unit">جيجا</span></button>
                 <button class="filter-chip" onclick="filterBySize('1-5')" id="s2">1 - 5 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('5-10')" id="s3">5 - 10 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('10-20')" id="s4">10 - 20 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('20+')" id="s5">20+ <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('5+')" id="s3">5+ <span class="size-unit">جيجا</span></button>
             </div>
 
             <div class="filter-row" id="specsFilters">
                 <button class="filter-chip" onclick="filterBySpecs('low')" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
                 <button class="filter-chip" onclick="filterBySpecs('mid')" id="specMid">⚡ أجهزة متوسطة</button>
-                <button class="filter-chip" onclick="filterBySpecs('high')" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
             </div>
         </div>
 
@@ -937,7 +921,7 @@
         </div>
     </div>
 
-    <!-- صفحة تفاصيل اللعبة (مخفية بالافتراضي وتفتح عند الضغط على أي لعبة) -->
+    <!-- صفحة تفاصيل اللعبة -->
     <div id="gameDetailsView">
         <div style="display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 15px 25px; border-radius: 14px; border: 1px solid rgba(168, 85, 247, 0.3);">
             <h2 id="detailsHeaderTitle" style="margin:0; color:#ffffff; font-size:18px;">تفاصيل اللعبة</h2>
@@ -957,17 +941,17 @@
 
         <div class="section-card">
             <h3 id="aboutTitle">📖 نبذة عن اللعبة</h3>
-            <p id="detailsDesc">وصف تفصيلي للعبة يوضح قصتها وأسلوب اللعب ومميزاتها الكاملة...</p>
+            <p id="detailsDesc">وصف تفصيلي للعبة...</p>
         </div>
 
         <div class="section-card">
             <h3 id="reqTitle">💻 متطلبات التشغيل الدنيا (Minimum Requirements)</h3>
             <ul id="detailsReqs">
-                <li><strong>نظام التشغيل (OS):</strong> Windows 10 / 11 (64-bit)</li>
-                <li><strong>المعالج (CPU):</strong> Intel Core i5 أو ما يعادله</li>
-                <li><strong>الذاكرة العشوائية (RAM):</strong> 8 جيجابايت</li>
-                <li><strong>كارت الشاشة (GPU):</strong> NVIDIA GeForce GTX 1060</li>
-                <li><strong>مساحة التخزين (Storage):</strong> متوافقة مع حجم اللعبة</li>
+                <li><strong>نظام التشغيل (OS):</strong> Windows 7 / 8 / 10 / 11</li>
+                <li><strong>المعالج (CPU):</strong> Intel Pentium 4 1.4GHz أو ما يعادله</li>
+                <li><strong>الذاكرة العشوائية (RAM):</strong> 512 ميجابايت أو أعلى</li>
+                <li><strong>كارت الشاشة (GPU):</strong> 64 ميجابايت متوافق مع DirectX 9.0c</li>
+                <li><strong>مساحة التخزين (Storage):</strong> 2 جيجابايت متاحة</li>
             </ul>
         </div>
 
@@ -981,10 +965,10 @@
 
         <div class="section-card">
             <h3 id="dlTitle">🚀 روابط التحميل السريع</h3>
-            <p id="dlSub" style="margin-bottom: 15px;">اختر الطريقة المناسبة لك للتحميل (مباشر صاروخ أو تورنت دائم):</p>
+            <p id="dlSub" style="margin-bottom: 15px;">اختر الطريقة المناسبة لك للتحميل:</p>
             <div class="download-buttons-grid">
                 <a id="directDlBtn" href="#" target="_blank" class="dl-btn dl-direct">
-                    <span>⚡</span> <span id="directText">تحميل مباشر (MediaFire / Server)</span>
+                    <span>⚡</span> <span id="directText">تحميل مباشر (MediaFire)</span>
                 </a>
                 <a id="torrentDlBtn" href="#" class="dl-btn dl-torrent">
                     <span>🧲</span> <span id="torrentText">تحميل تورنت (Torrent Magnet)</span>
@@ -1134,97 +1118,20 @@
         const gamesData = [
             {
                 "id": 1,
-                "titleAr": "Grand Adventure",
-                "titleEn": "Grand Adventure",
-                "genreAr": "مغامرات - أكشن - عالم مفتوح",
-                "genreEn": "Adventure - Action - Open World",
-                "descAr": "لعبة مغامرات ضخمة في عالم مفتوح مليء بالأسرار والمهام الحماسية. استكشف الخريطة الواسعة وطور قدرات شخصيتك.",
-                "descEn": "A huge adventure game in an open world full of secrets and exciting missions. Explore the vast map and upgrade your character.",
-                "tags": ["action", "adventure", "open-world", "3d", "tpp"],
-                "sizeNum": 21.0,
-                "sizeAr": "21 جيجا",
-                "sizeEn": "21 GB",
-                "specs": "high",
-                "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1000&auto=format&fit=crop&q=80",
-                "directUrl": "https://www.mediafire.com",
-                "torrentUrl": "magnet:?xt=urn:btih:EXAMPLE_HASH_1"
-            },
-            {
-                "id": 2,
-                "titleAr": "Puzzle Challenge",
-                "titleEn": "Puzzle Challenge",
-                "genreAr": "ألغاز - ذكاء - مستقلين",
-                "genreEn": "Puzzle - IQ - Indie",
-                "descAr": "اختبر ذكاءك مع مئات المراحل والتحديات الذهنية الممتعة المصممة لعشاق الألغاز.",
-                "descEn": "Test your IQ with hundreds of fun brain teasers and stages designed for puzzle lovers.",
-                "tags": ["puzzle", "indie", "2d"],
-                "sizeNum": 4.1,
-                "sizeAr": "4.1 جيجا",
-                "sizeEn": "4.1 GB",
+                "titleAr": "Pro Evolution Soccer 2006 (PES 6)",
+                "titleEn": "Pro Evolution Soccer 2006 (PES 6)",
+                "genreAr": "رياضة - كلاسيك - محاكاة كرة قدم",
+                "genreEn": "Sports - Classic - Football Simulation",
+                "descAr": "لعبة كرة القدم الأسطورية PES 6 النسخة الكاملة والمضغوطة برابط مباشر صاروخ. استمتع بأجواء المتعة الكلاسيكية واللعب السلس مع أصدقائك.",
+                "descEn": "The legendary football game PES 6 full compressed version. Enjoy classic gameplay and smooth matches.",
+                "tags": ["sports", "classic", "simulation", "action"],
+                "sizeNum": 1.2,
+                "sizeAr": "1.2 جيجا",
+                "sizeEn": "1.2 GB",
                 "specs": "low",
-                "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=1000&auto=format&fit=crop&q=80",
-                "directUrl": "https://www.mediafire.com",
-                "torrentUrl": "magnet:?xt=urn:btih:EXAMPLE_HASH_2"
-            },
-            {
-                "id": 3,
-                "titleAr": "Super Speed Racing",
-                "titleEn": "Super Speed Racing",
-                "genreAr": "سباقات - محاكاة - رياضية",
-                "genreEn": "Racing - Simulation - Sports",
-                "tags": ["racing", "simulation", "sports", "3d", "tpp"],
-                "sizeNum": 14.1,
-                "sizeAr": "14.1 جيجا",
-                "sizeEn": "14.1 GB",
-                "specs": "mid",
-                "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000&auto=format&fit=crop&q=80",
-                "directUrl": "https://www.mediafire.com",
-                "torrentUrl": "magnet:?xt=urn:btih:EXAMPLE_HASH_3"
-            },
-            {
-                "id": 4,
-                "titleAr": "Group Warfare",
-                "titleEn": "Group Warfare",
-                "genreAr": "تصويب - أكشن - جماعية - منظور أول",
-                "genreEn": "Shooter - Action - Co-op - FPP",
-                "tags": ["action", "co-op", "fpp", "3d"],
-                "sizeNum": 51.6,
-                "sizeAr": "51.6 جيجا",
-                "sizeEn": "51.6 GB",
-                "specs": "high",
-                "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&auto=format&fit=crop&q=80",
-                "directUrl": "https://www.mediafire.com",
-                "torrentUrl": "magnet:?xt=urn:btih:EXAMPLE_HASH_4"
-            },
-            {
-                "id": 5,
-                "titleAr": "Cyberpunk Nights",
-                "titleEn": "Cyberpunk Nights",
-                "genreAr": "عالم مفتوح - خيال علمي - RPG",
-                "genreEn": "Open World - Sci-Fi - RPG",
-                "tags": ["open-world", "sci-fi", "rpg", "action", "3d", "fpp"],
-                "sizeNum": 35.0,
-                "sizeAr": "35.0 جيجا",
-                "sizeEn": "35.0 GB",
-                "specs": "high",
-                "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000&auto=format&fit=crop&q=80",
-                "directUrl": "https://www.mediafire.com",
-                "torrentUrl": "magnet:?xt=urn:btih:EXAMPLE_HASH_5"
-            },
-            {
-                "id": 6,
-                "titleAr": "Shadow Hunter",
-                "titleEn": "Shadow Hunter",
-                "genreAr": "رعب - نجاة - تخفي",
-                "genreEn": "Horror - Survival - Stealth",
-                "tags": ["horror", "survival", "stealth", "3d", "tpp"],
-                "sizeNum": 0.8,
-                "sizeAr": "0.8 جيجا",
-                "sizeEn": "0.8 GB",
-                "specs": "low",
-                "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=1000&auto=format&fit=crop&q=80",
-                "directUrl": "https://www.mediafire.com",
-                "torrentUrl": "magnet:?xt=urn:btih:EXAMPLE_HASH_6"
+                "image": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=1000&auto=format&fit=crop&q=80",
+                "directUrl": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file",
+                "torrentUrl": "magnet:?xt=urn:btih:PES6_MK_GAMES_HASH"
             }
         ];
 
@@ -1351,9 +1258,7 @@
 
                 if (currentSizeFilter === '<1') matchSize = game.sizeNum < 1;
                 else if (currentSizeFilter === '1-5') matchSize = game.sizeNum >= 1 && game.sizeNum <= 5;
-                else if (currentSizeFilter === '5-10') matchSize = game.sizeNum > 5 && game.sizeNum <= 10;
-                else if (currentSizeFilter === '10-20') matchSize = game.sizeNum > 10 && game.sizeNum <= 20;
-                else if (currentSizeFilter === '20+') matchSize = game.sizeNum > 20;
+                else if (currentSizeFilter === '5+') matchSize = game.sizeNum > 5;
 
                 return matchTag && matchSize && matchSpecs;
             });
@@ -1480,8 +1385,6 @@
         function hideTrending() { setTimeout(() => { document.getElementById('trendingDropdown').style.display = 'none'; }, 200); }
 
         document.addEventListener('click', function(e) {
-            const searchContainer = document.querySelector('.search-container');
-            if (!searchContainer && searchContainer.contains(e.target)) return;
             const dd = document.getElementById('trendingDropdown');
             if (dd && !e.target.closest('.search-container')) {
                 dd.style.display = 'none';
@@ -1590,7 +1493,7 @@
                 vidSub.innerText = 'Watch the step-by-step guide to ensure smooth installation:';
                 dlTitle.innerText = '🚀 Fast Download Links';
                 dlSub.innerText = 'Choose your preferred download method:';
-                directText.innerText = 'Direct Download (MediaFire / Server)';
+                directText.innerText = 'Direct Download (MediaFire)';
                 torrentText.innerText = 'Torrent Download (Magnet)';
 
                 box1Title.innerText = 'Game Runtimes & Extractors';
@@ -1640,8 +1543,8 @@
                 vidTitle.innerText = '🎥 فيديو كيفية تنصيب وتثبيت اللعبة';
                 vidSub.innerText = 'شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:';
                 dlTitle.innerText = '🚀 روابط التحميل السريع';
-                dlSub.innerText = 'اختر الطريقة المناسبة لك للتحميل (مباشر صاروخ أو تورنت دائم):';
-                directText.innerText = 'تحميل مباشر (MediaFire / Server)';
+                dlSub.innerText = 'اختر الطريقة المناسبة لك للتحميل:';
+                directText.innerText = 'تحميل مباشر (MediaFire)';
                 torrentText.innerText = 'تحميل تورنت (Torrent Magnet)';
 
                 box1Title.innerText = 'برامج تشغيل الالعاب وفك الضغط';
@@ -1759,6 +1662,8 @@
             document.getElementById('authModal').style.display = 'flex'; 
         }
 
+        function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
+        
         function closeModals() {
             document.getElementById('authModal').style.display = 'none';
             document.getElementById('favModal').style.display = 'none';
@@ -1766,7 +1671,7 @@
             document.getElementById('authErrorMsg').style.display = 'none';
             document.getElementById('authSuccessMsg').style.display = 'none';
             document.getElementById('authEmail').value = '';
-            document.getElementById('authPassword').value, '';
+            document.getElementById('authPassword').value = '';
         }
     </script>
 </body>
