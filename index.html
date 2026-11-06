@@ -36,7 +36,7 @@
 
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             padding: 15px 30px;
             background-color: var(--card-bg);
@@ -44,13 +44,6 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-        }
-
-        .logo-text {
-            font-size: 20px;
-            font-weight: bold;
-            color: #a855f7;
-            letter-spacing: 1px;
         }
 
         .nav-controls {
@@ -80,18 +73,31 @@
             transform: scale(1.05);
         }
 
-        /* Hero Section وخلفية النيون */
+        /* Hero Section اللوجو البارز فوق العنوان وخلفية النيون */
         .hero {
             text-align: center;
-            padding: 50px 20px 20px;
+            padding: 40px 20px 20px;
             max-width: 800px;
             margin: 0 auto;
             position: relative;
         }
 
+        /* لوجو نيون فخم فوق العنوان */
+        .main-brand-logo {
+            font-size: 38px;
+            font-weight: 900;
+            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
         .neon-glow-bg {
             position: absolute;
-            top: 50%;
+            top: 45%;
             left: 50%;
             transform: translate(-50%, -50%);
             width: 320px;
@@ -104,17 +110,16 @@
             border-radius: 50%;
         }
 
-        .hero h1, .hero-subtitle, .prayer-reminder {
+        .hero h1, .hero-subtitle, .prayer-reminder, .main-brand-logo {
             position: relative;
             z-index: 1;
         }
 
         .hero h1 {
-            font-size: 46px;
+            font-size: 42px;
             margin: 0 0 5px;
             color: #ffffff;
-            letter-spacing: 3px;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.6), 0 0 40px rgba(59, 130, 246, 0.4);
+            letter-spacing: 2px;
         }
 
         .hero-subtitle {
@@ -473,7 +478,6 @@
 <body>
 
     <header>
-        <div class="logo-text">MK GAMES</div>
         <div class="nav-controls">
             <!-- المفضلة -->
             <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
@@ -490,6 +494,8 @@
 
     <div class="hero">
         <div class="neon-glow-bg"></div>
+        <!-- لوجو الموقع النيون الفخم فوق العنوان -->
+        <div class="main-brand-logo">MK GAMES</div>
         <h1 id="mainTitle">MK GAMES</h1>
         <div class="hero-subtitle" id="subTitle">Explore Games</div>
         <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
