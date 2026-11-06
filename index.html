@@ -505,7 +505,7 @@
         </div>
     </footer>
 
-    <!-- نافذة المصادقة (تسجيل الدخول / إنشاء حساب) مع حفظ دائم -->
+    <!-- نافذة المصادقة (تسجيل الدخول / إنشاء حساب) -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -611,14 +611,14 @@
 
         let currentLang = 'ar';
         let currentTheme = 'dark';
-        let favorites = [];
 
-        // استرجاع الحسابات المسجلة وحالة المستخدم الحالي من LocalStorage مباشرة لمنع فقدان البيانات عند الريفرش
+        // تخزين المفضلة والحسابات بشكل دائم في LocalStorage عشان مبتتمسحش مع الريفرش
+        let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let registeredUsers = JSON.parse(localStorage.getItem('mk_users')) || [];
         let currentUser = JSON.parse(localStorage.getItem('mk_current_user')) || null;
         let isSignUpMode = false;
 
-        // التحقق عند تحميل الصفحة لو فيه مستخدم مسجل دخول مسبقاً لتثبيت الأيقونة الخضراء
+        // تفعيل حالة تسجيل الدخول تلقائياً عند فتح الصفحة لو المستخدم مسجل مسبقاً
         window.addEventListener('DOMContentLoaded', () => {
             if (currentUser) {
                 const loginBtn = document.getElementById('loginBtn');
@@ -680,6 +680,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // حفظ المفضلة وتثبيتها في ذاكرة المتصفح الدائمة لمنع حذفها عند التحديث
         function toggleFav(id) {
             const gameObj = gamesData.find(g => g.id === id);
             const index = favorites.findIndex(fav => fav.id === id);
@@ -689,6 +690,8 @@
             } else {
                 favorites.push(gameObj);
             }
+            
+            localStorage.setItem('mk_favorites', JSON.stringify(favorites));
             displayGames(activeGames);
         }
 
@@ -839,7 +842,6 @@
             }
         }
 
-        // معالجة وحفظ البيانات بذاكرة المتصفح (LocalStorage)
         function handleAuthSubmit() {
             const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value.trim();
@@ -870,7 +872,6 @@
                     return;
                 }
 
-                // حفظ الحساب الجديد في قائمة الحسابات وتخزينها بالمتصفح
                 registeredUsers.push({ email, password });
                 localStorage.setItem('mk_users', JSON.stringify(registeredUsers));
 
@@ -880,7 +881,6 @@
                 setTimeout(() => { toggleAuthMode(); }, 1500);
 
             } else {
-                // التحقق من وجود الحساب وتطابق الباسورد
                 const foundUser = registeredUsers.find(u => u.email === email && u.password === password);
                 if (!foundUser) {
                     errorBox.innerText = currentLang === 'ar' ? '❌ البريد الإلكتروني أو كلمة المرور غير صحيحة أو الحساب غير موجود!' : '❌ Incorrect email/password or account not found!';
@@ -889,7 +889,7 @@
                 }
 
                 currentUser = foundUser;
-                localStorage.setItem('mk_current_user', JSON.stringify(currentUser)); // تثبيت الجلسة
+                localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
 
                 successBox.innerText = currentLang === 'ar' ? `✅ أهلاً بك! تم تسجيل الدخول بنجاح.` : `✅ Welcome back! Logged in successfully.`;
                 successBox.style.display = 'block';
