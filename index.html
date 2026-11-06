@@ -6,8 +6,8 @@
     <title id="pageTitle">MK GAMES - موقع تحميل الألعاب</title>
     <style>
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
+            --bg-color: #0b0f19;
+            --card-bg: #151c2c;
             --text-color: #f8fafc;
             --accent-color: #06b6d4;
             --secondary-text: #94a3b8;
@@ -40,10 +40,17 @@
             align-items: center;
             padding: 15px 30px;
             background-color: var(--card-bg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
+        }
+
+        .logo {
+            font-weight: bold;
+            color: #a855f7;
+            font-size: 20px;
+            letter-spacing: 1px;
         }
 
         .nav-controls {
@@ -164,14 +171,13 @@
             padding: 0 20px 60px;
         }
 
-        /* هنا جعلنا الشبكة تعرض 4 ألعاب في كل صف بالعرض */
+        /* شبكة الألعاب: 4 ألعاب في الصف بالعرض */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
+            gap: 25px;
         }
 
-        /* لضبط التجاوب مع الشاشات الأصغر (الموبايل والتابلت) */
         @media (max-width: 1024px) {
             .games-grid {
                 grid-template-columns: repeat(2, 1fr);
@@ -183,11 +189,12 @@
             }
         }
 
+        /* كارت اللعبة بستايل البوسترات الطولية */
         .game-card {
             background-color: var(--card-bg);
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
@@ -196,15 +203,15 @@
         }
 
         .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(168, 85, 247, 0.25);
         }
 
         .fav-card-btn {
             position: absolute;
             top: 10px;
             left: 10px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.7);
             border: none;
             border-radius: 50%;
             width: 36px;
@@ -213,24 +220,29 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
+            font-size: 16px;
             transition: 0.2s;
+            z-index: 10;
         }
 
         .fav-card-btn:hover {
             transform: scale(1.1);
         }
 
+        /* بوستر اللعبة الطولي */
         .game-img {
             width: 100%;
-            height: 150px;
+            height: 320px;
             object-fit: cover;
-            background-color: #334155;
+            background-color: #1e293b;
         }
 
         .game-content {
-            padding: 15px;
+            padding: 16px;
             text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         [dir="ltr"] .game-content {
@@ -238,16 +250,36 @@
         }
 
         .game-card h3 {
-            color: #a855f7;
-            margin: 0 0 8px;
-            font-size: 18px;
+            color: #ffffff;
+            margin: 0;
+            font-size: 17px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .game-card p {
-            color: var(--secondary-text);
+        /* معلومات اللعبة (النوع والحجم) تحت الاسم */
+        .game-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             font-size: 13px;
-            margin: 0 0 15px;
-            line-height: 1.4;
+            color: var(--secondary-text);
+            margin-bottom: 10px;
+        }
+
+        .game-genre {
+            color: #a855f7;
+            font-weight: 600;
+        }
+
+        .game-size {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-color);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 12px;
         }
 
         .download-btn {
@@ -262,6 +294,7 @@
             font-weight: bold;
             transition: 0.2s;
             box-sizing: border-box;
+            font-size: 14px;
         }
 
         .download-btn:hover {
@@ -345,7 +378,7 @@
 <body>
 
     <header>
-        <div style="font-weight: bold; color: #a855f7;">MK GAMES</div>
+        <div class="logo">MK GAMES</div>
         <div class="nav-controls">
             <!-- المفضلة -->
             <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
@@ -374,7 +407,7 @@
 
     <div class="container">
         <div class="games-grid" id="gamesGrid">
-            <!-- اقتراحات الألعاب ستعرض هنا 4 في كل صف -->
+            <!-- بوسترات الألعاب ستعرض هنا عشوائياً -->
         </div>
     </div>
 
@@ -410,38 +443,60 @@
     </div>
 
     <script>
-        // قائمة اقتراحات الألعاب
+        // قاعدة بيانات الألعاب (أي لعبة هتضيفها هنا مستقبلاً هتظهر وتتوزع عشوائياً تلقائياً)
         const gamesData = [
             {
-                "titleAr": "لعبة المغامرة الكبرى",
+                "titleAr": "Grand Adventure",
                 "titleEn": "Grand Adventure",
-                "descAr": "خوض مغامرة ممتعة ومثيرة في عوالم افتراضية رائعة.",
-                "descEn": "Embark on an exciting adventure in amazing virtual worlds.",
+                "genreAr": "مغامرات - أكشن",
+                "genreEn": "Adventure - Action",
+                "size": "21 جيجا",
                 "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
             {
-                "titleAr": "تحدي الذكاء والألغاز",
+                "titleAr": "Puzzle Challenge",
                 "titleEn": "Puzzle Challenge",
-                "descAr": "اختبر ذكائك وحل الألغاز الصعبة بأسرع وقت ممكن.",
-                "descEn": "Test your IQ and solve challenging puzzles quickly.",
+                "genreAr": "ألغاز - ذكاء",
+                "genreEn": "Puzzle - IQ",
+                "size": "4.1 جيجا",
                 "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
             {
-                "titleAr": "سباق السرعة الخارق",
+                "titleAr": "Super Speed Racing",
                 "titleEn": "Super Speed Racing",
-                "descAr": "أقوى ألعاب السيارات والسباقات الحماسية.",
-                "descEn": "The most intense car and racing game.",
+                "genreAr": "سباقات - سيارات",
+                "genreEn": "Racing - Cars",
+                "size": "14.1 جيجا",
                 "image": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             },
             {
-                "titleAr": "حرب المجموعات",
+                "titleAr": "Group Warfare",
                 "titleEn": "Group Warfare",
-                "descAr": "لعبة أكشن قوية تجمع الأصدقاء في معارك ملحمية.",
-                "descEn": "An intense action game bringing friends into epic battles.",
+                "genreAr": "تصويب - أكشن",
+                "genreEn": "Shooter - Action",
+                "size": "51.6 جيجا",
                 "image": "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=500&auto=format&fit=crop&q=60",
+                "url": "#"
+            },
+            {
+                "titleAr": "Cyberpunk Nights",
+                "titleEn": "Cyberpunk Nights",
+                "genreAr": "عالم مفتوح - تقمص أدوار",
+                "genreEn": "Open World - RPG",
+                "size": "35.0 جيجا",
+                "image": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60",
+                "url": "#"
+            },
+            {
+                "titleAr": "Shadow Hunter",
+                "titleEn": "Shadow Hunter",
+                "genreAr": "اجواء مظلمة - مغامرات",
+                "genreEn": "Dark - Adventure",
+                "size": "11.2 جيجا",
+                "image": "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=500&auto=format&fit=crop&q=60",
                 "url": "#"
             }
         ];
@@ -449,6 +504,19 @@
         let currentLang = 'ar';
         let currentTheme = 'dark';
         let favorites = [];
+
+        // خلط الألعاب عشوائياً عند كل فتح للصفحة
+        function getRandomGames(arr) {
+            let shuffled = [...arr];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        let activeGames = getRandomGames(gamesData);
+        displayGames(activeGames);
 
         function displayGames(games) {
             const grid = document.getElementById('gamesGrid');
@@ -462,7 +530,7 @@
 
             games.forEach((game, index) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const desc = currentLang === 'ar' ? game.descAr : game.descEn;
+                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
                 const btnText = currentLang === 'ar' ? 'تحميل اللعبة' : 'Download Game';
                 const isFav = favorites.includes(index);
 
@@ -473,7 +541,10 @@
                     <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     <div class="game-content">
                         <h3>${title}</h3>
-                        <p>${desc}</p>
+                        <div class="game-info">
+                            <span class="game-genre">${genre}</span>
+                            <span class="game-size">${game.size}</span>
+                        </div>
                         <a href="${game.url}" target="_blank" class="download-btn">${btnText}</a>
                     </div>
                 `;
@@ -488,14 +559,15 @@
             } else {
                 favorites.push(index);
             }
-            displayGames(gamesData);
+            displayGames(activeGames);
         }
 
         function searchGames() {
             const query = document.getElementById('searchInput').value.toLowerCase();
-            const filtered = gamesData.filter(game => {
+            const filtered = activeGames.filter(game => {
                 const title = (currentLang === 'ar' ? game.titleAr : game.titleEn).toLowerCase();
-                return title.includes(query);
+                const genre = (currentLang === 'ar' ? game.genreAr : game.genreEn).toLowerCase();
+                return title.includes(query) || genre.includes(query);
             });
             displayGames(filtered);
         }
@@ -538,7 +610,7 @@
                 subTitle.innerText = 'Explore Games';
                 searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
             }
-            displayGames(gamesData);
+            displayGames(activeGames);
         }
 
         function handleLogin() {
@@ -557,9 +629,6 @@
             document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
             document.getElementById('loginAlert').style.display = 'none';
         }
-
-        // تشغيل عرض الألعاب فوراً
-        displayGames(gamesData);
     </script>
 </body>
 </html>
