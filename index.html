@@ -1174,6 +1174,9 @@
             const favBtn = document.getElementById('favBtn');
             const notifBtn = document.getElementById('notifBtn');
             
+            const notifModalTitle = document.getElementById('notifModalTitle');
+            const notifModalDesc = document.getElementById('notifModalDesc');
+            
             const sizeUnits = document.querySelectorAll('.size-unit');
 
             const fAll = document.getElementById('fAll');
@@ -1227,6 +1230,9 @@
                 loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
                 favBtn.title = 'Favorites';
                 notifBtn.title = 'Notifications';
+                
+                notifModalTitle.innerText = 'Notifications';
+                notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
                 
                 troubleshootBtnText.innerText = 'Troubleshooting & Tools';
                 tsPageTitle.innerText = 'Troubleshooting & Essential Tools Center';
@@ -1288,6 +1294,9 @@
                 loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
                 favBtn.title = 'المفضلة';
                 notifBtn.title = 'الإشعارات';
+                
+                notifModalTitle.innerText = 'الإشعارات';
+                notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
                 
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
                 tsPageTitle.innerText = 'مركز حل المشاكل والبرامج الأساسية';
