@@ -1,18 +1,11 @@
-[
-  {
-    "titleAr": "لعبة المغامرة الكبرى",
-    "titleEn": "Grand Adventure",
-    "descAr": "خوض مغامرة ممتعة ومثيرة في عوالم افتراضية رائعة.",
-    "descEn": "Embark on an exciting adventure in amazing virtual worlds.",
-    "image": "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=500&auto=format&fit=crop&q=60",
-    "url": "#"
-  },
-  {
-    "titleAr": "تحدي الذكاء والألغاز",
-    "titleEn": "Puzzle Challenge",
-    "descAr": "اختبر ذكائك وحل الألغاز الصعبة بأسرع وقت ممكن.",
-    "descEn": "Test your IQ and solve challenging puzzles quickly.",
-    "image": "https://images.unsplash.com/photo-1612287233002-b1d0ba12c5c2?w=500&auto=format&fit=crop&q=60",
-    "url": "#"
-  }
-]
+const gamesData = [
+            {
+                "titleAr": "اسم اللعبة بالعربي",
+                "titleEn": "Game Title In English",
+                "descAr": "وصف قصير للعبة بالعربي.",
+                "descEn": "Short description of the game in English.",
+                "image": "ضع_رابط_الصورة_مباشرة_هنا",
+                "url": "رابط_تحميل_اللعبة_أو_الصفحة"
+            },
+            // باقي الألعاب...
+        ];
