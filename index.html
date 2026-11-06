@@ -732,32 +732,37 @@
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
-                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز حل المشاكل والبرامج الأساسية</h2>
-                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.</p>
+                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">برامج تشغيل الالعاب وفك الضغط</h2>
+                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
             </div>
             <button class="back-to-home-btn" onclick="closeTroubleshootPage()" id="backBtn">العودة للألعاب</button>
         </div>
 
         <div class="tools-grid">
             <div class="tool-card">
-                <h3 id="tool1Title">DirectX All-In-One Runtimes</h3>
-                <p id="desc1">حزمة أساسية لا غنى عنها لحل مشاكل رسومات الألعاب، وعدم تشغيل اللعبة، ورسائل الخطأ الشهيرة (d3dcompiler, xinput).</p>
-                <a href="#" class="tool-link-btn" target="_blank" id="btn1">تحميل الحزمة الأساسية</a>
+                <h3 id="tool1Title">Visual C++</h3>
+                <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
+                <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-link-btn" target="_blank" id="btn1">تحميل Visual C++</a>
             </div>
             <div class="tool-card">
-                <h3 id="tool2Title">Visual C++ Redistributable AIO</h3>
-                <p id="desc2">يحل مشكلة ظهور رسالة الخطأ (0xc000007b) أو عدم قدرة اللعبة على الإقلاع بسبب نقص ملفات النظام البرمجية.</p>
-                <a href="#" class="tool-link-btn" target="_blank" id="btn2">تحميل الحزم البرمجية</a>
+                <h3 id="tool2Title">DirectX</h3>
+                <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
+                <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-link-btn" target="_blank" id="btn2">تحميل DirectX</a>
             </div>
             <div class="tool-card">
-                <h3 id="tool3Title">WinRAR / 7-Zip (برامج فك الضغط)</h3>
-                <p id="desc3">برامج مخصصة لفك ضغط الألعاب (ISO و RAR و ZIP) المرفوعة على الموقع بدون أخطاء أو ملفات تالفة أثناء التثبيت.</p>
-                <a href="#" class="tool-link-btn" target="_blank" id="btn3">تحميل برنامج فك الضغط</a>
+                <h3 id="tool3Title">.NET Framework</h3>
+                <p id="desc3">حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.</p>
+                <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-link-btn" target="_blank" id="btn3">تحميل .NET Framework</a>
             </div>
             <div class="tool-card">
-                <h3 id="tool4Title">NVIDIA / AMD Graphic Drivers</h3>
-                <p id="desc4">تحديث تعريف كرت الشاشة لأحدث إصدار لضمان أعلى أداء (FPS) وحل مشاكل التهنيج والتخطيط في الألعاب الضخمة.</p>
-                <a href="#" class="tool-link-btn" target="_blank" id="btn4">تحديث كرت الشاشة</a>
+                <h3 id="tool4Title">.NET Runtime</h3>
+                <p id="desc4">ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.</p>
+                <a href="https://dotnet.microsoft.com/en-us/download/dotnet" class="tool-link-btn" target="_blank" id="btn4">تحميل .NET Runtime</a>
+            </div>
+            <div class="tool-card" style="grid-column: 1 / -1;">
+                <h3 id="tool5Title">Winrar</h3>
+                <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.</p>
+                <a href="https://www.rarlab.com/download.htm" class="tool-link-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
             </div>
         </div>
     </div>
@@ -1208,14 +1213,17 @@
             const tool2Title = document.getElementById('tool2Title');
             const tool3Title = document.getElementById('tool3Title');
             const tool4Title = document.getElementById('tool4Title');
+            const tool5Title = document.getElementById('tool5Title');
             const desc1 = document.getElementById('desc1');
             const desc2 = document.getElementById('desc2');
             const desc3 = document.getElementById('desc3');
             const desc4 = document.getElementById('desc4');
+            const desc5 = document.getElementById('desc5');
             const btn1 = document.getElementById('btn1');
             const btn2 = document.getElementById('btn2');
             const btn3 = document.getElementById('btn3');
             const btn4 = document.getElementById('btn4');
+            const btn5 = document.getElementById('btn5');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -1235,8 +1243,8 @@
                 notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
                 
                 troubleshootBtnText.innerText = 'Troubleshooting & Tools';
-                tsPageTitle.innerText = 'Troubleshooting & Essential Tools Center';
-                tsPageSub.innerText = 'Essential software and runtimes required to run all PC games and fix crashes and black screen issues.';
+                tsPageTitle.innerText = 'Game Runtimes & Extractors';
+                tsPageSub.innerText = 'Essential software required to run all games efficiently and smoothly.';
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
 
@@ -1267,20 +1275,23 @@
                 specMid.innerText = '⚡ Mid-Range PC';
                 specHigh.innerText = '🔥 High-End / RTX';
 
-                tool1Title.innerText = 'DirectX All-In-One Runtimes';
-                tool2Title.innerText = 'Visual C++ Redistributable AIO';
-                tool3Title.innerText = 'WinRAR / 7-Zip Extractors';
-                tool4Title.innerText = 'NVIDIA / AMD Graphic Drivers';
+                tool1Title.innerText = 'Visual C++';
+                tool2Title.innerText = 'DirectX';
+                tool3Title.innerText = '.NET Framework';
+                tool4Title.innerText = '.NET Runtime';
+                tool5Title.innerText = 'Winrar';
 
-                desc1.innerText = 'Essential package for fixing game graphics errors, failure to launch, and famous error messages (d3dcompiler, xinput).';
-                desc2.innerText = 'Fixes error code (0xc000007b) or games failing to boot due to missing system runtime files.';
-                desc3.innerText = 'Tools designed to extract compressed game archives (ISO, RAR, ZIP) without errors or corrupt files.';
-                desc4.innerText = 'Update your graphics card driver to the latest version for maximum FPS and performance in heavy games.';
+                desc1.innerText = 'Essential runtime packages for fixing game boot errors and missing system files (0xc000007b).';
+                desc2.innerText = 'DirectX graphics library to ensure smooth graphics and prevent black screen issues.';
+                desc3.innerText = 'Microsoft framework required to run applications and games smoothly.';
+                desc4.innerText = 'Modern runtime files for .NET environment to support modern apps and games.';
+                desc5.innerText = 'The official and most popular tool to extract compressed game archives safely.';
 
-                btn1.innerText = 'Download Runtimes';
-                btn2.innerText = 'Download Packages';
-                btn3.innerText = 'Download Extractor';
-                btn4.innerText = 'Update GPU Driver';
+                btn1.innerText = 'Download Visual C++';
+                btn2.innerText = 'Download DirectX';
+                btn3.innerText = 'Download .NET Framework';
+                btn4.innerText = 'Download .NET Runtime';
+                btn5.innerText = 'Download Official Winrar';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -1299,8 +1310,8 @@
                 notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
                 
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
-                tsPageTitle.innerText = 'مركز حل المشاكل والبرامج الأساسية';
-                tsPageSub.innerText = 'أهم البرامج والحزم المطلوبة لتشغيل جميع ألعاب الكمبيوتر وحل مشاكل الكراش والشاشة السوداء.';
+                tsPageTitle.innerText = 'برامج تشغيل الالعاب وفك الضغط';
+                tsPageSub.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
 
@@ -1331,20 +1342,23 @@
                 specMid.innerText = '⚡ أجهزة متوسطة';
                 specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
 
-                tool1Title.innerText = 'DirectX All-In-One Runtimes';
-                tool2Title.innerText = 'Visual C++ Redistributable AIO';
-                tool3Title.innerText = 'WinRAR / 7-Zip (برامج فك الضغط)';
-                tool4Title.innerText = 'NVIDIA / AMD Graphic Drivers';
+                tool1Title.innerText = 'Visual C++';
+                tool2Title.innerText = 'DirectX';
+                tool3Title.innerText = '.NET Framework';
+                tool4Title.innerText = '.NET Runtime';
+                tool5Title.innerText = 'Winrar';
 
-                desc1.innerText = 'حزمة أساسية لا غنى عنها لحل مشاكل رسومات الألعاب، وعدم تشغيل اللعبة، ورسائل الخطأ الشهيرة (d3dcompiler, xinput).';
-                desc2.innerText = 'يحل مشكلة ظهور رسالة الخطأ (0xc000007b) أو عدم قدرة اللعبة على الإقلاع بسبب نقص ملفات النظام البرمجية.';
-                desc3.innerText = 'برامج مخصصة لفك ضغط الألعاب (ISO و RAR و ZIP) المرفوعة على الموقع بدون أخطاء أو ملفات تالفة أثناء التثبيت.';
-                desc4.innerText = 'تحديث تعريف كرت الشاشة لأحدث إصدار لضمان أعلى أداء (FPS) وحل مشاكل التهنيج والتخطيط في الألعاب الضخمة.';
+                desc1.innerText = 'حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).';
+                desc2.innerText = 'مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).';
+                desc3.innerText = 'حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.';
+                desc4.innerText = 'ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.';
+                desc5.innerText = 'البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.';
 
-                btn1.innerText = 'تحميل الحزمة الأساسية';
-                btn2.innerText = 'تحميل الحزم البرمجية';
-                btn3.innerText = 'تحميل برنامج فك الضغط';
-                btn4.innerText = 'تحديث كرت الشاشة';
+                btn1.innerText = 'تحميل Visual C++';
+                btn2.innerText = 'تحميل DirectX';
+                btn3.innerText = 'تحميل .NET Framework';
+                btn4.innerText = 'تحميل .NET Runtime';
+                btn5.innerText = 'تحميل Winrar الرسمي';
             }
             buildTrendingList();
             displayGames(activeGames);
