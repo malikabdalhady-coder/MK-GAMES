@@ -2579,7 +2579,20 @@ window.addEventListener('popstate', function(event) {
         document.getElementById('gameDetailsView').style.display = 'none';
         document.getElementById('troubleshootPageView').style.display = 'block';
     } else if (event.state.view === 'game') {
-        openGameDetails(event.state.id);
+        // لو الـ id موجود، افتح اللعبة دايركت بغض النظر عن اللغة الحالية
+        if (event.state.id) {
+            currentGameId = event.state.id;
+            const game = gamesData.find(g => g.id === event.state.id);
+            if (game) {
+                document.getElementById('mainHeaderView').style.display = 'none';
+                document.getElementById('troubleshootPageView').style.display = 'none';
+                document.getElementById('gameDetailsView').style.display = 'flex';
+                // تحديث بيانات اللعبة باللغة الجديدة الحالية
+                document.getElementById('detailsTitle').innerText = currentLang === 'ar' ? (game.titleAr || game.titleEn) : game.titleEn;
+                document.getElementById('detailsDesc').innerText = currentLang === 'ar' ? (game.descAr || game.descEn) : game.descEn;
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
     }
 });
 
