@@ -1282,6 +1282,7 @@
                 loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
             }
             generateCommentEmojiCaptcha();
+            checkNewNotificationsBadge();
         });
 
         let activeGames = [...gamesData];
@@ -1389,7 +1390,7 @@
             }
         }
 
-        // نظام تقييم النجوم وتخزينها في جدول ratings السحابي
+        // نظام تقييم النجوم (يدعم بلا تقييم، ويخطر الأدمن والمستخدمين)
         async function loadGameRatings(gameId) {
             const { data: ratingsData } = await supabaseClient
                 .from('ratings')
@@ -1414,7 +1415,7 @@
             const ratingText = document.getElementById('averageRatingText');
             const votesText = document.getElementById('totalVotesText');
             
-            if (ratingText) ratingText.innerText = `${avgRating} / 5`;
+            if (ratingText) ratingText.innerText = totalVotes > 0 ? `${avgRating} / 5` : (currentLang === 'ar' ? 'بلا تقييم' : 'No Rating');
             if (votesText) votesText.innerText = `(${totalVotes} ${currentLang === 'ar' ? 'تقييمات' : 'ratings'})`;
             
             renderInteractiveStars(gameId, userCurrentRating);
@@ -1569,7 +1570,7 @@
             displayGames(activeGames);
         }
 
-        // عرض الألعاب مع حساب متوسط التقييم على الغلاف من بره
+        // عرض الألعاب مع إظهار "بلا تقييم" إذا لم يتم تقييمها
         async function displayGames(games) {
             const grid = document.getElementById('gamesGrid');
             if (!grid) return;
@@ -1589,12 +1590,12 @@
                 const btnText = currentLang === 'ar' ? 'عرض اللعبة والتحميل' : 'View & Download';
                 const isFav = favorites.some(fav => fav.id === game.id);
 
-                let gameAvg = "0.0";
+                let ratingDisplay = currentLang === 'ar' ? 'بلا تقييم' : 'No Rating';
                 if (allRatings && allRatings.length > 0) {
                     const gameRates = allRatings.filter(r => r.game_id === game.id);
                     if (gameRates.length > 0) {
                         let sum = gameRates.reduce((acc, curr) => acc + parseFloat(curr.rating), 0);
-                        gameAvg = (sum / gameRates.length).toFixed(1);
+                        ratingDisplay = `⭐ ${(sum / gameRates.length).toFixed(1)} / 5`;
                     }
                 }
 
@@ -1611,10 +1612,8 @@
                             <span class="game-genre">${genre}</span>
                             <span class="game-size">${sizeStr}</span>
                         </div>
-                        <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; margin-bottom: 8px;">
-                            <span style="color: #f59e0b;">⭐</span>
-                            <strong style="color: var(--text-color);">${gameAvg}</strong>
-                            <span style="color: var(--secondary-text); font-size: 11px;">/ 5</span>
+                        <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; margin-bottom: 8px; color: #f59e0b; font-weight: bold;">
+                            ${ratingDisplay}
                         </div>
                         <button onclick="openGameDetails(${game.id})" class="download-btn">${btnText}</button>
                     </div>
@@ -2102,7 +2101,53 @@
             document.getElementById('authModal').style.display = 'flex'; 
         }
 
+        // فحص الإشعارات الجديدة وتغيير إيموحي الجرس إلى 🚨
+        async function checkNewNotificationsBadge() {
+            if (!currentUser) return;
+            const notifBtn = document.getElementById('notifBtn');
+            if (!notifBtn) return;
+
+            const { data: allComments } = await supabaseClient.from('comments').select('*');
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
+
+            let hasNew = false;
+            let lastCheckedTime = localStorage.getItem('mk_last_checked_notif') || '0';
+
+            // فحص التعليقات والمنشنات والتقييمات
+            if (allComments) {
+                allComments.forEach(c => {
+                    if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) hasNew = true;
+                    if (c.text && c.text.includes(currentUser.email) && c.user_email !== currentUser.email) hasNew = true;
+                    
+                    let parsedReplies = [];
+                    try { parsedReplies = c.replies ? JSON.parse(c.replies) : []; } catch(e) {}
+                    parsedReplies.forEach(r => {
+                        if (c.user_email === currentUser.email && r.userEmail !== currentUser.email) hasNew = true;
+                        if (r.text.includes(currentUser.email) && r.userEmail !== currentUser.email) hasNew = true;
+                    });
+                });
+            }
+
+            if (currentUser.email === ADMIN_EMAIL && allRatings && allRatings.length > 0) {
+                hasNew = true; // إشعار فوري للأدمن عند وجود أي تقييم
+            }
+
+            if (hasNew) {
+                notifBtn.innerText = '🚨';
+                notifBtn.style.animation = 'pulse 1.5s infinite';
+            } else {
+                notifBtn.innerText = '🔔';
+                notifBtn.style.animation = 'none';
+            }
+        }
+
         async function openNotifModal() {
+            const notifBtn = document.getElementById('notifBtn');
+            if(notifBtn) {
+                notifBtn.innerText = '🔔'; // يرجع طبيعي فور فتح الإشعارات
+                notifBtn.style.animation = 'none';
+            }
+
             const modalBody = document.getElementById('notifModalDesc');
             const modalTitle = document.getElementById('notifModalTitle');
             modalTitle.innerText = currentLang === 'ar' ? 'الإشعارات والمنشنات 🔔' : 'Notifications & Mentions 🔔';
@@ -2116,56 +2161,60 @@
             modalBody.innerHTML = currentLang === 'ar' ? 'جاري جلب الإشعارات...' : 'Loading notifications...';
             document.getElementById('notifModal').style.display = 'flex';
 
-            const { data: allComments, error } = await supabaseClient
-                .from('comments')
-                .select('*');
-
-            if (error || !allComments) {
-                modalBody.innerHTML = currentLang === 'ar' ? 'لا توجد إشعارات جديدة حالياً.' : 'No new notifications.';
-                return;
-            }
+            const { data: allComments } = await supabaseClient.from('comments').select('*');
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
 
             let notifications = [];
 
-            allComments.forEach(c => {
-                if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) {
+            // جلب إشعارات التقييمات للأدمن
+            if (currentUser.email === ADMIN_EMAIL && allRatings) {
+                allRatings.forEach(r => {
                     notifications.push({
-                        text: currentLang === 'ar' ? `💬 كتب تعليق جديد المستخدم: ${c.user_email}` : `💬 New comment by: ${c.user_email}`,
-                        date: c.date,
-                        gameId: c.game_id
+                        text: currentLang === 'ar' ? `⭐ قام المستخدم ${r.user_email} بتقييم لعبة (رقم ${r.game_id}) بـ ${r.rating} نجوم` : `⭐ User ${r.user_email} rated game #${r.game_id} with ${r.rating} stars`,
+                        date: 'حديث',
+                        gameId: r.game_id
                     });
-                }
-
-                if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL) {
-                    notifications.push({
-                        text: currentLang === 'ar' ? `✨ عمل لك منشن المستخدم ${c.user_email}` : `✨ ${c.user_email} mentioned you`,
-                        date: c.date,
-                        gameId: c.game_id
-                    });
-                }
-
-                let parsedReplies = [];
-                try {
-                    parsedReplies = c.replies ? JSON.parse(c.replies) : [];
-                } catch(e) { parsedReplies = []; }
-
-                parsedReplies.forEach(r => {
-                    if (c.user_email === currentUser.email && r.userEmail !== currentUser.email) {
-                        notifications.push({
-                            text: currentLang === 'ar' ? `💬 رد عليك المستخدم ${r.userEmail} في تعليقك` : `💬 ${r.userEmail} replied to your comment`,
-                            date: r.date,
-                            gameId: c.game_id
-                        });
-                    }
-                    if (r.text.includes(currentUser.email) && r.userEmail !== currentUser.email) {
-                        notifications.push({
-                            text: currentLang === 'ar' ? `✨ عمل لك منشن داخل رد المستخدم ${r.userEmail}` : `✨ ${r.userEmail} mentioned you in a reply`,
-                            date: r.date,
-                            gameId: c.game_id
-                        });
-                    }
                 });
-            });
+            }
+
+            if (allComments) {
+                allComments.forEach(c => {
+                    if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) {
+                        notifications.push({
+                            text: currentLang === 'ar' ? `💬 كتب تعليق جديد المستخدم: ${c.user_email}` : `💬 New comment by: ${c.user_email}`,
+                            date: c.date,
+                            gameId: c.game_id
+                        });
+                    }
+
+                    if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL) {
+                        notifications.push({
+                            text: currentLang === 'ar' ? `✨ عمل لك منشن المستخدم ${c.user_email}` : `✨ ${c.user_email} mentioned you`,
+                            date: c.date,
+                            gameId: c.game_id
+                        });
+                    }
+
+                    let parsedReplies = [];
+                    try { parsedReplies = c.replies ? JSON.parse(c.replies) : []; } catch(e) {}
+
+                    parsedReplies.forEach(r => {
+                        if (c.user_email === currentUser.email && r.userEmail !== currentUser.email) {
+                            notifications.push({
+                                text: currentLang === 'ar' ? `💬 رد عليك المستخدم ${r.userEmail} في تعليقك` : `💬 ${r.userEmail} replied to your comment`,
+                                date: r.date,
+                                gameId: c.game_id
+                            });
+                        }
+                        if (r.text.includes(currentUser.email) && r.userEmail !== currentUser.email) {
+                            notifications.push({
+                                text: currentLang === 'ar' ? `✨ عمل لك منشن داخل رد المستخدم ${r.userEmail}` : `✨ ${r.userEmail} mentioned you in a reply`,
+                                date: r.game_id
+                            });
+                        }
+                    });
+                });
+            }
 
             if (notifications.length === 0) {
                 modalBody.innerHTML = currentLang === 'ar' ? '📭 لا توجد إشعارات أو منشنات جديدة لك حتى الآن.' : '📭 No new notifications or mentions yet.';
@@ -2220,13 +2269,13 @@
                 inputContainer.style.display = 'block';
             }
 
-            const { data: allComments, error } = await supabaseClient
+            const { data: allComments } = await supabaseClient
                 .from('comments')
                 .select('*')
                 .eq('game_id', gameId)
                 .order('id', { ascending: false });
 
-            if (error || !allComments || allComments.length === 0) {
+            if (!allComments || allComments.length === 0) {
                 commentsList.innerHTML = `<p style="color:var(--secondary-text); font-size:14px;">${currentLang === 'ar' ? 'لا توجد تعليقات بعد. كن أول من يضيف تعليقاً!' : 'No comments yet. Be the first to comment!'}</p>`;
                 return;
             }
@@ -2238,11 +2287,7 @@
                 const canDelete = currentUser && (currentUser.email === ADMIN_EMAIL || currentUser.email === c.user_email);
 
                 let parsedReplies = [];
-                try {
-                    parsedReplies = c.replies ? JSON.parse(c.replies) : [];
-                } catch(err) {
-                    parsedReplies = [];
-                }
+                try { parsedReplies = c.replies ? JSON.parse(c.replies) : []; } catch(err) { parsedReplies = []; }
 
                 let repliesHTML = '';
                 if (parsedReplies && parsedReplies.length > 0) {
@@ -2309,9 +2354,7 @@
                 replies: JSON.stringify([])
             };
 
-            const { error } = await supabaseClient
-                .from('comments')
-                .insert([newComment]);
+            const { error } = await supabaseClient.from('comments').insert([newComment]);
 
             if (error) {
                 alert(currentLang === 'ar' ? '⚠️ حدث خطأ أثناء نشر التعليق' : '⚠️ Error posting comment');
@@ -2334,20 +2377,12 @@
             const replyText = document.getElementById('replyInput_' + commentId).value.trim();
             if (!replyText) return;
 
-            const { data: currentRows } = await supabaseClient
-                .from('comments')
-                .select('*')
-                .eq('id', commentId);
-
+            const { data: currentRows } = await supabaseClient.from('comments').select('*').eq('id', commentId);
             if (!currentRows || currentRows.length === 0) return;
 
             let targetComment = currentRows[0];
             let parsedReplies = [];
-            try {
-                parsedReplies = targetComment.replies ? JSON.parse(targetComment.replies) : [];
-            } catch(e) {
-                parsedReplies = [];
-            }
+            try { parsedReplies = targetComment.replies ? JSON.parse(targetComment.replies) : []; } catch(e) { parsedReplies = []; }
 
             parsedReplies.push({
                 userEmail: currentUser.email,
@@ -2355,53 +2390,26 @@
                 date: new Date().toLocaleString(currentLang === 'ar' ? 'ar-EG' : 'en-US')
             });
 
-            const { error } = await supabaseClient
-                .from('comments')
-                .update({ replies: JSON.stringify(parsedReplies) })
-                .eq('id', commentId);
-
-            if (!error) {
-                loadCommentsCloud(currentGameId);
-            }
+            await supabaseClient.from('comments').update({ replies: JSON.stringify(parsedReplies) }).eq('id', commentId);
+            loadCommentsCloud(currentGameId);
         }
 
         async function deleteCommentCloud(commentId) {
-            const { error } = await supabaseClient
-                .from('comments')
-                .delete()
-                .eq('id', commentId);
-
-            if (!error) {
-                loadCommentsCloud(currentGameId);
-            }
+            await supabaseClient.from('comments').delete().eq('id', commentId);
+            loadCommentsCloud(currentGameId);
         }
 
         async function deleteReplyCloud(commentId, replyIndex) {
-            const { data: currentRows } = await supabaseClient
-                .from('comments')
-                .select('*')
-                .eq('id', commentId);
-
+            const { data: currentRows } = await supabaseClient.from('comments').select('*').eq('id', commentId);
             if (!currentRows || currentRows.length === 0) return;
 
             let targetComment = currentRows[0];
             let parsedReplies = [];
-            try {
-                parsedReplies = targetComment.replies ? JSON.parse(targetComment.replies) : [];
-            } catch(e) {
-                parsedReplies = [];
-            }
+            try { parsedReplies = targetComment.replies ? JSON.parse(targetComment.replies) : []; } catch(e) { parsedReplies = []; }
 
             parsedReplies.splice(replyIndex, 1);
-
-            const { error } = await supabaseClient
-                .from('comments')
-                .update({ replies: JSON.stringify(parsedReplies) })
-                .eq('id', commentId);
-
-            if (!error) {
-                loadCommentsCloud(currentGameId);
-            }
+            await supabaseClient.from('comments').update({ replies: JSON.stringify(parsedReplies) }).eq('id', commentId);
+            loadCommentsCloud(currentGameId);
         }
     </script>
 </body>
