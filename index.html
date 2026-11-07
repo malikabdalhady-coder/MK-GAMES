@@ -1806,7 +1806,6 @@
             const box3Title = document.getElementById('box3Title');
             const box4Title = document.getElementById('box4Title');
 
-            // عناصر تعليقات صفحة اللعبة والتقييمات
             const noticeTitle = document.getElementById('noticeTitle');
             const noticeText = document.getElementById('noticeText');
             const rateThisGameText = document.getElementById('rateThisGameText');
@@ -1817,7 +1816,7 @@
             const postCommentBtn = document.getElementById('postCommentBtn');
             const loginNoticeText = document.getElementById('loginNoticeText');
 
-            // تصنيفات فلاتر الألعاب
+            // فلاتر التصنيفات
             const fAll = document.getElementById('fAll');
             const fAction = document.getElementById('fAction');
             const fAdv = document.getElementById('fAdv');
@@ -1927,7 +1926,6 @@
                 postCommentBtn.innerText = 'Post Comment 🚀';
                 loginNoticeText.innerText = 'Please log in first to be able to add comments, attach images, and rate games (visitors can only read comments).';
 
-                // ترجمة فلاتر التصنيفات والأحجام وقوة الجهاز
                 fAll.innerText = 'All';
                 fAction.innerText = 'Action';
                 fAdv.innerText = 'Adventure';
@@ -2045,7 +2043,6 @@
                 postCommentBtn.innerText = 'نشر التعليق 🚀';
                 loginNoticeText.innerText = 'يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور وتقييم الألعاب (الزوار يمكنهم قراءة التعليقات فقط).';
 
-                // إرجاع فلاتر التصنيفات والأحجام وقوة الجهاز للعربية
                 fAll.innerText = 'الكل';
                 fAction.innerText = 'الأكشن';
                 fAdv.innerText = 'مغامرات';
@@ -2299,9 +2296,13 @@
                 allRatings.forEach(r => {
                     let uniqueKey = 'r_' + r.id;
                     if (!dismissedIds.includes(uniqueKey)) {
+                        // جلب اسم اللعبة الحقيقي بدل الـ ID
+                        const targetGame = gamesData.find(g => g.id === r.game_id);
+                        const gameTitleName = targetGame ? (currentLang === 'ar' ? targetGame.titleAr : targetGame.titleEn) : (currentLang === 'ar' ? `لعبة رقم ${r.game_id}` : `Game #${r.game_id}`);
+
                         notifications.push({
                             key: uniqueKey,
-                            text: currentLang === 'ar' ? `⭐ قام المستخدم ${r.user_email} بتقييم لعبة (رقم ${r.game_id}) بـ ${r.rating} نجوم` : `⭐ User ${r.user_email} rated game #${r.game_id} with ${r.rating} stars`,
+                            text: currentLang === 'ar' ? `⭐ قام المستخدم ${r.user_email} بتقييم لعبة (${gameTitleName}) بـ ${r.rating} نجوم` : `⭐ User ${r.user_email} rated (${gameTitleName}) with ${r.rating} stars`,
                             date: currentLang === 'ar' ? 'حديث' : 'Recent',
                             gameId: r.game_id
                         });
@@ -2543,7 +2544,7 @@
 
         async function deleteReplyCloud(commentId, replyIndex) {
             const { data: currentRows } = await supabaseClient.from('comments').select('*').eq('id', commentId);
-            if (!currentRows || currentRows.length === 0) return;
+            if (!currentRows || currentRows.length ===0) return;
 
             let targetComment = currentRows[0];
             let parsedReplies = [];
