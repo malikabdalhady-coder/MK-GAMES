@@ -1303,6 +1303,7 @@
             }
             generateCommentEmojiCaptcha();
             checkNewNotificationsBadge();
+         
         });
 
         let activeGames = [...gamesData];
@@ -1342,11 +1343,15 @@
                 container.appendChild(b);
             });
         }
+function openGameDetails(id) {
+    currentGameId = id;
+    
+    // حط السطر ده هنا في أول الدالة:
+    history.pushState({view: 'game', id: id}, '', '#game-' + id);
 
-        function openGameDetails(id) {
-            currentGameId = id;
-            const game = gamesData.find(g => g.id === id);
-            if (!game) return;
+    const game = gamesData.find(g => g.id === id);
+    if (!game) return;
+    // ... وباقي السطور تحتها زي ما هي
 
             const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
             const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
@@ -1512,11 +1517,15 @@
             displayGames(activeGames);
         }
 
-        function openTroubleshootPage() {
-            document.getElementById('mainHeaderView').style.display = 'none';
-            document.getElementById('gameDetailsView').style.display = 'none';
-            document.getElementById('troubleshootPageView').style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+       function openTroubleshootPage() {
+    // تسجيل الحالة في تاريخ المتصفح
+    history.pushState({view: 'troubleshoot'}, '', '#troubleshoot');
+
+    document.getElementById('mainHeaderView').style.display = 'none';
+    document.getElementById('gameDetailsView').style.display = 'none';
+    document.getElementById('troubleshootPageView').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
         }
 
         function goHome() {
