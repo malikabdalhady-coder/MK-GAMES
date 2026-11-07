@@ -546,56 +546,6 @@
         .section-card ul { padding-right: 20px; }
         [dir="ltr"] .section-card ul { padding-right: 0; padding-left: 20px; }
 
-        /* تنسيق كارت المودات والباتشات */
-        .mods-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 10px;
-        }
-
-        .mod-item-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(168, 85, 247, 0.05);
-            border: 1px solid rgba(168, 85, 247, 0.25);
-            padding: 14px 20px;
-            border-radius: 12px;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .mod-item-info h4 {
-            margin: 0 0 4px;
-            color: var(--text-color);
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        .mod-item-info p {
-            margin: 0;
-            font-size: 13px;
-            color: var(--secondary-text);
-        }
-
-        .mod-download-btn {
-            background: linear-gradient(135deg, #06b6d4, #3b82f6);
-            color: white;
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 13px;
-            white-space: nowrap;
-            transition: 0.2s;
-        }
-
-        .mod-download-btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
-        }
-
         .video-container {
             position: relative;
             width: 100%;
@@ -1039,12 +989,6 @@
             </div>
         </div>
 
-        <!-- قسم المودات والباتشات الخاص باللعبة -->
-        <div class="section-card" id="modsSectionCard">
-            <h3 id="modsSectionTitle">🛠️ المودات والتعريبات والتحديثات (Mods & Patches)</h3>
-            <div class="mods-grid" id="gameModsContainer"></div>
-        </div>
-
         <div class="section-card">
             <h3 id="reqTitle">💻 متطلبات التشغيل الدنيا (Minimum Requirements)</h3>
             <ul id="detailsReqs">
@@ -1298,22 +1242,6 @@
                 "specs": "low",
                 "image": "https://m.media-amazon.com/images/I/51o547LavLL._AC_UF894,1000_QL80_.jpg",
                 "directUrl": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file",
-                "mods": [
-                    {
-                        "titleAr": "🎙️ ملف التعليق العربي (رؤوف خليف)",
-                        "titleEn": "🎙️ Arabic Commentary (Raouf Khaleef)",
-                        "descAr": "تعليق عربي كامل بصوت رؤوف خليف بجودة صوت عالية نادرة.",
-                        "descEn": "Full Arabic commentary by Raouf Khaleef with high audio clarity.",
-                        "url": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file"
-                    },
-                    {
-                        "titleAr": "⚽ باتش أحدث الانتقالات والأطقم 2026",
-                        "titleEn": "⚽ Latest Transfers & Kits Patch 2026",
-                        "descAr": "تحديث جميع الفرق، الانتقالات الصيفية والشتوية، والأطقم والشعارات الحديثة.",
-                        "descEn": "Updates all teams, summer/winter transfers, and modern kits/logos.",
-                        "url": "#"
-                    }
-                ],
                 "langs": [
                     { "nameAr": "العربية", "nameEn": "Arabic", "menu": true, "audio": true, "subtitles": true },
                     { "nameAr": "الإنجليزية", "nameEn": "English", "menu": true, "audio": true, "subtitles": true },
@@ -1433,7 +1361,6 @@
             document.getElementById('storageVal').innerText = reqs.storage;
 
             renderLanguagesTable(game);
-            renderModsSection(game);
 
             const favBtn = document.getElementById('detailsFavBtn');
             favBtn.innerHTML = isFav ? '❤️' : '🤍';
@@ -1467,34 +1394,6 @@
                     `;
                     langTableBody.appendChild(tr);
                 });
-            }
-        }
-
-        function renderModsSection(game) {
-            const container = document.getElementById('gameModsContainer');
-            const card = document.getElementById('modsSectionCard');
-            container.innerHTML = '';
-
-            if (game.mods && game.mods.length > 0) {
-                card.style.display = 'block';
-                game.mods.forEach(mod => {
-                    const title = currentLang === 'ar' ? mod.titleAr : mod.titleEn;
-                    const desc = currentLang === 'ar' ? mod.descAr : mod.descEn;
-                    const btnText = currentLang === 'ar' ? 'تحميل المود ⬇️' : 'Download Mod ⬇️';
-
-                    const item = document.createElement('div');
-                    item.className = 'mod-item-box';
-                    item.innerHTML = `
-                        <div class="mod-item-info">
-                            <h4>${title}</h4>
-                            <p>${desc}</p>
-                        </div>
-                        <a href="${mod.url}" target="_blank" class="mod-download-btn">${btnText}</a>
-                    `;
-                    container.appendChild(item);
-                });
-            } else {
-                card.style.display = 'none';
             }
         }
 
@@ -1878,7 +1777,6 @@
             const detailsHeaderTitle = document.getElementById('detailsHeaderTitle');
             const backToGamesText = document.getElementById('backToGamesText');
             const aboutTitle = document.getElementById('aboutTitle');
-            const modsSectionTitle = document.getElementById('modsSectionTitle');
             const reqTitle = document.getElementById('reqTitle');
             const vidTitle = document.getElementById('vidTitle');
             const vidSub = document.getElementById('vidSub');
@@ -1997,7 +1895,6 @@
                 detailsHeaderTitle.innerText = 'Game Details';
                 backToGamesText.innerText = 'Back to Games';
                 aboutTitle.innerText = '📖 About the Game';
-                modsSectionTitle.innerText = '🛠️ Mods, Patches & Updates';
                 langSectionTitle.innerText = '🌐 Supported Languages';
                 thLang.innerText = 'Language';
                 thMenu.innerText = 'Menus';
@@ -2115,7 +2012,6 @@
                 detailsHeaderTitle.innerText = 'تفاصيل اللعبة';
                 backToGamesText.innerText = 'العودة للألعاب';
                 aboutTitle.innerText = '📖 نبذة عن اللعبة';
-                modsSectionTitle.innerText = '🛠️ المودات والتعريبات والتحديثات (Mods & Patches)';
                 langSectionTitle.innerText = '🌐 اللغات المدعومة في اللعبة';
                 thLang.innerText = 'اللغة';
                 thMenu.innerText = 'القوائم (Menus)';
