@@ -2564,8 +2564,25 @@
 
             parsedReplies.splice(replyIndex, 1);
             await supabaseClient.from('comments').update({ replies: JSON.stringify(parsedReplies) }).eq('id', commentId);
-            loadCommentsCloud(currentGameId);
-        }
-    </script>
+loadCommentsCloud(currentGameId);
+}
+
+// مراقب زر الرجوع (Back) في المتصفح لضمان تجربة مستخدم سلسة
+window.addEventListener('popstate', function(event) {
+    if (!event.state || event.state.view === 'home') {
+        document.getElementById('troubleshootPageView').style.display = 'none';
+        document.getElementById('gameDetailsView').style.display = 'none';
+        document.getElementById('mainHeaderView').style.display = 'block';
+        currentGameId = null;
+    } else if (event.state.view === 'troubleshoot') {
+        document.getElementById('mainHeaderView').style.display = 'none';
+        document.getElementById('gameDetailsView').style.display = 'none';
+        document.getElementById('troubleshootPageView').style.display = 'block';
+    } else if (event.state.view === 'game') {
+        openGameDetails(event.state.id);
+    }
+});
+
+</script>
 </body>
 </html>
