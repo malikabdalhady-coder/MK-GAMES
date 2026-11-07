@@ -336,6 +336,8 @@
             z-index: 10;
         }
 
+        [dir="ltr"] .fav-card-btn { left: auto; right: 10px; }
+
         .game-img-container { cursor: pointer; overflow: hidden; }
 
         .game-img {
@@ -478,6 +480,8 @@
             transition: 0.2s;
             z-index: 10;
         }
+
+        [dir="ltr"] .game-fav-btn { left: auto; right: 20px; }
 
         .game-meta-info {
             padding: 30px;
@@ -807,6 +811,8 @@
             color: var(--secondary-text);
         }
 
+        [dir="ltr"] .close-modal { left: auto; right: 20px; }
+
         .modal-content input {
             width: 100%;
             padding: 12px;
@@ -1017,7 +1023,7 @@
 
         <!-- قسم التعليقات المطور والتقييمات تحت روابط التحميل مباشرة -->
         <div class="section-card" id="commentsSection">
-            <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;" id="noticeBoxContainer">
                 <h4 style="margin: 0 0 5px 0; color: #a855f7;" id="noticeTitle">⚠️ تنبيه هام للاعبين:</h4>
                 <p style="margin: 0; font-size: 14px; color: var(--secondary-text);" id="noticeText">
                     إذا واجهتك أي مشكلة في تشغيل اللعبة أو التحميل، يرجى ترك تعليق أدناه وإرفاق صورة للمشكلة إن أمكن لنتمكن من مساعدتك فوراً!
@@ -1049,7 +1055,7 @@
                             <input type="file" id="commentImage" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
                         </label>
                         <!-- زر المنشن السريع للأدمن -->
-                        <button type="button" onclick="insertAdminMention()" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer;">
+                        <button type="button" onclick="insertAdminMention()" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer;" id="adminMentionBtn">
                             @ منشن للأدمن
                         </button>
                     </div>
@@ -1209,14 +1215,13 @@
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="notifModalTitle">الإشعارات</h3>
             <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-                <button onclick="clearAllNotifications()" style="background: rgba(239, 68, 68, 0.1); color: var(--error-color); border: 1px solid var(--error-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; width: auto; margin:0;">حذف الكل 🗑️</button>
+                <button onclick="clearAllNotifications()" id="clearAllNotifBtn" style="background: rgba(239, 68, 68, 0.1); color: var(--error-color); border: 1px solid var(--error-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; width: auto; margin:0;">حذف الكل 🗑️</button>
             </div>
             <div id="notifModalDesc" style="color: var(--secondary-text); max-height: 300px; overflow-y: auto; text-align: right;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</div>
         </div>
     </div>
 
     <script>
-        // إعدادات اتصال Supabase السحابي
         const SUPABASE_URL = 'https://bfevxqxykalheqguvxlx.supabase.co';
         const SUPABASE_KEY = 'sb_publishable_Ea-N9k82FsTJUMsTohQR-Q_RZminLbB';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -1274,7 +1279,6 @@
         const ADMIN_PASS = "M@lik 910";
         let uploadedImageBase64 = "";
 
-        // متغيرات كابتشا الأشكال
         let targetCommentEmoji = '⚽';
         let userChosenCommentEmoji = '';
 
@@ -1768,6 +1772,7 @@
             const showAllBtn = document.getElementById('showAllBtn');
             const favBtn = document.getElementById('favBtn');
             const notifBtn = document.getElementById('notifBtn');
+            const clearAllNotifBtn = document.getElementById('clearAllNotifBtn');
             
             const detailsHeaderTitle = document.getElementById('detailsHeaderTitle');
             const backToGamesText = document.getElementById('backToGamesText');
@@ -1800,6 +1805,50 @@
             const box2Title = document.getElementById('box2Title');
             const box3Title = document.getElementById('box3Title');
             const box4Title = document.getElementById('box4Title');
+
+            // عناصر تعليقات صفحة اللعبة والتقييمات
+            const noticeTitle = document.getElementById('noticeTitle');
+            const noticeText = document.getElementById('noticeText');
+            const rateThisGameText = document.getElementById('rateThisGameText');
+            const commentsTitle = document.getElementById('commentsTitle');
+            const commentText = document.getElementById('commentText');
+            const attachImgText = document.getElementById('attachImgText');
+            const adminMentionBtn = document.getElementById('adminMentionBtn');
+            const postCommentBtn = document.getElementById('postCommentBtn');
+            const loginNoticeText = document.getElementById('loginNoticeText');
+
+            // تصنيفات فلاتر الألعاب
+            const fAll = document.getElementById('fAll');
+            const fAction = document.getElementById('fAction');
+            const fAdv = document.getElementById('fAdv');
+            const fOpen = document.getElementById('fOpen');
+            const fRpg = document.getElementById('fRpg');
+            const fSurv = document.getElementById('fSurv');
+            const fHor = document.getElementById('fHor');
+            const fStrat = document.getElementById('fStrat');
+            const fSteal = document.getElementById('fSteal');
+            const fPuz = document.getElementById('fPuz');
+            const fSim = document.getElementById('fSim');
+            const fSport = document.getElementById('fSport');
+            const fSuper = document.getElementById('fSuper');
+            const fSci = document.getElementById('fSci');
+            const fIndie = document.getElementById('fIndie');
+            const fCoop = document.getElementById('fCoop');
+            const f2d = document.getElementById('f2d');
+            const f3d = document.getElementById('f3d');
+            const fFpp = document.getElementById('fFpp');
+            const fTpp = document.getElementById('fTpp');
+            const fClassic = document.getElementById('fClassic');
+
+            const s1 = document.getElementById('s1');
+            const s2 = document.getElementById('s2');
+            const s3 = document.getElementById('s3');
+            const s4 = document.getElementById('s4');
+            const s5 = document.getElementById('s5');
+
+            const specLow = document.getElementById('specLow');
+            const specMid = document.getElementById('specMid');
+            const specHigh = document.getElementById('specHigh');
 
             const desc1 = document.getElementById('desc1');
             const desc2 = document.getElementById('desc2');
@@ -1836,6 +1885,7 @@
                 loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
                 favBtn.title = 'Favorites';
                 notifBtn.title = 'Notifications';
+                clearAllNotifBtn.innerText = 'Clear All 🗑️';
                 
                 notifModalTitle.innerText = 'Notifications';
                 notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
@@ -1866,6 +1916,49 @@
                 dlSub.innerText = 'Choose your preferred download method:';
                 directText.innerText = 'Direct Download (MediaFire)';
                 torrentText.innerText = 'Torrent Download (Magnet)';
+
+                noticeTitle.innerText = '⚠️ Important Notice for Gamers:';
+                noticeText.innerText = 'If you encounter any issue running the game or downloading, please leave a comment below and attach a screenshot if possible so we can help you immediately!';
+                rateThisGameText.innerText = '🌟 Rate this game:';
+                commentsTitle.innerText = '💬 Gamers Comments & Inquiries';
+                commentText.placeholder = 'Write your comment or inquiry here...';
+                attachImgText.innerText = 'Attach issue image';
+                adminMentionBtn.innerText = '@ Mention Admin';
+                postCommentBtn.innerText = 'Post Comment 🚀';
+                loginNoticeText.innerText = 'Please log in first to be able to add comments, attach images, and rate games (visitors can only read comments).';
+
+                // ترجمة فلاتر التصنيفات والأحجام وقوة الجهاز
+                fAll.innerText = 'All';
+                fAction.innerText = 'Action';
+                fAdv.innerText = 'Adventure';
+                fOpen.innerText = 'Open World';
+                fRpg.innerText = 'RPG';
+                fSurv.innerText = 'Survival';
+                fHor.innerText = 'Horror';
+                fStrat.innerText = 'Strategy';
+                fSteal.innerText = 'Stealth';
+                fPuz.innerText = 'Puzzle';
+                fSim.innerText = 'Simulation';
+                fSport.innerText = 'Sports';
+                fSuper.innerText = 'Superhero';
+                fSci.innerText = 'Sci-Fi';
+                fIndie.innerText = 'Indie';
+                fCoop.innerText = 'Co-op';
+                f2d.innerText = '2D';
+                f3d.innerText = '3D';
+                fFpp.innerText = 'FPP';
+                fTpp.innerText = 'TPP';
+                fClassic.innerText = 'Classic';
+
+                s1.innerHTML = '&lt; 1 <span class="size-unit">GB</span>';
+                s2.innerHTML = '1 - 5 <span class="size-unit">GB</span>';
+                s3.innerHTML = '5 - 10 <span class="size-unit">GB</span>';
+                s4.innerHTML = '10 - 20 <span class="size-unit">GB</span>';
+                s5.innerHTML = '20+ <span class="size-unit">GB</span>';
+
+                specLow.innerText = '💻 Low / Light Specs';
+                specMid.innerText = '⚡ Mid Specs';
+                specHigh.innerText = '🔥 High Specs / Heavy';
 
                 box1Title.innerText = 'Game Runtimes & Extractors';
                 box1Desc.innerText = 'Essential software required to run all games efficiently and smoothly.';
@@ -1910,6 +2003,7 @@
                 loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
                 favBtn.title = 'المفضلة';
                 notifBtn.title = 'الإشعارات';
+                clearAllNotifBtn.innerText = 'حذف الكل 🗑️';
                 
                 notifModalTitle.innerText = 'الإشعارات';
                 notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
@@ -1941,6 +2035,49 @@
                 directText.innerText = 'تحميل مباشر (MediaFire)';
                 torrentText.innerText = 'تحميل تورنت (Torrent Magnet)';
 
+                noticeTitle.innerText = '⚠️ تنبيه هام للاعبين:';
+                noticeText.innerText = 'إذا واجهتك أي مشكلة في تشغيل اللعبة أو التحميل، يرجى ترك تعليق أدناه وإرفاق صورة للمشكلة إن أمكن لنتمكن من مساعدتك فوراً!';
+                rateThisGameText.innerText = '🌟 قيم هذه اللعبة:';
+                commentsTitle.innerText = '💬 تعليقات اللاعبين واستفساراتهم';
+                commentText.placeholder = 'اكتب تعليقك أو استفسارك هنا...';
+                attachImgText.innerText = 'إرفاق صورة للمشكلة';
+                adminMentionBtn.innerText = '@ منشن للأدمن';
+                postCommentBtn.innerText = 'نشر التعليق 🚀';
+                loginNoticeText.innerText = 'يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور وتقييم الألعاب (الزوار يمكنهم قراءة التعليقات فقط).';
+
+                // إرجاع فلاتر التصنيفات والأحجام وقوة الجهاز للعربية
+                fAll.innerText = 'الكل';
+                fAction.innerText = 'الأكشن';
+                fAdv.innerText = 'مغامرات';
+                fOpen.innerText = 'العالم المفتوح';
+                fRpg.innerText = 'RPG';
+                fSurv.innerText = 'النجاة';
+                fHor.innerText = 'الرعب';
+                fStrat.innerText = 'الاستراتيجية';
+                fSteal.innerText = 'التخفي';
+                fPuz.innerText = 'الألغاز';
+                fSim.innerText = 'المحاكاة';
+                fSport.innerText = 'الرياضة';
+                fSuper.innerText = 'الأبطال الخارقين';
+                fSci.innerText = 'الخيال العلمي';
+                fIndie.innerText = 'المستقلين';
+                fCoop.innerText = 'جماعية';
+                f2d.innerText = 'ثنائية الأبعاد';
+                f3d.innerText = 'ثلاثية الأبعاد';
+                fFpp.innerText = 'المنظور الأول';
+                fTpp.innerText = 'المنظور الثالث';
+                fClassic.innerText = 'كلاسيك';
+
+                s1.innerHTML = '&lt; 1 <span class="size-unit">جيجا</span>';
+                s2.innerHTML = '1 - 5 <span class="size-unit">جيجا</span>';
+                s3.innerHTML = '5 - 10 <span class="size-unit">جيجا</span>';
+                s4.innerHTML = '10 - 20 <span class="size-unit">جيجا</span>';
+                s5.innerHTML = '20+ <span class="size-unit">جيجا</span>';
+
+                specLow.innerText = '💻 أجهزة ضعيفة / خفيفة';
+                specMid.innerText = '⚡ أجهزة متوسطة';
+                specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
+
                 box1Title.innerText = 'برامج تشغيل الالعاب وفك الضغط';
                 box1Desc.innerText = 'برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.';
                 box2Title.innerText = 'قبل تثبيت اي لعبة :';
@@ -1948,7 +2085,7 @@
                 box4Title.innerText = 'اللعبة يحدث لها كراش و تغلق :';
 
                 desc1.innerText = 'حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).';
-                desc2.innerText = 'مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء وااختفاء ملفات (d3dcompiler).';
+                desc2.innerText = 'مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).';
                 desc3.innerText = 'حزم مايكروسوفت الأساسية المطلوبة لتشغيل التطبيقات والألعاب واللغات البرمجية المرتبطة بها.';
                 desc4.innerText = 'ملفات التشغيل الحديثة لبيئة .NET لضمان توافق الألعاب والبرامج المبنية على التقنيات الحديثة.';
                 desc5.innerText = 'البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء أو ملفات تالفة.';
@@ -2165,7 +2302,7 @@
                         notifications.push({
                             key: uniqueKey,
                             text: currentLang === 'ar' ? `⭐ قام المستخدم ${r.user_email} بتقييم لعبة (رقم ${r.game_id}) بـ ${r.rating} نجوم` : `⭐ User ${r.user_email} rated game #${r.game_id} with ${r.rating} stars`,
-                            date: 'حديث',
+                            date: currentLang === 'ar' ? 'حديث' : 'Recent',
                             gameId: r.game_id
                         });
                     }
@@ -2215,18 +2352,16 @@
             }
         }
 
-        // حذف إشعار فردي بالـ X
         function dismissNotification(key) {
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
             if (!dismissedIds.includes(key)) {
                 dismissedIds.push(key);
                 localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds));
             }
-            openNotifModal(); // إعادة تحميل نافذة الإشعارات
+            openNotifModal();
             checkNewNotificationsBadge();
         }
 
-        // حذف كل الإشعارات دفعة واحدة
         async function clearAllNotifications() {
             const { data: allComments } = await supabaseClient.from('comments').select('*');
             const { data: allRatings } = await supabaseClient.from('ratings').select('*');
