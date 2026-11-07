@@ -1345,6 +1345,7 @@
 
         function openGameDetails(id) {
             currentGameId = id;
+            history.pushState({view: 'game', id: id}, '', '#game-' + id);
             const game = gamesData.find(g => g.id === id);
             if (!game) return;
 
