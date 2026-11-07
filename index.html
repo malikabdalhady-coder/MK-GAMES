@@ -377,7 +377,7 @@
             align-items: center;
             font-size: 13px;
             color: var(--secondary-text);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .game-genre { color: #a855f7; font-weight: 600; }
@@ -1015,13 +1015,25 @@
             </div>
         </div>
 
-        <!-- قسم التعليقات المطور تحت روابط التحميل مباشرة -->
+        <!-- قسم التعليقات المطور والتقييمات تحت روابط التحميل مباشرة -->
         <div class="section-card" id="commentsSection">
             <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
                 <h4 style="margin: 0 0 5px 0; color: #a855f7;" id="noticeTitle">⚠️ تنبيه هام للاعبين:</h4>
                 <p style="margin: 0; font-size: 14px; color: var(--secondary-text);" id="noticeText">
                     إذا واجهتك أي مشكلة في تشغيل اللعبة أو التحميل، يرجى ترك تعليق أدناه وإرفاق صورة للمشكلة إن أمكن لنتمكن من مساعدتك فوراً!
                 </p>
+            </div>
+
+            <!-- مكان تقييم النجوم التفاعلي (مشترط تسجيل الدخول) -->
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; background: rgba(255, 255, 255, 0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 20px;">
+                <div>
+                    <h4 style="margin: 0 0 5px 0; color: var(--text-color); font-size: 15px;" id="rateThisGameText">🌟 قيم هذه اللعبة:</h4>
+                    <div id="starRatingContainer" style="display: flex; gap: 6px; font-size: 24px; cursor: pointer;"></div>
+                </div>
+                <div style="text-align: left;">
+                    <span id="averageRatingText" style="font-weight: bold; color: #f59e0b; font-size: 18px; display: block;">0.0 / 5</span>
+                    <span id="totalVotesText" style="color: var(--secondary-text); font-size: 12px;">(0 تقييمات)</span>
+                </div>
             </div>
 
             <h3 id="commentsTitle" style="margin-bottom: 15px;">💬 تعليقات اللاعبين واستفساراتهم</h3>
@@ -1031,19 +1043,31 @@
                 <textarea id="commentText" placeholder="اكتب تعليقك أو استفسارك هنا..." style="width: 100%; height: 80px; padding: 12px; border-radius: 10px; border: 1px solid var(--secondary-text); background: var(--bg-color); color: var(--text-color); resize: vertical; margin-bottom: 10px; box-sizing: border-box;"></textarea>
                 
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                    <label style="cursor: pointer; background: var(--bg-color); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--secondary-text); font-size: 13px;">
-                        📷 <span id="attachImgText">إرفاق صورة للمشكلة</span>
-                        <input type="file" id="commentImage" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
-                    </label>
+                    <div style="display: flex; gap: 8px; align-items: center;">
+                        <label style="cursor: pointer; background: var(--bg-color); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--secondary-text); font-size: 13px;">
+                            📷 <span id="attachImgText">إرفاق صورة للمشكلة</span>
+                            <input type="file" id="commentImage" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
+                        </label>
+                        <!-- زر المنشن السريع للأدمن -->
+                        <button type="button" onclick="insertAdminMention()" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer;">
+                            @ منشن للأدمن
+                        </button>
+                    </div>
                     <span id="imageNamePreview" style="font-size: 12px; color: #a855f7;"></span>
                     
                     <button onclick="postComment()" class="download-btn" style="width: auto; padding: 8px 25px;" id="postCommentBtn">نشر التعليق 🚀</button>
+                </div>
+
+                <!-- كابتشا الأشكال السهلة للأطفال والزوار -->
+                <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                    <span id="commentCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
+                    <div id="commentCaptchaBtns" style="display: flex; gap: 6px;"></div>
                 </div>
             </div>
 
             <!-- رسالة تسجيل الدخول -->
             <div id="loginToCommentNotice" style="display: none; text-align: center; padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; color: var(--error-color);">
-                🔒 <span id="loginNoticeText">يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور (الزوار يمكنهم قراءة التعليقات فقط).</span>
+                🔒 <span id="loginNoticeText">يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور وتقييم الألعاب (الزوار يمكنهم قراءة التعليقات فقط).</span>
             </div>
 
             <!-- قائمة عرض التعليقات -->
@@ -1247,17 +1271,56 @@
         const ADMIN_PASS = "M@lik 910";
         let uploadedImageBase64 = "";
 
+        // متغيرات كابتشا الأشكال
+        let targetCommentEmoji = '⚽';
+        let userChosenCommentEmoji = '';
+
         window.addEventListener('DOMContentLoaded', () => {
             if (currentUser) {
                 const loginBtn = document.getElementById('loginBtn');
                 loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
                 loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
             }
+            generateCommentEmojiCaptcha();
         });
 
         let activeGames = [...gamesData];
         displayGames(activeGames);
         buildTrendingList();
+
+        function insertAdminMention() {
+            const commentInput = document.getElementById('commentText');
+            commentInput.value += ` @${ADMIN_EMAIL} `;
+            commentInput.focus();
+        }
+
+        function generateCommentEmojiCaptcha() {
+            const emojis = ['⚽', '❤️', '⭐', '🚗'];
+            targetCommentEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            const txtEl = document.getElementById('commentCaptchaText');
+            if(txtEl) {
+                txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetCommentEmoji}` : `🎮 Click matching emoji: ${targetCommentEmoji}`;
+            }
+            
+            const container = document.getElementById('commentCaptchaBtns');
+            if(!container) return;
+            container.innerHTML = '';
+            
+            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+            shuffled.forEach(icon => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.innerText = icon;
+                b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
+                b.onclick = function() {
+                    Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
+                    b.style.borderColor = '#10b981';
+                    userChosenCommentEmoji = icon;
+                };
+                container.appendChild(b);
+            });
+        }
 
         function openGameDetails(id) {
             currentGameId = id;
@@ -1302,7 +1365,9 @@
             document.getElementById('troubleshootPageView').style.display = 'none';
             document.getElementById('gameDetailsView').style.display = 'flex';
 
+            loadGameRatings(id);
             loadCommentsCloud(id);
+            generateCommentEmojiCaptcha();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -1322,6 +1387,109 @@
                     langTableBody.appendChild(tr);
                 });
             }
+        }
+
+        // نظام تقييم النجوم وتخزينها في جدول ratings السحابي
+        async function loadGameRatings(gameId) {
+            const { data: ratingsData } = await supabaseClient
+                .from('ratings')
+                .select('*')
+                .eq('game_id', gameId);
+
+            let avgRating = 0;
+            let totalVotes = 0;
+            let userCurrentRating = 0;
+
+            if (ratingsData && ratingsData.length > 0) {
+                totalVotes = ratingsData.length;
+                let sum = ratingsData.reduce((acc, curr) => acc + parseFloat(curr.rating), 0);
+                avgRating = (sum / totalVotes).toFixed(1);
+
+                if (currentUser) {
+                    let found = ratingsData.find(r => r.user_email === currentUser.email);
+                    if (found) userCurrentRating = parseFloat(found.rating);
+                }
+            }
+
+            const ratingText = document.getElementById('averageRatingText');
+            const votesText = document.getElementById('totalVotesText');
+            
+            if (ratingText) ratingText.innerText = `${avgRating} / 5`;
+            if (votesText) votesText.innerText = `(${totalVotes} ${currentLang === 'ar' ? 'تقييمات' : 'ratings'})`;
+            
+            renderInteractiveStars(gameId, userCurrentRating);
+        }
+
+        function renderInteractiveStars(gameId, userRating) {
+            const container = document.getElementById('starRatingContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            for (let i = 1; i <= 5; i++) {
+                const starWrapper = document.createElement('span');
+                starWrapper.style.position = 'relative';
+                starWrapper.style.display = 'inline-block';
+                starWrapper.style.cursor = currentUser ? 'pointer' : 'not-allowed';
+
+                let starChar = '★';
+                let starColor = 'var(--secondary-text)';
+
+                if (i <= userRating) {
+                    starColor = '#f59e0b';
+                } else if (i - 0.5 === userRating) {
+                    starColor = '#f59e0b';
+                }
+
+                starWrapper.innerHTML = `<span style="color: ${starColor}; font-size: 24px;">${starChar}</span>`;
+
+                if (currentUser) {
+                    starWrapper.onclick = async function(e) {
+                        const rect = this.getBoundingClientRect();
+                        const clickX = e.clientX - rect.left;
+                        const isHalf = clickX < rect.width / 2;
+                        const finalRating = isHalf ? i - 0.5 : i;
+
+                        await submitRatingToCloud(gameId, finalRating);
+                    };
+                } else {
+                    starWrapper.onclick = function() {
+                        alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول أولاً لتقييم اللعبة!' : '⚠️ You must log in first to rate the game!');
+                        openAuthModal();
+                    };
+                }
+
+                container.appendChild(starWrapper);
+            }
+        }
+
+        async function submitRatingToCloud(gameId, ratingValue) {
+            if (!currentUser) {
+                alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول لتقييم اللعبة!' : '⚠️ You must log in to rate the game!');
+                openAuthModal();
+                return;
+            }
+
+            const { data: existing } = await supabaseClient
+                .from('ratings')
+                .select('*')
+                .eq('game_id', gameId)
+                .eq('user_email', currentUser.email);
+
+            if (existing && existing.length > 0) {
+                await supabaseClient
+                    .from('ratings')
+                    .update({ rating: ratingValue })
+                    .eq('game_id', gameId)
+                    .eq('user_email', currentUser.email);
+            } else {
+                await supabaseClient
+                    .from('ratings')
+                    .insert([{ game_id: gameId, user_email: currentUser.email, rating: ratingValue }]);
+            }
+
+            alert(currentLang === 'ar' ? `✅ تم تسجيل تقييمك (${ratingValue} نجوم) بنجاح!` : `✅ Your rating (${ratingValue} stars) submitted successfully!`);
+            loadGameRatings(gameId);
+            displayGames(activeGames);
         }
 
         function openTroubleshootPage() {
@@ -1401,7 +1569,8 @@
             displayGames(activeGames);
         }
 
-        function displayGames(games) {
+        // عرض الألعاب مع حساب متوسط التقييم على الغلاف من بره
+        async function displayGames(games) {
             const grid = document.getElementById('gamesGrid');
             if (!grid) return;
             grid.innerHTML = '';
@@ -1411,12 +1580,23 @@
                 return;
             }
 
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
+
             games.forEach((game) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
                 const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
                 const btnText = currentLang === 'ar' ? 'عرض اللعبة والتحميل' : 'View & Download';
                 const isFav = favorites.some(fav => fav.id === game.id);
+
+                let gameAvg = "0.0";
+                if (allRatings && allRatings.length > 0) {
+                    const gameRates = allRatings.filter(r => r.game_id === game.id);
+                    if (gameRates.length > 0) {
+                        let sum = gameRates.reduce((acc, curr) => acc + parseFloat(curr.rating), 0);
+                        gameAvg = (sum / gameRates.length).toFixed(1);
+                    }
+                }
 
                 const card = document.createElement('div');
                 card.className = 'game-card';
@@ -1430,6 +1610,11 @@
                         <div class="game-info">
                             <span class="game-genre">${genre}</span>
                             <span class="game-size">${sizeStr}</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; margin-bottom: 8px;">
+                            <span style="color: #f59e0b;">⭐</span>
+                            <strong style="color: var(--text-color);">${gameAvg}</strong>
+                            <span style="color: var(--secondary-text); font-size: 11px;">/ 5</span>
                         </div>
                         <button onclick="openGameDetails(${game.id})" class="download-btn">${btnText}</button>
                     </div>
@@ -1638,34 +1823,6 @@
             const step4_3 = document.getElementById('step4_3');
             const supportNoticeText = document.getElementById('supportNoticeText');
 
-            const fAll = document.getElementById('fAll');
-            const fAction = document.getElementById('fAction');
-            const fAdv = document.getElementById('fAdv');
-            const fOpen = document.getElementById('fOpen');
-            const fRpg = document.getElementById('fRpg');
-            const fSurv = document.getElementById('fSurv');
-            const fHor = document.getElementById('fHor');
-            const fStrat = document.getElementById('fStrat');
-            const fSteal = document.getElementById('fSteal');
-            const fPuz = document.getElementById('fPuz');
-            const fSim = document.getElementById('fSim');
-            const fSport = document.getElementById('fSport');
-            const fSuper = document.getElementById('fSuper');
-            const fSci = document.getElementById('fSci');
-            const fIndie = document.getElementById('fIndie');
-            const fCoop = document.getElementById('fCoop');
-            const f2d = document.getElementById('f2d');
-            const f3d = document.getElementById('f3d');
-            const fFpp = document.getElementById('fFpp');
-            const fTpp = document.getElementById('fTpp');
-            const fClassic = document.getElementById('fClassic');
-
-            const specLow = document.getElementById('specLow');
-            const specMid = document.getElementById('specMid');
-            const specHigh = document.getElementById('specHigh');
-
-            const sizeUnits = document.querySelectorAll('.size-unit');
-
             if (currentLang === 'ar') {
                 currentLang = 'en';
                 htmlRoot.setAttribute('lang', 'en');
@@ -1738,35 +1895,8 @@
                 step4_3.innerText = 'Review the game page and installation guide from the attached video.';
                 supportNoticeText.innerText = '💬 In case of any issues or inquiries, please contact us via our social accounts below and we will be happy to help!';
 
-                fAll.innerText = 'All';
-                fAction.innerText = 'Action';
-                fAdv.innerText = 'Adventure';
-                fOpen.innerText = 'Open World';
-                fRpg.innerText = 'RPG';
-                fSurv.innerText = 'Survival';
-                fHor.innerText = 'Horror';
-                fStrat.innerText = 'Strategy';
-                fSteal.innerText = 'Stealth';
-                fPuz.innerText = 'Puzzle';
-                fSim.innerText = 'Simulation';
-                fSport.innerText = 'Sports';
-                fSuper.innerText = 'Superhero';
-                fSci.innerText = 'Sci-Fi';
-                fIndie.innerText = 'Indie';
-                fCoop.innerText = 'Co-op';
-                f2d.innerText = '2D';
-                f3d.innerText = '3D';
-                fFpp.innerText = 'FPP';
-                fTpp.innerText = 'TPP';
-                fClassic.innerText = 'Classic';
-
-                specLow.innerText = '💻 Low Spec / Light PCs';
-                specMid.innerText = '⚡ Mid Spec PCs';
-                specHigh.innerText = '🔥 High Spec / High Graphics';
-
                 backBtn.innerText = 'Back to Games';
                 showAllBtn.innerText = 'Show All Games';
-                sizeUnits.forEach(el => el.innerText = 'GB');
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -1839,35 +1969,8 @@
                 step4_3.innerText = 'مراجعة صفحة اللعبة و كيفية تثبيتها من الفيديو المرفق والشروحات الخاصة بها.';
                 supportNoticeText.innerText = '💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!';
 
-                fAll.innerText = 'الكل';
-                fAction.innerText = 'الأكشن';
-                fAdv.innerText = 'مغامرات';
-                fOpen.innerText = 'العالم المفتوح';
-                fRpg.innerText = 'RPG';
-                fSurv.innerText = 'النجاة';
-                fHor.innerText = 'الرعب';
-                fStrat.innerText = 'الاستراتيجية';
-                fSteal.innerText = 'التخفي';
-                fPuz.innerText = 'الألغاز';
-                fSim.innerText = 'المحاكاة';
-                fSport.innerText = 'الرياضة';
-                fSuper.innerText = 'الأبطال الخارقين';
-                fSci.innerText = 'الخيال العلمي';
-                fIndie.innerText = 'المستقلين';
-                fCoop.innerText = 'جماعية';
-                f2d.innerText = 'ثنائية الأبعاد';
-                f3d.innerText = 'ثلاثية الأبعاد';
-                fFpp.innerText = 'المنظور الأول';
-                fTpp.innerText = 'المنظور الثالث';
-                fClassic.innerText = 'كلاسيك';
-
-                specLow.innerText = '💻 أجهزة ضعيفة / خفيفة';
-                specMid.innerText = '⚡ أجهزة متوسطة';
-                specHigh.innerText = '🔥 أجهزة قوية / عالية الجرافيك';
-
                 backBtn.innerText = 'العودة للألعاب';
                 showAllBtn.innerText = 'عرض كل الألعاب';
-                sizeUnits.forEach(el => el.innerText = 'جيجا');
             }
             buildTrendingList();
             displayGames(activeGames);
@@ -1899,7 +2002,6 @@
             }
         }
 
-        // دوال المصادقة السحابية الآمنة مع Supabase
         async function handleAuthSubmit() {
             const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value.trim();
@@ -1922,7 +2024,6 @@
                 return;
             }
 
-            // حماية صارمة لإيميل الأدمن الحقيقي
             if (email === ADMIN_EMAIL) {
                 if (password !== ADMIN_PASS) {
                     errorBox.innerText = currentLang === 'ar' ? '❌ كلمة مرور الأدمن غير صحيحة!' : '❌ Incorrect Admin password!';
@@ -1939,15 +2040,13 @@
             }
 
             if (isSignUpMode) {
-                // منع إنشاء حساب جديد بإيميل الأدمن
                 if (email === ADMIN_EMAIL) {
                     errorBox.innerText = currentLang === 'ar' ? '⚠️ هذا البريد مخصص للأدمن ولا يمكن التسجيل به كحساب عادي!' : '⚠️ This email is reserved for Admin!';
                     errorBox.style.display = 'block';
                     return;
                 }
 
-                // التحقق هل الإيميل مسجل مسبقاً في جدول users السحابي
-                const { data: existingUsers, error: checkError } = await supabaseClient
+                const { data: existingUsers } = await supabaseClient
                     .from('users')
                     .select('*')
                     .eq('email', email);
@@ -1958,7 +2057,6 @@
                     return;
                 }
 
-                // حفظ المستخدم الجديد في قاعدة البيانات السحابية
                 const { error: insertError } = await supabaseClient
                     .from('users')
                     .insert([{ email: email, password: password }]);
@@ -1974,7 +2072,6 @@
                 setTimeout(() => { toggleAuthMode(); }, 1500);
 
             } else {
-                // تسجيل الدخول بالبحث في قاعدة البيانات السحابية
                 const { data: foundUsers, error: loginError } = await supabaseClient
                     .from('users')
                     .select('*')
@@ -2005,7 +2102,87 @@
             document.getElementById('authModal').style.display = 'flex'; 
         }
 
-        function openNotifModal() { document.getElementById('notifModal').style.display = 'flex'; }
+        async function openNotifModal() {
+            const modalBody = document.getElementById('notifModalDesc');
+            const modalTitle = document.getElementById('notifModalTitle');
+            modalTitle.innerText = currentLang === 'ar' ? 'الإشعارات والمنشنات 🔔' : 'Notifications & Mentions 🔔';
+            
+            if (!currentUser) {
+                modalBody.innerHTML = currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول لعرض إشعاراتك والمنشنات الخاصة بك.' : '⚠️ You must log in to view notifications and mentions.';
+                document.getElementById('notifModal').style.display = 'flex';
+                return;
+            }
+
+            modalBody.innerHTML = currentLang === 'ar' ? 'جاري جلب الإشعارات...' : 'Loading notifications...';
+            document.getElementById('notifModal').style.display = 'flex';
+
+            const { data: allComments, error } = await supabaseClient
+                .from('comments')
+                .select('*');
+
+            if (error || !allComments) {
+                modalBody.innerHTML = currentLang === 'ar' ? 'لا توجد إشعارات جديدة حالياً.' : 'No new notifications.';
+                return;
+            }
+
+            let notifications = [];
+
+            allComments.forEach(c => {
+                if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) {
+                    notifications.push({
+                        text: currentLang === 'ar' ? `💬 كتب تعليق جديد المستخدم: ${c.user_email}` : `💬 New comment by: ${c.user_email}`,
+                        date: c.date,
+                        gameId: c.game_id
+                    });
+                }
+
+                if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL) {
+                    notifications.push({
+                        text: currentLang === 'ar' ? `✨ عمل لك منشن المستخدم ${c.user_email}` : `✨ ${c.user_email} mentioned you`,
+                        date: c.date,
+                        gameId: c.game_id
+                    });
+                }
+
+                let parsedReplies = [];
+                try {
+                    parsedReplies = c.replies ? JSON.parse(c.replies) : [];
+                } catch(e) { parsedReplies = []; }
+
+                parsedReplies.forEach(r => {
+                    if (c.user_email === currentUser.email && r.userEmail !== currentUser.email) {
+                        notifications.push({
+                            text: currentLang === 'ar' ? `💬 رد عليك المستخدم ${r.userEmail} في تعليقك` : `💬 ${r.userEmail} replied to your comment`,
+                            date: r.date,
+                            gameId: c.game_id
+                        });
+                    }
+                    if (r.text.includes(currentUser.email) && r.userEmail !== currentUser.email) {
+                        notifications.push({
+                            text: currentLang === 'ar' ? `✨ عمل لك منشن داخل رد المستخدم ${r.userEmail}` : `✨ ${r.userEmail} mentioned you in a reply`,
+                            date: r.date,
+                            gameId: c.game_id
+                        });
+                    }
+                });
+            });
+
+            if (notifications.length === 0) {
+                modalBody.innerHTML = currentLang === 'ar' ? '📭 لا توجد إشعارات أو منشنات جديدة لك حتى الآن.' : '📭 No new notifications or mentions yet.';
+            } else {
+                let htmlList = '<div style="display:flex; flex-direction:column; gap:10px; text-align:right; max-height:300px; overflow-y:auto;">';
+                notifications.forEach(n => {
+                    htmlList += `
+                        <div onclick="closeModals(); openGameDetails(${n.gameId});" style="background:rgba(168, 85, 247, 0.1); padding:10px; border-radius:8px; border:1px solid rgba(168, 85, 247, 0.3); cursor:pointer;">
+                            <p style="margin:0 0 4px; font-weight:bold; font-size:13px; color:var(--text-color);">🔔 ${n.text}</p>
+                            <span style="font-size:11px; color:var(--secondary-text);">${n.date}</span>
+                        </div>
+                    `;
+                });
+                htmlList += '</div>';
+                modalBody.innerHTML = htmlList;
+            }
+        }
         
         function closeModals() {
             document.getElementById('authModal').style.display = 'none';
@@ -2017,7 +2194,6 @@
             document.getElementById('authPassword').value = '';
         }
 
-        /* كود إدارة التعليقات السحابية المطور (تظهر للجميع وتدعم الأدمن والردود) */
         function previewSelectedImage(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
@@ -2044,7 +2220,6 @@
                 inputContainer.style.display = 'block';
             }
 
-            // جلب التعليقات من جدول Supabase السحابي الخاص باللعبة
             const { data: allComments, error } = await supabaseClient
                 .from('comments')
                 .select('*')
@@ -2116,6 +2291,12 @@
         }
 
         async function postComment() {
+            if (userChosenCommentEmoji !== targetCommentEmoji) {
+                alert(currentLang === 'ar' ? '❌ يرجى اختيار الرمز المطابق المطلوب في الكابتشا أولاً!' : '❌ Please select the matching emoji in captcha first!');
+                generateCommentEmojiCaptcha();
+                return;
+            }
+
             const text = document.getElementById('commentText').value.trim();
             if (!text && !uploadedImageBase64) return;
 
@@ -2140,6 +2321,7 @@
             document.getElementById('commentText').value = '';
             uploadedImageBase64 = '';
             document.getElementById('imageNamePreview').innerText = '';
+            generateCommentEmojiCaptcha();
             loadCommentsCloud(currentGameId);
         }
 
@@ -2152,7 +2334,6 @@
             const replyText = document.getElementById('replyInput_' + commentId).value.trim();
             if (!replyText) return;
 
-            // جلب التعليق الحالي أولاً
             const { data: currentRows } = await supabaseClient
                 .from('comments')
                 .select('*')
