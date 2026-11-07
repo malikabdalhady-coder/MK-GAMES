@@ -1208,7 +1208,10 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="notifModalTitle">الإشعارات</h3>
-            <p id="notifModalDesc" style="color: var(--secondary-text); margin-top: 15px;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</p>
+            <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
+                <button onclick="clearAllNotifications()" style="background: rgba(239, 68, 68, 0.1); color: var(--error-color); border: 1px solid var(--error-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; width: auto; margin:0;">حذف الكل 🗑️</button>
+            </div>
+            <div id="notifModalDesc" style="color: var(--secondary-text); max-height: 300px; overflow-y: auto; text-align: right;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</div>
         </div>
     </div>
 
@@ -1390,7 +1393,6 @@
             }
         }
 
-        // نظام تقييم النجوم (يدعم بلا تقييم، ويخطر الأدمن والمستخدمين)
         async function loadGameRatings(gameId) {
             const { data: ratingsData } = await supabaseClient
                 .from('ratings')
@@ -1570,7 +1572,6 @@
             displayGames(activeGames);
         }
 
-        // عرض الألعاب مع إظهار "بلا تقييم" إذا لم يتم تقييمها
         async function displayGames(games) {
             const grid = document.getElementById('gamesGrid');
             if (!grid) return;
@@ -2101,7 +2102,6 @@
             document.getElementById('authModal').style.display = 'flex'; 
         }
 
-        // فحص الإشعارات الجديدة وتغيير إيموحي الجرس إلى 🚨
         async function checkNewNotificationsBadge() {
             if (!currentUser) return;
             const notifBtn = document.getElementById('notifBtn');
@@ -2111,41 +2111,32 @@
             const { data: allRatings } = await supabaseClient.from('ratings').select('*');
 
             let hasNew = false;
-            let lastCheckedTime = localStorage.getItem('mk_last_checked_notif') || '0';
+            let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
 
-            // فحص التعليقات والمنشنات والتقييمات
             if (allComments) {
                 allComments.forEach(c => {
-                    if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) hasNew = true;
-                    if (c.text && c.text.includes(currentUser.email) && c.user_email !== currentUser.email) hasNew = true;
-                    
-                    let parsedReplies = [];
-                    try { parsedReplies = c.replies ? JSON.parse(c.replies) : []; } catch(e) {}
-                    parsedReplies.forEach(r => {
-                        if (c.user_email === currentUser.email && r.userEmail !== currentUser.email) hasNew = true;
-                        if (r.text.includes(currentUser.email) && r.userEmail !== currentUser.email) hasNew = true;
-                    });
+                    if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL && !dismissedIds.includes('c_' + c.id)) hasNew = true;
+                    if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL && !dismissedIds.includes('c_' + c.id)) hasNew = true;
                 });
             }
 
-            if (currentUser.email === ADMIN_EMAIL && allRatings && allRatings.length > 0) {
-                hasNew = true; // إشعار فوري للأدمن عند وجود أي تقييم
+            if (currentUser.email === ADMIN_EMAIL && allRatings) {
+                allRatings.forEach(r => {
+                    if (!dismissedIds.includes('r_' + r.id)) hasNew = true;
+                });
             }
 
             if (hasNew) {
                 notifBtn.innerText = '🚨';
-                notifBtn.style.animation = 'pulse 1.5s infinite';
             } else {
                 notifBtn.innerText = '🔔';
-                notifBtn.style.animation = 'none';
             }
         }
 
         async function openNotifModal() {
             const notifBtn = document.getElementById('notifBtn');
             if(notifBtn) {
-                notifBtn.innerText = '🔔'; // يرجع طبيعي فور فتح الإشعارات
-                notifBtn.style.animation = 'none';
+                notifBtn.innerText = '🔔';
             }
 
             const modalBody = document.getElementById('notifModalDesc');
@@ -2165,72 +2156,88 @@
             const { data: allRatings } = await supabaseClient.from('ratings').select('*');
 
             let notifications = [];
+            let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
 
-            // جلب إشعارات التقييمات للأدمن
             if (currentUser.email === ADMIN_EMAIL && allRatings) {
                 allRatings.forEach(r => {
-                    notifications.push({
-                        text: currentLang === 'ar' ? `⭐ قام المستخدم ${r.user_email} بتقييم لعبة (رقم ${r.game_id}) بـ ${r.rating} نجوم` : `⭐ User ${r.user_email} rated game #${r.game_id} with ${r.rating} stars`,
-                        date: 'حديث',
-                        gameId: r.game_id
-                    });
+                    let uniqueKey = 'r_' + r.id;
+                    if (!dismissedIds.includes(uniqueKey)) {
+                        notifications.push({
+                            key: uniqueKey,
+                            text: currentLang === 'ar' ? `⭐ قام المستخدم ${r.user_email} بتقييم لعبة (رقم ${r.game_id}) بـ ${r.rating} نجوم` : `⭐ User ${r.user_email} rated game #${r.game_id} with ${r.rating} stars`,
+                            date: 'حديث',
+                            gameId: r.game_id
+                        });
+                    }
                 });
             }
 
             if (allComments) {
                 allComments.forEach(c => {
-                    if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) {
-                        notifications.push({
-                            text: currentLang === 'ar' ? `💬 كتب تعليق جديد المستخدم: ${c.user_email}` : `💬 New comment by: ${c.user_email}`,
-                            date: c.date,
-                            gameId: c.game_id
-                        });
-                    }
-
-                    if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL) {
-                        notifications.push({
-                            text: currentLang === 'ar' ? `✨ عمل لك منشن المستخدم ${c.user_email}` : `✨ ${c.user_email} mentioned you`,
-                            date: c.date,
-                            gameId: c.game_id
-                        });
-                    }
-
-                    let parsedReplies = [];
-                    try { parsedReplies = c.replies ? JSON.parse(c.replies) : []; } catch(e) {}
-
-                    parsedReplies.forEach(r => {
-                        if (c.user_email === currentUser.email && r.userEmail !== currentUser.email) {
+                    let uniqueKey = 'c_' + c.id;
+                    if (!dismissedIds.includes(uniqueKey)) {
+                        if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) {
                             notifications.push({
-                                text: currentLang === 'ar' ? `💬 رد عليك المستخدم ${r.userEmail} في تعليقك` : `💬 ${r.userEmail} replied to your comment`,
-                                date: r.date,
+                                key: uniqueKey,
+                                text: currentLang === 'ar' ? `💬 كتب تعليق جديد المستخدم: ${c.user_email}` : `💬 New comment by: ${c.user_email}`,
+                                date: c.date,
+                                gameId: c.game_id
+                            });
+                        } else if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL) {
+                            notifications.push({
+                                key: uniqueKey,
+                                text: currentLang === 'ar' ? `✨ عمل لك منشن المستخدم ${c.user_email}` : `✨ ${c.user_email} mentioned you`,
+                                date: c.date,
                                 gameId: c.game_id
                             });
                         }
-                        if (r.text.includes(currentUser.email) && r.userEmail !== currentUser.email) {
-                            notifications.push({
-                                text: currentLang === 'ar' ? `✨ عمل لك منشن داخل رد المستخدم ${r.userEmail}` : `✨ ${r.userEmail} mentioned you in a reply`,
-                                date: r.game_id
-                            });
-                        }
-                    });
+                    }
                 });
             }
 
             if (notifications.length === 0) {
                 modalBody.innerHTML = currentLang === 'ar' ? '📭 لا توجد إشعارات أو منشنات جديدة لك حتى الآن.' : '📭 No new notifications or mentions yet.';
             } else {
-                let htmlList = '<div style="display:flex; flex-direction:column; gap:10px; text-align:right; max-height:300px; overflow-y:auto;">';
+                let htmlList = '<div style="display:flex; flex-direction:column; gap:10px;">';
                 notifications.forEach(n => {
                     htmlList += `
-                        <div onclick="closeModals(); openGameDetails(${n.gameId});" style="background:rgba(168, 85, 247, 0.1); padding:10px; border-radius:8px; border:1px solid rgba(168, 85, 247, 0.3); cursor:pointer;">
-                            <p style="margin:0 0 4px; font-weight:bold; font-size:13px; color:var(--text-color);">🔔 ${n.text}</p>
-                            <span style="font-size:11px; color:var(--secondary-text);">${n.date}</span>
+                        <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(168, 85, 247, 0.1); padding:10px; border-radius:8px; border:1px solid rgba(168, 85, 247, 0.3);">
+                            <div onclick="closeModals(); openGameDetails(${n.gameId});" style="cursor:pointer; flex:1;">
+                                <p style="margin:0 0 4px; font-weight:bold; font-size:13px; color:var(--text-color);">🔔 ${n.text}</p>
+                                <span style="font-size:11px; color:var(--secondary-text);">${n.date}</span>
+                            </div>
+                            <button onclick="dismissNotification('${n.key}')" style="background:none; border:none; color:var(--error-color); font-size:16px; cursor:pointer; padding:5px 10px;" title="حذف الإشعار">❌</button>
                         </div>
                     `;
                 });
                 htmlList += '</div>';
                 modalBody.innerHTML = htmlList;
             }
+        }
+
+        // حذف إشعار فردي بالـ X
+        function dismissNotification(key) {
+            let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
+            if (!dismissedIds.includes(key)) {
+                dismissedIds.push(key);
+                localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds));
+            }
+            openNotifModal(); // إعادة تحميل نافذة الإشعارات
+            checkNewNotificationsBadge();
+        }
+
+        // حذف كل الإشعارات دفعة واحدة
+        async function clearAllNotifications() {
+            const { data: allComments } = await supabaseClient.from('comments').select('*');
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
+            let dismissedIds = [];
+
+            if (allComments) allComments.forEach(c => dismissedIds.push('c_' + c.id));
+            if (allRatings) allRatings.forEach(r => dismissedIds.push('r_' + r.id));
+
+            localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds));
+            openNotifModal();
+            checkNewNotificationsBadge();
         }
         
         function closeModals() {
