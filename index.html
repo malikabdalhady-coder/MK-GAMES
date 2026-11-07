@@ -2568,29 +2568,7 @@
 loadCommentsCloud(currentGameId);
 }
 
-<!-- صفحة التحميل الوسيطة -->
-<div id="downloadPageView" style="display: none; padding: 40px 20px; max-width: 800px; margin: 0 auto; text-align: center; direction: rtl;">
-    <div style="background: #1e1e1e; padding: 30px; border-radius: 12px; border: 1px solid #333; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-        <h2 id="dlGameTitle" style="color: #fff; margin-bottom: 15px;">جاهز لتحميل اللعبة</h2>
-        <p style="color: #aaa; margin-bottom: 25px;">تأكد من اسم الملف وحجمه، ثم اضغط على الزر أدناه لإتمام التحميل بأمان.</p>
-        
-        <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px; margin-bottom: 25px; text-align: right;">
-            <p style="margin: 5px 0; color: #fff;">📁 <strong>اسم الملف:</strong> <span id="dlFileName">Game_Setup.rar</span></p>
-            <p style="margin: 5px 0; color: #fff;">📦 <strong>الحجم:</strong> <span id="dlFileSize">متعدد الأجزاء / سريع</span></p>
-        </div>
-
-        <button id="executeDownloadBtn" style="background: #007bff; color: white; border: none; padding: 15px 40px; font-size: 18px; font-weight: bold; border-radius: 8px; cursor: pointer; width: 100%;">
-            اضغط لإستكمال التحميل 🚀
-        </button>
-        
-        <p style="margin-top: 15px; font-size: 13px; color: #aaa;">قد يفتح إعلان في تبويب منفصل عند المتابعة لدعم الموقع.</p>
-        
-        <br>
-        <button onclick="goBackToGameDetails()" style="background: transparent; border: 1px solid #aaa; color: #aaa; padding: 8px 20px; border-radius: 6px; cursor: pointer;">
-            العودة لصفحة اللعبة
-        </button>
-    </div>
-</div>// مراقب زر الرجوع (Back) في المتصفح لضمان تجربة مستخدم سلسة
+// مراقب زر الرجوع (Back) في المتصفح لضمان تجربة مستخدم سلسة
 window.addEventListener('popstate', function(event) {
     // لما اليوزر يضغط باك، دايماً نرجع للرئيسية وننظف الشاشة بأمان تام من غير أي تعليق
     document.getElementById('troubleshootPageView').style.display = 'none';
