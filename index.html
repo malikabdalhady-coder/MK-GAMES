@@ -2569,31 +2569,12 @@ loadCommentsCloud(currentGameId);
 
 // مراقب زر الرجوع (Back) في المتصفح لضمان تجربة مستخدم سلسة
 window.addEventListener('popstate', function(event) {
-    if (!event.state || event.state.view === 'home') {
-        document.getElementById('troubleshootPageView').style.display = 'none';
-        document.getElementById('gameDetailsView').style.display = 'none';
-        document.getElementById('mainHeaderView').style.display = 'block';
-        currentGameId = null;
-    } else if (event.state.view === 'troubleshoot') {
-        document.getElementById('mainHeaderView').style.display = 'none';
-        document.getElementById('gameDetailsView').style.display = 'none';
-        document.getElementById('troubleshootPageView').style.display = 'block';
-    } else if (event.state.view === 'game') {
-        // لو الـ id موجود، افتح اللعبة دايركت بغض النظر عن اللغة الحالية
-        if (event.state.id) {
-            currentGameId = event.state.id;
-            const game = gamesData.find(g => g.id === event.state.id);
-            if (game) {
-                document.getElementById('mainHeaderView').style.display = 'none';
-                document.getElementById('troubleshootPageView').style.display = 'none';
-                document.getElementById('gameDetailsView').style.display = 'flex';
-                // تحديث بيانات اللعبة باللغة الجديدة الحالية
-                document.getElementById('detailsTitle').innerText = currentLang === 'ar' ? (game.titleAr || game.titleEn) : game.titleEn;
-                document.getElementById('detailsDesc').innerText = currentLang === 'ar' ? (game.descAr || game.descEn) : game.descEn;
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-    }
+    // لما اليوزر يضغط باك، دايماً نرجع للرئيسية وننظف الشاشة بأمان تام من غير أي تعليق
+    document.getElementById('troubleshootPageView').style.display = 'none';
+    document.getElementById('gameDetailsView').style.display = 'none';
+    document.getElementById('mainHeaderView').style.display = 'block';
+    currentGameId = null;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 </script>
