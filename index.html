@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">MK GAMES - موقع تحميل الألعاب</title>
     
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="حمل ألعاب الكمبيوتر الكاملة والمضغوطة بروابط مباشرة وتورنت مجاناً على MK GAMES." />
-    <meta name="keywords" content="تحميل ألعاب كمبيوتر, ألعاب PC, MK GAMES" />
-    <meta name="author" content="Malik Abdalhady" />
-
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
@@ -211,7 +206,7 @@
             box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
         }
 
-        /* التصنيفات والقوائم المنسدلة */
+        /* التصنيفات */
         .filters-container {
             max-width: 1300px;
             margin: 0 auto 30px;
@@ -359,7 +354,7 @@
         .troubleshoot-header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: var(--card-bg); padding: 20px 30px; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.3); }
         .troubleshoot-container-grid { display: flex; flex-direction: column; gap: 20px; text-align: right; }
         [dir="ltr"] .troubleshoot-container-grid { text-align: left; }
-        .troubleshoot-box-card { background-color: var(--card-bg); border-radius: 16px; padding: 30px; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .troubleshoot-box-card { background-color: var(--card-bg); border-radius: 16px; padding: 30px; border: 1px solid rgba(168, 85, 247, 0.3); position: relative; }
         .box-title { font-size: 20px; font-weight: 800; color: #a855f7; margin: 0 0 8px; }
         .box-desc { font-size: 14px; color: var(--secondary-text); margin: 0 0 20px; }
 
@@ -440,7 +435,7 @@
             </div>
         </div>
 
-        <!-- شريط التصنيفات الذكية المطور -->
+        <!-- شريط التصنيفات -->
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
                 <button class="filter-chip active" onclick="filterByTag('all', this)" id="fAll">الكل</button>
@@ -577,7 +572,7 @@
             </div>
         </div>
 
-        <!-- قسم التعليقات والتقييمات -->
+        <!-- التعليقات والتقييمات -->
         <div class="section-card" id="commentsSection">
             <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;" id="noticeBoxContainer">
                 <h4 style="margin: 0 0 5px 0; color: #a855f7;" id="noticeTitle">⚠️ تنبيه هام للاعبين:</h4>
@@ -618,6 +613,7 @@
                     <button onclick="postComment()" class="download-btn" style="width: auto; padding: 8px 25px;" id="postCommentBtn">نشر التعليق 🚀</button>
                 </div>
 
+                <!-- كابتشا التعليق -->
                 <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                     <span id="commentCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
                     <div id="commentCaptchaBtns" style="display: flex; gap: 6px;"></div>
@@ -678,6 +674,7 @@
                 </div>
             </div>
 
+            <!-- المشاكل المضافة من الأدمن مع زرار التعديل والحذف المباشر -->
             <div id="dynamicTroubleshootList" style="display: flex; flex-direction: column; gap: 20px;"></div>
 
             <div class="support-notice-card" id="supportNoticeText">
@@ -711,7 +708,7 @@
         </div>
     </footer>
 
-    <!-- Modals -->
+    <!-- مودال طلب لعبة (مع كابتشا) -->
     <div class="modal" id="gameRequestModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -721,21 +718,30 @@
             <input type="text" id="reqGameName" placeholder="اسم اللعبة المطلوبة (مثال: GTA V)">
             <textarea id="reqGameNotes" placeholder="أي ملاحظات إضافية (أجزاء معينة، مودات، أو مواصفات)..." style="height:70px;"></textarea>
             
+            <!-- كابتشا طلب لعبة -->
+            <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <span id="reqCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
+                <div id="reqCaptchaBtns" style="display: flex; gap: 6px;"></div>
+            </div>
+
             <button onclick="submitGameRequest()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);" id="reqSubmitBtn">إرسال الطلب للأدمن 🚀</button>
         </div>
     </div>
 
+    <!-- لوحة الأدمن المحدثة بالكامل -->
     <div class="modal" id="adminModal">
-        <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-content" style="max-width: 650px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="adminModalTitle">👑 لوحة إداري الموقع (MK GAMES)</h3>
             
-            <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
-                <button type="button" onclick="switchAdminTab('addGame')" id="tabAddGameBtn" style="background:#10b981; padding:8px; font-size:12px; flex:1;">➕ إضافة لعبة</button>
-                <button type="button" onclick="switchAdminTab('editGame')" id="tabEditGameBtn" style="background:var(--card-bg); border:1px solid #3b82f6; color:#3b82f6; padding:8px; font-size:12px; flex:1;">✏️ تعديل لعبة</button>
-                <button type="button" onclick="switchAdminTab('addIssue')" id="tabAddIssueBtn" style="background:var(--card-bg); border:1px solid #a855f7; color:#a855f7; padding:8px; font-size:12px; flex:1;">🛠️ إضافة مشكلة وحلها</button>
+            <div style="display: flex; gap: 6px; margin-bottom: 15px; flex-wrap: wrap;">
+                <button type="button" onclick="switchAdminTab('addGame')" id="tabAddGameBtn" style="background:#10b981; padding:8px; font-size:11px; flex:1;">➕ إضافة لعبة</button>
+                <button type="button" onclick="switchAdminTab('editGame')" id="tabEditGameBtn" style="background:var(--card-bg); border:1px solid #3b82f6; color:#3b82f6; padding:8px; font-size:11px; flex:1;">✏️ تعديل لعبة</button>
+                <button type="button" onclick="switchAdminTab('addIssue')" id="tabAddIssueBtn" style="background:var(--card-bg); border:1px solid #a855f7; color:#a855f7; padding:8px; font-size:11px; flex:1;">🛠️ إضافة مشكلة</button>
+                <button type="button" onclick="switchAdminTab('manageIssues')" id="tabManageIssuesBtn" style="background:var(--card-bg); border:1px solid #ec4899; color:#ec4899; padding:8px; font-size:11px; flex:1;">⚙️ إدارة المشاكل</button>
             </div>
 
+            <!-- تبويب إضافة/تعديل اللعبة -->
             <div id="adminGameTabContent">
                 <div id="adminEditSelectorContainer" style="display: none; margin-bottom: 10px;">
                     <select id="adminSelectGameToEdit" onchange="loadGameDataIntoAdminForm(this.value)">
@@ -764,6 +770,25 @@
                 <input type="text" id="adminGameDirect" placeholder="رابط التحميل المباشر (MediaFire)">
                 <input type="text" id="adminGameTorrent" placeholder="رابط تحميل التورنت (Magnet)">
 
+                <!-- متطلبات التشغيل الدنيا المخصصة -->
+                <h4 style="margin: 10px 0 4px; color: #a855f7; font-size: 13px; text-align: right;">💻 متطلبات التشغيل الدنيا المخصصة:</h4>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
+                    <input type="text" id="adminReqOs" placeholder="نظام التشغيل (مثال: Windows 10/11)">
+                    <input type="text" id="adminReqCpu" placeholder="المعالج (مثال: Intel Core i3)">
+                    <input type="text" id="adminReqRam" placeholder="الرام (مثال: 4 GB)">
+                    <input type="text" id="adminReqGpu" placeholder="كارت الشاشة (مثال: GT 730)">
+                    <input type="text" id="adminReqStorage" placeholder="مساحة التخزين (مثال: 10 GB)" style="grid-column: span 2;">
+                </div>
+
+                <!-- اللغات المدعومة المخصصة -->
+                <h4 style="margin: 10px 0 4px; color: #a855f7; font-size: 13px; text-align: right;">🌐 اللغات المدعومة (اللغة الأولى - العربية مثلاً):</h4>
+                <div style="display:flex; gap:10px; align-items:center; background:rgba(255,255,255,0.02); padding:8px; border-radius:8px;">
+                    <input type="text" id="adminLangName" placeholder="اسم اللغة (العربية / English)" style="margin:0; flex:1;">
+                    <label style="font-size:12px; cursor:pointer;"><input type="checkbox" id="adminLangMenu" checked> قوائم</label>
+                    <label style="font-size:12px; cursor:pointer;"><input type="checkbox" id="adminLangAudio" checked> صوت</label>
+                    <label style="font-size:12px; cursor:pointer;"><input type="checkbox" id="adminLangSub" checked> ترجمة</label>
+                </div>
+
                 <h4 style="margin: 8px 0 4px; color: #a855f7; font-size: 12px; text-align: right;">🛠️ أزرار ورابط المودز والباتشات (اختياري):</h4>
                 <input type="text" id="adminMod1Name" placeholder="اسم المود/الباتش الأول">
                 <input type="text" id="adminMod1Url" placeholder="رابط تحميل المود الأول">
@@ -771,18 +796,27 @@
                 <button onclick="saveGameByAdmin()" style="background: linear-gradient(135deg, #10b981, #059669); margin-top:10px;" id="adminSubmitGameBtn">حفظ وإضافة اللعبة + إرسال إشعار 🚀</button>
             </div>
 
+            <!-- تبويب إضافة مشكلة جديدة -->
             <div id="adminIssueTabContent" style="display: none;">
                 <h4 style="margin:0 0 10px; color:#a855f7;">🛠️ إضافة مشكلة جديدة في صفحة "حل المشاكل"</h4>
-                <input type="text" id="issueTitleAr" placeholder="عنوان المشكلة (مثال: خطأ 0xc000007b عند فتح اللعبة)">
+                <input type="hidden" id="adminEditingIssueId" value="">
+                <input type="text" id="issueTitleAr" placeholder="عنوان المشكلة (مثال: خطأ 0xc000007b)">
                 <textarea id="issueSolutionAr" placeholder="طريقة الحل والأسباب بالتفصيل..." style="height:70px;"></textarea>
                 <input type="text" id="issueVideoUrl" placeholder="رابط فيديو يوتيوب للشرح (مثال: https://www.youtube.com/watch?v=...)">
                 <input type="text" id="issueImageUrl" placeholder="رابط صورة توضيحية للمشكلة (إن وجد)">
                 
-                <button onclick="saveIssueByAdmin()" style="background: linear-gradient(135deg, #a855f7, #3b82f6); margin-top:10px;">نشر المشكلة والحل في الموقع 🚀</button>
+                <button onclick="saveIssueByAdmin()" id="issueSubmitBtn" style="background: linear-gradient(135deg, #a855f7, #3b82f6); margin-top:10px;">نشر المشكلة والحل في الموقع 🚀</button>
+            </div>
+
+            <!-- تبويب إدارة وتعديل المشاكل الحالية -->
+            <div id="adminManageIssuesTabContent" style="display: none;">
+                <h4 style="margin:0 0 10px; color:#ec4899;">⚙️ تعديل أو حذف مشاكل صفحة الدعم</h4>
+                <div id="adminIssuesListContainer" style="max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
             </div>
         </div>
     </div>
 
+    <!-- مودال تسجيل الدخول (مع كابتشا) -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -792,6 +826,12 @@
             <input type="email" id="authEmail" placeholder="البريد الإلكتروني (Gmail)">
             <input type="password" id="authPassword" placeholder="كلمة المرور (6 أحرف على الأقل)">
             
+            <!-- كابتشا تسجيل الدخول -->
+            <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
+                <span id="authCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
+                <div id="authCaptchaBtns" style="display: flex; gap: 6px;"></div>
+            </div>
+
             <button id="authSubmitBtn" onclick="handleAuthSubmit()">دخول</button>
             <div class="auth-error" id="authErrorMsg"></div>
             <div class="auth-success" id="authSuccessMsg"></div>
@@ -855,8 +895,7 @@
                     { "name": "باتش الدوري المصري 2026", "url": "https://www.mediafire.com" }
                 ],
                 "langs": [
-                    { "nameAr": "العربية", "nameEn": "Arabic", "menu": true, "audio": true, "subtitles": true },
-                    { "nameAr": "الإنجليزية", "nameEn": "English", "menu": true, "audio": true, "subtitles": true }
+                    { "nameAr": "العربية", "nameEn": "Arabic", "menu": true, "audio": true, "subtitles": true }
                 ],
                 "reqsAr": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" },
                 "reqsEn": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" }
@@ -877,8 +916,10 @@
         let isSignUpMode = false;
         let uploadedImageBase64 = "";
 
-        let targetCommentEmoji = '⚽';
-        let userChosenCommentEmoji = '';
+        // كابتشا متفرقة لكل قسم
+        let targetAuthEmoji = '⚽'; let userChosenAuthEmoji = '';
+        let targetReqEmoji = '⚽'; let userChosenReqEmoji = '';
+        let targetCommentEmoji = '⚽'; let userChosenCommentEmoji = '';
 
         window.addEventListener('DOMContentLoaded', () => {
             if (currentUser) {
@@ -890,6 +931,8 @@
                     document.getElementById('adminNavBtn').style.display = 'flex';
                 }
             }
+            generateAuthCaptcha();
+            generateReqCaptcha();
             generateCommentEmojiCaptcha();
             checkNewNotificationsBadge();
             loadTroubleshootIssuesFromCloud();
@@ -899,7 +942,6 @@
         displayGames(activeGames);
         buildTrendingList();
 
-        // 🎲 اختيار لعبة عشوائية
         function pickRandomGame() {
             if (!gamesData || gamesData.length === 0) return;
             const randomIndex = Math.floor(Math.random() * gamesData.length);
@@ -925,16 +967,93 @@
             }
         });
 
+        // كابتشا تسجيل الدخول
+        function generateAuthCaptcha() {
+            const emojis = ['⚽', '❤️', '⭐', '🚗'];
+            targetAuthEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const txtEl = document.getElementById('authCaptchaText');
+            if(txtEl) txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetAuthEmoji}` : `🎮 Click matching emoji: ${targetAuthEmoji}`;
+            const container = document.getElementById('authCaptchaBtns');
+            if(!container) return;
+            container.innerHTML = '';
+            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+            shuffled.forEach(icon => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.innerText = icon;
+                b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
+                b.onclick = function() {
+                    Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
+                    b.style.borderColor = '#10b981';
+                    userChosenAuthEmoji = icon;
+                };
+                container.appendChild(b);
+            });
+        }
+
+        // كابتشا طلب لعبة
+        function generateReqCaptcha() {
+            const emojis = ['⚽', '❤️', '⭐', '🚗'];
+            targetReqEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const txtEl = document.getElementById('reqCaptchaText');
+            if(txtEl) txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetReqEmoji}` : `🎮 Click matching emoji: ${targetReqEmoji}`;
+            const container = document.getElementById('reqCaptchaBtns');
+            if(!container) return;
+            container.innerHTML = '';
+            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+            shuffled.forEach(icon => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.innerText = icon;
+                b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
+                b.onclick = function() {
+                    Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
+                    b.style.borderColor = '#10b981';
+                    userChosenReqEmoji = icon;
+                };
+                container.appendChild(b);
+            });
+        }
+
+        // كابتشا التعليق
+        function generateCommentEmojiCaptcha() {
+            const emojis = ['⚽', '❤️', '⭐', '🚗'];
+            targetCommentEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const txtEl = document.getElementById('commentCaptchaText');
+            if(txtEl) txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetCommentEmoji}` : `🎮 Click matching emoji: ${targetCommentEmoji}`;
+            const container = document.getElementById('commentCaptchaBtns');
+            if(!container) return;
+            container.innerHTML = '';
+            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
+            shuffled.forEach(icon => {
+                const b = document.createElement('button');
+                b.type = 'button';
+                b.innerText = icon;
+                b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
+                b.onclick = function() {
+                    Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
+                    b.style.borderColor = '#10b981';
+                    userChosenCommentEmoji = icon;
+                };
+                container.appendChild(b);
+            });
+        }
+
         function openGameRequestModal() {
             if (!currentUser) {
                 alert(currentLang === 'ar' ? '⚠️ يرجى تسجيل الدخول أولاً لتتمكن من إرسال طلب لعبة!' : '⚠️ Please log in first to request a game!');
                 openAuthModal();
                 return;
             }
+            generateReqCaptcha();
             document.getElementById('gameRequestModal').style.display = 'flex';
         }
 
         async function submitGameRequest() {
+            if (userChosenReqEmoji !== targetReqEmoji) {
+                alert(currentLang === 'ar' ? '❌ رمز الكابتشا غير صحيح، يرجى المحاولة مرة أخرى!' : '❌ Incorrect captcha!');
+                generateReqCaptcha(); return;
+            }
             const gameName = document.getElementById('reqGameName').value.trim();
             const notes = document.getElementById('reqGameNotes').value.trim();
 
@@ -971,33 +1090,48 @@
             const addBtn = document.getElementById('tabAddGameBtn');
             const editBtn = document.getElementById('tabEditGameBtn');
             const issueBtn = document.getElementById('tabAddIssueBtn');
+            const manageIssuesBtn = document.getElementById('tabManageIssuesBtn');
+
             const gameTabContent = document.getElementById('adminGameTabContent');
             const issueTabContent = document.getElementById('adminIssueTabContent');
+            const manageIssuesTabContent = document.getElementById('adminManageIssuesTabContent');
             const editSelectorContainer = document.getElementById('adminEditSelectorContainer');
             const submitBtn = document.getElementById('adminSubmitGameBtn');
 
             addBtn.style.background = 'var(--card-bg)'; addBtn.style.color = '#10b981';
             editBtn.style.background = 'var(--card-bg)'; editBtn.style.color = '#3b82f6';
             issueBtn.style.background = 'var(--card-bg)'; issueBtn.style.color = '#a855f7';
+            manageIssuesBtn.style.background = 'var(--card-bg)'; manageIssuesBtn.style.color = '#ec4899';
+
+            gameTabContent.style.display = 'none';
+            issueTabContent.style.display = 'none';
+            manageIssuesTabContent.style.display = 'none';
 
             if (tab === 'addGame') {
                 addBtn.style.background = '#10b981'; addBtn.style.color = '#fff';
                 gameTabContent.style.display = 'block';
-                issueTabContent.style.display = 'none';
                 editSelectorContainer.style.display = 'none';
                 submitBtn.innerText = currentLang === 'ar' ? 'حفظ وإضافة اللعبة + إرسال إشعار 🚀' : 'Save & Notify Users 🚀';
                 clearAdminForm();
             } else if (tab === 'editGame') {
                 editBtn.style.background = '#3b82f6'; editBtn.style.color = '#fff';
                 gameTabContent.style.display = 'block';
-                issueTabContent.style.display = 'none';
                 editSelectorContainer.style.display = 'block';
                 submitBtn.innerText = currentLang === 'ar' ? 'تعديل وتحديث بيانات اللعبة ✏️' : 'Update Game Data ✏️';
                 populateAdminGameSelector();
             } else if (tab === 'addIssue') {
                 issueBtn.style.background = '#a855f7'; issueBtn.style.color = '#fff';
-                gameTabContent.style.display = 'none';
                 issueTabContent.style.display = 'block';
+                document.getElementById('adminEditingIssueId').value = '';
+                document.getElementById('issueTitleAr').value = '';
+                document.getElementById('issueSolutionAr').value = '';
+                document.getElementById('issueVideoUrl').value = '';
+                document.getElementById('issueImageUrl').value = '';
+                document.getElementById('issueSubmitBtn').innerText = currentLang === 'ar' ? 'نشر المشكلة والحل في الموقع 🚀' : 'Publish Issue 🚀';
+            } else if (tab === 'manageIssues') {
+                manageIssuesBtn.style.background = '#ec4899'; manageIssuesBtn.style.color = '#fff';
+                manageIssuesTabContent.style.display = 'block';
+                loadAdminManageIssuesList();
             }
         }
 
@@ -1013,6 +1147,12 @@
             document.getElementById('adminGameImg').value = '';
             document.getElementById('adminGameDirect').value = '';
             document.getElementById('adminGameTorrent').value = '';
+            document.getElementById('adminReqOs').value = '';
+            document.getElementById('adminReqCpu').value = '';
+            document.getElementById('adminReqRam').value = '';
+            document.getElementById('adminReqGpu').value = '';
+            document.getElementById('adminReqStorage').value = '';
+            document.getElementById('adminLangName').value = '';
             document.getElementById('adminMod1Name').value = '';
             document.getElementById('adminMod1Url').value = '';
         }
@@ -1043,6 +1183,21 @@
             document.getElementById('adminGameDirect').value = game.directUrl || '';
             document.getElementById('adminGameTorrent').value = game.torrentUrl || '';
 
+            if (game.reqsAr) {
+                document.getElementById('adminReqOs').value = game.reqsAr.os || '';
+                document.getElementById('adminReqCpu').value = game.reqsAr.cpu || '';
+                document.getElementById('adminReqRam').value = game.reqsAr.ram || '';
+                document.getElementById('adminReqGpu').value = game.reqsAr.gpu || '';
+                document.getElementById('adminReqStorage').value = game.reqsAr.storage || '';
+            }
+
+            if (game.langs && game.langs.length > 0) {
+                document.getElementById('adminLangName').value = game.langs[0].nameAr || '';
+                document.getElementById('adminLangMenu').checked = game.langs[0].menu;
+                document.getElementById('adminLangAudio').checked = game.langs[0].audio;
+                document.getElementById('adminLangSub').checked = game.langs[0].subtitles;
+            }
+
             if (game.mods && game.mods.length > 0) {
                 document.getElementById('adminMod1Name').value = game.mods[0]?.name || '';
                 document.getElementById('adminMod1Url').value = game.mods[0]?.url || '';
@@ -1066,11 +1221,29 @@
             const directUrl = document.getElementById('adminGameDirect').value.trim();
             const torrentUrl = document.getElementById('adminGameTorrent').value.trim();
 
+            const osVal = document.getElementById('adminReqOs').value.trim() || "Windows 10/11";
+            const cpuVal = document.getElementById('adminReqCpu').value.trim() || "Intel Core i5";
+            const ramVal = document.getElementById('adminReqRam').value.trim() || "8 GB";
+            const gpuVal = document.getElementById('adminReqGpu').value.trim() || "GTX 1050";
+            const storageVal = document.getElementById('adminReqStorage').value.trim() || (sizeNum + " GB");
+
+            const langName = document.getElementById('adminLangName').value.trim() || "العربية";
+            const langMenu = document.getElementById('adminLangMenu').checked;
+            const langAudio = document.getElementById('adminLangAudio').checked;
+            const langSub = document.getElementById('adminLangSub').checked;
+
             const mod1Name = document.getElementById('adminMod1Name').value.trim();
             const mod1Url = document.getElementById('adminMod1Url').value.trim();
 
             let modsList = [];
             if (mod1Name && mod1Url) modsList.push({ name: mod1Name, url: mod1Url });
+
+            let langsList = [{
+                nameAr: langName, nameEn: langName === 'العربية' ? 'Arabic' : langName,
+                menu: langMenu, audio: langAudio, subtitles: langSub
+            }];
+
+            let reqsObj = { os: osVal, cpu: cpuVal, ram: ramVal, gpu: gpuVal, storage: storageVal };
 
             if (!titleAr || !titleEn || !image) {
                 alert(currentLang === 'ar' ? '⚠️ يرجى تعبئة العناوين وصورة الغلاف على الأقل!' : '⚠️ Please fill required fields!');
@@ -1084,7 +1257,8 @@
                         ...gamesData[gameIndex],
                         titleAr, titleEn, genreAr, genreEn, descAr, descEn,
                         sizeNum, sizeAr: sizeNum + " جيجا", sizeEn: sizeNum + " GB",
-                        specs, image, directUrl: directUrl || "#", torrentUrl: torrentUrl || "#", mods: modsList
+                        specs, image, directUrl: directUrl || "#", torrentUrl: torrentUrl || "#",
+                        reqsAr: reqsObj, reqsEn: reqsObj, langs: langsList, mods: modsList
                     };
                     alert(currentLang === 'ar' ? '✅ تم تحديث بيانات اللعبة بنجاح!' : '✅ Game updated!');
                 }
@@ -1101,9 +1275,9 @@
                     directUrl: directUrl || "#",
                     torrentUrl: torrentUrl || "#",
                     mods: modsList,
-                    langs: [{ "nameAr": "العربية", "nameEn": "Arabic", "menu": true, "audio": true, "subtitles": true }],
-                    reqsAr: { os: "Windows 10/11", cpu: "Intel Core i5", ram: "8 GB", gpu: "GTX 1050", storage: sizeNum + " GB" },
-                    reqsEn: { os: "Windows 10/11", cpu: "Intel Core i5", ram: "8 GB", gpu: "GTX 1050", storage: sizeNum + " GB" }
+                    langs: langsList,
+                    reqsAr: reqsObj,
+                    reqsEn: reqsObj
                 };
                 gamesData.unshift(newGame);
 
@@ -1123,6 +1297,7 @@
         }
 
         async function saveIssueByAdmin() {
+            const editingId = document.getElementById('adminEditingIssueId').value;
             const title = document.getElementById('issueTitleAr').value.trim();
             const solution = document.getElementById('issueSolutionAr').value.trim();
             const videoUrl = document.getElementById('issueVideoUrl').value.trim();
@@ -1140,23 +1315,81 @@
             } else if (videoUrl.includes("youtu.be/")) {
                 const vidId = videoUrl.split("youtu.be/")[1]?.split("?")[0];
                 embedVideo = `https://www.youtube.com/embed/${vidId}`;
+            } else if (videoUrl.includes("youtube.com/embed/")) {
+                embedVideo = videoUrl;
             }
 
-            await supabaseClient.from('troubleshoot_issues').insert([{
-                title: title,
-                solution: solution,
-                video_url: embedVideo,
-                image_url: imageUrl,
-                date: new Date().toLocaleString()
-            }]);
+            if (editingId) {
+                await supabaseClient.from('troubleshoot_issues').update({
+                    title: title,
+                    solution: solution,
+                    video_url: embedVideo,
+                    image_url: imageUrl
+                }).eq('id', editingId);
+                alert(currentLang === 'ar' ? '✅ تم تعديل المشكلة بنجاح!' : '✅ Issue updated!');
+            } else {
+                await supabaseClient.from('troubleshoot_issues').insert([{
+                    title: title,
+                    solution: solution,
+                    video_url: embedVideo,
+                    image_url: imageUrl,
+                    date: new Date().toLocaleString()
+                }]);
+                alert(currentLang === 'ar' ? '✅ تم نشر المشكلة والحل في صفحة "حل المشاكل"! 🚀' : '✅ Issue published!');
+            }
 
-            alert(currentLang === 'ar' ? '✅ تم نشر المشكلة والحل في صفحة "حل المشاكل"! 🚀' : '✅ Issue published!');
+            document.getElementById('adminEditingIssueId').value = '';
             document.getElementById('issueTitleAr').value = '';
             document.getElementById('issueSolutionAr').value = '';
             document.getElementById('issueVideoUrl').value = '';
             document.getElementById('issueImageUrl').value = '';
             closeModals();
             loadTroubleshootIssuesFromCloud();
+        }
+
+        async function loadAdminManageIssuesList() {
+            const container = document.getElementById('adminIssuesListContainer');
+            if(!container) return;
+            const { data: issues } = await supabaseClient.from('troubleshoot_issues').select('*').order('id', { ascending: false });
+
+            if (!issues || issues.length === 0) {
+                container.innerHTML = `<p style="color:var(--secondary-text);">لا توجد مشاكل مضافة بعد.</p>`;
+                return;
+            }
+
+            container.innerHTML = '';
+            issues.forEach(item => {
+                container.innerHTML += `
+                    <div style="background:var(--bg-color); padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.05); display:flex; justify-content:space-between; align-items:center; gap:10px;">
+                        <div style="text-align:right; flex:1;">
+                            <h4 style="margin:0 0 3px; font-size:13px; color:var(--text-color);">${item.title}</h4>
+                            <span style="font-size:11px; color:var(--secondary-text);">${item.date || ''}</span>
+                        </div>
+                        <div style="display:flex; gap:6px;">
+                            <button onclick="editIssueByAdmin(${item.id}, '${encodeURIComponent(item.title)}', '${encodeURIComponent(item.solution)}', '${item.video_url || ''}', '${item.image_url || ''}')" style="background:#3b82f6; color:white; border:none; padding:5px 10px; border-radius:6px; font-size:11px; cursor:pointer; width:auto; margin:0;">✏️ تعديل</button>
+                            <button onclick="deleteIssueByAdmin(${item.id})" style="background:#ef4444; color:white; border:none; padding:5px 10px; border-radius:6px; font-size:11px; cursor:pointer; width:auto; margin:0;">🗑️ مسح</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function editIssueByAdmin(id, title, solution, videoUrl, imageUrl) {
+            switchAdminTab('addIssue');
+            document.getElementById('adminEditingIssueId').value = id;
+            document.getElementById('issueTitleAr').value = decodeURIComponent(title);
+            document.getElementById('issueSolutionAr').value = decodeURIComponent(solution);
+            document.getElementById('issueVideoUrl').value = videoUrl;
+            document.getElementById('issueImageUrl').value = imageUrl;
+            document.getElementById('issueSubmitBtn').innerText = currentLang === 'ar' ? 'حفظ تعديلات المشكلة ✏️' : 'Save Changes ✏️';
+        }
+
+        async function deleteIssueByAdmin(id) {
+            if (confirm(currentLang === 'ar' ? 'هل أنت متأكد من مسح هذه المشكلة؟' : 'Are you sure to delete this issue?')) {
+                await supabaseClient.from('troubleshoot_issues').delete().eq('id', id);
+                loadAdminManageIssuesList();
+                loadTroubleshootIssuesFromCloud();
+            }
         }
 
         async function loadTroubleshootIssuesFromCloud() {
@@ -1203,31 +1436,6 @@
             commentInput.focus();
         }
 
-        function generateCommentEmojiCaptcha() {
-            const emojis = ['⚽', '❤️', '⭐', '🚗'];
-            targetCommentEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-            const txtEl = document.getElementById('commentCaptchaText');
-            if(txtEl) {
-                txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetCommentEmoji}` : `🎮 Click matching emoji: ${targetCommentEmoji}`;
-            }
-            const container = document.getElementById('commentCaptchaBtns');
-            if(!container) return;
-            container.innerHTML = '';
-            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
-            shuffled.forEach(icon => {
-                const b = document.createElement('button');
-                b.type = 'button';
-                b.innerText = icon;
-                b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
-                b.onclick = function() {
-                    Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
-                    b.style.borderColor = '#10b981';
-                    userChosenCommentEmoji = icon;
-                };
-                container.appendChild(b);
-            });
-        }
-
         function openGameDetails(id) {
             currentGameId = id;
             history.pushState({view: 'game', id: id}, '', '#game-' + id);
@@ -1268,12 +1476,12 @@
                 modsCard.style.display = 'none';
             }
 
-            const reqs = currentLang === 'ar' ? game.reqsAr : game.reqsEn;
-            document.getElementById('osVal').innerText = reqs.os;
-            document.getElementById('cpuVal').innerText = reqs.cpu;
-            document.getElementById('ramVal').innerText = reqs.ram;
-            document.getElementById('gpuVal').innerText = reqs.gpu;
-            document.getElementById('storageVal').innerText = reqs.storage;
+            const reqs = currentLang === 'ar' ? (game.reqsAr || game.reqsEn) : (game.reqsEn || game.reqsAr);
+            document.getElementById('osVal').innerText = reqs?.os || "Windows 10/11";
+            document.getElementById('cpuVal').innerText = reqs?.cpu || "Intel Core i5";
+            document.getElementById('ramVal').innerText = reqs?.ram || "8 GB";
+            document.getElementById('gpuVal').innerText = reqs?.gpu || "GTX 1050";
+            document.getElementById('storageVal').innerText = reqs?.storage || sizeStr;
 
             renderLanguagesTable(game);
 
@@ -1297,18 +1505,20 @@
         function renderLanguagesTable(game) {
             const langTableBody = document.getElementById('languagesTableBody');
             langTableBody.innerHTML = '';
-            if (game.langs) {
+            if (game.langs && game.langs.length > 0) {
                 game.langs.forEach(l => {
                     const tr = document.createElement('tr');
                     tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
                     tr.innerHTML = `
-                        <td style="padding: 12px; font-weight: bold; color: var(--text-color);">${currentLang === 'ar' ? l.nameAr : l.nameEn}</td>
+                        <td style="padding: 12px; font-weight: bold; color: var(--text-color);">${currentLang === 'ar' ? l.nameAr : (l.nameEn || l.nameAr)}</td>
                         <td style="padding: 12px; font-size: 18px;">${l.menu ? '✅' : '❌'}</td>
                         <td style="padding: 12px; font-size: 18px;">${l.audio ? '✅' : '❌'}</td>
                         <td style="padding: 12px; font-size: 18px;">${l.subtitles ? '✅' : '❌'}</td>
                     `;
                     langTableBody.appendChild(tr);
                 });
+            } else {
+                langTableBody.innerHTML = `<tr><td colspan="4" style="padding:15px; color:var(--secondary-text);">غير متوفر</td></tr>`;
             }
         }
 
@@ -1605,6 +1815,7 @@
             }
         }
 
+        // ترجمة الواجهة بالكامل للغة الإنجليزية والعربية
         function toggleLanguage() {
             const htmlRoot = document.getElementById('htmlRoot');
             const langBtn = document.getElementById('langBtn');
@@ -1618,6 +1829,7 @@
             const requestBtnText = document.getElementById('requestBtnText');
             const adminBtnText = document.getElementById('adminBtnText');
             const randomGameBtn = document.getElementById('randomGameBtn');
+            const showAllBtn = document.getElementById('showAllBtn');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -1634,6 +1846,7 @@
                 requestBtnText.innerText = 'Request Game';
                 troubleshootBtnText.innerText = 'Tools & Instructions';
                 adminBtnText.innerText = 'Admin Panel';
+                showAllBtn.innerText = 'Show All Games';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -1649,6 +1862,7 @@
                 requestBtnText.innerText = 'طلب لعبة';
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
                 adminBtnText.innerText = 'لوحة الأدمن';
+                showAllBtn.innerText = 'عرض كل الألعاب كاملة (Show All Games)';
             }
             buildTrendingList();
             displayGames(activeGames);
@@ -1672,9 +1886,14 @@
                 btn.innerText = currentLang === 'ar' ? 'دخول' : 'Login';
                 switchText.innerHTML = currentLang === 'ar' ? 'ليس لديك حساب؟ <span>إنشاء حساب</span>' : "No account? <span>Sign up</span>";
             }
+            generateAuthCaptcha();
         }
 
         async function handleAuthSubmit() {
+            if (userChosenAuthEmoji !== targetAuthEmoji) {
+                alert(currentLang === 'ar' ? '❌ رمز الكابتشا غير صحيح!' : '❌ Incorrect captcha!');
+                generateAuthCaptcha(); return;
+            }
             const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value.trim();
             const errorBox = document.getElementById('authErrorMsg');
@@ -1707,10 +1926,10 @@
 
         function openAuthModal() {
             if (currentUser) return;
+            generateAuthCaptcha();
             document.getElementById('authModal').style.display = 'flex';
         }
 
-        // 🔔 الإشعارات الشاملة (للأدمن والمستخدمين)
         async function checkNewNotificationsBadge() {
             if (!currentUser) return;
             const notifBtn = document.getElementById('notifBtn');
@@ -1733,7 +1952,7 @@
                 if (gameReqs) gameReqs.forEach(req => { if (!dismissedIds.includes('req_' + req.id)) hasNew = true; });
                 if (allComments) allComments.forEach(c => {
                     if (!ADMIN_EMAILS.includes(c.user_email) && !dismissedIds.includes('c_' + c.id)) hasNew = true;
-                    if (c.text && c.text.includes('@') && !dismissedIds.includes('m_' + c.id)) hasNew = true; // منشن للأدمن
+                    if (c.text && c.text.includes('@') && !dismissedIds.includes('m_' + c.id)) hasNew = true;
                 });
                 if (allRatings) allRatings.forEach(r => { if (!dismissedIds.includes('r_' + r.id)) hasNew = true; });
             }
@@ -1763,7 +1982,6 @@
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
             const isAdmin = ADMIN_EMAILS.includes(currentUser.email);
 
-            // 1. إشعار إضافة لعبة جديدة (للكل)
             if (siteNotifs) {
                 siteNotifs.forEach(sn => {
                     let uniqueKey = 'sn_' + sn.id;
@@ -1774,9 +1992,7 @@
                 });
             }
 
-            // 2. إشعارات للأدمنز فقط 👑
             if (isAdmin) {
-                // منشن للأدمن
                 if (allComments) {
                     allComments.forEach(c => {
                         let uniqueKey = 'm_' + c.id;
@@ -1785,7 +2001,6 @@
                         }
                     });
                 }
-                // طلب لعبة
                 if (gameReqs) {
                     gameReqs.forEach(req => {
                         let uniqueKey = 'req_' + req.id;
@@ -1794,7 +2009,6 @@
                         }
                     });
                 }
-                // تعليق جديد
                 if (allComments) {
                     allComments.forEach(c => {
                         let uniqueKey = 'c_' + c.id;
@@ -1803,7 +2017,6 @@
                         }
                     });
                 }
-                // تقييم لعبة
                 if (allRatings) {
                     allRatings.forEach(r => {
                         let uniqueKey = 'r_' + r.id;
@@ -1923,7 +2136,7 @@
 
         async function postComment() {
             if (userChosenCommentEmoji !== targetCommentEmoji) {
-                alert(currentLang === 'ar' ? '❌ يرجى اختيار الرمز المطابق في الكابتشا!' : '❌ Incorrect captcha!');
+                alert(currentLang === 'ar' ? '❌ رمز الكابتشا غير صحيح!' : '❌ Incorrect captcha!');
                 generateCommentEmojiCaptcha(); return;
             }
             const text = document.getElementById('commentText').value.trim();
