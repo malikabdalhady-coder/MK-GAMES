@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="pageTitle">MK GAMES - موقع تحميل الألعاب</title>
     
-    <!-- حط أكواد الـ SEO هنا -->
+    <!-- SEO Meta Tags -->
     <meta name="description" content="حمل ألعاب الكمبيوتر الكاملة والمضغوطة بروابط مباشرة وتورنت مجاناً. أفضل ألعاب خفيفة، كلاسيكية، وألعاب للأجهزة الضعيفة والمتوسطة على MK GAMES." />
     <meta name="keywords" content="تحميل ألعاب كمبيوتر, ألعاب PC بروابط مباشرة, ألعاب مضغوطة بحجم صغير, ألعاب للأجهزة الضعيفة, تحميل ألعاب كلاسيكية, حل مشاكل الألعاب, برامج تشغيل الألعاب, MK GAMES" />
     <meta name="author" content="Malik Abdalhady" />
@@ -16,9 +16,9 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mkgames.vercel.app" />
 
-    <!-- مكتبة Supabase السحابية -->
+    <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-</head>
+    
     <style>
         :root {
             --bg-color: #0b0f19;
@@ -90,7 +90,7 @@
             transform: scale(1.05);
         }
 
-        .troubleshoot-nav-btn, .back-home-link {
+        .troubleshoot-nav-btn, .admin-nav-btn, .back-home-link {
             background: linear-gradient(135deg, #a855f7, #3b82f6);
             color: white;
             border: none;
@@ -106,7 +106,12 @@
             text-decoration: none;
         }
 
-        .troubleshoot-nav-btn:hover, .back-home-link:hover {
+        .admin-nav-btn {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            display: none; /* يظهر للأدمن فقط */
+        }
+
+        .troubleshoot-nav-btn:hover, .admin-nav-btn:hover, .back-home-link:hover {
             opacity: 0.9;
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
         }
@@ -750,7 +755,7 @@
             line-height: 1.6;
         }
 
-        /* Footer */
+        /* Footer & Social Media */
         .site-footer {
             background-color: var(--card-bg);
             border-top: 1px solid rgba(168, 85, 247, 0.2);
@@ -765,7 +770,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
         .footer-logo {
@@ -778,6 +783,31 @@
         }
 
         .footer-text { color: var(--secondary-text); font-size: 15px; line-height: 1.8; margin: 0; }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin: 10px 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .social-fb { background: #1877f2; }
+        .social-yt { background: #ff0000; }
+        .social-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .social-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+
         .footer-copy { color: var(--text-color); font-weight: bold; font-size: 14px; }
         .developer-signature {
             color: #a855f7;
@@ -813,6 +843,8 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.4);
             position: relative;
             border: 1px solid rgba(168, 85, 247, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .close-modal {
@@ -826,10 +858,10 @@
 
         [dir="ltr"] .close-modal { left: auto; right: 20px; }
 
-        .modal-content input {
+        .modal-content input, .modal-content textarea, .modal-content select {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
+            margin: 8px 0;
             border-radius: 10px;
             border: 1px solid var(--secondary-text);
             background: var(--bg-color);
@@ -883,9 +915,14 @@
 <body>
 
     <header>
-        <button class="troubleshoot-nav-btn" onclick="openTroubleshootPage()" id="troubleshootNavBtn">
-            <span>🛠️</span> <span id="troubleshootBtnText">حل المشاكل والبرامج</span>
-        </button>
+        <div style="display: flex; gap: 10px; align-items: center;">
+            <button class="troubleshoot-nav-btn" onclick="openTroubleshootPage()" id="troubleshootNavBtn">
+                <span>🛠️</span> <span id="troubleshootBtnText">حل المشاكل والبرامج</span>
+            </button>
+            <button class="admin-nav-btn" onclick="openAdminModal()" id="adminNavBtn">
+                <span>👑</span> <span id="adminBtnText">لوحة الأدمن</span>
+            </button>
+        </div>
         <div class="nav-controls">
             <button class="icon-btn" onclick="openFavModal()" title="المفضلة" id="favBtn">❤️</button>
             <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات" id="notifBtn">🔔</button>
@@ -956,7 +993,7 @@
         <div class="container">
             <div class="games-grid" id="gamesGrid"></div>
             <div class="show-all-container">
-                <button class="show-all-btn" onclick="resetAllFilters()" id="showAllBtn">عرض كل الألعاب (Show All Games)</button>
+                <button class="show-all-btn" onclick="showAllGamesFullList()" id="showAllBtn">عرض كل الألعاب كاملة (Show All Games)</button>
             </div>
         </div>
     </div>
@@ -1034,7 +1071,7 @@
             </div>
         </div>
 
-        <!-- قسم التعليقات المطور والتقييمات تحت روابط التحميل مباشرة -->
+        <!-- قسم التعليقات المطور والتقييمات -->
         <div class="section-card" id="commentsSection">
             <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;" id="noticeBoxContainer">
                 <h4 style="margin: 0 0 5px 0; color: #a855f7;" id="noticeTitle">⚠️ تنبيه هام للاعبين:</h4>
@@ -1043,7 +1080,7 @@
                 </p>
             </div>
 
-            <!-- مكان تقييم النجوم التفاعلي (مشترط تسجيل الدخول) -->
+            <!-- تقييم النجوم -->
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; background: rgba(255, 255, 255, 0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 20px;">
                 <div>
                     <h4 style="margin: 0 0 5px 0; color: var(--text-color); font-size: 15px;" id="rateThisGameText">🌟 قيم هذه اللعبة:</h4>
@@ -1067,7 +1104,6 @@
                             📷 <span id="attachImgText">إرفاق صورة للمشكلة</span>
                             <input type="file" id="commentImage" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
                         </label>
-                        <!-- زر المنشن السريع للأدمن -->
                         <button type="button" onclick="insertAdminMention()" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer;" id="adminMentionBtn">
                             @ منشن للأدمن
                         </button>
@@ -1077,24 +1113,22 @@
                     <button onclick="postComment()" class="download-btn" style="width: auto; padding: 8px 25px;" id="postCommentBtn">نشر التعليق 🚀</button>
                 </div>
 
-                <!-- كابتشا الأشكال السهلة للأطفال والزوار -->
+                <!-- كابتشا الأشكال -->
                 <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                     <span id="commentCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
                     <div id="commentCaptchaBtns" style="display: flex; gap: 6px;"></div>
                 </div>
             </div>
 
-            <!-- رسالة تسجيل الدخول -->
             <div id="loginToCommentNotice" style="display: none; text-align: center; padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; color: var(--error-color);">
                 🔒 <span id="loginNoticeText">يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور وتقييم الألعاب (الزوار يمكنهم قراءة التعليقات فقط).</span>
             </div>
 
-            <!-- قائمة عرض التعليقات -->
             <div id="commentsList" style="margin-top: 25px;"></div>
         </div>
     </div>
 
-    <!-- صفحة حل المشاكل والبرامج المتكاملة -->
+    <!-- صفحة حل المشاكل -->
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
@@ -1179,17 +1213,62 @@
         </div>
     </div>
 
-    <!-- الفوتر -->
+    <!-- الفوتر والسوشيال ميديا -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo" onclick="goHome()" style="cursor:pointer;">MK GAMES</div>
             <p class="footer-text" id="footerDesc">
                 MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل. هنا تجد أيضاً تعريبات ومودات وتحديثات، مع شروحات التثبيت وحلول مشاكل التشغيل.
             </p>
+
+            <!-- روابط وسائل التواصل الاجتماعي المحدثة -->
+            <div class="social-links">
+                <a href="https://www.facebook.com/profile.php?id=61596200017191" target="_blank" class="social-btn social-fb">
+                    <span>📘</span> Facebook
+                </a>
+                <a href="https://www.youtube.com/@mkgames.officially" target="_blank" class="social-btn social-yt">
+                    <span>🔴</span> YouTube
+                </a>
+                <a href="https://www.instagram.com/mkgames.officially/" target="_blank" class="social-btn social-insta">
+                    <span>📷</span> Instagram
+                </a>
+            </div>
+
             <div class="footer-copy">&copy; 2026 MK GAMES - mkgames.vercel.app</div>
             <div class="developer-signature" id="devSignature">Developed 💻 by Malik Abdalhady</div>
         </div>
     </footer>
+
+    <!-- نافذة لوحة تحكم الأدمن -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content" style="max-width: 550px;">
+            <span class="close-modal" onclick="closeModals()">&times;</span>
+            <h3 id="adminModalTitle">👑 لوحة إداري الموقع (إضافة لعبة)</h3>
+            <p style="font-size: 13px; color: var(--secondary-text);" id="adminModalSub">أدخل بيانات اللعبة الجديدة لإضافتها إلى قائمة الألعاب</p>
+            
+            <input type="text" id="adminGameTitleAr" placeholder="اسم اللعبة بالعربية">
+            <input type="text" id="adminGameTitleEn" placeholder="Game Title in English">
+            <input type="text" id="adminGameGenreAr" placeholder="التصنيف بالعربية (مثال: أكشن - رياضة)">
+            <input type="text" id="adminGameGenreEn" placeholder="Genre in English (e.g., Action - Sports)">
+            <textarea id="adminGameDescAr" placeholder="نبذة عن اللعبة بالعربية..." style="height:60px;"></textarea>
+            <textarea id="adminGameDescEn" placeholder="Description in English..." style="height:60px;"></textarea>
+            
+            <div style="display:flex; gap:10px;">
+                <input type="number" step="0.01" id="adminGameSizeNum" placeholder="الحجم بالأرقام فقط (GB) مثل 5.5">
+                <select id="adminGameSpecs">
+                    <option value="low">أجهزة ضعيفة (Low Specs)</option>
+                    <option value="mid">أجهزة متوسطة (Mid Specs)</option>
+                    <option value="high">أجهزة عالية (High Specs)</option>
+                </select>
+            </div>
+
+            <input type="text" id="adminGameImg" placeholder="رابط صورة غلاف اللعبة (Image URL)">
+            <input type="text" id="adminGameDirect" placeholder="رابط التحميل المباشر (MediaFire)">
+            <input type="text" id="adminGameTorrent" placeholder="رابط تحميل التورنت (Torrent Magnet)">
+
+            <button onclick="addNewGameByAdmin()" style="background: linear-gradient(135deg, #10b981, #059669);">حفظ وإضافة اللعبة للموقع 🚀</button>
+        </div>
+    </div>
 
     <!-- نافذة المصادقة -->
     <div class="modal" id="authModal">
@@ -1239,11 +1318,18 @@
         const SUPABASE_KEY = 'sb_publishable_Ea-N9k82FsTJUMsTohQR-Q_RZminLbB';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+        // حسابات الأدمن المعتمدة
+        const ADMIN_EMAILS = ["malikabdalhady@gmail.com", "mkgames.officially@gmail.com"];
+        const ADMIN_PASSWORDS = {
+            "malikabdalhady@gmail.com": "M@lik 910",
+            "mkgames.officially@gmail.com": "MK GAMES 910"
+        };
+
         const gamesData = [
             {
                 "id": 1,
-                "titleAr": "Pro Evolution Soccer 2006 ",
-                "titleEn": "Pro Evolution Soccer 2006 ",
+                "titleAr": "Pro Evolution Soccer 2006",
+                "titleEn": "Pro Evolution Soccer 2006",
                 "genreAr": "رياضة - كلاسيك - المحاكاة - جماعية",
                 "genreEn": "Co-op - Sports - Classic - Simulation",
                 "descAr": "(صدرت سنة 2006).تميزت ببساطة وسلاسة التحكم مع سرعة في اللعب تعتمد على المهارات الفردية للاعبين دون تعقيد",
@@ -1283,13 +1369,11 @@
         let currentSizeFilter = 'all';
         let currentSpecsFilter = 'all';
         let currentGameId = null;
+        let isShowAllFullList = false; // التحكم في عرض 16 لعبة أو الكل
 
         let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let currentUser = JSON.parse(localStorage.getItem('mk_current_user')) || null;
         let isSignUpMode = false;
-
-        const ADMIN_EMAIL = "malikabdalhady@gmail.com";
-        const ADMIN_PASS = "M@lik 910";
         let uploadedImageBase64 = "";
 
         let targetCommentEmoji = '⚽';
@@ -1300,6 +1384,11 @@
                 const loginBtn = document.getElementById('loginBtn');
                 loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
                 loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
+                
+                // إظهار زر الأدمن إذا كان المستخدم أدمن
+                if (ADMIN_EMAILS.includes(currentUser.email)) {
+                    document.getElementById('adminNavBtn').style.display = 'flex';
+                }
             }
             generateCommentEmojiCaptcha();
             checkNewNotificationsBadge();
@@ -1309,9 +1398,14 @@
         displayGames(activeGames);
         buildTrendingList();
 
+        function showAllGamesFullList() {
+            isShowAllFullList = true;
+            resetAllFilters();
+        }
+
         function insertAdminMention() {
             const commentInput = document.getElementById('commentText');
-            commentInput.value += ` @${ADMIN_EMAIL} `;
+            commentInput.value += ` @${ADMIN_EMAILS[0]} `;
             commentInput.focus();
         }
 
@@ -1521,6 +1615,53 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        function openAdminModal() {
+            if (!currentUser || !ADMIN_EMAILS.includes(currentUser.email)) {
+                alert(currentLang === 'ar' ? '⚠️ هذه الصفحة مخصصة للأدمن فقط!' : '⚠️ Access restricted to Admin only!');
+                return;
+            }
+            document.getElementById('adminModal').style.display = 'flex';
+        }
+
+        function addNewGameByAdmin() {
+            const titleAr = document.getElementById('adminGameTitleAr').value.trim();
+            const titleEn = document.getElementById('adminGameTitleEn').value.trim();
+            const genreAr = document.getElementById('adminGameGenreAr').value.trim();
+            const genreEn = document.getElementById('adminGameGenreEn').value.trim();
+            const descAr = document.getElementById('adminGameDescAr').value.trim();
+            const descEn = document.getElementById('adminGameDescEn').value.trim();
+            const sizeNum = parseFloat(document.getElementById('adminGameSizeNum').value) || 1.0;
+            const specs = document.getElementById('adminGameSpecs').value;
+            const image = document.getElementById('adminGameImg').value.trim();
+            const directUrl = document.getElementById('adminGameDirect').value.trim();
+            const torrentUrl = document.getElementById('adminGameTorrent').value.trim();
+
+            if (!titleAr || !titleEn || !image) {
+                alert(currentLang === 'ar' ? '⚠️ يرجى تعبئة العناوين وصورة الغلاف على الأقل!' : '⚠️ Please fill required fields!');
+                return;
+            }
+
+            const newGame = {
+                id: gamesData.length + 1,
+                titleAr, titleEn, genreAr, genreEn, descAr, descEn,
+                tags: ["action"],
+                sizeNum: sizeNum,
+                sizeAr: sizeNum + " جيجا",
+                sizeEn: sizeNum + " GB",
+                specs: specs,
+                image: image,
+                directUrl: directUrl || "#",
+                torrentUrl: torrentUrl || "#",
+                reqsAr: { os: "Windows 10/11", cpu: "Intel Core i5", ram: "8 GB", gpu: "GTX 1050", storage: sizeNum + " GB" },
+                reqsEn: { os: "Windows 10/11", cpu: "Intel Core i5", ram: "8 GB", gpu: "GTX 1050", storage: sizeNum + " GB" }
+            };
+
+            gamesData.unshift(newGame);
+            resetAllFilters();
+            closeModals();
+            alert(currentLang === 'ar' ? '✅ تم إضافة اللعبة للموقع بنجاح!' : '✅ New game added successfully!');
+        }
+
         function goHome() {
             currentGameId = null;
             document.getElementById('troubleshootPageView').style.display = 'none';
@@ -1601,9 +1742,12 @@
                 return;
             }
 
+            // اقتطاع المصفوفة لتعرض 16 لعبة فقط (4 صفوف × 4 أعمدة) إذا لم يضغط المستخدم على "عرض الكل"
+            let displayedList = isShowAllFullList ? games : games.slice(0, 16);
+
             const { data: allRatings } = await supabaseClient.from('ratings').select('*');
 
-            games.forEach((game) => {
+            displayedList.forEach((game) => {
                 const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
                 const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
                 const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
@@ -1781,6 +1925,7 @@
             const footerDesc = document.getElementById('footerDesc');
             const loginBtn = document.getElementById('loginBtn');
             const troubleshootBtnText = document.getElementById('troubleshootBtnText');
+            const adminBtnText = document.getElementById('adminBtnText');
             const tsPageTitle = document.getElementById('tsPageTitle');
             const tsPageSub = document.getElementById('tsPageSub');
             const backBtn = document.getElementById('backBtn');
@@ -1904,6 +2049,7 @@
                 notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
                 
                 troubleshootBtnText.innerText = 'Tools & Instructions';
+                adminBtnText.innerText = 'Admin Panel';
                 tsPageTitle.innerText = 'Software & Instructions Center';
                 tsPageSub.innerText = 'Everything you need to install and run games smoothly.';
                 
@@ -2021,6 +2167,7 @@
                 notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
                 
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
+                adminBtnText.innerText = 'لوحة الأدمن';
                 tsPageTitle.innerText = 'مركز البرامج والتعليمات الشامل';
                 tsPageSub.innerText = 'كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.';
 
@@ -2172,13 +2319,13 @@
                 return;
             }
 
-            if (email === ADMIN_EMAIL) {
-                if (password !== ADMIN_PASS) {
+            if (ADMIN_EMAILS.includes(email)) {
+                if (ADMIN_PASSWORDS[email] !== password) {
                     errorBox.innerText = currentLang === 'ar' ? '❌ كلمة مرور الأدمن غير صحيحة!' : '❌ Incorrect Admin password!';
                     errorBox.style.display = 'block';
                     return;
                 } else {
-                    currentUser = { email: ADMIN_EMAIL };
+                    currentUser = { email: email };
                     localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
                     successBox.innerText = currentLang === 'ar' ? '👑 أهلاً بك يا أدمن الموقع!' : '👑 Welcome Admin!';
                     successBox.style.display = 'block';
@@ -2188,12 +2335,6 @@
             }
 
             if (isSignUpMode) {
-                if (email === ADMIN_EMAIL) {
-                    errorBox.innerText = currentLang === 'ar' ? '⚠️ هذا البريد مخصص للأدمن ولا يمكن التسجيل به كحساب عادي!' : '⚠️ This email is reserved for Admin!';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-
                 const { data: existingUsers } = await supabaseClient
                     .from('users')
                     .select('*')
@@ -2263,12 +2404,12 @@
 
             if (allComments) {
                 allComments.forEach(c => {
-                    if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL && !dismissedIds.includes('c_' + c.id)) hasNew = true;
-                    if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL && !dismissedIds.includes('c_' + c.id)) hasNew = true;
+                    if (ADMIN_EMAILS.includes(currentUser.email) && !ADMIN_EMAILS.includes(c.user_email) && !dismissedIds.includes('c_' + c.id)) hasNew = true;
+                    if (c.text && c.text.includes(currentUser.email) && !ADMIN_EMAILS.includes(c.user_email) && !dismissedIds.includes('c_' + c.id)) hasNew = true;
                 });
             }
 
-            if (currentUser.email === ADMIN_EMAIL && allRatings) {
+            if (ADMIN_EMAILS.includes(currentUser.email) && allRatings) {
                 allRatings.forEach(r => {
                     if (!dismissedIds.includes('r_' + r.id)) hasNew = true;
                 });
@@ -2306,7 +2447,7 @@
             let notifications = [];
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
 
-            if (currentUser.email === ADMIN_EMAIL && allRatings) {
+            if (ADMIN_EMAILS.includes(currentUser.email) && allRatings) {
                 allRatings.forEach(r => {
                     let uniqueKey = 'r_' + r.id;
                     if (!dismissedIds.includes(uniqueKey)) {
@@ -2327,14 +2468,14 @@
                 allComments.forEach(c => {
                     let uniqueKey = 'c_' + c.id;
                     if (!dismissedIds.includes(uniqueKey)) {
-                        if (currentUser.email === ADMIN_EMAIL && c.user_email !== ADMIN_EMAIL) {
+                        if (ADMIN_EMAILS.includes(currentUser.email) && !ADMIN_EMAILS.includes(c.user_email)) {
                             notifications.push({
                                 key: uniqueKey,
                                 text: currentLang === 'ar' ? `💬 كتب تعليق جديد المستخدم: ${c.user_email}` : `💬 New comment by: ${c.user_email}`,
                                 date: c.date,
                                 gameId: c.game_id
                             });
-                        } else if (c.text && c.text.includes(currentUser.email) && c.user_email !== ADMIN_EMAIL) {
+                        } else if (c.text && c.text.includes(currentUser.email) && !ADMIN_EMAILS.includes(c.user_email)) {
                             notifications.push({
                                 key: uniqueKey,
                                 text: currentLang === 'ar' ? `✨ عمل لك منشن المستخدم ${c.user_email}` : `✨ ${c.user_email} mentioned you`,
@@ -2393,6 +2534,7 @@
             document.getElementById('authModal').style.display = 'none';
             document.getElementById('favModal').style.display = 'none';
             document.getElementById('notifModal').style.display = 'none';
+            document.getElementById('adminModal').style.display = 'none';
             document.getElementById('authErrorMsg').style.display = 'none';
             document.getElementById('authSuccessMsg').style.display = 'none';
             document.getElementById('authEmail').value = '';
@@ -2439,8 +2581,8 @@
             commentsList.innerHTML = '';
 
             allComments.forEach((c) => {
-                const isAdminComment = c.user_email === ADMIN_EMAIL;
-                const canDelete = currentUser && (currentUser.email === ADMIN_EMAIL || currentUser.email === c.user_email);
+                const isAdminComment = ADMIN_EMAILS.includes(c.user_email);
+                const canDelete = currentUser && (ADMIN_EMAILS.includes(currentUser.email) || currentUser.email === c.user_email);
 
                 let parsedReplies = [];
                 try { parsedReplies = c.replies ? JSON.parse(c.replies) : []; } catch(err) { parsedReplies = []; }
@@ -2448,12 +2590,12 @@
                 let repliesHTML = '';
                 if (parsedReplies && parsedReplies.length > 0) {
                     parsedReplies.forEach((r, rIndex) => {
-                        const canDeleteReply = currentUser && (currentUser.email === ADMIN_EMAIL || currentUser.email === r.userEmail);
+                        const canDeleteReply = currentUser && (ADMIN_EMAILS.includes(currentUser.email) || currentUser.email === r.userEmail);
                         repliesHTML += `
                             <div style="background: rgba(255,255,255,0.03); margin-top: 10px; margin-right: 20px; padding: 10px; border-right: 2px solid #a855f7; border-radius: 6px;">
                                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                                    <strong style="color: ${r.userEmail === ADMIN_EMAIL ? '#f59e0b' : '#38bdf8'}; font-size:13px;">
-                                        ${r.userEmail === ADMIN_EMAIL ? (currentLang === 'ar' ? '👑 [أدمن] ' : '👑 [Admin] ') : ''}${r.userEmail}
+                                    <strong style="color: ${ADMIN_EMAILS.includes(r.userEmail) ? '#f59e0b' : '#38bdf8'}; font-size:13px;">
+                                        ${ADMIN_EMAILS.includes(r.userEmail) ? (currentLang === 'ar' ? '👑 [أدمن] ' : '👑 [Admin] ') : ''}${r.userEmail}
                                     </strong>
                                     <span style="font-size:11px; color:var(--secondary-text);">${r.date}</span>
                                 </div>
@@ -2565,19 +2707,16 @@
 
             parsedReplies.splice(replyIndex, 1);
             await supabaseClient.from('comments').update({ replies: JSON.stringify(parsedReplies) }).eq('id', commentId);
-loadCommentsCloud(currentGameId);
-}
+            loadCommentsCloud(currentGameId);
+        }
 
-// مراقب زر الرجوع (Back) في المتصفح لضمان تجربة مستخدم سلسة
-window.addEventListener('popstate', function(event) {
-    // لما اليوزر يضغط باك، دايماً نرجع للرئيسية وننظف الشاشة بأمان تام من غير أي تعليق
-    document.getElementById('troubleshootPageView').style.display = 'none';
-    document.getElementById('gameDetailsView').style.display = 'none';
-    document.getElementById('mainHeaderView').style.display = 'block';
-    currentGameId = null;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-</script>
+        window.addEventListener('popstate', function(event) {
+            document.getElementById('troubleshootPageView').style.display = 'none';
+            document.getElementById('gameDetailsView').style.display = 'none';
+            document.getElementById('mainHeaderView').style.display = 'block';
+            currentGameId = null;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>
