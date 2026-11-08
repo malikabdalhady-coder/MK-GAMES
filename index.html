@@ -6,15 +6,9 @@
     <title id="pageTitle">MK GAMES - موقع تحميل الألعاب</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="حمل ألعاب الكمبيوتر الكاملة والمضغوطة بروابط مباشرة وتورنت مجاناً. أفضل ألعاب خفيفة، كلاسيكية، وألعاب للأجهزة الضعيفة والمتوسطة على MK GAMES." />
-    <meta name="keywords" content="تحميل ألعاب كمبيوتر, ألعاب PC بروابط مباشرة, ألعاب مضغوطة بحجم صغير, ألعاب للأجهزة الضعيفة, تحميل ألعاب كلاسيكية, حل مشاكل الألعاب, برامج تشغيل الألعاب, MK GAMES" />
+    <meta name="description" content="حمل ألعاب الكمبيوتر الكاملة والمضغوطة بروابط مباشرة وتورنت مجاناً على MK GAMES." />
+    <meta name="keywords" content="تحميل ألعاب كمبيوتر, ألعاب PC, MK GAMES" />
     <meta name="author" content="Malik Abdalhady" />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="MK GAMES - منصة تحميل ألعاب الكمبيوتر" />
-    <meta property="og:description" content="حمل ألعاب الكمبيوتر الكاملة والمضغوطة بروابط مباشرة وتورنت بكل سهولة." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mkgames.vercel.app" />
 
     <!-- Supabase SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -106,14 +100,8 @@
             text-decoration: none;
         }
 
-        .request-nav-btn {
-            background: linear-gradient(135deg, #ec4899, #8b5cf6);
-        }
-
-        .admin-nav-btn {
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-            display: none;
-        }
+        .request-nav-btn { background: linear-gradient(135deg, #ec4899, #8b5cf6); }
+        .admin-nav-btn { background: linear-gradient(135deg, #f59e0b, #ef4444); display: none; }
 
         .troubleshoot-nav-btn:hover, .request-nav-btn:hover, .admin-nav-btn:hover, .back-home-link:hover {
             opacity: 0.9;
@@ -144,7 +132,6 @@
             background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(168, 85, 247, 0.6);
             letter-spacing: 3px;
             margin-bottom: 5px;
             display: inline-block;
@@ -153,11 +140,9 @@
 
         .neon-glow-bg {
             position: absolute;
-            top: 40%;
-            left: 50%;
+            top: 40%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 320px;
-            height: 120px;
+            width: 320px; height: 120px;
             background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
             filter: blur(60px);
             opacity: 0.55;
@@ -166,53 +151,39 @@
             border-radius: 50%;
         }
 
-        .hero-subtitle, .prayer-reminder, .main-brand-logo {
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-subtitle {
-            font-size: 14px;
-            color: #f472b6;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
+        .hero-subtitle, .prayer-reminder, .main-brand-logo { position: relative; z-index: 1; }
+        .hero-subtitle { font-size: 14px; color: #f472b6; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; font-weight: bold; }
 
         .prayer-reminder {
             color: var(--text-color);
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 25px;
+            font-size: 14px; font-weight: bold; margin-bottom: 25px;
             background: rgba(168, 85, 247, 0.15);
-            display: inline-block;
-            padding: 6px 20px;
-            border-radius: 20px;
-            border: 1px solid #a855f7;
+            display: inline-block; padding: 6px 20px; border-radius: 20px; border: 1px solid #a855f7;
         }
 
-        /* البحث */
+        /* البحث وزر اقترح لعبة */
         .search-container {
             width: 100%;
-            max-width: 800px;
+            max-width: 850px;
             padding: 0 20px;
             box-sizing: border-box;
             margin: 0 auto 20px;
             position: relative;
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         .search-box {
-            width: 100%;
+            flex: 1;
             padding: 16px 24px;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 16px;
             border: 2px solid var(--secondary-text);
             background-color: var(--card-bg);
             color: var(--text-color);
             outline: none;
             transition: 0.3s;
-            box-sizing: border-box;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
@@ -221,759 +192,204 @@
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
         }
 
-        /* شريط التصنيفات الذكية المطور */
+        .random-game-btn {
+            background: linear-gradient(135deg, #ec4899, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 16px;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        }
+
+        .random-game-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+        }
+
+        /* التصنيفات والقوائم المنسدلة */
         .filters-container {
             max-width: 1300px;
             margin: 0 auto 30px;
             padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
+            display: flex; flex-direction: column; gap: 15px; align-items: center;
         }
 
-        .filter-row {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
+        .filter-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; width: 100%; }
 
         .filter-chip {
             background-color: var(--card-bg);
             color: var(--secondary-text);
             border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 7px 14px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-            transition: 0.2s;
+            padding: 7px 14px; border-radius: 20px; cursor: pointer; font-size: 12px; font-weight: 600; transition: 0.2s;
         }
 
         .filter-chip:hover, .filter-chip.active {
             background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+            color: white; border-color: transparent; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
         }
 
-        .dropdown-filter {
-            position: relative;
-            display: inline-block;
-        }
+        .dropdown-filter { position: relative; display: inline-block; }
 
         .dropdown-btn {
-            background: var(--card-bg);
-            color: var(--secondary-text);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 7px 16px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            background: var(--card-bg); color: var(--secondary-text);
+            border: 1px solid rgba(168, 85, 247, 0.3); padding: 7px 16px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 6px;
         }
 
         .dropdown-btn:hover, .dropdown-btn.active-click {
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+            background: linear-gradient(135deg, #a855f7, #3b82f6); color: white; border-color: transparent;
         }
 
         .dropdown-menu-content {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: var(--card-bg);
-            min-width: 300px;
-            box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 14px;
-            padding: 15px;
-            z-index: 100;
-            transform: translateY(10px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            visibility: hidden; opacity: 0; position: absolute; top: 100%; right: 0;
+            background-color: var(--card-bg); min-width: 300px; box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 14px; padding: 15px; z-index: 100;
+            transform: translateY(10px); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
         }
 
-        [dir="ltr"] .dropdown-menu-content {
-            right: auto;
-            left: 0;
-        }
+        [dir="ltr"] .dropdown-menu-content { right: auto; left: 0; }
 
-        .dropdown-filter:hover .dropdown-menu-content,
-        .dropdown-menu-content.show-sticky {
-            visibility: visible;
-            opacity: 1;
-            transform: translateY(5px);
-        }
-
-        .dropdown-menu-content .filter-chip {
-            width: 100%;
-            text-align: center;
-            box-sizing: border-box;
+        .dropdown-filter:hover .dropdown-menu-content, .dropdown-menu-content.show-sticky {
+            visibility: visible; opacity: 1; transform: translateY(5px);
         }
 
         .trending-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 20px;
-            right: 20px;
-            background-color: var(--card-bg);
-            border: 1px solid #334155;
-            border-radius: 12px;
-            margin-top: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            z-index: 1500;
-            display: none;
-            max-height: 300px;
-            overflow-y: auto;
-            text-align: right;
+            position: absolute; top: 100%; left: 20px; right: 20px;
+            background-color: var(--card-bg); border: 1px solid #334155; border-radius: 12px;
+            margin-top: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1500; display: none;
+            max-height: 300px; overflow-y: auto; text-align: right;
         }
 
         [dir="ltr"] .trending-dropdown { text-align: left; }
-
-        .trending-header {
-            padding: 10px 16px;
-            font-size: 13px;
-            color: #a855f7;
-            font-weight: bold;
-            border-bottom: 1px solid #334155;
-            background: rgba(168, 85, 247, 0.05);
-        }
-
-        .trending-item {
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            cursor: pointer;
-            transition: 0.2s;
-            border-bottom: 1px solid rgba(51, 65, 85, 0.4);
-        }
-
+        .trending-header { padding: 10px 16px; font-size: 13px; color: #a855f7; font-weight: bold; border-bottom: 1px solid #334155; }
+        .trending-item { padding: 10px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; border-bottom: 1px solid rgba(51, 65, 85, 0.4); }
         .trending-item:hover { background-color: rgba(168, 85, 247, 0.15); }
+        .trending-img { width: 38px; height: 52px; border-radius: 6px; object-fit: cover; }
 
-        .trending-img {
-            width: 38px;
-            height: 52px;
-            border-radius: 6px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-
-        .container {
-            max-width: 1350px;
-            margin: 0 auto;
-            padding: 0 20px 40px;
-        }
-
-        /* شبكة الألعاب */
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
+        .container { max-width: 1350px; margin: 0 auto; padding: 0 20px 40px; }
+        .games-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
 
         @media (max-width: 1024px) { .games-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .games-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) { .games-grid { grid-template-columns: 1fr; } .search-container { flex-direction: column; } .random-game-btn { width: 100%; } }
 
         .game-card {
-            background-color: var(--card-bg);
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            position: relative;
+            background-color: var(--card-bg); border-radius: 14px; overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2); transition: transform 0.3s; display: flex; flex-direction: column; justify-content: space-between; position: relative;
         }
 
-        .game-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(168, 85, 247, 0.25);
-        }
+        .game-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(168, 85, 247, 0.25); }
 
         .fav-card-btn {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            border: none;
-            border-radius: 50%;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            transition: 0.2s;
-            z-index: 10;
+            position: absolute; top: 10px; left: 10px; background: rgba(0, 0, 0, 0.7);
+            border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 16px; z-index: 10;
         }
 
         [dir="ltr"] .fav-card-btn { left: auto; right: 10px; }
 
-        .game-img-container { cursor: pointer; overflow: hidden; }
-
-        .game-img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            background-color: #1e293b;
-            transition: transform 0.3s;
-        }
-
+        .game-img { width: 100%; height: 320px; object-fit: cover; background-color: #1e293b; transition: transform 0.3s; }
         .game-card:hover .game-img { transform: scale(1.03); }
 
-        .game-content {
-            padding: 16px;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
+        .game-content { padding: 16px; text-align: right; display: flex; flex-direction: column; gap: 8px; }
         [dir="ltr"] .game-content { text-align: left; }
 
-        .game-card h3 {
-            color: #ffffff;
-            margin: 0;
-            font-size: 17px;
-            font-weight: bold;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
-        }
-
+        .game-card h3 { color: #ffffff; margin: 0; font-size: 17px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
         .game-card h3:hover { color: #a855f7; }
-
-        .game-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
-            color: var(--secondary-text);
-            margin-bottom: 5px;
-        }
-
+        .game-info { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--secondary-text); }
         .game-genre { color: #a855f7; font-weight: 600; }
         .game-size { background: rgba(6, 182, 212, 0.1); color: var(--accent-color); padding: 2px 8px; border-radius: 6px; font-size: 12px; }
 
         .download-btn {
-            display: block;
-            width: 100%;
-            padding: 10px 0;
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: 0.2s;
-            box-sizing: border-box;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
+            display: block; width: 100%; padding: 10px 0; background: linear-gradient(135deg, #a855f7, #3b82f6);
+            color: white; text-align: center; text-decoration: none; border-radius: 8px; font-weight: bold; transition: 0.2s; border: none; cursor: pointer;
         }
 
         .download-btn:hover { opacity: 0.9; box-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
 
-        .show-all-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
+        .show-all-container { text-align: center; margin-top: 40px; }
         .show-all-btn {
-            background: transparent;
-            color: #a855f7;
-            border: 2px solid #a855f7;
-            padding: 12px 35px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.15);
+            background: transparent; color: #a855f7; border: 2px solid #a855f7; padding: 12px 35px;
+            border-radius: 25px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
         }
 
-        .show-all-btn:hover {
-            background: #a855f7;
-            color: white;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-            transform: translateY(-2px);
-        }
+        .show-all-btn:hover { background: #a855f7; color: white; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); }
 
         /* صفحة تفاصيل اللعبة */
-        #gameDetailsView {
-            display: none;
-            max-width: 1000px;
-            margin: 30px auto;
-            padding: 0 20px;
-            flex-direction: column;
-            gap: 30px;
-        }
-
-        .game-hero-section {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .game-poster-wrapper {
-            position: relative;
-            width: 100%;
-            height: 450px;
-            background: #1e293b;
-        }
-
-        .game-poster {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        #gameDetailsView { display: none; max-width: 1000px; margin: 30px auto; padding: 0 20px; flex-direction: column; gap: 30px; }
+        .game-hero-section { background-color: var(--card-bg); border-radius: 20px; overflow: hidden; border: 1px solid rgba(168, 85, 247, 0.3); display: flex; flex-direction: column; position: relative; }
+        .game-poster-wrapper { position: relative; width: 100%; height: 450px; background: #1e293b; }
+        .game-poster { width: 100%; height: 100%; object-fit: cover; }
 
         .game-fav-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0, 0, 0, 0.75);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            transition: 0.2s;
-            z-index: 10;
+            position: absolute; top: 20px; left: 20px; background: rgba(0, 0, 0, 0.75); border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; z-index: 10;
         }
 
         [dir="ltr"] .game-fav-btn { left: auto; right: 20px; }
 
-        .game-meta-info {
-            padding: 30px;
-            text-align: right;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
+        .game-meta-info { padding: 30px; text-align: right; display: flex; flex-direction: column; gap: 15px; }
         [dir="ltr"] .game-meta-info { text-align: left; }
+        .game-title { font-size: 32px; font-weight: 900; color: #ffffff; margin: 0; }
+        .game-genres-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .genre-badge { background: rgba(168, 85, 247, 0.15); color: #a855f7; padding: 6px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; border: 1px solid rgba(168, 85, 247, 0.3); }
 
-        .game-title {
-            font-size: 32px;
-            font-weight: 900;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .game-genres-tags {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .genre-badge {
-            background: rgba(168, 85, 247, 0.15);
-            color: #a855f7;
-            padding: 6px 14px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .section-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 25px 30px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            text-align: right;
-        }
-
+        .section-card { background-color: var(--card-bg); border-radius: 16px; padding: 25px 30px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: right; }
         [dir="ltr"] .section-card { text-align: left; }
+        .section-card h3 { color: #a855f7; font-size: 20px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px; }
+        .section-card p, .section-card ul { color: var(--secondary-text); font-size: 15px; line-height: 1.7; margin: 0; }
 
-        .section-card h3 {
-            color: #a855f7;
-            font-size: 20px;
-            margin-top: 0;
-            margin-bottom: 12px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding-bottom: 8px;
-        }
+        .video-container { position: relative; width: 100%; padding-bottom: 56.5%; height: 0; border-radius: 12px; overflow: hidden; background: #000; margin-top: 10px; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .download-buttons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 600px) { .download-buttons-grid { grid-template-columns: 1fr; } }
 
-        .section-card p, .section-card ul {
-            color: var(--secondary-text);
-            font-size: 15px;
-            line-height: 1.7;
-            margin: 0;
-        }
-
-        .section-card ul { padding-right: 20px; }
-        [dir="ltr"] .section-card ul { padding-right: 0; padding-left: 20px; }
-
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.5%;
-            height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            background: #000;
-            margin-top: 10px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-
-        .download-buttons-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .download-buttons-grid { grid-template-columns: 1fr; }
-        }
-
-        .dl-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: bold;
-            font-size: 16px;
-            text-decoration: none;
-            color: white;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
+        .dl-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 16px; border-radius: 14px; font-weight: bold; font-size: 16px; text-decoration: none; color: white; transition: 0.3s; }
         .dl-direct { background: linear-gradient(135deg, #10b981, #059669); }
-        .dl-direct:hover { box-shadow: 0 0 20px rgba(16, 185, 129, 0.5); transform: translateY(-2px); }
-
         .dl-torrent { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-        .dl-torrent:hover { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); transform: translateY(-2px); }
 
         /* صفحة حل المشاكل */
-        #troubleshootPageView {
-            display: none;
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .troubleshoot-header-box {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-            background: var(--card-bg);
-            padding: 20px 30px;
-            border-radius: 16px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        .troubleshoot-container-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            text-align: right;
-        }
-
+        #troubleshootPageView { display: none; max-width: 900px; margin: 30px auto; padding: 0 20px; }
+        .troubleshoot-header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: var(--card-bg); padding: 20px 30px; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .troubleshoot-container-grid { display: flex; flex-direction: column; gap: 20px; text-align: right; }
         [dir="ltr"] .troubleshoot-container-grid { text-align: left; }
+        .troubleshoot-box-card { background-color: var(--card-bg); border-radius: 16px; padding: 30px; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .box-title { font-size: 20px; font-weight: 800; color: #a855f7; margin: 0 0 8px; }
+        .box-desc { font-size: 14px; color: var(--secondary-text); margin: 0 0 20px; }
 
-        .troubleshoot-box-card {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 30px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
-        }
+        .tools-list-container { display: flex; flex-direction: column; gap: 12px; }
+        .tool-row-item { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.02); padding: 14px 18px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05); gap: 15px; }
+        .tool-info h4 { margin: 0 0 4px; color: var(--text-color); font-size: 16px; font-weight: bold; }
+        .tool-info p { margin: 0; color: var(--secondary-text); font-size: 13px; }
+        .tool-action-btn { background: linear-gradient(135deg, #a855f7, #3b82f6); color: white; text-decoration: none; padding: 8px 18px; border-radius: 10px; font-weight: bold; font-size: 13px; white-space: nowrap; }
 
-        .box-title {
-            font-size: 20px;
-            font-weight: 800;
-            color: #a855f7;
-            margin: 0 0 8px;
-        }
+        /* Footer & Modals */
+        .site-footer { background-color: var(--card-bg); border-top: 1px solid rgba(168, 85, 247, 0.2); padding: 45px 20px; text-align: center; margin-top: 40px; }
+        .footer-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .footer-logo { font-size: 32px; font-weight: 900; background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; }
+        .social-links { display: flex; gap: 15px; margin: 10px 0; }
+        .social-btn { display: flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 20px; text-decoration: none; color: white; font-weight: bold; font-size: 13px; }
+        .social-fb { background: #1877f2; } .social-yt { background: #ff0000; } .social-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
 
-        .box-desc {
-            font-size: 14px;
-            color: var(--secondary-text);
-            margin: 0 0 20px;
-        }
-
-        .tools-list-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .tool-row-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 14px 18px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: 0.2s;
-            gap: 15px;
-        }
-
-        .tool-row-item:hover {
-            background: rgba(168, 85, 247, 0.08);
-            border-color: rgba(168, 85, 247, 0.3);
-        }
-
-        @media (max-width: 600px) {
-            .tool-row-item { flex-direction: column; align-items: flex-start; }
-        }
-
-        .tool-info h4 {
-            margin: 0 0 4px;
-            color: var(--text-color);
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .tool-info p {
-            margin: 0;
-            color: var(--secondary-text);
-            font-size: 13px;
-        }
-
-        .tool-action-btn {
-            background: linear-gradient(135deg, #a855f7, #3b82f6);
-            color: white;
-            text-decoration: none;
-            padding: 8px 18px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 13px;
-            white-space: nowrap;
-            transition: 0.2s;
-        }
-
-        .tool-action-btn:hover {
-            opacity: 0.9;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
-        }
-
-        .steps-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .steps-list li {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 12px 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .steps-list li::before { content: "🔹"; font-size: 12px; }
-
-        .support-notice-card {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(59, 130, 246, 0.1));
-            border: 1px dashed #a855f7;
-            border-radius: 16px;
-            padding: 20px;
-            text-align: center;
-            font-weight: bold;
-            color: var(--text-color);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* Footer & Social Media */
-        .site-footer {
-            background-color: var(--card-bg);
-            border-top: 1px solid rgba(168, 85, 247, 0.2);
-            padding: 45px 20px;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .footer-content {
-            max-width: 900px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .footer-logo {
-            font-size: 32px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-        }
-
-        .footer-text { color: var(--secondary-text); font-size: 15px; line-height: 1.8; margin: 0; }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin: 10px 0;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            border-radius: 20px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            font-size: 13px;
-            transition: 0.3s;
-        }
-
-        .social-fb { background: #1877f2; }
-        .social-yt { background: #ff0000; }
-        .social-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-        .social-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
-
-        .footer-copy { color: var(--text-color); font-weight: bold; font-size: 14px; }
-        .developer-signature {
-            color: #a855f7;
-            font-weight: bold;
-            font-size: 14px;
-            background: rgba(168, 85, 247, 0.1);
-            padding: 4px 16px;
-            border-radius: 15px;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-        }
-
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 520px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-            position: relative;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            font-size: 24px;
-            cursor: pointer;
-            color: var(--secondary-text);
-        }
-
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 2000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 16px; width: 90%; max-width: 520px; text-align: center; position: relative; border: 1px solid rgba(168, 85, 247, 0.3); max-height: 90vh; overflow-y: auto; }
+        .close-modal { position: absolute; top: 15px; left: 20px; font-size: 24px; cursor: pointer; color: var(--secondary-text); }
         [dir="ltr"] .close-modal { left: auto; right: 20px; }
 
-        .modal-content input, .modal-content textarea, .modal-content select {
-            width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 10px;
-            border: 1px solid var(--secondary-text);
-            background: var(--bg-color);
-            color: var(--text-color);
-            box-sizing: border-box;
-        }
-
-        .modal-content button {
-            width: 100%;
-            padding: 12px;
-            background: #a855f7;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .auth-switch {
-            margin-top: 15px;
-            font-size: 13px;
-            color: var(--secondary-text);
-            cursor: pointer;
-        }
+        .modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid var(--secondary-text); background: var(--bg-color); color: var(--text-color); box-sizing: border-box; }
+        .modal-content button { width: 100%; padding: 12px; background: #a855f7; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        .auth-switch { margin-top: 15px; font-size: 13px; color: var(--secondary-text); cursor: pointer; }
         .auth-switch span { color: #a855f7; font-weight: bold; }
-
         .auth-error { color: var(--error-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
         .auth-success { color: var(--success-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
 
-        .fav-item-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-            background: rgba(255,255,255,0.03);
-            padding: 10px;
-            border-radius: 10px;
-            text-align: right;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
+        .fav-item-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 10px; text-align: right; border: 1px solid rgba(255,255,255,0.05); }
         [dir="ltr"] .fav-item-row { text-align: left; }
         .fav-item-img { width: 50px; height: 65px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
         .fav-item-info { flex: 1; cursor: pointer; }
@@ -1016,6 +432,8 @@
 
         <div class="search-container">
             <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة للتحميل..." onfocus="showTrending()" onkeyup="searchGames()">
+            <button class="random-game-btn" onclick="pickRandomGame()" id="randomGameBtn">🎲 اقترح لي لعبة</button>
+            
             <div class="trending-dropdown" id="trendingDropdown">
                 <div class="trending-header" id="trendingTitle">🔥 الألعاب الرائجة حالياً</div>
                 <div id="trendingList"></div>
@@ -1025,12 +443,10 @@
         <!-- شريط التصنيفات الذكية المطور -->
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
-                <!-- 3 تصنيفات رئيسية ظاهرة دائماً -->
                 <button class="filter-chip active" onclick="filterByTag('all', this)" id="fAll">الكل</button>
                 <button class="filter-chip" onclick="filterByTag('action', this)" id="fAction">الأكشن</button>
                 <button class="filter-chip" onclick="filterByTag('sports', this)" id="fSport">الرياضة</button>
 
-                <!-- زر عرض المزيد والقائمة المنسدلة الذكية -->
                 <div class="dropdown-filter" id="dropdownFilterBox">
                     <button class="dropdown-btn" id="showMoreBtn" onclick="toggleDropdownSticky(event)">
                         <span id="showMoreText">عرض المزيد 🔽</span>
@@ -1216,7 +632,7 @@
         </div>
     </div>
 
-    <!-- صفحة حل المشاكل والبرامج الديناميكية -->
+    <!-- صفحة حل المشاكل -->
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
@@ -1255,7 +671,6 @@
                 </div>
             </div>
 
-            <!-- قسم المشاكل المضافة ديناميكياً من الأدمن -->
             <div id="dynamicTroubleshootList" style="display: flex; flex-direction: column; gap: 20px;"></div>
 
             <div class="support-notice-card" id="supportNoticeText">
@@ -1264,7 +679,7 @@
         </div>
     </div>
 
-    <!-- الفوتر والسوشيال ميديا -->
+    <!-- الفوتر -->
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo" onclick="goHome()" style="cursor:pointer;">MK GAMES</div>
@@ -1289,7 +704,7 @@
         </div>
     </footer>
 
-    <!-- نافذة طلب لعبة (للمستخدمين المسجلين) -->
+    <!-- Modals -->
     <div class="modal" id="gameRequestModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -1303,20 +718,17 @@
         </div>
     </div>
 
-    <!-- نافذة لوحة تحكم الأدمن المتقدمة (إضافة/تعديل الألعاب + إضافة المشاكل والحلول) -->
     <div class="modal" id="adminModal">
         <div class="modal-content" style="max-width: 600px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="adminModalTitle">👑 لوحة إداري الموقع (MK GAMES)</h3>
             
-            <!-- أزرار اختيار الأقسام في لوحة الأدمن -->
             <div style="display: flex; gap: 8px; margin-bottom: 15px; flex-wrap: wrap;">
                 <button type="button" onclick="switchAdminTab('addGame')" id="tabAddGameBtn" style="background:#10b981; padding:8px; font-size:12px; flex:1;">➕ إضافة لعبة</button>
                 <button type="button" onclick="switchAdminTab('editGame')" id="tabEditGameBtn" style="background:var(--card-bg); border:1px solid #3b82f6; color:#3b82f6; padding:8px; font-size:12px; flex:1;">✏️ تعديل لعبة</button>
                 <button type="button" onclick="switchAdminTab('addIssue')" id="tabAddIssueBtn" style="background:var(--card-bg); border:1px solid #a855f7; color:#a855f7; padding:8px; font-size:12px; flex:1;">🛠️ إضافة مشكلة وحلها</button>
             </div>
 
-            <!-- تبويب إدارة الألعاب -->
             <div id="adminGameTabContent">
                 <div id="adminEditSelectorContainer" style="display: none; margin-bottom: 10px;">
                     <select id="adminSelectGameToEdit" onchange="loadGameDataIntoAdminForm(this.value)">
@@ -1352,7 +764,6 @@
                 <button onclick="saveGameByAdmin()" style="background: linear-gradient(135deg, #10b981, #059669); margin-top:10px;" id="adminSubmitGameBtn">حفظ وإضافة اللعبة + إرسال إشعار 🚀</button>
             </div>
 
-            <!-- تبويب إضافة مشكلة وحلها -->
             <div id="adminIssueTabContent" style="display: none;">
                 <h4 style="margin:0 0 10px; color:#a855f7;">🛠️ إضافة مشكلة جديدة في صفحة "حل المشاكل"</h4>
                 <input type="text" id="issueTitleAr" placeholder="عنوان المشكلة (مثال: خطأ 0xc000007b عند فتح اللعبة)">
@@ -1365,7 +776,6 @@
         </div>
     </div>
 
-    <!-- نافذة المصادقة -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -1385,7 +795,6 @@
         </div>
     </div>
 
-    <!-- نافذة المفضلة -->
     <div class="modal" id="favModal">
         <div class="modal-content" style="max-width: 450px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -1396,7 +805,6 @@
         </div>
     </div>
 
-    <!-- نافذة الإشعارات -->
     <div class="modal" id="notifModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
@@ -1455,7 +863,7 @@
         let currentSpecsFilter = 'all';
         let currentGameId = null;
         let isShowAllFullList = false;
-        let adminTab = 'addGame'; // 'addGame', 'editGame', 'addIssue'
+        let adminTab = 'addGame';
 
         let favorites = JSON.parse(localStorage.getItem('mk_favorites')) || [];
         let currentUser = JSON.parse(localStorage.getItem('mk_current_user')) || null;
@@ -1484,7 +892,14 @@
         displayGames(activeGames);
         buildTrendingList();
 
-        // دوال القائمة المنسدلة الذكية للتصنيفات
+        // 🎲 اختيار لعبة عشوائية
+        function pickRandomGame() {
+            if (!gamesData || gamesData.length === 0) return;
+            const randomIndex = Math.floor(Math.random() * gamesData.length);
+            const randomGame = gamesData[randomIndex];
+            openGameDetails(randomGame.id);
+        }
+
         function toggleDropdownSticky(event) {
             event.stopPropagation();
             const menuContent = document.getElementById('tagsDropdownContent');
@@ -1503,7 +918,6 @@
             }
         });
 
-        // طلب لعبة جديد
         function openGameRequestModal() {
             if (!currentUser) {
                 alert(currentLang === 'ar' ? '⚠️ يرجى تسجيل الدخول أولاً لتتمكن من إرسال طلب لعبة!' : '⚠️ Please log in first to request a game!');
@@ -1522,7 +936,6 @@
                 return;
             }
 
-            // حفظ الطلب في Supabase ليصل للأدمن كإشعار
             await supabaseClient.from('game_requests').insert([{
                 user_email: currentUser.email,
                 game_name: gameName,
@@ -1537,7 +950,6 @@
             checkNewNotificationsBadge();
         }
 
-        // إدارة لوحة الأدمن والتبويبات
         function openAdminModal() {
             if (!currentUser || !ADMIN_EMAILS.includes(currentUser.email)) {
                 alert(currentLang === 'ar' ? '⚠️ هذه الصفحة مخصصة للأدمن فقط!' : '⚠️ Access restricted to Admin only!');
@@ -1670,7 +1082,6 @@
                     alert(currentLang === 'ar' ? '✅ تم تحديث بيانات اللعبة بنجاح!' : '✅ Game updated!');
                 }
             } else {
-                // إضافة لعبة جديدة + إرسال إشعار سحابي لجميع المستخدمين
                 const newGame = {
                     id: gamesData.length + 1,
                     titleAr, titleEn, genreAr, genreEn, descAr, descEn,
@@ -1689,7 +1100,6 @@
                 };
                 gamesData.unshift(newGame);
 
-                // إرسال الإشعار لجميع المستخدمين بوجود لعبة جديدة
                 await supabaseClient.from('site_notifications').insert([{
                     type: 'new_game',
                     game_id: newGame.id,
@@ -1705,7 +1115,6 @@
             closeModals();
         }
 
-        // حفظ مشكلة وحلها جديدة من الأدمن
         async function saveIssueByAdmin() {
             const title = document.getElementById('issueTitleAr').value.trim();
             const solution = document.getElementById('issueSolutionAr').value.trim();
@@ -1743,7 +1152,6 @@
             loadTroubleshootIssuesFromCloud();
         }
 
-        // جلب قائمة المشاكل المضافة من السحابة لصفحة "حل المشاكل"
         async function loadTroubleshootIssuesFromCloud() {
             const container = document.getElementById('dynamicTroubleshootList');
             if (!container) return;
@@ -1960,6 +1368,7 @@
             }
             loadGameRatings(gameId);
             displayGames(activeGames);
+            checkNewNotificationsBadge();
         }
 
         function openTroubleshootPage() {
@@ -2011,9 +1420,7 @@
         }
 
         function resetAllFilters() {
-            currentTagFilter = 'all';
-            currentSizeFilter = 'all';
-            currentSpecsFilter = 'all';
+            currentTagFilter = 'all'; currentSizeFilter = 'all'; currentSpecsFilter = 'all';
             document.querySelectorAll('.filter-chip').forEach(btn => btn.classList.remove('active'));
             document.getElementById('fAll').classList.add('active');
             document.getElementById('searchInput').value = '';
@@ -2143,10 +1550,7 @@
                 const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
                 const item = document.createElement('div');
                 item.className = 'trending-item';
-                item.onclick = function() {
-                    openGameDetails(game.id);
-                    hideTrending();
-                };
+                item.onclick = function() { openGameDetails(game.id); hideTrending(); };
                 item.innerHTML = `
                     <img src="${game.image}" class="trending-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                     <div class="trending-info">
@@ -2168,10 +1572,7 @@
 
         function searchGames() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            if (!query) {
-                displayGames(activeGames);
-                return;
-            }
+            if (!query) { displayGames(activeGames); return; }
             const filtered = gamesData.filter(game => {
                 const titleAr = (game.titleAr || '').toLowerCase();
                 const titleEn = (game.titleEn || '').toLowerCase();
@@ -2209,47 +1610,7 @@
             const troubleshootBtnText = document.getElementById('troubleshootBtnText');
             const requestBtnText = document.getElementById('requestBtnText');
             const adminBtnText = document.getElementById('adminBtnText');
-            const tsPageTitle = document.getElementById('tsPageTitle');
-            const tsPageSub = document.getElementById('tsPageSub');
-            const backBtn = document.getElementById('backBtn');
-            const showAllBtn = document.getElementById('showAllBtn');
-            const favBtn = document.getElementById('favBtn');
-            const notifBtn = document.getElementById('notifBtn');
-            const clearAllNotifBtn = document.getElementById('clearAllNotifBtn');
-            
-            const detailsHeaderTitle = document.getElementById('detailsHeaderTitle');
-            const backToGamesText = document.getElementById('backToGamesText');
-            const aboutTitle = document.getElementById('aboutTitle');
-            const reqTitle = document.getElementById('reqTitle');
-            const vidTitle = document.getElementById('vidTitle');
-            const vidSub = document.getElementById('vidSub');
-            const dlTitle = document.getElementById('dlTitle');
-            const dlSub = document.getElementById('dlSub');
-            const directText = document.getElementById('directText');
-            const torrentText = document.getElementById('torrentText');
-
-            const langSectionTitle = document.getElementById('langSectionTitle');
-            const thLang = document.getElementById('thLang');
-            const thMenu = document.getElementById('thMenu');
-            const thAudio = document.getElementById('thAudio');
-            const thSub = document.getElementById('thSub');
-
-            const osLabel = document.getElementById('osLabel');
-            const cpuLabel = document.getElementById('cpuLabel');
-            const ramLabel = document.getElementById('ramLabel');
-            const gpuLabel = document.getElementById('gpuLabel');
-            const storageLabel = document.getElementById('storageLabel');
-
-            const notifModalTitle = document.getElementById('notifModalTitle');
-            const notifModalDesc = document.getElementById('notifModalDesc');
-            const requestModalTitle = document.getElementById('requestModalTitle');
-            const requestModalSub = document.getElementById('requestModalSub');
-            const reqSubmitBtn = document.getElementById('reqSubmitBtn');
-
-            const fAll = document.getElementById('fAll');
-            const fAction = document.getElementById('fAction');
-            const fSport = document.getElementById('fSport');
-            const showMoreText = document.getElementById('showMoreText');
+            const randomGameBtn = document.getElementById('randomGameBtn');
 
             if (currentLang === 'ar') {
                 currentLang = 'en';
@@ -2260,55 +1621,12 @@
                 subTitle.innerText = 'Explore Games';
                 searchInput.placeholder = 'Search for a game to download...';
                 trendingTitle.innerText = '🔥 Trending Games';
-                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games. Search for your game in Arabic or English.';
+                randomGameBtn.innerText = '🎲 Suggest Game';
+                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games.';
                 loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
-                favBtn.title = 'Favorites';
-                notifBtn.title = 'Notifications';
-                clearAllNotifBtn.innerText = 'Clear All 🗑️';
-                
-                notifModalTitle.innerText = 'Notifications';
-                notifModalDesc.innerText = 'No new notifications right now, enjoy downloading! 🚀';
-                
                 requestBtnText.innerText = 'Request Game';
-                requestModalTitle.innerText = '🎮 Request New Game';
-                requestModalSub.innerText = 'Write the game name you want us to add to the site!';
-                reqSubmitBtn.innerText = 'Submit Request to Admin 🚀';
-
                 troubleshootBtnText.innerText = 'Tools & Instructions';
                 adminBtnText.innerText = 'Admin Panel';
-                tsPageTitle.innerText = 'Software & Instructions Center';
-                tsPageSub.innerText = 'Everything you need to install and run games smoothly.';
-                
-                detailsHeaderTitle.innerText = 'Game Details';
-                backToGamesText.innerText = 'Back to Games';
-                aboutTitle.innerText = '📖 About the Game';
-                langSectionTitle.innerText = '🌐 Supported Languages';
-                thLang.innerText = 'Language';
-                thMenu.innerText = 'Menus';
-                thAudio.innerText = 'Audio';
-                thSub.innerText = 'Subtitles';
-
-                reqTitle.innerText = '💻 Minimum System Requirements';
-                osLabel.innerText = 'OS:';
-                cpuLabel.innerText = 'CPU:';
-                ramLabel.innerText = 'RAM:';
-                gpuLabel.innerText = 'GPU:';
-                storageLabel.innerText = 'Storage:';
-
-                vidTitle.innerText = '🎥 Installation Guide Video';
-                vidSub.innerText = 'Watch the step-by-step guide to ensure smooth installation:';
-                dlTitle.innerText = '🚀 Fast Download Links';
-                dlSub.innerText = 'Choose your preferred download method:';
-                directText.innerText = 'Direct Download (MediaFire)';
-                torrentText.innerText = 'Torrent Download (Magnet)';
-
-                fAll.innerText = 'All';
-                fAction.innerText = 'Action';
-                fSport.innerText = 'Sports';
-                if(showMoreText) showMoreText.innerText = 'Show More 🔽';
-
-                backBtn.innerText = 'Back to Games';
-                showAllBtn.innerText = 'Show All Games';
             } else {
                 currentLang = 'ar';
                 htmlRoot.setAttribute('lang', 'ar');
@@ -2318,59 +1636,15 @@
                 subTitle.innerText = 'Explore Games';
                 searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
                 trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
-                footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل.';
+                randomGameBtn.innerText = '🎲 اقترح لي لعبة';
+                footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة.';
                 loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
-                favBtn.title = 'المفضلة';
-                notifBtn.title = 'الإشعارات';
-                clearAllNotifBtn.innerText = 'حذف الكل 🗑️';
-                
-                notifModalTitle.innerText = 'الإشعارات';
-                notifModalDesc.innerText = 'لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀';
-                
                 requestBtnText.innerText = 'طلب لعبة';
-                requestModalTitle.innerText = '🎮 طلب إضافة لعبة جديدة';
-                requestModalSub.innerText = 'اكتب اسم اللعبة التي تتمنى إضافتها في الموقع وسنرفعها لك في أسرع وقت!';
-                reqSubmitBtn.innerText = 'إرسال الطلب للأدمن 🚀';
-
                 troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
                 adminBtnText.innerText = 'لوحة الأدمن';
-                tsPageTitle.innerText = 'مركز البرامج والتعليمات الشامل';
-                tsPageSub.innerText = 'كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.';
-
-                detailsHeaderTitle.innerText = 'تفاصيل اللعبة';
-                backToGamesText.innerText = 'العودة للألعاب';
-                aboutTitle.innerText = '📖 نبذة عن اللعبة';
-                langSectionTitle.innerText = '🌐 اللغات المدعومة في اللعبة';
-                thLang.innerText = 'اللغة';
-                thMenu.innerText = 'القوائم (Menus)';
-                thAudio.innerText = 'التعليق/الصوت (Audio)';
-                thSub.innerText = 'الحوارات/الترجمة (Subtitles)';
-
-                reqTitle.innerText = '💻 متطلبات التشغيل الدنيا (Minimum Requirements)';
-                osLabel.innerText = 'نظام التشغيل (OS):';
-                cpuLabel.innerText = 'المعالج (CPU):';
-                ramLabel.innerText = 'الذاكرة العشوائية (RAM):';
-                gpuLabel.innerText = 'كارت الشاشة (GPU):';
-                storageLabel.innerText = 'مساحة التخزين (Storage):';
-
-                vidTitle.innerText = '🎥 فيديو كيفية تنصيب وتثبيت اللعبة';
-                vidSub.innerText = 'شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:';
-                dlTitle.innerText = '🚀 روابط التحميل السريع';
-                dlSub.innerText = 'اختر الطريقة المناسبة لك للتحميل:';
-                directText.innerText = 'تحميل مباشر (MediaFire)';
-                torrentText.innerText = 'تحميل تورنت (Torrent Magnet)';
-
-                fAll.innerText = 'الكل';
-                fAction.innerText = 'الأكشن';
-                fSport.innerText = 'الرياضة';
-                if(showMoreText) showMoreText.innerText = 'عرض المزيد 🔽';
-
-                backBtn.innerText = 'العودة للألعاب';
-                showAllBtn.innerText = 'عرض كل الألعاب';
             }
             buildTrendingList();
             displayGames(activeGames);
-            if (currentGameId) openGameDetails(currentGameId);
         }
 
         function toggleAuthMode() {
@@ -2379,20 +1653,17 @@
             const sub = document.getElementById('authModalSub');
             const btn = document.getElementById('authSubmitBtn');
             const switchText = document.getElementById('authSwitchText');
-            
-            document.getElementById('authErrorMsg').style.display = 'none';
-            document.getElementById('authSuccessMsg').style.display = 'none';
 
             if (isSignUpMode) {
                 title.innerText = currentLang === 'ar' ? 'إنشاء حساب جديد' : 'Sign Up';
-                sub.innerText = currentLang === 'ar' ? 'أنشئ حساباً جديداً باستخدام بريدك الإلكتروني' : 'Create a new account';
+                sub.innerText = currentLang === 'ar' ? 'أنشئ حساباً جديداً' : 'Create a new account';
                 btn.innerText = currentLang === 'ar' ? 'تسجيل حساب' : 'Register';
-                switchText.innerHTML = currentLang === 'ar' ? 'لديك حساب بالفعل؟ <span>اضغط هنا لتسجيل الدخول</span>' : 'Already have an account? <span>Login</span>';
+                switchText.innerHTML = currentLang === 'ar' ? 'لديك حساب؟ <span>دخول</span>' : 'Have an account? <span>Login</span>';
             } else {
                 title.innerText = currentLang === 'ar' ? 'تسجيل الدخول' : 'Login';
-                sub.innerText = currentLang === 'ar' ? 'أدخل بريدك الإلكتروني وكلمة المرور' : 'Enter email and password';
+                sub.innerText = currentLang === 'ar' ? 'أدخل بياناتك' : 'Enter details';
                 btn.innerText = currentLang === 'ar' ? 'دخول' : 'Login';
-                switchText.innerHTML = currentLang === 'ar' ? 'ليس لديك حساب؟ <span>اضغط هنا لإنشاء حساب جديد</span>' : "Don't have an account? <span>Sign up</span>";
+                switchText.innerHTML = currentLang === 'ar' ? 'ليس لديك حساب؟ <span>إنشاء حساب</span>' : "No account? <span>Sign up</span>";
             }
         }
 
@@ -2402,57 +1673,37 @@
             const errorBox = document.getElementById('authErrorMsg');
             const successBox = document.getElementById('authSuccessMsg');
 
-            errorBox.style.display = 'none';
-            successBox.style.display = 'none';
-
             if (ADMIN_EMAILS.includes(email)) {
                 if (ADMIN_PASSWORDS[email] !== password) {
-                    errorBox.innerText = currentLang === 'ar' ? '❌ كلمة مرور الأدمن غير صحيحة!' : '❌ Incorrect Admin password!';
-                    errorBox.style.display = 'block';
-                    return;
+                    errorBox.innerText = currentLang === 'ar' ? '❌ كلمة مرور الأدمن غير صحيحة!' : '❌ Incorrect password!';
+                    errorBox.style.display = 'block'; return;
                 } else {
                     currentUser = { email: email };
                     localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
-                    successBox.innerText = currentLang === 'ar' ? '👑 أهلاً بك يا أدمن الموقع!' : '👑 Welcome Admin!';
-                    successBox.style.display = 'block';
-                    setTimeout(() => { closeModals(); location.reload(); }, 1200);
-                    return;
+                    location.reload(); return;
                 }
             }
 
             if (isSignUpMode) {
-                const { error: insertError } = await supabaseClient.from('users').insert([{ email: email, password: password }]);
-                if (insertError) {
-                    errorBox.innerText = currentLang === 'ar' ? '❌ حدث خطأ أثناء التسجيل.' : '❌ Registration error.';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-                successBox.innerText = currentLang === 'ar' ? '✅ تم إنشاء الحساب بنجاح!' : '✅ Account created!';
-                successBox.style.display = 'block';
-                setTimeout(() => { toggleAuthMode(); }, 1500);
+                const { error } = await supabaseClient.from('users').insert([{ email, password }]);
+                if (error) { errorBox.innerText = '❌ خطأ بالإنشاء'; errorBox.style.display = 'block'; return; }
+                successBox.innerText = '✅ تم إنشاء الحساب!'; successBox.style.display = 'block';
+                setTimeout(() => toggleAuthMode(), 1200);
             } else {
-                const { data: foundUsers } = await supabaseClient.from('users').select('*').eq('email', email).eq('password', password);
-                if (!foundUsers || foundUsers.length === 0) {
-                    errorBox.innerText = currentLang === 'ar' ? '❌ البريد أو كلمة المرور غير صحيحة!' : '❌ Incorrect credentials!';
-                    errorBox.style.display = 'block';
-                    return;
-                }
-                currentUser = { email: foundUsers[0].email };
+                const { data } = await supabaseClient.from('users').select('*').eq('email', email).eq('password', password);
+                if (!data || data.length === 0) { errorBox.innerText = '❌ بيانات خطأ'; errorBox.style.display = 'block'; return; }
+                currentUser = { email: data[0].email };
                 localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
-                successBox.innerText = currentLang === 'ar' ? `✅ تم تسجيل الدخول بنجاح.` : `✅ Logged in successfully.`;
-                successBox.style.display = 'block';
-                setTimeout(() => { closeModals(); location.reload(); }, 1200);
+                location.reload();
             }
         }
 
-        function openAuthModal() { 
-            if (currentUser) {
-                alert(currentLang === 'ar' ? `أهلاً بك يا ${currentUser.email}، أنت مسجل بالفعل! 🟢` : `Welcome ${currentUser.email}!`);
-                return;
-            }
-            document.getElementById('authModal').style.display = 'flex'; 
+        function openAuthModal() {
+            if (currentUser) return;
+            document.getElementById('authModal').style.display = 'flex';
         }
 
+        // 🔔 الإشعارات الشاملة (للأدمن والمستخدمين)
         async function checkNewNotificationsBadge() {
             if (!currentUser) return;
             const notifBtn = document.getElementById('notifBtn');
@@ -2461,92 +1712,99 @@
             const { data: siteNotifs } = await supabaseClient.from('site_notifications').select('*');
             const { data: gameReqs } = await supabaseClient.from('game_requests').select('*');
             const { data: allComments } = await supabaseClient.from('comments').select('*');
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
+
             let hasNew = false;
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
+            const isAdmin = ADMIN_EMAILS.includes(currentUser.email);
 
-            // إشعارات الألعاب الجديدة لجميع المستخدمين
             if (siteNotifs) {
-                siteNotifs.forEach(sn => {
-                    if (!dismissedIds.includes('sn_' + sn.id)) hasNew = true;
-                });
+                siteNotifs.forEach(sn => { if (!dismissedIds.includes('sn_' + sn.id)) hasNew = true; });
             }
 
-            // إشعارات طلب الألعاب للأدمن
-            if (ADMIN_EMAILS.includes(currentUser.email) && gameReqs) {
-                gameReqs.forEach(req => {
-                    if (!dismissedIds.includes('req_' + req.id)) hasNew = true;
+            if (isAdmin) {
+                if (gameReqs) gameReqs.forEach(req => { if (!dismissedIds.includes('req_' + req.id)) hasNew = true; });
+                if (allComments) allComments.forEach(c => {
+                    if (!ADMIN_EMAILS.includes(c.user_email) && !dismissedIds.includes('c_' + c.id)) hasNew = true;
+                    if (c.text && c.text.includes('@') && !dismissedIds.includes('m_' + c.id)) hasNew = true; // منشن للأدمن
                 });
+                if (allRatings) allRatings.forEach(r => { if (!dismissedIds.includes('r_' + r.id)) hasNew = true; });
             }
 
-            if (allComments) {
-                allComments.forEach(c => {
-                    if (ADMIN_EMAILS.includes(currentUser.email) && !ADMIN_EMAILS.includes(c.user_email) && !dismissedIds.includes('c_' + c.id)) hasNew = true;
-                });
-            }
-
-            if (hasNew) notifBtn.innerText = '🚨';
-            else notifBtn.innerText = '🔔';
+            notifBtn.innerText = hasNew ? '🚨' : '🔔';
         }
 
         async function openNotifModal() {
             document.getElementById('notifBtn').innerText = '🔔';
             const modalBody = document.getElementById('notifModalDesc');
-            document.getElementById('notifModalTitle').innerText = currentLang === 'ar' ? 'الإشعارات التفاعلية 🔔' : 'Notifications 🔔';
+            document.getElementById('notifModalTitle').innerText = currentLang === 'ar' ? 'مركز الإشعارات التفاعلي 🔔' : 'Notification Center 🔔';
             
             if (!currentUser) {
-                modalBody.innerHTML = currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول لعرض إشعاراتك.' : '⚠️ Login required.';
+                modalBody.innerHTML = currentLang === 'ar' ? '⚠️ يرجى تسجيل الدخول لعرض إشعاراتك.' : '⚠️ Login required.';
                 document.getElementById('notifModal').style.display = 'flex';
                 return;
             }
-            modalBody.innerHTML = currentLang === 'ar' ? 'جاري جلب الإشعارات...' : 'Loading...';
+            modalBody.innerHTML = currentLang === 'ar' ? 'جاري التحميل...' : 'Loading...';
             document.getElementById('notifModal').style.display = 'flex';
 
             const { data: siteNotifs } = await supabaseClient.from('site_notifications').select('*');
             const { data: gameReqs } = await supabaseClient.from('game_requests').select('*');
             const { data: allComments } = await supabaseClient.from('comments').select('*');
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
             
             let notifications = [];
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
+            const isAdmin = ADMIN_EMAILS.includes(currentUser.email);
 
-            // 1. إشعارات الألعاب الجديدة لجميع المستخدمين
+            // 1. إشعار إضافة لعبة جديدة (للكل)
             if (siteNotifs) {
                 siteNotifs.forEach(sn => {
                     let uniqueKey = 'sn_' + sn.id;
                     if (!dismissedIds.includes(uniqueKey)) {
                         let gameName = currentLang === 'ar' ? sn.title_ar : sn.title_en;
-                        notifications.push({
-                            key: uniqueKey,
-                            text: `🎮 تم إضافة لعبة جديدة: (${gameName})! حملها الآن 🚀`,
-                            date: sn.date,
-                            gameId: sn.game_id
-                        });
+                        notifications.push({ key: uniqueKey, text: `🎮 تم إضافة لعبة جديدة: (${gameName})! حملها الآن 🚀`, date: sn.date, gameId: sn.game_id });
                     }
                 });
             }
 
-            // 2. إشعارات طلبات الألعاب من الأعضاء (للأدمن فقط)
-            if (ADMIN_EMAILS.includes(currentUser.email) && gameReqs) {
-                gameReqs.forEach(req => {
-                    let uniqueKey = 'req_' + req.id;
-                    if (!dismissedIds.includes(uniqueKey)) {
-                        notifications.push({
-                            key: uniqueKey,
-                            text: `📥 طلب لعبة جديد من (${req.user_email}): يطلب لعبة [${req.game_name}] - ملاحظات: ${req.notes || 'لا يوجد'}`,
-                            date: req.date,
-                            gameId: null
-                        });
-                    }
-                });
-            }
-
-            // 3. إشعارات التعليقات للجميع وللأدمن
-            if (allComments) {
-                allComments.forEach(c => {
-                    let uniqueKey = 'c_' + c.id;
-                    if (!dismissedIds.includes(uniqueKey) && ADMIN_EMAILS.includes(currentUser.email) && !ADMIN_EMAILS.includes(c.user_email)) {
-                        notifications.push({ key: uniqueKey, text: `💬 تعليق جديد من: ${c.user_email}`, date: c.date, gameId: c.game_id });
-                    }
-                });
+            // 2. إشعارات للأدمنز فقط 👑
+            if (isAdmin) {
+                // منشن للأدمن
+                if (allComments) {
+                    allComments.forEach(c => {
+                        let uniqueKey = 'm_' + c.id;
+                        if (!dismissedIds.includes(uniqueKey) && c.text && c.text.includes('@')) {
+                            notifications.push({ key: uniqueKey, text: `🏷️ منشن جديد للأدمن من (${c.user_email}): "${c.text}"`, date: c.date, gameId: c.game_id });
+                        }
+                    });
+                }
+                // طلب لعبة
+                if (gameReqs) {
+                    gameReqs.forEach(req => {
+                        let uniqueKey = 'req_' + req.id;
+                        if (!dismissedIds.includes(uniqueKey)) {
+                            notifications.push({ key: uniqueKey, text: `📥 طلب لعبة جديد من (${req.user_email}): [${req.game_name}]`, date: req.date, gameId: null });
+                        }
+                    });
+                }
+                // تعليق جديد
+                if (allComments) {
+                    allComments.forEach(c => {
+                        let uniqueKey = 'c_' + c.id;
+                        if (!dismissedIds.includes(uniqueKey) && !ADMIN_EMAILS.includes(c.user_email) && !c.text.includes('@')) {
+                            notifications.push({ key: uniqueKey, text: `💬 تعليق جديد من (${c.user_email})`, date: c.date, gameId: c.game_id });
+                        }
+                    });
+                }
+                // تقييم لعبة
+                if (allRatings) {
+                    allRatings.forEach(r => {
+                        let uniqueKey = 'r_' + r.id;
+                        if (!dismissedIds.includes(uniqueKey)) {
+                            notifications.push({ key: uniqueKey, text: `⭐ قام (${r.user_email}) بتقييم لعبة بـ ${r.rating} نجوم`, date: 'الآن', gameId: r.game_id });
+                        }
+                    });
+                }
             }
 
             if (notifications.length === 0) {
@@ -2583,25 +1841,25 @@
             const { data: siteNotifs } = await supabaseClient.from('site_notifications').select('*');
             const { data: gameReqs } = await supabaseClient.from('game_requests').select('*');
             const { data: allComments } = await supabaseClient.from('comments').select('*');
+            const { data: allRatings } = await supabaseClient.from('ratings').select('*');
             
             let dismissedIds = [];
             if (siteNotifs) siteNotifs.forEach(sn => dismissedIds.push('sn_' + sn.id));
             if (gameReqs) gameReqs.forEach(req => dismissedIds.push('req_' + req.id));
-            if (allComments) allComments.forEach(c => dismissedIds.push('c_' + c.id));
+            if (allComments) allComments.forEach(c => { dismissedIds.push('c_' + c.id); dismissedIds.push('m_' + c.id); });
+            if (allRatings) allRatings.forEach(r => dismissedIds.push('r_' + r.id));
             
             localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds));
             openNotifModal();
             checkNewNotificationsBadge();
         }
-        
+
         function closeModals() {
             document.getElementById('authModal').style.display = 'none';
             document.getElementById('favModal').style.display = 'none';
             document.getElementById('notifModal').style.display = 'none';
             document.getElementById('adminModal').style.display = 'none';
             document.getElementById('gameRequestModal').style.display = 'none';
-            document.getElementById('authErrorMsg').style.display = 'none';
-            document.getElementById('authSuccessMsg').style.display = 'none';
         }
 
         function previewSelectedImage(input) {
@@ -2659,8 +1917,7 @@
         async function postComment() {
             if (userChosenCommentEmoji !== targetCommentEmoji) {
                 alert(currentLang === 'ar' ? '❌ يرجى اختيار الرمز المطابق في الكابتشا!' : '❌ Incorrect captcha!');
-                generateCommentEmojiCaptcha();
-                return;
+                generateCommentEmojiCaptcha(); return;
             }
             const text = document.getElementById('commentText').value.trim();
             if (!text && !uploadedImageBase64) return;
@@ -2678,6 +1935,7 @@
             document.getElementById('imageNamePreview').innerText = '';
             generateCommentEmojiCaptcha();
             loadCommentsCloud(currentGameId);
+            checkNewNotificationsBadge();
         }
 
         async function deleteCommentCloud(commentId) {
@@ -2685,7 +1943,7 @@
             loadCommentsCloud(currentGameId);
         }
 
-        window.addEventListener('popstate', function(event) {
+        window.addEventListener('popstate', function() {
             document.getElementById('troubleshootPageView').style.display = 'none';
             document.getElementById('gameDetailsView').style.display = 'none';
             document.getElementById('mainHeaderView').style.display = 'block';
