@@ -424,7 +424,7 @@
         <!-- شريط التصنيفات -->
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
-                <button class="filter-chip active" onclick="filterByTag('all', this)">الكل</button>
+                <button class="filter-chip active" id="fAll" onclick="filterByTag('all', this)">الكل</button>
                 <button class="filter-chip" onclick="filterByTag('action', this)">الأكشن</button>
                 <button class="filter-chip" onclick="filterByTag('sports', this)">الرياضة</button>
 
@@ -796,7 +796,10 @@
                 <input type="text" id="adminMod1Name" placeholder="اسم المود/الباتش الأول">
                 <input type="text" id="adminMod1Url" placeholder="رابط تحميل المود الأول">
 
-                <button onclick="saveGameByAdmin()" style="background: linear-gradient(135deg, #10b981, #059669); margin-top:10px;" id="adminSubmitGameBtn">حفظ وإضافة اللعبة + إرسال إشعار 🚀</button>
+                <div style="display:flex; gap:10px; margin-top:10px;">
+                    <button onclick="saveGameByAdmin()" style="background: linear-gradient(135deg, #10b981, #059669); flex:2;" id="adminSubmitGameBtn">حفظ وإضافة اللعبة + إرسال إشعار 🚀</button>
+                    <button type="button" onclick="deleteGameByAdmin()" style="background: #ef4444; flex:1; display:none;" id="adminDeleteGameBtn">🗑️ حذف اللعبة</button>
+                </div>
             </div>
 
             <!-- تبويب إضافة مشكلة -->
@@ -876,31 +879,8 @@
             "mkgames.officially@gmail.com": "MK GAMES 910"
         };
 
-        const gamesData = [
-            {
-                "id": 1,
-                "titleAr": "Pro Evolution Soccer 2006",
-                "titleEn": "Pro Evolution Soccer 2006",
-                "genreAr": "رياضة - كلاسيك - جماعية",
-                "descAr": "(صدرت سنة 2006). تميزت ببساطة وسلاسة التحكم مع سرعة في اللعب تعتمد على المهارات الفردية للاعبين دون تعقيد.",
-                "tags": ["sports", "classic", "co-op", "action"],
-                "sizeNum": 0.455,
-                "sizeAr": "0.455 جيجا",
-                "specs": "low",
-                "image": "https://m.media-amazon.com/images/I/51o547LavLL._AC_UF894,1000_QL80_.jpg",
-                "directUrl": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file",
-                "torrentUrl": "#",
-                "mods": [
-                    { "name": "باتش الدوري المصري 2026", "url": "https://www.mediafire.com" }
-                ],
-                "langs": [
-                    { "name": "اللغة العربية (Arabic)", "menu": true, "audio": true, "subtitles": true },
-                    { "name": "اللغة الإنجليزية (English)", "menu": true, "audio": true, "subtitles": true },
-                    { "name": "اللغة الفرنسية (Français)", "menu": true, "audio": false, "subtitles": true }
-                ],
-                "reqsAr": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" }
-            }
-        ];
+        let gamesData = [];
+        let activeGames = [];
 
         let currentTheme = 'dark';
         let currentTagFilter = 'all';
@@ -919,7 +899,7 @@
         let targetReqEmoji = '⚽'; let userChosenReqEmoji = '';
         let targetCommentEmoji = '⚽'; let userChosenCommentEmoji = '';
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', async () => {
             if (currentUser) {
                 const loginBtn = document.getElementById('loginBtn');
                 loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
@@ -934,11 +914,59 @@
             generateCommentEmojiCaptcha();
             checkNewNotificationsBadge();
             loadTroubleshootIssuesFromCloud();
+            await loadGamesFromCloud();
         });
 
-        let activeGames = [...gamesData];
-        displayGames(activeGames);
-        buildTrendingList();
+        async function loadGamesFromCloud() {
+            const { data: cloudGames, error } = await supabaseClient.from('games').select('*').order('id', { ascending: false });
+            if (!error && cloudGames && cloudGames.length > 0) {
+                gamesData = cloudGames.map(g => ({
+                    id: g.id,
+                    titleAr: g.title_ar,
+                    titleEn: g.title_en,
+                    genreAr: g.genre_ar,
+                    descAr: g.desc_ar,
+                    sizeNum: g.size_num,
+                    sizeAr: g.size_ar,
+                    specs: g.specs,
+                    image: g.image,
+                    directUrl: g.direct_url,
+                    torrentUrl: g.torrent_url,
+                    reqsAr: g.reqs_ar,
+                    langs: g.langs,
+                    mods: g.mods,
+                    tags: g.tags || ["action", "sports"]
+                }));
+            } else {
+                // لعبة افتراضية أولية إذا كان الجدول فارغاً
+                gamesData = [
+                    {
+                        "id": 1,
+                        "titleAr": "Pro Evolution Soccer 2006",
+                        "titleEn": "Pro Evolution Soccer 2006",
+                        "genreAr": "رياضة - كلاسيك - جماعية",
+                        "descAr": "(صدرت سنة 2006). تميزت ببساطة وسلاسة التحكم مع سرعة في اللعب تعتمد على المهارات الفردية للاعبين دون تعقيد.",
+                        "tags": ["sports", "classic", "co-op", "action"],
+                        "sizeNum": 0.455,
+                        "sizeAr": "0.455 جيجا",
+                        "specs": "low",
+                        "image": "https://m.media-amazon.com/images/I/51o547LavLL._AC_UF894,1000_QL80_.jpg",
+                        "directUrl": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file",
+                        "torrentUrl": "#",
+                        "mods": [{ "name": "باتش الدوري المصري 2026", "url": "https://www.mediafire.com" }],
+                        "langs": [
+                            { "name": "اللغة العربية (Arabic)", "menu": true, "audio": true, "subtitles": true },
+                            { "name": "اللغة الإنجليزية (English)", "menu": true, "audio": true, "subtitles": true },
+                            { "name": "اللغة الفرنسية (Français)", "menu": true, "audio": false, "subtitles": true }
+                        ],
+                        "reqsAr": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" }
+                    }
+                ];
+            }
+            activeGames = [...gamesData];
+            displayGames(activeGames);
+            buildTrendingList();
+        }
 
         function pickRandomGame() {
             if (!gamesData || gamesData.length === 0) return;
@@ -1073,6 +1101,7 @@
             const manageIssuesTabContent = document.getElementById('adminManageIssuesTabContent');
             const editSelectorContainer = document.getElementById('adminEditSelectorContainer');
             const submitBtn = document.getElementById('adminSubmitGameBtn');
+            const deleteGameBtn = document.getElementById('adminDeleteGameBtn');
 
             addBtn.style.background = 'var(--card-bg)'; addBtn.style.color = '#10b981';
             editBtn.style.background = 'var(--card-bg)'; editBtn.style.color = '#3b82f6';
@@ -1088,12 +1117,14 @@
                 gameTabContent.style.display = 'block';
                 editSelectorContainer.style.display = 'none';
                 submitBtn.innerText = 'حفظ وإضافة اللعبة + إرسال إشعار 🚀';
+                deleteGameBtn.style.display = 'none';
                 clearAdminForm();
             } else if (tab === 'editGame') {
                 editBtn.style.background = '#3b82f6'; editBtn.style.color = '#fff';
                 gameTabContent.style.display = 'block';
                 editSelectorContainer.style.display = 'block';
                 submitBtn.innerText = 'تعديل وتحديث بيانات اللعبة ✏️';
+                deleteGameBtn.style.display = 'block';
                 populateAdminGameSelector();
             } else if (tab === 'addIssue') {
                 issueBtn.style.background = '#a855f7'; issueBtn.style.color = '#fff';
@@ -1222,39 +1253,63 @@
                 alert('⚠️ يرجى تعبئة عنوان اللعبة بالعربية وصورة الغلاف على الأقل!'); return;
             }
 
+            const payload = {
+                title_ar: titleAr,
+                title_en: titleEn,
+                genre_ar: genreAr,
+                desc_ar: descAr,
+                size_num: sizeNum,
+                size_ar: sizeNum + " جيجا",
+                specs: specs,
+                image: image,
+                direct_url: directUrl || "#",
+                torrent_url: torrentUrl || "#",
+                reqs_ar: reqsObj,
+                langs: langsList,
+                mods: modsList,
+                tags: ["action", "sports"]
+            };
+
             if (adminTab === 'editGame' && editingId) {
-                const gameIndex = gamesData.findIndex(g => g.id == editingId);
-                if (gameIndex > -1) {
-                    gamesData[gameIndex] = {
-                        ...gamesData[gameIndex],
-                        titleAr, titleEn, genreAr, descAr,
-                        sizeNum, sizeAr: sizeNum + " جيجا",
-                        specs, image, directUrl: directUrl || "#", torrentUrl: torrentUrl || "#",
-                        reqsAr: reqsObj, langs: langsList, mods: modsList
-                    };
-                    alert('✅ تم تحديث بيانات اللعبة بنجاح!');
+                const { error } = await supabaseClient.from('games').update(payload).eq('id', editingId);
+                if (error) {
+                    alert('❌ حدث خطأ أثناء التعديل: ' + error.message);
+                    return;
                 }
+                alert('✅ تم تحديث بيانات اللعبة لكل الزوار بنجاح!');
             } else {
-                const newGame = {
-                    id: gamesData.length + 1,
-                    titleAr, titleEn, genreAr, descAr,
-                    tags: ["action", "sports"],
-                    sizeNum: sizeNum, sizeAr: sizeNum + " جيجا",
-                    specs: specs, image: image,
-                    directUrl: directUrl || "#", torrentUrl: torrentUrl || "#",
-                    mods: modsList, langs: langsList, reqsAr: reqsObj
-                };
-                gamesData.unshift(newGame);
+                const { data, error } = await supabaseClient.from('games').insert([payload]).select();
+                if (error) {
+                    alert('❌ حدث خطأ أثناء الإضافة: ' + error.message);
+                    return;
+                }
+                
+                if (data && data.length > 0) {
+                    await supabaseClient.from('site_notifications').insert([{
+                        type: 'new_game', game_id: data[0].id, title_ar: titleAr, title_en: titleEn || titleAr, date: new Date().toLocaleString()
+                    }]);
+                }
 
-                await supabaseClient.from('site_notifications').insert([{
-                    type: 'new_game', game_id: newGame.id, title_ar: titleAr, title_en: titleEn || titleAr, date: new Date().toLocaleString()
-                }]);
-
-                alert('✅ تم إضافة اللعبة للموقع وتم إرسال إشعار لجميع المستخدمين! 🚀');
+                alert('✅ تم إضافة اللعبة للموقع وظهرت لكل الزوار بنجاح! 🚀');
             }
 
-            resetAllFilters();
+            await loadGamesFromCloud();
             closeModals();
+        }
+
+        async function deleteGameByAdmin() {
+            const editingId = document.getElementById('adminEditingGameId').value;
+            if (!editingId) return;
+            if (confirm('هل أنت متأكد من حذف هذه اللعبة نهائياً من الموقع لكل الزوار؟')) {
+                const { error } = await supabaseClient.from('games').delete().eq('id', editingId);
+                if (error) {
+                    alert('❌ خطأ في الحذف: ' + error.message);
+                    return;
+                }
+                alert('✅ تم حذف اللعبة بنجاح!');
+                await loadGamesFromCloud();
+                closeModals();
+            }
         }
 
         async function saveIssueByAdmin() {
