@@ -378,6 +378,21 @@
         .fav-item-info h4 { margin: 0 0 4px; font-size: 14px; color: var(--text-color); }
         .fav-item-info span { font-size: 12px; color: var(--secondary-text); }
         .no-results { text-align: center; grid-column: 1 / -1; color: var(--secondary-text); font-size: 18px; padding: 40px; }
+        
+        .tag-select-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+            text-align: right;
+            background: rgba(255,255,255,0.02);
+            padding: 10px;
+            border-radius: 10px;
+            margin: 8px 0;
+            max-height: 140px;
+            overflow-y: auto;
+            border: 1px solid var(--secondary-text);
+        }
+        .tag-select-grid label { font-size: 12px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
     </style>
 </head>
 <body>
@@ -537,11 +552,12 @@
             <div id="modsLinksContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
         </div>
 
-        <div class="section-card">
+        <!-- فيديو كيفية التثبيت المخصص لكل لعبة -->
+        <div class="section-card" id="videoSectionCard">
             <h3>🎥 فيديو كيفية تنصيب وتثبيت اللعبة</h3>
             <p style="margin-bottom: 12px;">شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:</p>
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                <iframe id="detailsInstallVideo" src="" allowfullscreen></iframe>
             </div>
         </div>
 
@@ -736,9 +752,33 @@
                 <input type="hidden" id="adminEditingGameId" value="">
                 <input type="text" id="adminGameTitleAr" placeholder="اسم اللعبة بالعربية">
                 <input type="text" id="adminGameTitleEn" placeholder="اسم اللعبة بالإنجليزية (English Title)">
-                <input type="text" id="adminGameGenreAr" placeholder="التصنيف (مثال: أكشن - مغامرات)">
+                <input type="text" id="adminGameGenreAr" placeholder="التصنيف الظاهر (مثال: أكشن - مغامرات - عالم مفتوح)">
                 <textarea id="adminGameDescAr" placeholder="نبذة عن اللعبة..." style="height:55px;"></textarea>
                 
+                <h4 style="margin: 8px 0 4px; color: #a855f7; font-size: 13px; text-align: right;">🎯 ربط اللعبة بالتصنيفات والوسوم (تظهر عند الفلترة):</h4>
+                <div class="tag-select-grid" id="adminTagsCheckboxes">
+                    <label><input type="checkbox" value="action"> أكشن (Action)</label>
+                    <label><input type="checkbox" value="sports"> رياضة (Sports)</label>
+                    <label><input type="checkbox" value="adventure"> مغامرات (Adventure)</label>
+                    <label><input type="checkbox" value="open-world"> عالم مفتوح (Open-World)</label>
+                    <label><input type="checkbox" value="rpg"> RPG</label>
+                    <label><input type="checkbox" value="survival"> النجاة (Survival)</label>
+                    <label><input type="checkbox" value="horror"> الرعب (Horror)</label>
+                    <label><input type="checkbox" value="strategy"> استراتيجية (Strategy)</label>
+                    <label><input type="checkbox" value="stealth"> تخفي (Stealth)</label>
+                    <label><input type="checkbox" value="puzzle"> ألغاز (Puzzle)</label>
+                    <label><input type="checkbox" value="simulation"> محاكاة (Simulation)</label>
+                    <label><input type="checkbox" value="superhero"> أبطال خارقين</label>
+                    <label><input type="checkbox" value="sci-fi"> خيال علمي</label>
+                    <label><input type="checkbox" value="indie"> مستقلين (Indie)</label>
+                    <label><input type="checkbox" value="co-op"> جماعية (Co-Op)</label>
+                    <label><input type="checkbox" value="2d"> ثنائية الأبعاد (2D)</label>
+                    <label><input type="checkbox" value="3d"> ثلاثية الأبعاد (3D)</label>
+                    <label><input type="checkbox" value="fpp"> منظور أول (FPP)</label>
+                    <label><input type="checkbox" value="tpp"> منظور ثالث (TPP)</label>
+                    <label><input type="checkbox" value="classic"> كلاسيك (Classic)</label>
+                </div>
+
                 <div style="display:flex; gap:10px;">
                     <input type="number" step="0.01" id="adminGameSizeNum" placeholder="الحجم (GB)">
                     <select id="adminGameSpecs">
@@ -749,6 +789,7 @@
                 </div>
 
                 <input type="text" id="adminGameImg" placeholder="رابط صورة الغلاف (Image URL)">
+                <input type="text" id="adminGameVideo" placeholder="🎥 رابط فيديو طريقة التثبيت (YouTube URL)">
                 <input type="text" id="adminGameDirect" placeholder="رابط التحميل المباشر (MediaFire)">
                 <input type="text" id="adminGameTorrent" placeholder="رابط تحميل التورنت (Magnet)">
 
@@ -917,6 +958,18 @@
             await loadGamesFromCloud();
         });
 
+        function formatYoutubeEmbedUrl(url) {
+            if (!url) return '';
+            if (url.includes('youtube.com/watch?v=')) {
+                return `https://www.youtube.com/embed/${url.split('v=')[1]?.split('&')[0]}`;
+            } else if (url.includes('youtu.be/')) {
+                return `https://www.youtube.com/embed/${url.split('youtu.be/')[1]?.split('?')[0]}`;
+            } else if (url.includes('youtube.com/embed/')) {
+                return url;
+            }
+            return url;
+        }
+
         async function loadGamesFromCloud() {
             const { data: cloudGames, error } = await supabaseClient.from('games').select('*').order('id', { ascending: false });
             if (!error && cloudGames) {
@@ -930,12 +983,13 @@
                     sizeAr: g.size_ar,
                     specs: g.specs,
                     image: g.image,
+                    videoUrl: g.video_url || '',
                     directUrl: g.direct_url,
                     torrentUrl: g.torrent_url,
                     reqsAr: g.reqs_ar,
                     langs: g.langs,
                     mods: g.mods,
-                    tags: g.tags || ["action", "sports"]
+                    tags: g.tags || []
                 }));
             } else {
                 gamesData = [];
@@ -1130,6 +1184,7 @@
             document.getElementById('adminGameDescAr').value = '';
             document.getElementById('adminGameSizeNum').value = '';
             document.getElementById('adminGameImg').value = '';
+            document.getElementById('adminGameVideo').value = '';
             document.getElementById('adminGameDirect').value = '';
             document.getElementById('adminGameTorrent').value = '';
             document.getElementById('adminReqOs').value = '';
@@ -1140,6 +1195,8 @@
             document.getElementById('adminMod1Name').value = '';
             document.getElementById('adminMod1Url').value = '';
             
+            document.querySelectorAll('#adminTagsCheckboxes input[type="checkbox"]').forEach(cb => cb.checked = false);
+
             document.getElementById('arMenu').checked = true; document.getElementById('arAudio').checked = true; document.getElementById('arSub').checked = true;
             document.getElementById('enMenu').checked = true; document.getElementById('enAudio').checked = true; document.getElementById('enSub').checked = true;
             document.getElementById('frMenu').checked = false; document.getElementById('frAudio').checked = false; document.getElementById('frSub').checked = false;
@@ -1166,8 +1223,14 @@
             document.getElementById('adminGameSizeNum').value = game.sizeNum || 1;
             document.getElementById('adminGameSpecs').value = game.specs || 'low';
             document.getElementById('adminGameImg').value = game.image || '';
+            document.getElementById('adminGameVideo').value = game.videoUrl || '';
             document.getElementById('adminGameDirect').value = game.directUrl || '';
             document.getElementById('adminGameTorrent').value = game.torrentUrl || '';
+
+            // تحديث خيارات التاجز
+            document.querySelectorAll('#adminTagsCheckboxes input[type="checkbox"]').forEach(cb => {
+                cb.checked = (game.tags && game.tags.includes(cb.value));
+            });
 
             if (game.reqsAr) {
                 document.getElementById('adminReqOs').value = game.reqsAr.os || '';
@@ -1207,8 +1270,15 @@
             const sizeNum = parseFloat(document.getElementById('adminGameSizeNum').value) || 1.0;
             const specs = document.getElementById('adminGameSpecs').value;
             const image = document.getElementById('adminGameImg').value.trim();
+            const rawVideo = document.getElementById('adminGameVideo').value.trim();
+            const videoUrl = formatYoutubeEmbedUrl(rawVideo);
             const directUrl = document.getElementById('adminGameDirect').value.trim();
             const torrentUrl = document.getElementById('adminGameTorrent').value.trim();
+
+            let selectedTags = [];
+            document.querySelectorAll('#adminTagsCheckboxes input[type="checkbox"]:checked').forEach(cb => {
+                selectedTags.push(cb.value);
+            });
 
             const osVal = document.getElementById('adminReqOs').value.trim() || "Windows 10/11";
             const cpuVal = document.getElementById('adminReqCpu').value.trim() || "Intel Core i5";
@@ -1242,12 +1312,13 @@
                 size_ar: sizeNum + " جيجا",
                 specs: specs,
                 image: image,
+                video_url: videoUrl,
                 direct_url: directUrl || "#",
                 torrent_url: torrentUrl || "#",
                 reqs_ar: reqsObj,
                 langs: langsList,
                 mods: modsList,
-                tags: ["action", "sports"]
+                tags: selectedTags
             };
 
             if (adminTab === 'editGame' && editingId) {
@@ -1296,25 +1367,16 @@
             const editingId = document.getElementById('adminEditingIssueId').value;
             const title = document.getElementById('issueTitleAr').value.trim();
             const solution = document.getElementById('issueSolutionAr').value.trim();
-            const videoUrl = document.getElementById('issueVideoUrl').value.trim();
+            const videoUrl = formatYoutubeEmbedUrl(document.getElementById('issueVideoUrl').value.trim());
             const imageUrl = document.getElementById('issueImageUrl').value.trim();
 
             if (!title || !solution) { alert('⚠️ يرجى كتابة عنوان المشكلة والحل!'); return; }
 
-            let embedVideo = "";
-            if (videoUrl.includes("youtube.com/watch?v=")) {
-                embedVideo = `https://www.youtube.com/embed/${videoUrl.split("v=")[1]?.split("&")[0]}`;
-            } else if (videoUrl.includes("youtu.be/")) {
-                embedVideo = `https://www.youtube.com/embed/${videoUrl.split("youtu.be/")[1]?.split("?")[0]}`;
-            } else if (videoUrl.includes("youtube.com/embed/")) {
-                embedVideo = videoUrl;
-            }
-
             if (editingId) {
-                await supabaseClient.from('troubleshoot_issues').update({ title, solution, video_url: embedVideo, image_url: imageUrl }).eq('id', editingId);
+                await supabaseClient.from('troubleshoot_issues').update({ title, solution, video_url: videoUrl, image_url: imageUrl }).eq('id', editingId);
                 alert('✅ تم تعديل المشكلة بنجاح!');
             } else {
-                await supabaseClient.from('troubleshoot_issues').insert([{ title, solution, video_url: embedVideo, image_url: imageUrl, date: new Date().toLocaleString() }]);
+                await supabaseClient.from('troubleshoot_issues').insert([{ title, solution, video_url: videoUrl, image_url: imageUrl, date: new Date().toLocaleString() }]);
                 alert('✅ تم نشر المشكلة والحل في صفحة "حل المشاكل"! 🚀');
             }
 
@@ -1407,6 +1469,17 @@
             document.getElementById('detailsImage').src = game.image;
             document.getElementById('directDlBtn').href = game.directUrl;
             document.getElementById('torrentDlBtn').href = game.torrentUrl || "#";
+
+            // إظهار أو إخفاء قسم فيديو التثبيت بناءً على توفره للعبة
+            const videoCard = document.getElementById('videoSectionCard');
+            const videoIframe = document.getElementById('detailsInstallVideo');
+            if (game.videoUrl) {
+                videoIframe.src = game.videoUrl;
+                videoCard.style.display = 'block';
+            } else {
+                videoIframe.src = '';
+                videoCard.style.display = 'none';
+            }
 
             document.getElementById('detailsGenres').innerHTML = `
                 <span class="genre-badge">${game.genreAr}</span>
@@ -1588,7 +1661,7 @@
             grid.innerHTML = '';
 
             if (!games || games.length === 0) {
-                grid.innerHTML = `<div class="no-results">لا توجد ألعاب مضافة حالياً. قم بإضافة ألعاب جديدة من لوحة الأدمن! 🚀</div>`; return;
+                grid.innerHTML = `<div class="no-results">لا توجد ألعاب مطابقة لهذا التصنيف حالياً.</div>`; return;
             }
 
             let displayedList = isShowAllFullList ? games : games.slice(0, 16);
