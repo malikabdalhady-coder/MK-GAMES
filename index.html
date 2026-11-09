@@ -249,8 +249,6 @@
             display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
         }
 
-        [dir="ltr"] .dropdown-menu-content { right: auto; left: 0; }
-
         .dropdown-filter:hover .dropdown-menu-content, .dropdown-menu-content.show-sticky {
             visibility: visible; opacity: 1; transform: translateY(5px);
         }
@@ -262,7 +260,6 @@
             max-height: 300px; overflow-y: auto; text-align: right;
         }
 
-        [dir="ltr"] .trending-dropdown { text-align: left; }
         .trending-header { padding: 10px 16px; font-size: 13px; color: #a855f7; font-weight: bold; border-bottom: 1px solid #334155; }
         .trending-item { padding: 10px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; border-bottom: 1px solid rgba(51, 65, 85, 0.4); }
         .trending-item:hover { background-color: rgba(168, 85, 247, 0.15); }
@@ -287,13 +284,10 @@
             display: flex; align-items: center; justify-content: center; font-size: 16px; z-index: 10;
         }
 
-        [dir="ltr"] .fav-card-btn { left: auto; right: 10px; }
-
         .game-img { width: 100%; height: 320px; object-fit: cover; background-color: #1e293b; transition: transform 0.3s; }
         .game-card:hover .game-img { transform: scale(1.03); }
 
         .game-content { padding: 16px; text-align: right; display: flex; flex-direction: column; gap: 8px; }
-        [dir="ltr"] .game-content { text-align: left; }
 
         .game-card h3 { color: #ffffff; margin: 0; font-size: 17px; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
         .game-card h3:hover { color: #a855f7; }
@@ -327,16 +321,12 @@
             border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 20px; z-index: 10;
         }
 
-        [dir="ltr"] .game-fav-btn { left: auto; right: 20px; }
-
         .game-meta-info { padding: 30px; text-align: right; display: flex; flex-direction: column; gap: 15px; }
-        [dir="ltr"] .game-meta-info { text-align: left; }
         .game-title { font-size: 32px; font-weight: 900; color: #ffffff; margin: 0; }
         .game-genres-tags { display: flex; gap: 8px; flex-wrap: wrap; }
         .genre-badge { background: rgba(168, 85, 247, 0.15); color: #a855f7; padding: 6px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; border: 1px solid rgba(168, 85, 247, 0.3); }
 
         .section-card { background-color: var(--card-bg); border-radius: 16px; padding: 25px 30px; border: 1px solid rgba(255, 255, 255, 0.05); text-align: right; }
-        [dir="ltr"] .section-card { text-align: left; }
         .section-card h3 { color: #a855f7; font-size: 20px; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding-bottom: 8px; }
         .section-card p, .section-card ul { color: var(--secondary-text); font-size: 15px; line-height: 1.7; margin: 0; }
 
@@ -353,7 +343,6 @@
         #troubleshootPageView { display: none; max-width: 900px; margin: 30px auto; padding: 0 20px; }
         .troubleshoot-header-box { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; background: var(--card-bg); padding: 20px 30px; border-radius: 16px; border: 1px solid rgba(168, 85, 247, 0.3); }
         .troubleshoot-container-grid { display: flex; flex-direction: column; gap: 20px; text-align: right; }
-        [dir="ltr"] .troubleshoot-container-grid { text-align: left; }
         .troubleshoot-box-card { background-color: var(--card-bg); border-radius: 16px; padding: 30px; border: 1px solid rgba(168, 85, 247, 0.3); position: relative; }
         .box-title { font-size: 20px; font-weight: 800; color: #a855f7; margin: 0 0 8px; }
         .box-desc { font-size: 14px; color: var(--secondary-text); margin: 0 0 20px; }
@@ -375,7 +364,6 @@
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); justify-content: center; align-items: center; z-index: 2000; padding: 20px; box-sizing: border-box; }
         .modal-content { background-color: var(--card-bg); padding: 30px; border-radius: 16px; width: 90%; max-width: 520px; text-align: center; position: relative; border: 1px solid rgba(168, 85, 247, 0.3); max-height: 90vh; overflow-y: auto; }
         .close-modal { position: absolute; top: 15px; left: 20px; font-size: 24px; cursor: pointer; color: var(--secondary-text); }
-        [dir="ltr"] .close-modal { left: auto; right: 20px; }
 
         .modal-content input, .modal-content textarea, .modal-content select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 10px; border: 1px solid var(--secondary-text); background: var(--bg-color); color: var(--text-color); box-sizing: border-box; }
         .modal-content button { width: 100%; padding: 12px; background: #a855f7; color: white; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; }
@@ -385,7 +373,6 @@
         .auth-success { color: var(--success-color); font-size: 13px; margin-top: 5px; font-weight: bold; display: none; }
 
         .fav-item-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; background: rgba(255,255,255,0.03); padding: 10px; border-radius: 10px; text-align: right; border: 1px solid rgba(255,255,255,0.05); }
-        [dir="ltr"] .fav-item-row { text-align: left; }
         .fav-item-img { width: 50px; height: 65px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
         .fav-item-info { flex: 1; cursor: pointer; }
         .fav-item-info h4 { margin: 0 0 4px; font-size: 14px; color: var(--text-color); }
@@ -397,21 +384,20 @@
 
     <header>
         <div style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
-            <button class="troubleshoot-nav-btn" onclick="openTroubleshootPage()" id="troubleshootNavBtn">
-                <span>🛠️</span> <span id="troubleshootBtnText">حل المشاكل والبرامج</span>
+            <button class="troubleshoot-nav-btn" onclick="openTroubleshootPage()">
+                <span>🛠️</span> <span>حل المشاكل والبرامج</span>
             </button>
-            <button class="request-nav-btn" onclick="openGameRequestModal()" id="requestNavBtn">
-                <span>🎮</span> <span id="requestBtnText">طلب لعبة</span>
+            <button class="request-nav-btn" onclick="openGameRequestModal()">
+                <span>🎮</span> <span>طلب لعبة</span>
             </button>
             <button class="admin-nav-btn" onclick="openAdminModal()" id="adminNavBtn">
-                <span>👑</span> <span id="adminBtnText">لوحة الأدمن</span>
+                <span>👑</span> <span>لوحة الأدمن</span>
             </button>
         </div>
         <div class="nav-controls">
-            <button class="icon-btn" onclick="openFavModal()" title="المفضلة" id="favBtn">❤️</button>
+            <button class="icon-btn" onclick="openFavModal()" title="المفضلة">❤️</button>
             <button class="icon-btn" onclick="openNotifModal()" title="الإشعارات" id="notifBtn">🔔</button>
             <button class="icon-btn" onclick="toggleTheme()" id="themeBtn" title="تغيير الوضع">🌙</button>
-            <button class="icon-btn" onclick="toggleLanguage()" id="langBtn" title="تغيير اللغة">EN</button>
             <button class="icon-btn" id="loginBtn" onclick="openAuthModal()" title="تسجيل الدخول">👤</button>
         </div>
     </header>
@@ -421,16 +407,16 @@
         <div class="hero">
             <div class="neon-glow-bg"></div>
             <div class="main-brand-logo" onclick="goHome()">MK GAMES</div>
-            <div class="hero-subtitle" id="subTitle">Explore Games</div>
-            <div class="prayer-reminder" id="prayerText">لا تدع الألعاب تلهيك عن الصلاة</div>
+            <div class="hero-subtitle">MK GAMES HUB</div>
+            <div class="prayer-reminder">لا تدع الألعاب تلهيك عن الصلاة</div>
         </div>
 
         <div class="search-container">
             <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن لعبة للتحميل..." onfocus="showTrending()" onkeyup="searchGames()">
-            <button class="random-game-btn" onclick="pickRandomGame()" id="randomGameBtn">🎲 اقترح لي لعبة</button>
+            <button class="random-game-btn" onclick="pickRandomGame()">🎲 اقترح لي لعبة</button>
             
             <div class="trending-dropdown" id="trendingDropdown">
-                <div class="trending-header" id="trendingTitle">🔥 الألعاب الرائجة حالياً</div>
+                <div class="trending-header">🔥 الألعاب الرائجة حالياً</div>
                 <div id="trendingList"></div>
             </div>
         </div>
@@ -438,56 +424,56 @@
         <!-- شريط التصنيفات -->
         <div class="filters-container">
             <div class="filter-row" id="tagFilters">
-                <button class="filter-chip active" onclick="filterByTag('all', this)" id="fAll">الكل</button>
-                <button class="filter-chip" onclick="filterByTag('action', this)" id="fAction">الأكشن</button>
-                <button class="filter-chip" onclick="filterByTag('sports', this)" id="fSport">الرياضة</button>
+                <button class="filter-chip active" onclick="filterByTag('all', this)">الكل</button>
+                <button class="filter-chip" onclick="filterByTag('action', this)">الأكشن</button>
+                <button class="filter-chip" onclick="filterByTag('sports', this)">الرياضة</button>
 
                 <div class="dropdown-filter" id="dropdownFilterBox">
                     <button class="dropdown-btn" id="showMoreBtn" onclick="toggleDropdownSticky(event)">
-                        <span id="showMoreText">عرض المزيد 🔽</span>
+                        <span>عرض المزيد 🔽</span>
                     </button>
                     <div class="dropdown-menu-content" id="tagsDropdownContent">
-                        <button class="filter-chip" onclick="filterByTag('adventure', this)" id="fAdv">مغامرات</button>
-                        <button class="filter-chip" onclick="filterByTag('open-world', this)" id="fOpen">العالم المفتوح</button>
-                        <button class="filter-chip" onclick="filterByTag('rpg', this)" id="fRpg">RPG</button>
-                        <button class="filter-chip" onclick="filterByTag('survival', this)" id="fSurv">النجاة</button>
-                        <button class="filter-chip" onclick="filterByTag('horror', this)" id="fHor">الرعب</button>
-                        <button class="filter-chip" onclick="filterByTag('strategy', this)" id="fStrat">الاستراتيجية</button>
-                        <button class="filter-chip" onclick="filterByTag('stealth', this)" id="fSteal">التخفي</button>
-                        <button class="filter-chip" onclick="filterByTag('puzzle', this)" id="fPuz">الألغاز</button>
-                        <button class="filter-chip" onclick="filterByTag('simulation', this)" id="fSim">المحاكاة</button>
-                        <button class="filter-chip" onclick="filterByTag('superhero', this)" id="fSuper">الأبطال الخارقين</button>
-                        <button class="filter-chip" onclick="filterByTag('sci-fi', this)" id="fSci">الخيال العلمي</button>
-                        <button class="filter-chip" onclick="filterByTag('indie', this)" id="fIndie">المستقلين</button>
-                        <button class="filter-chip" onclick="filterByTag('co-op', this)" id="fCoop">جماعية</button>
-                        <button class="filter-chip" onclick="filterByTag('2d', this)" id="f2d">ثنائية الأبعاد</button>
-                        <button class="filter-chip" onclick="filterByTag('3d', this)" id="f3d">ثلاثية الأبعاد</button>
-                        <button class="filter-chip" onclick="filterByTag('fpp', this)" id="fFpp">المنظور الأول</button>
-                        <button class="filter-chip" onclick="filterByTag('tpp', this)" id="fTpp">المنظور الثالث</button>
-                        <button class="filter-chip" onclick="filterByTag('classic', this)" id="fClassic">كلاسيك</button>
+                        <button class="filter-chip" onclick="filterByTag('adventure', this)">مغامرات</button>
+                        <button class="filter-chip" onclick="filterByTag('open-world', this)">العالم المفتوح</button>
+                        <button class="filter-chip" onclick="filterByTag('rpg', this)">RPG</button>
+                        <button class="filter-chip" onclick="filterByTag('survival', this)">النجاة</button>
+                        <button class="filter-chip" onclick="filterByTag('horror', this)">الرعب</button>
+                        <button class="filter-chip" onclick="filterByTag('strategy', this)">الاستراتيجية</button>
+                        <button class="filter-chip" onclick="filterByTag('stealth', this)">التخفي</button>
+                        <button class="filter-chip" onclick="filterByTag('puzzle', this)">الألغاز</button>
+                        <button class="filter-chip" onclick="filterByTag('simulation', this)">المحاكاة</button>
+                        <button class="filter-chip" onclick="filterByTag('superhero', this)">الأبطال الخارقين</button>
+                        <button class="filter-chip" onclick="filterByTag('sci-fi', this)">الخيال العلمي</button>
+                        <button class="filter-chip" onclick="filterByTag('indie', this)">المستقلين</button>
+                        <button class="filter-chip" onclick="filterByTag('co-op', this)">جماعية</button>
+                        <button class="filter-chip" onclick="filterByTag('2d', this)">ثنائية الأبعاد</button>
+                        <button class="filter-chip" onclick="filterByTag('3d', this)">ثلاثية الأبعاد</button>
+                        <button class="filter-chip" onclick="filterByTag('fpp', this)">المنظور الأول</button>
+                        <button class="filter-chip" onclick="filterByTag('tpp', this)">المنظور الثالث</button>
+                        <button class="filter-chip" onclick="filterByTag('classic', this)">كلاسيك</button>
                     </div>
                 </div>
             </div>
             
             <div class="filter-row" id="sizeFilters">
-                <button class="filter-chip" onclick="filterBySize('<1', this)" id="s1">&lt; 1 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('1-5', this)" id="s2">1 - 5 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('5-10', this)" id="s3">5 - 10 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('10-20', this)" id="s4">10 - 20 <span class="size-unit">جيجا</span></button>
-                <button class="filter-chip" onclick="filterBySize('20+', this)" id="s5">20+ <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('<1', this)">&lt; 1 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('1-5', this)">1 - 5 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('5-10', this)">5 - 10 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('10-20', this)">10 - 20 <span class="size-unit">جيجا</span></button>
+                <button class="filter-chip" onclick="filterBySize('20+', this)">20+ <span class="size-unit">جيجا</span></button>
             </div>
 
             <div class="filter-row" id="specsFilters">
-                <button class="filter-chip" onclick="filterBySpecs('low', this)" id="specLow">💻 أجهزة ضعيفة / خفيفة</button>
-                <button class="filter-chip" onclick="filterBySpecs('mid', this)" id="specMid">⚡ أجهزة متوسطة</button>
-                <button class="filter-chip" onclick="filterBySpecs('high', this)" id="specHigh">🔥 أجهزة قوية / عالية الجرافيك</button>
+                <button class="filter-chip" onclick="filterBySpecs('low', this)">💻 أجهزة ضعيفة / خفيفة</button>
+                <button class="filter-chip" onclick="filterBySpecs('mid', this)">⚡ أجهزة متوسطة</button>
+                <button class="filter-chip" onclick="filterBySpecs('high', this)">🔥 أجهزة قوية / عالية الجرافيك</button>
             </div>
         </div>
 
         <div class="container">
             <div class="games-grid" id="gamesGrid"></div>
             <div class="show-all-container">
-                <button class="show-all-btn" onclick="showAllGamesFullList()" id="showAllBtn">عرض كل الألعاب كاملة (Show All Games)</button>
+                <button class="show-all-btn" onclick="showAllGamesFullList()">عرض كل الألعاب كاملة</button>
             </div>
         </div>
     </div>
@@ -495,8 +481,8 @@
     <!-- صفحة تفاصيل اللعبة -->
     <div id="gameDetailsView">
         <div style="display: flex; justify-content: space-between; align-items: center; background: var(--card-bg); padding: 15px 25px; border-radius: 14px; border: 1px solid rgba(168, 85, 247, 0.3);">
-            <h2 id="detailsHeaderTitle" style="margin:0; color:#ffffff; font-size:18px;">تفاصيل اللعبة</h2>
-            <button class="back-home-link" onclick="goHome()">⬅ <span id="backToGamesText">العودة للألعاب</span></button>
+            <h2 style="margin:0; color:#ffffff; font-size:18px;">تفاصيل اللعبة</h2>
+            <button class="back-home-link" onclick="goHome()">⬅ العودة للألعاب</button>
         </div>
 
         <div class="game-hero-section">
@@ -511,21 +497,21 @@
         </div>
 
         <div class="section-card">
-            <h3 id="aboutTitle">📖 نبذة عن اللعبة</h3>
+            <h3>📖 نبذة عن اللعبة</h3>
             <p id="detailsDesc">وصف تفصيلي للعبة...</p>
         </div>
 
         <!-- جدول اللغات المدعومة -->
         <div class="section-card">
-            <h3 id="langSectionTitle">🌐 اللغات المدعومة في اللعبة</h3>
+            <h3>🌐 اللغات المدعومة في اللعبة</h3>
             <div style="overflow-x: auto;">
                 <table style="width: 100%; border-collapse: collapse; text-align: center; margin-top: 10px;">
                     <thead>
                         <tr style="border-bottom: 2px solid rgba(168, 85, 247, 0.4); color: #a855f7;">
-                            <th id="thLang" style="padding: 10px;">اللغة</th>
-                            <th id="thMenu" style="padding: 10px;">القوائم (Menus)</th>
-                            <th id="thAudio" style="padding: 10px;">التعليق/الصوت (Audio)</th>
-                            <th id="thSub" style="padding: 10px;">الحوارات/الترجمة (Subtitles)</th>
+                            <th style="padding: 10px;">اللغة</th>
+                            <th style="padding: 10px;">القوائم (Menus)</th>
+                            <th style="padding: 10px;">التعليق/الصوت (Audio)</th>
+                            <th style="padding: 10px;">الحوارات/الترجمة (Subtitles)</th>
                         </tr>
                     </thead>
                     <tbody id="languagesTableBody"></tbody>
@@ -534,49 +520,49 @@
         </div>
 
         <div class="section-card">
-            <h3 id="reqTitle">💻 متطلبات التشغيل الدنيا (Minimum Requirements)</h3>
+            <h3>💻 متطلبات التشغيل الدنيا (Minimum Requirements)</h3>
             <ul id="detailsReqs">
-                <li><strong id="osLabel">نظام التشغيل (OS):</strong> <span id="osVal">Windows 7 / 8 / 10 / 11</span></li>
-                <li><strong id="cpuLabel">المعالج (CPU):</strong> <span id="cpuVal">Intel Pentium 4 1.4GHz أو ما يعادله</span></li>
-                <li><strong id="ramLabel">الذاكرة العشوائية (RAM):</strong> <span id="ramVal">512 ميجابايت أو أعلى</span></li>
-                <li><strong id="gpuLabel">كارت الشاشة (GPU):</strong> <span id="gpuVal">64 ميجابايت متوافق مع DirectX 9.0c</span></li>
-                <li><strong id="storageLabel">مساحة التخزين (Storage):</strong> <span id="storageVal">2 جيجابايت متاحة</span></li>
+                <li><strong>نظام التشغيل (OS):</strong> <span id="osVal">Windows 7 / 8 / 10 / 11</span></li>
+                <li><strong>المعالج (CPU):</strong> <span id="cpuVal">Intel Pentium 4 1.4GHz أو ما يعادله</span></li>
+                <li><strong>الذاكرة العشوائية (RAM):</strong> <span id="ramVal">512 ميجابايت أو أعلى</span></li>
+                <li><strong>كارت الشاشة (GPU):</strong> <span id="gpuVal">64 ميجابايت متوافق مع DirectX 9.0c</span></li>
+                <li><strong>مساحة التخزين (Storage):</strong> <span id="storageVal">2 جيجابايت متاحة</span></li>
             </ul>
         </div>
 
         <!-- قسم المودز والباتشات -->
         <div class="section-card" id="modsSectionCard" style="display: none;">
-            <h3 id="modsTitle">🛠️ المودات والباتشات والتعريبات المتاحة</h3>
-            <p style="margin-bottom: 12px; font-size:14px; color:var(--secondary-text);" id="modsSub">روابط ومودات إضافية لتحسين اللعبة:</p>
+            <h3>🛠️ المودات والباتشات والتعريبات المتاحة</h3>
+            <p style="margin-bottom: 12px; font-size:14px; color:var(--secondary-text);">روابط ومودات إضافية لتحسين اللعبة:</p>
             <div id="modsLinksContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
         </div>
 
         <div class="section-card">
-            <h3 id="vidTitle">🎥 فيديو كيفية تنصيب وتثبيت اللعبة</h3>
-            <p id="vidSub" style="margin-bottom: 12px;">شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:</p>
+            <h3>🎥 فيديو كيفية تنصيب وتثبيت اللعبة</h3>
+            <p style="margin-bottom: 12px;">شاهد الشرح الخطوة بخطوة لضمان تثبيت اللعبة وتشغيلها بدون أي أخطاء:</p>
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
             </div>
         </div>
 
         <div class="section-card">
-            <h3 id="dlTitle">🚀 روابط التحميل السريع</h3>
-            <p id="dlSub" style="margin-bottom: 15px;">اختر الطريقة المناسبة لك للتحميل:</p>
+            <h3>🚀 روابط التحميل السريع</h3>
+            <p style="margin-bottom: 15px;">اختر الطريقة المناسبة لك للتحميل:</p>
             <div class="download-buttons-grid">
                 <a id="directDlBtn" href="#" target="_blank" class="dl-btn dl-direct">
-                    <span>⚡</span> <span id="directText">تحميل مباشر (MediaFire)</span>
+                    <span>⚡</span> <span>تحميل مباشر (MediaFire)</span>
                 </a>
                 <a id="torrentDlBtn" href="#" class="dl-btn dl-torrent">
-                    <span>🧲</span> <span id="torrentText">تحميل تورنت (Torrent Magnet)</span>
+                    <span>🧲</span> <span>تحميل تورنت (Torrent Magnet)</span>
                 </a>
             </div>
         </div>
 
         <!-- التعليقات والتقييمات -->
         <div class="section-card" id="commentsSection">
-            <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;" id="noticeBoxContainer">
-                <h4 style="margin: 0 0 5px 0; color: #a855f7;" id="noticeTitle">⚠️ تنبيه هام للاعبين:</h4>
-                <p style="margin: 0; font-size: 14px; color: var(--secondary-text);" id="noticeText">
+            <div style="background: rgba(168, 85, 247, 0.1); border-right: 4px solid #a855f7; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                <h4 style="margin: 0 0 5px 0; color: #a855f7;">⚠️ تنبيه هام للاعبين:</h4>
+                <p style="margin: 0; font-size: 14px; color: var(--secondary-text);">
                     إذا واجهتك أي مشكلة في تشغيل اللعبة أو التحميل، يرجى ترك تعليق أدناه وإرفاق صورة للمشكلة إن أمكن لنتمكن من مساعدتك فوراً!
                 </p>
             </div>
@@ -584,7 +570,7 @@
             <!-- تقييم النجوم -->
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px; background: rgba(255, 255, 255, 0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(168, 85, 247, 0.2); margin-bottom: 20px;">
                 <div>
-                    <h4 style="margin: 0 0 5px 0; color: var(--text-color); font-size: 15px;" id="rateThisGameText">🌟 قيم هذه اللعبة:</h4>
+                    <h4 style="margin: 0 0 5px 0; color: var(--text-color); font-size: 15px;">🌟 قيم هذه اللعبة:</h4>
                     <div id="starRatingContainer" style="display: flex; gap: 6px; font-size: 24px; cursor: pointer;"></div>
                 </div>
                 <div style="text-align: left;">
@@ -593,7 +579,7 @@
                 </div>
             </div>
 
-            <h3 id="commentsTitle" style="margin-bottom: 15px;">💬 تعليقات اللاعبين واستفساراتهم</h3>
+            <h3 style="margin-bottom: 15px;">💬 تعليقات اللاعبين واستفساراتهم</h3>
 
             <div id="commentInputBox">
                 <textarea id="commentText" placeholder="اكتب تعليقك أو استفسارك هنا..." style="width: 100%; height: 80px; padding: 12px; border-radius: 10px; border: 1px solid var(--secondary-text); background: var(--bg-color); color: var(--text-color); resize: vertical; margin-bottom: 10px; box-sizing: border-box;"></textarea>
@@ -601,16 +587,16 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                     <div style="display: flex; gap: 8px; align-items: center;">
                         <label style="cursor: pointer; background: var(--bg-color); padding: 8px 14px; border-radius: 8px; border: 1px solid var(--secondary-text); font-size: 13px;">
-                            📷 <span id="attachImgText">إرفاق صورة للمشكلة</span>
+                            📷 <span>إرفاق صورة للمشكلة</span>
                             <input type="file" id="commentImage" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
                         </label>
-                        <button type="button" onclick="insertAdminMention()" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer;" id="adminMentionBtn">
+                        <button type="button" onclick="insertAdminMention()" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 12px; border-radius: 8px; font-size: 13px; font-weight: bold; cursor: pointer;">
                             @ منشن للأدمن
                         </button>
                     </div>
                     <span id="imageNamePreview" style="font-size: 12px; color: #a855f7;"></span>
                     
-                    <button onclick="postComment()" class="download-btn" style="width: auto; padding: 8px 25px;" id="postCommentBtn">نشر التعليق 🚀</button>
+                    <button onclick="postComment()" class="download-btn" style="width: auto; padding: 8px 25px;">نشر التعليق 🚀</button>
                 </div>
 
                 <!-- كابتشا التعليق -->
@@ -621,7 +607,7 @@
             </div>
 
             <div id="loginToCommentNotice" style="display: none; text-align: center; padding: 15px; background: rgba(239, 68, 68, 0.1); border-radius: 10px; color: var(--error-color);">
-                🔒 <span id="loginNoticeText">يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور وتقييم الألعاب.</span>
+                🔒 <span>يرجى تسجيل الدخول أولاً لتتمكن من إضافة تعليق وإرفاق الصور وتقييم الألعاب.</span>
             </div>
 
             <div id="commentsList" style="margin-top: 25px;"></div>
@@ -632,52 +618,51 @@
     <div id="troubleshootPageView">
         <div class="troubleshoot-header-box">
             <div>
-                <h2 id="tsPageTitle" style="margin:0 0 5px; color:#ffffff;">مركز البرامج والتعليمات الشامل</h2>
-                <p id="tsPageSub" style="margin:0; color:var(--secondary-text); font-size:14px;">كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.</p>
+                <h2 style="margin:0 0 5px; color:#ffffff;">مركز البرامج والتعليمات الشامل</h2>
+                <p style="margin:0; color:var(--secondary-text); font-size:14px;">كل ما تحتاجه لتثبيت وتشغيل الألعاب وحل أي مشكلة تقابل.</p>
             </div>
-            <button class="back-home-link" onclick="goHome()" id="backBtn">العودة للألعاب</button>
+            <button class="back-home-link" onclick="goHome()">العودة للألعاب</button>
         </div>
 
         <div class="troubleshoot-container-grid">
             <div class="troubleshoot-box-card">
-                <h3 class="box-title" id="box1Title">برامج تشغيل الالعاب وفك الضغط الأساسية</h3>
-                <p class="box-desc" id="box1Desc">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
+                <h3 class="box-title">برامج تشغيل الالعاب وفك الضغط الأساسية</h3>
+                <p class="box-desc">برامج لا غنى عنها لتشغيل جميع الألعاب بكفاءة بدون مشاكل.</p>
                 <div class="tools-list-container">
                     <div class="tool-row-item">
                         <div class="tool-info">
-                            <h4 id="tool1Title">Visual C++</h4>
-                            <p id="desc1">حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
+                            <h4>Visual C++</h4>
+                            <p>حزم تشغيل وبرمجيات النظام الأساسية لحل مشاكل إقلاع الألعاب ورسائل الخطأ الشهيرة (0xc000007b).</p>
                         </div>
-                        <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-action-btn" target="_blank" id="btn1">تحميل Visual C++</a>
+                        <a href="https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170" class="tool-action-btn" target="_blank">تحميل Visual C++</a>
                     </div>
                     <div class="tool-row-item">
                         <div class="tool-info">
-                            <h4 id="tool2Title">DirectX</h4>
-                            <p id="desc2">مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
+                            <h4>DirectX</h4>
+                            <p>مكتبة رسومات DirectX لضمان عمل الجرافيك وتجنب مشاكل الشاشة السوداء واختفاء ملفات (d3dcompiler).</p>
                         </div>
-                        <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-action-btn" target="_blank" id="btn2">تحميل DirectX</a>
+                        <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35" class="tool-action-btn" target="_blank">تحميل DirectX</a>
                     </div>
                     <div class="tool-row-item">
                         <div class="tool-info">
-                            <h4 id="toolNetTitle">.NET Framework</h4>
-                            <p id="descNet">حزمة مايكروسوفت نيت فريم وورك الضرورية لعمل محركات الألعاب ولغة C# وحل مشاكل التشغيل.</p>
+                            <h4>.NET Framework</h4>
+                            <p>حزمة مايكروسوفت نيت فريم وورك الضرورية لعمل محركات الألعاب ولغة C# وحل مشاكل التشغيل.</p>
                         </div>
-                        <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-action-btn" target="_blank" id="btnNet">تحميل .NET Framework</a>
+                        <a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework" class="tool-action-btn" target="_blank">تحميل .NET Framework</a>
                     </div>
                     <div class="tool-row-item">
                         <div class="tool-info">
-                            <h4 id="tool3Title">Winrar</h4>
-                            <p id="desc5">البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء.</p>
+                            <h4>Winrar</h4>
+                            <p>البرنامج الرسمي والأشهر عالمياً لفك ضغط ملفات الألعاب (RAR و ZIP و ISO) بدون أخطاء.</p>
                         </div>
-                        <a href="https://www.rarlab.com/download.htm" class="tool-action-btn" target="_blank" id="btn5">تحميل Winrar الرسمي</a>
+                        <a href="https://www.rarlab.com/download.htm" class="tool-action-btn" target="_blank">تحميل Winrar الرسمي</a>
                     </div>
                 </div>
             </div>
 
-            <!-- المشاكل المضافة من الأدمن مع زرار التعديل والحذف المباشر -->
             <div id="dynamicTroubleshootList" style="display: flex; flex-direction: column; gap: 20px;"></div>
 
-            <div class="support-notice-card" id="supportNoticeText">
+            <div style="background:var(--card-bg); padding:20px; border-radius:14px; border:1px solid rgba(168,85,247,0.3); text-align:center; color:var(--secondary-text);">
                 💬 في حالة حدوث اي مشاكل أو استفسارات أخرى، الرجاء التواصل معنا على حساباتنا في الاسفل وسنكون سعداء بمساعدتك دائماً!
             </div>
         </div>
@@ -687,8 +672,8 @@
     <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-logo" onclick="goHome()" style="cursor:pointer;">MK GAMES</div>
-            <p class="footer-text" id="footerDesc">
-                MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك بالعربية أو الانجليزية، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل.
+            <p class="footer-text">
+                MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة. ابحث عن لعبتك، واطلع على حجمها ومتطلبات تشغيلها قبل التحميل.
             </p>
 
             <div class="social-links">
@@ -704,35 +689,34 @@
             </div>
 
             <div class="footer-copy">&copy; 2026 MK GAMES - mkgames.vercel.app</div>
-            <div class="developer-signature" id="devSignature">Developed 💻 by Malik Abdalhady</div>
+            <div>Developed 💻 by Malik Abdalhady</div>
         </div>
     </footer>
 
-    <!-- مودال طلب لعبة (مع كابتشا) -->
+    <!-- مودال طلب لعبة -->
     <div class="modal" id="gameRequestModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="requestModalTitle">🎮 طلب إضافة لعبة جديدة</h3>
-            <p style="font-size: 13px; color: var(--secondary-text);" id="requestModalSub">اكتب اسم اللعبة التي تتمنى إضافتها في الموقع وسنرفعها لك في أسرع وقت!</p>
+            <h3>🎮 طلب إضافة لعبة جديدة</h3>
+            <p style="font-size: 13px; color: var(--secondary-text);">اكتب اسم اللعبة التي تتمنى إضافتها في الموقع وسنرفعها لك في أسرع وقت!</p>
             
             <input type="text" id="reqGameName" placeholder="اسم اللعبة المطلوبة (مثال: GTA V)">
             <textarea id="reqGameNotes" placeholder="أي ملاحظات إضافية (أجزاء معينة، مودات، أو مواصفات)..." style="height:70px;"></textarea>
             
-            <!-- كابتشا طلب لعبة -->
             <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                 <span id="reqCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
                 <div id="reqCaptchaBtns" style="display: flex; gap: 6px;"></div>
             </div>
 
-            <button onclick="submitGameRequest()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);" id="reqSubmitBtn">إرسال الطلب للأدمن 🚀</button>
+            <button onclick="submitGameRequest()" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">إرسال الطلب للأدمن 🚀</button>
         </div>
     </div>
 
-    <!-- لوحة الأدمن المحدثة بالكامل -->
+    <!-- لوحة الأدمن المحدثة -->
     <div class="modal" id="adminModal">
-        <div class="modal-content" style="max-width: 650px;">
+        <div class="modal-content" style="max-width: 680px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="adminModalTitle">👑 لوحة إداري الموقع (MK GAMES)</h3>
+            <h3>👑 لوحة إداري الموقع (MK GAMES)</h3>
             
             <div style="display: flex; gap: 6px; margin-bottom: 15px; flex-wrap: wrap;">
                 <button type="button" onclick="switchAdminTab('addGame')" id="tabAddGameBtn" style="background:#10b981; padding:8px; font-size:11px; flex:1;">➕ إضافة لعبة</button>
@@ -751,11 +735,9 @@
 
                 <input type="hidden" id="adminEditingGameId" value="">
                 <input type="text" id="adminGameTitleAr" placeholder="اسم اللعبة بالعربية">
-                <input type="text" id="adminGameTitleEn" placeholder="Game Title in English">
-                <input type="text" id="adminGameGenreAr" placeholder="التصنيف بالعربية (مثال: action - sports)">
-                <input type="text" id="adminGameGenreEn" placeholder="Genre in English">
-                <textarea id="adminGameDescAr" placeholder="نبذة عن اللعبة بالعربية..." style="height:45px;"></textarea>
-                <textarea id="adminGameDescEn" placeholder="Description in English..." style="height:45px;"></textarea>
+                <input type="text" id="adminGameTitleEn" placeholder="اسم اللعبة بالإنجليزية (English Title)">
+                <input type="text" id="adminGameGenreAr" placeholder="التصنيف (مثال: أكشن - مغامرات)">
+                <textarea id="adminGameDescAr" placeholder="نبذة عن اللعبة..." style="height:55px;"></textarea>
                 
                 <div style="display:flex; gap:10px;">
                     <input type="number" step="0.01" id="adminGameSizeNum" placeholder="الحجم (GB)">
@@ -770,23 +752,44 @@
                 <input type="text" id="adminGameDirect" placeholder="رابط التحميل المباشر (MediaFire)">
                 <input type="text" id="adminGameTorrent" placeholder="رابط تحميل التورنت (Magnet)">
 
-                <!-- متطلبات التشغيل الدنيا المخصصة -->
-                <h4 style="margin: 10px 0 4px; color: #a855f7; font-size: 13px; text-align: right;">💻 متطلبات التشغيل الدنيا المخصصة:</h4>
+                <!-- متطلبات التشغيل الدنيا -->
+                <h4 style="margin: 10px 0 4px; color: #a855f7; font-size: 13px; text-align: right;">💻 متطلبات التشغيل الدنيا:</h4>
                 <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px;">
-                    <input type="text" id="adminReqOs" placeholder="نظام التشغيل (مثال: Windows 10/11)">
-                    <input type="text" id="adminReqCpu" placeholder="المعالج (مثال: Intel Core i3)">
-                    <input type="text" id="adminReqRam" placeholder="الرام (مثال: 4 GB)">
-                    <input type="text" id="adminReqGpu" placeholder="كارت الشاشة (مثال: GT 730)">
-                    <input type="text" id="adminReqStorage" placeholder="مساحة التخزين (مثال: 10 GB)" style="grid-column: span 2;">
+                    <input type="text" id="adminReqOs" placeholder="نظام التشغيل (Windows 10/11)">
+                    <input type="text" id="adminReqCpu" placeholder="المعالج (Intel Core i3)">
+                    <input type="text" id="adminReqRam" placeholder="الرام (8 GB)">
+                    <input type="text" id="adminReqGpu" placeholder="كارت الشاشة (GT 730)">
+                    <input type="text" id="adminReqStorage" placeholder="مساحة التخزين (10 GB)" style="grid-column: span 2;">
                 </div>
 
-                <!-- اللغات المدعومة المخصصة -->
-                <h4 style="margin: 10px 0 4px; color: #a855f7; font-size: 13px; text-align: right;">🌐 اللغات المدعومة (اللغة الأولى - العربية مثلاً):</h4>
-                <div style="display:flex; gap:10px; align-items:center; background:rgba(255,255,255,0.02); padding:8px; border-radius:8px;">
-                    <input type="text" id="adminLangName" placeholder="اسم اللغة (العربية / English)" style="margin:0; flex:1;">
-                    <label style="font-size:12px; cursor:pointer;"><input type="checkbox" id="adminLangMenu" checked> قوائم</label>
-                    <label style="font-size:12px; cursor:pointer;"><input type="checkbox" id="adminLangAudio" checked> صوت</label>
-                    <label style="font-size:12px; cursor:pointer;"><input type="checkbox" id="adminLangSub" checked> ترجمة</label>
+                <!-- اللغات الثلاثة المدعومة (العربية، الإنجليزية، الفرنسية) -->
+                <h4 style="margin: 12px 0 6px; color: #a855f7; font-size: 13px; text-align: right;">🌐 اللغات المدعومة الثلاثة:</h4>
+                
+                <div style="background:rgba(255,255,255,0.02); padding:8px; border-radius:8px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:bold; font-size:13px;">اللغة العربية (Arabic)</span>
+                    <div style="display:flex; gap:8px; font-size:12px;">
+                        <label><input type="checkbox" id="arMenu" checked> قوائم</label>
+                        <label><input type="checkbox" id="arAudio" checked> صوت</label>
+                        <label><input type="checkbox" id="arSub" checked> ترجمة</label>
+                    </div>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.02); padding:8px; border-radius:8px; margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:bold; font-size:13px;">اللغة الإنجليزية (English)</span>
+                    <div style="display:flex; gap:8px; font-size:12px;">
+                        <label><input type="checkbox" id="enMenu" checked> قوائم</label>
+                        <label><input type="checkbox" id="enAudio" checked> صوت</label>
+                        <label><input type="checkbox" id="enSub" checked> ترجمة</label>
+                    </div>
+                </div>
+
+                <div style="background:rgba(255,255,255,0.02); padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                    <span style="font-weight:bold; font-size:13px;">اللغة الفرنسية (Français)</span>
+                    <div style="display:flex; gap:8px; font-size:12px;">
+                        <label><input type="checkbox" id="frMenu"> قوائم</label>
+                        <label><input type="checkbox" id="frAudio"> صوت</label>
+                        <label><input type="checkbox" id="frSub"> ترجمة</label>
+                    </div>
                 </div>
 
                 <h4 style="margin: 8px 0 4px; color: #a855f7; font-size: 12px; text-align: right;">🛠️ أزرار ورابط المودز والباتشات (اختياري):</h4>
@@ -796,19 +799,19 @@
                 <button onclick="saveGameByAdmin()" style="background: linear-gradient(135deg, #10b981, #059669); margin-top:10px;" id="adminSubmitGameBtn">حفظ وإضافة اللعبة + إرسال إشعار 🚀</button>
             </div>
 
-            <!-- تبويب إضافة مشكلة جديدة -->
+            <!-- تبويب إضافة مشكلة -->
             <div id="adminIssueTabContent" style="display: none;">
                 <h4 style="margin:0 0 10px; color:#a855f7;">🛠️ إضافة مشكلة جديدة في صفحة "حل المشاكل"</h4>
                 <input type="hidden" id="adminEditingIssueId" value="">
                 <input type="text" id="issueTitleAr" placeholder="عنوان المشكلة (مثال: خطأ 0xc000007b)">
                 <textarea id="issueSolutionAr" placeholder="طريقة الحل والأسباب بالتفصيل..." style="height:70px;"></textarea>
-                <input type="text" id="issueVideoUrl" placeholder="رابط فيديو يوتيوب للشرح (مثال: https://www.youtube.com/watch?v=...)">
+                <input type="text" id="issueVideoUrl" placeholder="رابط فيديو يوتيوب للشرح">
                 <input type="text" id="issueImageUrl" placeholder="رابط صورة توضيحية للمشكلة (إن وجد)">
                 
                 <button onclick="saveIssueByAdmin()" id="issueSubmitBtn" style="background: linear-gradient(135deg, #a855f7, #3b82f6); margin-top:10px;">نشر المشكلة والحل في الموقع 🚀</button>
             </div>
 
-            <!-- تبويب إدارة وتعديل المشاكل الحالية -->
+            <!-- تبويب إدارة المشاكل -->
             <div id="adminManageIssuesTabContent" style="display: none;">
                 <h4 style="margin:0 0 10px; color:#ec4899;">⚙️ تعديل أو حذف مشاكل صفحة الدعم</h4>
                 <div id="adminIssuesListContainer" style="max-height: 320px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px;"></div>
@@ -816,17 +819,16 @@
         </div>
     </div>
 
-    <!-- مودال تسجيل الدخول (مع كابتشا) -->
+    <!-- مودال تسجيل الدخول -->
     <div class="modal" id="authModal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="authModalTitle">تسجيل الدخول</h3>
-            <p id="authModalSub" style="font-size: 13px; color: var(--secondary-text);">أدخل بريدك الإلكتروني وكلمة المرور</p>
+            <p style="font-size: 13px; color: var(--secondary-text);">أدخل بريدك الإلكتروني وكلمة المرور</p>
             
             <input type="email" id="authEmail" placeholder="البريد الإلكتروني (Gmail)">
             <input type="password" id="authPassword" placeholder="كلمة المرور (6 أحرف على الأقل)">
             
-            <!-- كابتشا تسجيل الدخول -->
             <div style="margin: 10px 0; background: rgba(168, 85, 247, 0.05); padding: 8px 12px; border-radius: 8px; border: 1px dashed #a855f7; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;">
                 <span id="authCaptchaText" style="font-size: 12px; font-weight: bold; color: var(--text-color);">🎮 اضغط على: ⚽</span>
                 <div id="authCaptchaBtns" style="display: flex; gap: 6px;"></div>
@@ -845,9 +847,9 @@
     <div class="modal" id="favModal">
         <div class="modal-content" style="max-width: 450px;">
             <span class="close-modal" onclick="closeModals()">&times;</span>
-            <h3 id="favModalTitle">الألعاب المفضلة</h3>
+            <h3>الألعاب المفضلة</h3>
             <div id="favModalBody" style="margin-top: 15px; max-height: 350px; overflow-y: auto;">
-                <p id="favModalDesc" style="color: var(--secondary-text);">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
+                <p style="color: var(--secondary-text);">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>
             </div>
         </div>
     </div>
@@ -857,7 +859,7 @@
             <span class="close-modal" onclick="closeModals()">&times;</span>
             <h3 id="notifModalTitle">الإشعارات</h3>
             <div style="display: flex; justify-content: flex-end; margin-bottom: 10px;">
-                <button onclick="clearAllNotifications()" id="clearAllNotifBtn" style="background: rgba(239, 68, 68, 0.1); color: var(--error-color); border: 1px solid var(--error-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; width: auto; margin:0;">حذف الكل 🗑️</button>
+                <button onclick="clearAllNotifications()" style="background: rgba(239, 68, 68, 0.1); color: var(--error-color); border: 1px solid var(--error-color); padding: 4px 10px; border-radius: 6px; font-size: 11px; cursor: pointer; width: auto; margin:0;">حذف الكل 🗑️</button>
             </div>
             <div id="notifModalDesc" style="color: var(--secondary-text); max-height: 320px; overflow-y: auto; text-align: right;">لا توجد إشعارات جديدة حالياً، استمتع بالتحميل! 🚀</div>
         </div>
@@ -880,13 +882,10 @@
                 "titleAr": "Pro Evolution Soccer 2006",
                 "titleEn": "Pro Evolution Soccer 2006",
                 "genreAr": "رياضة - كلاسيك - جماعية",
-                "genreEn": "Co-op - Sports - Classic",
-                "descAr": "(صدرت سنة 2006).تميزت ببساطة وسلاسة التحكم مع سرعة في اللعب تعتمد على المهارات الفردية للاعبين دون تعقيد",
-                "descEn": "(Released in 2006).It is characterized by simple, fluid controls and fast-paced gameplay.",
+                "descAr": "(صدرت سنة 2006). تميزت ببساطة وسلاسة التحكم مع سرعة في اللعب تعتمد على المهارات الفردية للاعبين دون تعقيد.",
                 "tags": ["sports", "classic", "co-op", "action"],
                 "sizeNum": 0.455,
                 "sizeAr": "0.455 جيجا",
-                "sizeEn": "0.455 GB",
                 "specs": "low",
                 "image": "https://m.media-amazon.com/images/I/51o547LavLL._AC_UF894,1000_QL80_.jpg",
                 "directUrl": "https://www.mediafire.com/file/tz5dtcsy07xsvmr/Pro_Evolution_Soccer_06.rar/file",
@@ -895,14 +894,14 @@
                     { "name": "باتش الدوري المصري 2026", "url": "https://www.mediafire.com" }
                 ],
                 "langs": [
-                    { "nameAr": "العربية", "nameEn": "Arabic", "menu": true, "audio": true, "subtitles": true }
+                    { "name": "اللغة العربية (Arabic)", "menu": true, "audio": true, "subtitles": true },
+                    { "name": "اللغة الإنجليزية (English)", "menu": true, "audio": true, "subtitles": true },
+                    { "name": "اللغة الفرنسية (Français)", "menu": true, "audio": false, "subtitles": true }
                 ],
-                "reqsAr": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" },
-                "reqsEn": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" }
+                "reqsAr": { "os": "Windows XP / 7 / 10", "cpu": "Intel Pentium III", "ram": "256 MB", "gpu": "64 MB", "storage": "2 GB" }
             }
         ];
 
-        let currentLang = 'ar';
         let currentTheme = 'dark';
         let currentTagFilter = 'all';
         let currentSizeFilter = 'all';
@@ -916,7 +915,6 @@
         let isSignUpMode = false;
         let uploadedImageBase64 = "";
 
-        // كابتشا متفرقة لكل قسم
         let targetAuthEmoji = '⚽'; let userChosenAuthEmoji = '';
         let targetReqEmoji = '⚽'; let userChosenReqEmoji = '';
         let targetCommentEmoji = '⚽'; let userChosenCommentEmoji = '';
@@ -925,7 +923,7 @@
             if (currentUser) {
                 const loginBtn = document.getElementById('loginBtn');
                 loginBtn.innerHTML = `<span class="logged-in-indicator"></span>`;
-                loginBtn.title = currentLang === 'ar' ? `مسجل بـ (${currentUser.email})` : `Logged in as (${currentUser.email})`;
+                loginBtn.title = `مسجل بـ (${currentUser.email})`;
                 
                 if (ADMIN_EMAILS.includes(currentUser.email)) {
                     document.getElementById('adminNavBtn').style.display = 'flex';
@@ -945,8 +943,7 @@
         function pickRandomGame() {
             if (!gamesData || gamesData.length === 0) return;
             const randomIndex = Math.floor(Math.random() * gamesData.length);
-            const randomGame = gamesData[randomIndex];
-            openGameDetails(randomGame.id);
+            openGameDetails(gamesData[randomIndex].id);
         }
 
         function toggleDropdownSticky(event) {
@@ -967,73 +964,61 @@
             }
         });
 
-        // كابتشا تسجيل الدخول
         function generateAuthCaptcha() {
             const emojis = ['⚽', '❤️', '⭐', '🚗'];
             targetAuthEmoji = emojis[Math.floor(Math.random() * emojis.length)];
             const txtEl = document.getElementById('authCaptchaText');
-            if(txtEl) txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetAuthEmoji}` : `🎮 Click matching emoji: ${targetAuthEmoji}`;
+            if(txtEl) txtEl.innerText = `🎮 اضغط على الرمز المطابق: ${targetAuthEmoji}`;
             const container = document.getElementById('authCaptchaBtns');
             if(!container) return;
             container.innerHTML = '';
-            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
-            shuffled.forEach(icon => {
+            [...emojis].sort(() => Math.random() - 0.5).forEach(icon => {
                 const b = document.createElement('button');
-                b.type = 'button';
-                b.innerText = icon;
+                b.type = 'button'; b.innerText = icon;
                 b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
                 b.onclick = function() {
                     Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
-                    b.style.borderColor = '#10b981';
-                    userChosenAuthEmoji = icon;
+                    b.style.borderColor = '#10b981'; userChosenAuthEmoji = icon;
                 };
                 container.appendChild(b);
             });
         }
 
-        // كابتشا طلب لعبة
         function generateReqCaptcha() {
             const emojis = ['⚽', '❤️', '⭐', '🚗'];
             targetReqEmoji = emojis[Math.floor(Math.random() * emojis.length)];
             const txtEl = document.getElementById('reqCaptchaText');
-            if(txtEl) txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetReqEmoji}` : `🎮 Click matching emoji: ${targetReqEmoji}`;
+            if(txtEl) txtEl.innerText = `🎮 اضغط على الرمز المطابق: ${targetReqEmoji}`;
             const container = document.getElementById('reqCaptchaBtns');
             if(!container) return;
             container.innerHTML = '';
-            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
-            shuffled.forEach(icon => {
+            [...emojis].sort(() => Math.random() - 0.5).forEach(icon => {
                 const b = document.createElement('button');
-                b.type = 'button';
-                b.innerText = icon;
+                b.type = 'button'; b.innerText = icon;
                 b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
                 b.onclick = function() {
                     Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
-                    b.style.borderColor = '#10b981';
-                    userChosenReqEmoji = icon;
+                    b.style.borderColor = '#10b981'; userChosenReqEmoji = icon;
                 };
                 container.appendChild(b);
             });
         }
 
-        // كابتشا التعليق
         function generateCommentEmojiCaptcha() {
             const emojis = ['⚽', '❤️', '⭐', '🚗'];
             targetCommentEmoji = emojis[Math.floor(Math.random() * emojis.length)];
             const txtEl = document.getElementById('commentCaptchaText');
-            if(txtEl) txtEl.innerText = currentLang === 'ar' ? `🎮 اضغط على الرمز المطابق: ${targetCommentEmoji}` : `🎮 Click matching emoji: ${targetCommentEmoji}`;
+            if(txtEl) txtEl.innerText = `🎮 اضغط على الرمز المطابق: ${targetCommentEmoji}`;
             const container = document.getElementById('commentCaptchaBtns');
             if(!container) return;
             container.innerHTML = '';
-            const shuffled = [...emojis].sort(() => Math.random() - 0.5);
-            shuffled.forEach(icon => {
+            [...emojis].sort(() => Math.random() - 0.5).forEach(icon => {
                 const b = document.createElement('button');
-                b.type = 'button';
-                b.innerText = icon;
+                b.type = 'button'; b.innerText = icon;
                 b.style.cssText = "font-size: 16px; padding: 4px 8px; background: var(--bg-color); border: 1px solid var(--secondary-text); border-radius: 6px; cursor: pointer;";
                 b.onclick = function() {
                     Array.from(container.children).forEach(x => x.style.borderColor = 'var(--secondary-text)');
-                    b.style.borderColor = '#10b981';
-                    userChosenCommentEmoji = icon;
+                    b.style.borderColor = '#10b981'; userChosenCommentEmoji = icon;
                 };
                 container.appendChild(b);
             });
@@ -1041,9 +1026,8 @@
 
         function openGameRequestModal() {
             if (!currentUser) {
-                alert(currentLang === 'ar' ? '⚠️ يرجى تسجيل الدخول أولاً لتتمكن من إرسال طلب لعبة!' : '⚠️ Please log in first to request a game!');
-                openAuthModal();
-                return;
+                alert('⚠️ يرجى تسجيل الدخول أولاً لتتمكن من إرسال طلب لعبة!');
+                openAuthModal(); return;
             }
             generateReqCaptcha();
             document.getElementById('gameRequestModal').style.display = 'flex';
@@ -1051,25 +1035,18 @@
 
         async function submitGameRequest() {
             if (userChosenReqEmoji !== targetReqEmoji) {
-                alert(currentLang === 'ar' ? '❌ رمز الكابتشا غير صحيح، يرجى المحاولة مرة أخرى!' : '❌ Incorrect captcha!');
+                alert('❌ رمز الكابتشا غير صحيح، يرجى المحاولة مرة أخرى!');
                 generateReqCaptcha(); return;
             }
             const gameName = document.getElementById('reqGameName').value.trim();
             const notes = document.getElementById('reqGameNotes').value.trim();
-
-            if (!gameName) {
-                alert(currentLang === 'ar' ? '⚠️ يرجى كتابة اسم اللعبة المطلوب!' : '⚠️ Please enter game name!');
-                return;
-            }
+            if (!gameName) { alert('⚠️ يرجى كتابة اسم اللعبة المطلوب!'); return; }
 
             await supabaseClient.from('game_requests').insert([{
-                user_email: currentUser.email,
-                game_name: gameName,
-                notes: notes,
-                date: new Date().toLocaleString()
+                user_email: currentUser.email, game_name: gameName, notes: notes, date: new Date().toLocaleString()
             }]);
 
-            alert(currentLang === 'ar' ? '✅ تم إرسال طلبك بنجاح للأدمن، وسيتم رفع اللعبة قريباً! 🚀' : '✅ Request submitted successfully!');
+            alert('✅ تم إرسال طلبك بنجاح للأدمن، وسيتم رفع اللعبة قريباً! 🚀');
             document.getElementById('reqGameName').value = '';
             document.getElementById('reqGameNotes').value = '';
             closeModals();
@@ -1078,8 +1055,7 @@
 
         function openAdminModal() {
             if (!currentUser || !ADMIN_EMAILS.includes(currentUser.email)) {
-                alert(currentLang === 'ar' ? '⚠️ هذه الصفحة مخصصة للأدمن فقط!' : '⚠️ Access restricted to Admin only!');
-                return;
+                alert('⚠️ هذه الصفحة مخصصة للأدمن فقط!'); return;
             }
             switchAdminTab('addGame');
             document.getElementById('adminModal').style.display = 'flex';
@@ -1111,13 +1087,13 @@
                 addBtn.style.background = '#10b981'; addBtn.style.color = '#fff';
                 gameTabContent.style.display = 'block';
                 editSelectorContainer.style.display = 'none';
-                submitBtn.innerText = currentLang === 'ar' ? 'حفظ وإضافة اللعبة + إرسال إشعار 🚀' : 'Save & Notify Users 🚀';
+                submitBtn.innerText = 'حفظ وإضافة اللعبة + إرسال إشعار 🚀';
                 clearAdminForm();
             } else if (tab === 'editGame') {
                 editBtn.style.background = '#3b82f6'; editBtn.style.color = '#fff';
                 gameTabContent.style.display = 'block';
                 editSelectorContainer.style.display = 'block';
-                submitBtn.innerText = currentLang === 'ar' ? 'تعديل وتحديث بيانات اللعبة ✏️' : 'Update Game Data ✏️';
+                submitBtn.innerText = 'تعديل وتحديث بيانات اللعبة ✏️';
                 populateAdminGameSelector();
             } else if (tab === 'addIssue') {
                 issueBtn.style.background = '#a855f7'; issueBtn.style.color = '#fff';
@@ -1127,7 +1103,7 @@
                 document.getElementById('issueSolutionAr').value = '';
                 document.getElementById('issueVideoUrl').value = '';
                 document.getElementById('issueImageUrl').value = '';
-                document.getElementById('issueSubmitBtn').innerText = currentLang === 'ar' ? 'نشر المشكلة والحل في الموقع 🚀' : 'Publish Issue 🚀';
+                document.getElementById('issueSubmitBtn').innerText = 'نشر المشكلة والحل في الموقع 🚀';
             } else if (tab === 'manageIssues') {
                 manageIssuesBtn.style.background = '#ec4899'; manageIssuesBtn.style.color = '#fff';
                 manageIssuesTabContent.style.display = 'block';
@@ -1140,9 +1116,7 @@
             document.getElementById('adminGameTitleAr').value = '';
             document.getElementById('adminGameTitleEn').value = '';
             document.getElementById('adminGameGenreAr').value = '';
-            document.getElementById('adminGameGenreEn').value = '';
             document.getElementById('adminGameDescAr').value = '';
-            document.getElementById('adminGameDescEn').value = '';
             document.getElementById('adminGameSizeNum').value = '';
             document.getElementById('adminGameImg').value = '';
             document.getElementById('adminGameDirect').value = '';
@@ -1152,16 +1126,19 @@
             document.getElementById('adminReqRam').value = '';
             document.getElementById('adminReqGpu').value = '';
             document.getElementById('adminReqStorage').value = '';
-            document.getElementById('adminLangName').value = '';
             document.getElementById('adminMod1Name').value = '';
             document.getElementById('adminMod1Url').value = '';
+            
+            document.getElementById('arMenu').checked = true; document.getElementById('arAudio').checked = true; document.getElementById('arSub').checked = true;
+            document.getElementById('enMenu').checked = true; document.getElementById('enAudio').checked = true; document.getElementById('enSub').checked = true;
+            document.getElementById('frMenu').checked = false; document.getElementById('frAudio').checked = false; document.getElementById('frSub').checked = false;
         }
 
         function populateAdminGameSelector() {
             const select = document.getElementById('adminSelectGameToEdit');
             select.innerHTML = `<option value="">-- اختر اللعبة للتعديل --</option>`;
             gamesData.forEach(g => {
-                select.innerHTML += `<option value="${g.id}">${g.titleAr || g.titleEn}</option>`;
+                select.innerHTML += `<option value="${g.id}">${g.titleAr}</option>`;
             });
         }
 
@@ -1174,9 +1151,7 @@
             document.getElementById('adminGameTitleAr').value = game.titleAr || '';
             document.getElementById('adminGameTitleEn').value = game.titleEn || '';
             document.getElementById('adminGameGenreAr').value = game.genreAr || '';
-            document.getElementById('adminGameGenreEn').value = game.genreEn || '';
             document.getElementById('adminGameDescAr').value = game.descAr || '';
-            document.getElementById('adminGameDescEn').value = game.descEn || '';
             document.getElementById('adminGameSizeNum').value = game.sizeNum || 1;
             document.getElementById('adminGameSpecs').value = game.specs || 'low';
             document.getElementById('adminGameImg').value = game.image || '';
@@ -1191,11 +1166,16 @@
                 document.getElementById('adminReqStorage').value = game.reqsAr.storage || '';
             }
 
-            if (game.langs && game.langs.length > 0) {
-                document.getElementById('adminLangName').value = game.langs[0].nameAr || '';
-                document.getElementById('adminLangMenu').checked = game.langs[0].menu;
-                document.getElementById('adminLangAudio').checked = game.langs[0].audio;
-                document.getElementById('adminLangSub').checked = game.langs[0].subtitles;
+            if (game.langs) {
+                game.langs.forEach(l => {
+                    if (l.name.includes('العربية')) {
+                        document.getElementById('arMenu').checked = l.menu; document.getElementById('arAudio').checked = l.audio; document.getElementById('arSub').checked = l.subtitles;
+                    } else if (l.name.includes('الإنجليزية')) {
+                        document.getElementById('enMenu').checked = l.menu; document.getElementById('enAudio').checked = l.audio; document.getElementById('enSub').checked = l.subtitles;
+                    } else if (l.name.includes('الفرنسية')) {
+                        document.getElementById('frMenu').checked = l.menu; document.getElementById('frAudio').checked = l.audio; document.getElementById('frSub').checked = l.subtitles;
+                    }
+                });
             }
 
             if (game.mods && game.mods.length > 0) {
@@ -1212,9 +1192,7 @@
             const titleAr = document.getElementById('adminGameTitleAr').value.trim();
             const titleEn = document.getElementById('adminGameTitleEn').value.trim();
             const genreAr = document.getElementById('adminGameGenreAr').value.trim();
-            const genreEn = document.getElementById('adminGameGenreEn').value.trim();
             const descAr = document.getElementById('adminGameDescAr').value.trim();
-            const descEn = document.getElementById('adminGameDescEn').value.trim();
             const sizeNum = parseFloat(document.getElementById('adminGameSizeNum').value) || 1.0;
             const specs = document.getElementById('adminGameSpecs').value;
             const image = document.getElementById('adminGameImg').value.trim();
@@ -1227,27 +1205,21 @@
             const gpuVal = document.getElementById('adminReqGpu').value.trim() || "GTX 1050";
             const storageVal = document.getElementById('adminReqStorage').value.trim() || (sizeNum + " GB");
 
-            const langName = document.getElementById('adminLangName').value.trim() || "العربية";
-            const langMenu = document.getElementById('adminLangMenu').checked;
-            const langAudio = document.getElementById('adminLangAudio').checked;
-            const langSub = document.getElementById('adminLangSub').checked;
+            let langsList = [
+                { name: "اللغة العربية (Arabic)", menu: document.getElementById('arMenu').checked, audio: document.getElementById('arAudio').checked, subtitles: document.getElementById('arSub').checked },
+                { name: "اللغة الإنجليزية (English)", menu: document.getElementById('enMenu').checked, audio: document.getElementById('enAudio').checked, subtitles: document.getElementById('enSub').checked },
+                { name: "اللغة الفرنسية (Français)", menu: document.getElementById('frMenu').checked, audio: document.getElementById('frAudio').checked, subtitles: document.getElementById('frSub').checked }
+            ];
 
             const mod1Name = document.getElementById('adminMod1Name').value.trim();
             const mod1Url = document.getElementById('adminMod1Url').value.trim();
-
             let modsList = [];
             if (mod1Name && mod1Url) modsList.push({ name: mod1Name, url: mod1Url });
 
-            let langsList = [{
-                nameAr: langName, nameEn: langName === 'العربية' ? 'Arabic' : langName,
-                menu: langMenu, audio: langAudio, subtitles: langSub
-            }];
-
             let reqsObj = { os: osVal, cpu: cpuVal, ram: ramVal, gpu: gpuVal, storage: storageVal };
 
-            if (!titleAr || !titleEn || !image) {
-                alert(currentLang === 'ar' ? '⚠️ يرجى تعبئة العناوين وصورة الغلاف على الأقل!' : '⚠️ Please fill required fields!');
-                return;
+            if (!titleAr || !image) {
+                alert('⚠️ يرجى تعبئة عنوان اللعبة بالعربية وصورة الغلاف على الأقل!'); return;
             }
 
             if (adminTab === 'editGame' && editingId) {
@@ -1255,41 +1227,30 @@
                 if (gameIndex > -1) {
                     gamesData[gameIndex] = {
                         ...gamesData[gameIndex],
-                        titleAr, titleEn, genreAr, genreEn, descAr, descEn,
-                        sizeNum, sizeAr: sizeNum + " جيجا", sizeEn: sizeNum + " GB",
+                        titleAr, titleEn, genreAr, descAr,
+                        sizeNum, sizeAr: sizeNum + " جيجا",
                         specs, image, directUrl: directUrl || "#", torrentUrl: torrentUrl || "#",
-                        reqsAr: reqsObj, reqsEn: reqsObj, langs: langsList, mods: modsList
+                        reqsAr: reqsObj, langs: langsList, mods: modsList
                     };
-                    alert(currentLang === 'ar' ? '✅ تم تحديث بيانات اللعبة بنجاح!' : '✅ Game updated!');
+                    alert('✅ تم تحديث بيانات اللعبة بنجاح!');
                 }
             } else {
                 const newGame = {
                     id: gamesData.length + 1,
-                    titleAr, titleEn, genreAr, genreEn, descAr, descEn,
+                    titleAr, titleEn, genreAr, descAr,
                     tags: ["action", "sports"],
-                    sizeNum: sizeNum,
-                    sizeAr: sizeNum + " جيجا",
-                    sizeEn: sizeNum + " GB",
-                    specs: specs,
-                    image: image,
-                    directUrl: directUrl || "#",
-                    torrentUrl: torrentUrl || "#",
-                    mods: modsList,
-                    langs: langsList,
-                    reqsAr: reqsObj,
-                    reqsEn: reqsObj
+                    sizeNum: sizeNum, sizeAr: sizeNum + " جيجا",
+                    specs: specs, image: image,
+                    directUrl: directUrl || "#", torrentUrl: torrentUrl || "#",
+                    mods: modsList, langs: langsList, reqsAr: reqsObj
                 };
                 gamesData.unshift(newGame);
 
                 await supabaseClient.from('site_notifications').insert([{
-                    type: 'new_game',
-                    game_id: newGame.id,
-                    title_ar: titleAr,
-                    title_en: titleEn,
-                    date: new Date().toLocaleString()
+                    type: 'new_game', game_id: newGame.id, title_ar: titleAr, title_en: titleEn || titleAr, date: new Date().toLocaleString()
                 }]);
 
-                alert(currentLang === 'ar' ? '✅ تم إضافة اللعبة للموقع وتم إرسال إشعار لجميع المستخدمين! 🚀' : '✅ Game added & Notification sent!');
+                alert('✅ تم إضافة اللعبة للموقع وتم إرسال إشعار لجميع المستخدمين! 🚀');
             }
 
             resetAllFilters();
@@ -1303,39 +1264,23 @@
             const videoUrl = document.getElementById('issueVideoUrl').value.trim();
             const imageUrl = document.getElementById('issueImageUrl').value.trim();
 
-            if (!title || !solution) {
-                alert(currentLang === 'ar' ? '⚠️ يرجى كتابة عنوان المشكلة والحل!' : '⚠️ Fill title and solution!');
-                return;
-            }
+            if (!title || !solution) { alert('⚠️ يرجى كتابة عنوان المشكلة والحل!'); return; }
 
             let embedVideo = "";
             if (videoUrl.includes("youtube.com/watch?v=")) {
-                const vidId = videoUrl.split("v=")[1]?.split("&")[0];
-                embedVideo = `https://www.youtube.com/embed/${vidId}`;
+                embedVideo = `https://www.youtube.com/embed/${videoUrl.split("v=")[1]?.split("&")[0]}`;
             } else if (videoUrl.includes("youtu.be/")) {
-                const vidId = videoUrl.split("youtu.be/")[1]?.split("?")[0];
-                embedVideo = `https://www.youtube.com/embed/${vidId}`;
+                embedVideo = `https://www.youtube.com/embed/${videoUrl.split("youtu.be/")[1]?.split("?")[0]}`;
             } else if (videoUrl.includes("youtube.com/embed/")) {
                 embedVideo = videoUrl;
             }
 
             if (editingId) {
-                await supabaseClient.from('troubleshoot_issues').update({
-                    title: title,
-                    solution: solution,
-                    video_url: embedVideo,
-                    image_url: imageUrl
-                }).eq('id', editingId);
-                alert(currentLang === 'ar' ? '✅ تم تعديل المشكلة بنجاح!' : '✅ Issue updated!');
+                await supabaseClient.from('troubleshoot_issues').update({ title, solution, video_url: embedVideo, image_url: imageUrl }).eq('id', editingId);
+                alert('✅ تم تعديل المشكلة بنجاح!');
             } else {
-                await supabaseClient.from('troubleshoot_issues').insert([{
-                    title: title,
-                    solution: solution,
-                    video_url: embedVideo,
-                    image_url: imageUrl,
-                    date: new Date().toLocaleString()
-                }]);
-                alert(currentLang === 'ar' ? '✅ تم نشر المشكلة والحل في صفحة "حل المشاكل"! 🚀' : '✅ Issue published!');
+                await supabaseClient.from('troubleshoot_issues').insert([{ title, solution, video_url: embedVideo, image_url: imageUrl, date: new Date().toLocaleString() }]);
+                alert('✅ تم نشر المشكلة والحل في صفحة "حل المشاكل"! 🚀');
             }
 
             document.getElementById('adminEditingIssueId').value = '';
@@ -1353,8 +1298,7 @@
             const { data: issues } = await supabaseClient.from('troubleshoot_issues').select('*').order('id', { ascending: false });
 
             if (!issues || issues.length === 0) {
-                container.innerHTML = `<p style="color:var(--secondary-text);">لا توجد مشاكل مضافة بعد.</p>`;
-                return;
+                container.innerHTML = `<p style="color:var(--secondary-text);">لا توجد مشاكل مضافة بعد.</p>`; return;
             }
 
             container.innerHTML = '';
@@ -1381,11 +1325,11 @@
             document.getElementById('issueSolutionAr').value = decodeURIComponent(solution);
             document.getElementById('issueVideoUrl').value = videoUrl;
             document.getElementById('issueImageUrl').value = imageUrl;
-            document.getElementById('issueSubmitBtn').innerText = currentLang === 'ar' ? 'حفظ تعديلات المشكلة ✏️' : 'Save Changes ✏️';
+            document.getElementById('issueSubmitBtn').innerText = 'حفظ تعديلات المشكلة ✏️';
         }
 
         async function deleteIssueByAdmin(id) {
-            if (confirm(currentLang === 'ar' ? 'هل أنت متأكد من مسح هذه المشكلة؟' : 'Are you sure to delete this issue?')) {
+            if (confirm('هل أنت متأكد من مسح هذه المشكلة؟')) {
                 await supabaseClient.from('troubleshoot_issues').delete().eq('id', id);
                 loadAdminManageIssuesList();
                 loadTroubleshootIssuesFromCloud();
@@ -1397,44 +1341,25 @@
             if (!container) return;
             const { data: issues } = await supabaseClient.from('troubleshoot_issues').select('*').order('id', { ascending: false });
 
-            if (!issues || issues.length === 0) {
-                container.innerHTML = '';
-                return;
-            }
+            if (!issues || issues.length === 0) { container.innerHTML = ''; return; }
 
             container.innerHTML = '';
             issues.forEach(item => {
-                let videoHTML = item.video_url ? `
-                    <div class="video-container" style="margin-top:15px;">
-                        <iframe src="${item.video_url}" allowfullscreen></iframe>
-                    </div>
-                ` : '';
-
-                let imageHTML = item.image_url ? `
-                    <img src="${item.image_url}" style="max-width:100%; border-radius:12px; margin-top:15px; border:1px solid rgba(168, 85, 247, 0.3);">
-                ` : '';
+                let videoHTML = item.video_url ? `<div class="video-container" style="margin-top:15px;"><iframe src="${item.video_url}" allowfullscreen></iframe></div>` : '';
+                let imageHTML = item.image_url ? `<img src="${item.image_url}" style="max-width:100%; border-radius:12px; margin-top:15px; border:1px solid rgba(168, 85, 247, 0.3);">` : '';
 
                 container.innerHTML += `
                     <div class="troubleshoot-box-card">
                         <h3 class="box-title">🔧 ${item.title}</h3>
                         <p class="box-desc" style="white-space: pre-line; color:var(--text-color); line-height:1.7;">${item.solution}</p>
-                        ${imageHTML}
-                        ${videoHTML}
+                        ${imageHTML} ${videoHTML}
                     </div>
                 `;
             });
         }
 
-        function showAllGamesFullList() {
-            isShowAllFullList = true;
-            resetAllFilters();
-        }
-
-        function insertAdminMention() {
-            const commentInput = document.getElementById('commentText');
-            commentInput.value += ` @${ADMIN_EMAILS[0]} `;
-            commentInput.focus();
-        }
+        function showAllGamesFullList() { isShowAllFullList = true; resetAllFilters(); }
+        function insertAdminMention() { document.getElementById('commentText').value += ` @${ADMIN_EMAILS[0]} `; document.getElementById('commentText').focus(); }
 
         function openGameDetails(id) {
             currentGameId = id;
@@ -1442,22 +1367,15 @@
             const game = gamesData.find(g => g.id === id);
             if (!game) return;
 
-            const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-            const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-            const desc = currentLang === 'ar' ? game.descAr : game.descEn;
-            const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-            const isFav = favorites.some(fav => fav.id === game.id);
-
-            document.getElementById('detailsTitle').innerText = title;
-            document.getElementById('detailsDesc').innerText = desc;
+            document.getElementById('detailsTitle').innerText = game.titleAr;
+            document.getElementById('detailsDesc').innerText = game.descAr;
             document.getElementById('detailsImage').src = game.image;
             document.getElementById('directDlBtn').href = game.directUrl;
             document.getElementById('torrentDlBtn').href = game.torrentUrl || "#";
 
-            const genresContainer = document.getElementById('detailsGenres');
-            genresContainer.innerHTML = `
-                <span class="genre-badge">${genre}</span>
-                <span class="genre-badge">${currentLang === 'ar' ? 'الحجم:' : 'Size:'} ${sizeStr}</span>
+            document.getElementById('detailsGenres').innerHTML = `
+                <span class="genre-badge">${game.genreAr}</span>
+                <span class="genre-badge">الحجم: ${game.sizeAr}</span>
             `;
 
             const modsCard = document.getElementById('modsSectionCard');
@@ -1466,31 +1384,23 @@
             if (game.mods && game.mods.length > 0) {
                 modsCard.style.display = 'block';
                 game.mods.forEach(mod => {
-                    modsContainer.innerHTML += `
-                        <a href="${mod.url}" target="_blank" class="download-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); padding: 10px; font-size:14px; text-decoration:none; text-align:center; border-radius:8px; color:white; font-weight:bold;">
-                            📥 ${mod.name}
-                        </a>
-                    `;
+                    modsContainer.innerHTML += `<a href="${mod.url}" target="_blank" class="download-btn" style="background: linear-gradient(135deg, #f59e0b, #d97706); padding: 10px; font-size:14px; text-decoration:none; text-align:center; border-radius:8px; color:white; font-weight:bold;">📥 ${mod.name}</a>`;
                 });
-            } else {
-                modsCard.style.display = 'none';
-            }
+            } else { modsCard.style.display = 'none'; }
 
-            const reqs = currentLang === 'ar' ? (game.reqsAr || game.reqsEn) : (game.reqsEn || game.reqsAr);
+            const reqs = game.reqsAr;
             document.getElementById('osVal').innerText = reqs?.os || "Windows 10/11";
             document.getElementById('cpuVal').innerText = reqs?.cpu || "Intel Core i5";
             document.getElementById('ramVal').innerText = reqs?.ram || "8 GB";
             document.getElementById('gpuVal').innerText = reqs?.gpu || "GTX 1050";
-            document.getElementById('storageVal').innerText = reqs?.storage || sizeStr;
+            document.getElementById('storageVal').innerText = reqs?.storage || game.sizeAr;
 
             renderLanguagesTable(game);
 
+            const isFav = favorites.some(fav => fav.id === game.id);
             const favBtn = document.getElementById('detailsFavBtn');
             favBtn.innerHTML = isFav ? '❤️' : '🤍';
-            favBtn.onclick = function() {
-                toggleFav(game.id);
-                openGameDetails(game.id);
-            };
+            favBtn.onclick = function() { toggleFav(game.id); openGameDetails(game.id); };
 
             document.getElementById('mainHeaderView').style.display = 'none';
             document.getElementById('troubleshootPageView').style.display = 'none';
@@ -1507,15 +1417,14 @@
             langTableBody.innerHTML = '';
             if (game.langs && game.langs.length > 0) {
                 game.langs.forEach(l => {
-                    const tr = document.createElement('tr');
-                    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-                    tr.innerHTML = `
-                        <td style="padding: 12px; font-weight: bold; color: var(--text-color);">${currentLang === 'ar' ? l.nameAr : (l.nameEn || l.nameAr)}</td>
-                        <td style="padding: 12px; font-size: 18px;">${l.menu ? '✅' : '❌'}</td>
-                        <td style="padding: 12px; font-size: 18px;">${l.audio ? '✅' : '❌'}</td>
-                        <td style="padding: 12px; font-size: 18px;">${l.subtitles ? '✅' : '❌'}</td>
+                    langTableBody.innerHTML += `
+                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                            <td style="padding: 12px; font-weight: bold; color: var(--text-color);">${l.name}</td>
+                            <td style="padding: 12px; font-size: 18px;">${l.menu ? '✅' : '❌'}</td>
+                            <td style="padding: 12px; font-size: 18px;">${l.audio ? '✅' : '❌'}</td>
+                            <td style="padding: 12px; font-size: 18px;">${l.subtitles ? '✅' : '❌'}</td>
+                        </tr>
                     `;
-                    langTableBody.appendChild(tr);
                 });
             } else {
                 langTableBody.innerHTML = `<tr><td colspan="4" style="padding:15px; color:var(--secondary-text);">غير متوفر</td></tr>`;
@@ -1524,24 +1433,19 @@
 
         async function loadGameRatings(gameId) {
             const { data: ratingsData } = await supabaseClient.from('ratings').select('*').eq('game_id', gameId);
-            let avgRating = 0;
-            let totalVotes = 0;
-            let userCurrentRating = 0;
+            let avgRating = 0, totalVotes = 0, userCurrentRating = 0;
 
             if (ratingsData && ratingsData.length > 0) {
                 totalVotes = ratingsData.length;
-                let sum = ratingsData.reduce((acc, curr) => acc + parseFloat(curr.rating), 0);
-                avgRating = (sum / totalVotes).toFixed(1);
+                avgRating = (ratingsData.reduce((acc, curr) => acc + parseFloat(curr.rating), 0) / totalVotes).toFixed(1);
                 if (currentUser) {
                     let found = ratingsData.find(r => r.user_email === currentUser.email);
                     if (found) userCurrentRating = parseFloat(found.rating);
                 }
             }
 
-            const ratingText = document.getElementById('averageRatingText');
-            const votesText = document.getElementById('totalVotesText');
-            if (ratingText) ratingText.innerText = totalVotes > 0 ? `${avgRating} / 5` : (currentLang === 'ar' ? 'بلا تقييم' : 'No Rating');
-            if (votesText) votesText.innerText = `(${totalVotes} ${currentLang === 'ar' ? 'تقييمات' : 'ratings'})`;
+            document.getElementById('averageRatingText').innerText = totalVotes > 0 ? `${avgRating} / 5` : 'بلا تقييم';
+            document.getElementById('totalVotesText').innerText = `(${totalVotes} تقييمات)`;
             renderInteractiveStars(gameId, userCurrentRating);
         }
 
@@ -1552,24 +1456,17 @@
 
             for (let i = 1; i <= 5; i++) {
                 const starWrapper = document.createElement('span');
-                starWrapper.style.position = 'relative';
-                starWrapper.style.display = 'inline-block';
-                starWrapper.style.cursor = currentUser ? 'pointer' : 'not-allowed';
-                let starColor = (i <= userRating) ? '#f59e0b' : 'var(--secondary-text)';
-                starWrapper.innerHTML = `<span style="color: ${starColor}; font-size: 24px;">★</span>`;
+                starWrapper.style.cssText = "position:relative; display:inline-block; cursor:" + (currentUser ? 'pointer' : 'not-allowed');
+                starWrapper.innerHTML = `<span style="color: ${i <= userRating ? '#f59e0b' : 'var(--secondary-text)'}; font-size: 24px;">★</span>`;
 
                 if (currentUser) {
                     starWrapper.onclick = async function(e) {
                         const rect = this.getBoundingClientRect();
-                        const clickX = e.clientX - rect.left;
-                        const finalRating = (clickX < rect.width / 2) ? i - 0.5 : i;
+                        const finalRating = ((e.clientX - rect.left) < rect.width / 2) ? i - 0.5 : i;
                         await submitRatingToCloud(gameId, finalRating);
                     };
                 } else {
-                    starWrapper.onclick = function() {
-                        alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول أولاً لتقييم اللعبة!' : '⚠️ You must log in first to rate!');
-                        openAuthModal();
-                    };
+                    starWrapper.onclick = function() { alert('⚠️ يجب تسجيل الدخول أولاً لتقييم اللعبة!'); openAuthModal(); };
                 }
                 container.appendChild(starWrapper);
             }
@@ -1613,26 +1510,14 @@
         }
 
         function filterBySize(value, element) {
-            if (currentSizeFilter === value) {
-                currentSizeFilter = 'all';
-                if (element) element.classList.remove('active');
-            } else {
-                currentSizeFilter = value;
-                document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                if (element) element.classList.add('active');
-            }
+            if (currentSizeFilter === value) { currentSizeFilter = 'all'; if (element) element.classList.remove('active'); }
+            else { currentSizeFilter = value; document.querySelectorAll('#sizeFilters .filter-chip').forEach(btn => btn.classList.remove('active')); if (element) element.classList.add('active'); }
             applyFilters();
         }
 
         function filterBySpecs(value, element) {
-            if (currentSpecsFilter === value) {
-                currentSpecsFilter = 'all';
-                if (element) element.classList.remove('active');
-            } else {
-                currentSpecsFilter = value;
-                document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active'));
-                if (element) element.classList.add('active');
-            }
+            if (currentSpecsFilter === value) { currentSpecsFilter = 'all'; if (element) element.classList.remove('active'); }
+            else { currentSpecsFilter = value; document.querySelectorAll('#specsFilters .filter-chip').forEach(btn => btn.classList.remove('active')); if (element) element.classList.add('active'); }
             applyFilters();
         }
 
@@ -1646,7 +1531,7 @@
         }
 
         function applyFilters() {
-            let filtered = gamesData.filter(game => {
+            activeGames = gamesData.filter(game => {
                 let matchTag = (currentTagFilter === 'all' || (game.tags && game.tags.includes(currentTagFilter)));
                 let matchSize = true;
                 let matchSpecs = (currentSpecsFilter === 'all' || game.specs === currentSpecsFilter);
@@ -1659,8 +1544,6 @@
 
                 return matchTag && matchSize && matchSpecs;
             });
-
-            activeGames = filtered;
             displayGames(activeGames);
         }
 
@@ -1670,21 +1553,15 @@
             grid.innerHTML = '';
 
             if (!games || games.length === 0) {
-                grid.innerHTML = `<div class="no-results">${currentLang === 'ar' ? 'لا توجد ألعاب مطابقة لتصنيفك' : 'No games match your filter'}</div>`;
-                return;
+                grid.innerHTML = `<div class="no-results">لا توجد ألعاب مطابقة لتصنيفك</div>`; return;
             }
 
             let displayedList = isShowAllFullList ? games : games.slice(0, 16);
             const { data: allRatings } = await supabaseClient.from('ratings').select('*');
 
             displayedList.forEach((game) => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-                const btnText = currentLang === 'ar' ? 'عرض اللعبة والتحميل' : 'View & Download';
                 const isFav = favorites.some(fav => fav.id === game.id);
-
-                let ratingDisplay = currentLang === 'ar' ? 'بلا تقييم' : 'No Rating';
+                let ratingDisplay = 'بلا تقييم';
                 if (allRatings && allRatings.length > 0) {
                     const gameRates = allRatings.filter(r => r.game_id === game.id);
                     if (gameRates.length > 0) {
@@ -1693,35 +1570,30 @@
                     }
                 }
 
-                const card = document.createElement('div');
-                card.className = 'game-card';
-                card.innerHTML = `
-                    <button class="fav-card-btn" onclick="event.stopPropagation(); toggleFav(${game.id});" title="${currentLang === 'ar' ? 'إضافة للمفضلة' : 'Add to Favorites'}">${isFav ? '❤️' : '🤍'}</button>
-                    <div class="game-img-container" onclick="openGameDetails(${game.id})">
-                        <img src="${game.image}" alt="${title}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    </div>
-                    <div class="game-content">
-                        <h3 onclick="openGameDetails(${game.id})">${title}</h3>
-                        <div class="game-info">
-                            <span class="game-genre">${genre}</span>
-                            <span class="game-size">${sizeStr}</span>
+                grid.innerHTML += `
+                    <div class="game-card">
+                        <button class="fav-card-btn" onclick="event.stopPropagation(); toggleFav(${game.id});" title="إضافة للمفضلة">${isFav ? '❤️' : '🤍'}</button>
+                        <div class="game-img-container" onclick="openGameDetails(${game.id})">
+                            <img src="${game.image}" alt="${game.titleAr}" class="game-img" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
                         </div>
-                        <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; margin-bottom: 8px; color: #f59e0b; font-weight: bold;">
-                            ${ratingDisplay}
+                        <div class="game-content">
+                            <h3 onclick="openGameDetails(${game.id})">${game.titleAr}</h3>
+                            <div class="game-info">
+                                <span class="game-genre">${game.genreAr}</span>
+                                <span class="game-size">${game.sizeAr}</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 5px; font-size: 13px; margin-bottom: 8px; color: #f59e0b; font-weight: bold;">
+                                ${ratingDisplay}
+                            </div>
+                            <button onclick="openGameDetails(${game.id})" class="download-btn">عرض اللعبة والتحميل</button>
                         </div>
-                        <button onclick="openGameDetails(${game.id})" class="download-btn">${btnText}</button>
                     </div>
                 `;
-                grid.appendChild(card);
             });
         }
 
         function toggleFav(id) {
-            if (!currentUser) {
-                alert(currentLang === 'ar' ? '⚠️ يجب تسجيل الدخول أولاً لتتمكن من حفظ الألعاب في المفضلة!' : '⚠️ You must log in first!');
-                openAuthModal();
-                return;
-            }
+            if (!currentUser) { alert('⚠️ يجب تسجيل الدخول أولاً لتتمكن من حفظ الألعاب في المفضلة!'); openAuthModal(); return; }
             const gameObj = gamesData.find(g => g.id === id);
             const index = favorites.findIndex(fav => fav.id === id);
             if (index > -1) favorites.splice(index, 1);
@@ -1734,48 +1606,37 @@
             const modalBody = document.getElementById('favModalBody');
             modalBody.innerHTML = '';
             if (favorites.length === 0) {
-                modalBody.innerHTML = `<p style="color: var(--secondary-text);">${currentLang === 'ar' ? 'لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️' : 'No favorite games added yet ❤️'}</p>`;
+                modalBody.innerHTML = `<p style="color: var(--secondary-text);">لم تقم بإضافة أي ألعاب للمفضلة بعد ❤️</p>`;
             } else {
                 favorites.forEach(game => {
-                    const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                    const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                    const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-                    const row = document.createElement('div');
-                    row.className = 'fav-item-row';
-                    row.innerHTML = `
-                        <img src="${game.image}" class="fav-item-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                        <div class="fav-item-info" onclick="closeModals(); openGameDetails(${game.id});">
-                            <h4>${title}</h4>
-                            <span>${genre} • ${sizeStr}</span>
+                    modalBody.innerHTML += `
+                        <div class="fav-item-row">
+                            <img src="${game.image}" class="fav-item-img" alt="${game.titleAr}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
+                            <div class="fav-item-info" onclick="closeModals(); openGameDetails(${game.id});">
+                                <h4>${game.titleAr}</h4>
+                                <span>${game.genreAr} • ${game.sizeAr}</span>
+                            </div>
+                            <button onclick="event.stopPropagation(); toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;">❌</button>
                         </div>
-                        <button onclick="event.stopPropagation(); toggleFav(${game.id}); openFavModal();" style="background:none; border:none; color:#ef4444; cursor:pointer; font-size:16px;">❌</button>
                     `;
-                    modalBody.appendChild(row);
                 });
             }
-            document.getElementById('favModalTitle').innerText = currentLang === 'ar' ? 'الألعاب المفضلة' : 'Favorite Games';
             document.getElementById('favModal').style.display = 'flex';
         }
 
         function buildTrendingList() {
             const listContainer = document.getElementById('trendingList');
             listContainer.innerHTML = '';
-            const trendingItems = gamesData.slice(0, 4);
-            trendingItems.forEach(game => {
-                const title = currentLang === 'ar' ? game.titleAr : game.titleEn;
-                const genre = currentLang === 'ar' ? game.genreAr : game.genreEn;
-                const sizeStr = currentLang === 'ar' ? game.sizeAr : game.sizeEn;
-                const item = document.createElement('div');
-                item.className = 'trending-item';
-                item.onclick = function() { openGameDetails(game.id); hideTrending(); };
-                item.innerHTML = `
-                    <img src="${game.image}" class="trending-img" alt="${title}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
-                    <div class="trending-info">
-                        <h4 style="margin:0 0 3px; font-size:14px; color:var(--text-color);">${title}</h4>
-                        <span style="font-size:11px; color:var(--secondary-text);">${genre} • ${sizeStr}</span>
+            gamesData.slice(0, 4).forEach(game => {
+                listContainer.innerHTML += `
+                    <div class="trending-item" onclick="openGameDetails(${game.id}); hideTrending();">
+                        <img src="${game.image}" class="trending-img" alt="${game.titleAr}" onerror="this.src='https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=500&auto=format&fit=crop&q=60'">
+                        <div>
+                            <h4 style="margin:0 0 3px; font-size:14px; color:var(--text-color);">${game.titleAr}</h4>
+                            <span style="font-size:11px; color:var(--secondary-text);">${game.genreAr} • ${game.sizeAr}</span>
+                        </div>
                     </div>
                 `;
-                listContainer.appendChild(item);
             });
         }
 
@@ -1790,110 +1651,31 @@
         function searchGames() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             if (!query) { displayGames(activeGames); return; }
-            const filtered = gamesData.filter(game => {
+            displayGames(gamesData.filter(game => {
                 const titleAr = (game.titleAr || '').toLowerCase();
-                const titleEn = (game.titleEn || '').toLowerCase();
                 const genreAr = (game.genreAr || '').toLowerCase();
-                const genreEn = (game.genreEn || '').toLowerCase();
-                let searchKeyword = (query === 'بيس' || query === 'pes') ? 'pro' : query;
-                return titleAr.includes(searchKeyword) || titleEn.includes(searchKeyword) || genreAr.includes(searchKeyword) || genreEn.includes(searchKeyword);
-            });
-            displayGames(filtered);
+                let kw = (query === 'بيس' || query === 'pes') ? 'pro' : query;
+                return titleAr.includes(kw) || genreAr.includes(kw);
+            }));
         }
 
         function toggleTheme() {
             const root = document.getElementById('htmlRoot');
-            const themeBtn = document.getElementById('themeBtn');
-            if (currentTheme === 'dark') {
-                root.setAttribute('data-theme', 'light');
-                currentTheme = 'light';
-                themeBtn.innerText = '☀️';
-            } else {
-                root.removeAttribute('data-theme');
-                currentTheme = 'dark';
-                themeBtn.innerText = '🌙';
-            }
-        }
-
-        // ترجمة الواجهة بالكامل للغة الإنجليزية والعربية
-        function toggleLanguage() {
-            const htmlRoot = document.getElementById('htmlRoot');
-            const langBtn = document.getElementById('langBtn');
-            const searchInput = document.getElementById('searchInput');
-            const prayerText = document.getElementById('prayerText');
-            const subTitle = document.getElementById('subTitle');
-            const trendingTitle = document.getElementById('trendingTitle');
-            const footerDesc = document.getElementById('footerDesc');
-            const loginBtn = document.getElementById('loginBtn');
-            const troubleshootBtnText = document.getElementById('troubleshootBtnText');
-            const requestBtnText = document.getElementById('requestBtnText');
-            const adminBtnText = document.getElementById('adminBtnText');
-            const randomGameBtn = document.getElementById('randomGameBtn');
-            const showAllBtn = document.getElementById('showAllBtn');
-
-            if (currentLang === 'ar') {
-                currentLang = 'en';
-                htmlRoot.setAttribute('lang', 'en');
-                htmlRoot.setAttribute('dir', 'ltr');
-                langBtn.innerText = 'AR';
-                prayerText.innerText = 'Do not let games distract you from prayer';
-                subTitle.innerText = 'Explore Games';
-                searchInput.placeholder = 'Search for a game to download...';
-                trendingTitle.innerText = '🔥 Trending Games';
-                randomGameBtn.innerText = '🎲 Suggest Game';
-                footerDesc.innerText = 'MK GAMES brings you full and compressed PC games.';
-                loginBtn.title = currentUser ? `Logged in as (${currentUser.email})` : 'Login';
-                requestBtnText.innerText = 'Request Game';
-                troubleshootBtnText.innerText = 'Tools & Instructions';
-                adminBtnText.innerText = 'Admin Panel';
-                showAllBtn.innerText = 'Show All Games';
-            } else {
-                currentLang = 'ar';
-                htmlRoot.setAttribute('lang', 'ar');
-                htmlRoot.setAttribute('dir', 'rtl');
-                langBtn.innerText = 'EN';
-                prayerText.innerText = 'لا تدع الألعاب تلهيك عن الصلاة';
-                subTitle.innerText = 'Explore Games';
-                searchInput.placeholder = 'ابحث عن لعبة للتحميل...';
-                trendingTitle.innerText = '🔥 الألعاب الرائجة حالياً';
-                randomGameBtn.innerText = '🎲 اقترح لي لعبة';
-                footerDesc.innerText = 'MK GAMES يجمع لك ألعاب الكمبيوتر الكاملة والمضغوطة.';
-                loginBtn.title = currentUser ? `مسجل بـ (${currentUser.email})` : 'تسجيل الدخول';
-                requestBtnText.innerText = 'طلب لعبة';
-                troubleshootBtnText.innerText = 'حل المشاكل والبرامج';
-                adminBtnText.innerText = 'لوحة الأدمن';
-                showAllBtn.innerText = 'عرض كل الألعاب كاملة (Show All Games)';
-            }
-            buildTrendingList();
-            displayGames(activeGames);
+            const btn = document.getElementById('themeBtn');
+            if (currentTheme === 'dark') { root.setAttribute('data-theme', 'light'); currentTheme = 'light'; btn.innerText = '☀️'; }
+            else { root.removeAttribute('data-theme'); currentTheme = 'dark'; btn.innerText = '🌙'; }
         }
 
         function toggleAuthMode() {
             isSignUpMode = !isSignUpMode;
-            const title = document.getElementById('authModalTitle');
-            const sub = document.getElementById('authModalSub');
-            const btn = document.getElementById('authSubmitBtn');
-            const switchText = document.getElementById('authSwitchText');
-
-            if (isSignUpMode) {
-                title.innerText = currentLang === 'ar' ? 'إنشاء حساب جديد' : 'Sign Up';
-                sub.innerText = currentLang === 'ar' ? 'أنشئ حساباً جديداً' : 'Create a new account';
-                btn.innerText = currentLang === 'ar' ? 'تسجيل حساب' : 'Register';
-                switchText.innerHTML = currentLang === 'ar' ? 'لديك حساب؟ <span>دخول</span>' : 'Have an account? <span>Login</span>';
-            } else {
-                title.innerText = currentLang === 'ar' ? 'تسجيل الدخول' : 'Login';
-                sub.innerText = currentLang === 'ar' ? 'أدخل بياناتك' : 'Enter details';
-                btn.innerText = currentLang === 'ar' ? 'دخول' : 'Login';
-                switchText.innerHTML = currentLang === 'ar' ? 'ليس لديك حساب؟ <span>إنشاء حساب</span>' : "No account? <span>Sign up</span>";
-            }
+            document.getElementById('authModalTitle').innerText = isSignUpMode ? 'إنشاء حساب جديد' : 'تسجيل الدخول';
+            document.getElementById('authSubmitBtn').innerText = isSignUpMode ? 'تسجيل حساب' : 'دخول';
+            document.getElementById('authSwitchText').innerHTML = isSignUpMode ? 'لديك حساب؟ <span>دخول</span>' : 'ليس لديك حساب؟ <span>إنشاء حساب</span>';
             generateAuthCaptcha();
         }
 
         async function handleAuthSubmit() {
-            if (userChosenAuthEmoji !== targetAuthEmoji) {
-                alert(currentLang === 'ar' ? '❌ رمز الكابتشا غير صحيح!' : '❌ Incorrect captcha!');
-                generateAuthCaptcha(); return;
-            }
+            if (userChosenAuthEmoji !== targetAuthEmoji) { alert('❌ رمز الكابتشا غير صحيح!'); generateAuthCaptcha(); return; }
             const email = document.getElementById('authEmail').value.trim();
             const password = document.getElementById('authPassword').value.trim();
             const errorBox = document.getElementById('authErrorMsg');
@@ -1901,12 +1683,9 @@
 
             if (ADMIN_EMAILS.includes(email)) {
                 if (ADMIN_PASSWORDS[email] !== password) {
-                    errorBox.innerText = currentLang === 'ar' ? '❌ كلمة مرور الأدمن غير صحيحة!' : '❌ Incorrect password!';
-                    errorBox.style.display = 'block'; return;
+                    errorBox.innerText = '❌ كلمة مرور الأدمن غير صحيحة!'; errorBox.style.display = 'block'; return;
                 } else {
-                    currentUser = { email: email };
-                    localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
-                    location.reload(); return;
+                    currentUser = { email }; localStorage.setItem('mk_current_user', JSON.stringify(currentUser)); location.reload(); return;
                 }
             }
 
@@ -1918,17 +1697,11 @@
             } else {
                 const { data } = await supabaseClient.from('users').select('*').eq('email', email).eq('password', password);
                 if (!data || data.length === 0) { errorBox.innerText = '❌ بيانات خطأ'; errorBox.style.display = 'block'; return; }
-                currentUser = { email: data[0].email };
-                localStorage.setItem('mk_current_user', JSON.stringify(currentUser));
-                location.reload();
+                currentUser = { email: data[0].email }; localStorage.setItem('mk_current_user', JSON.stringify(currentUser)); location.reload();
             }
         }
 
-        function openAuthModal() {
-            if (currentUser) return;
-            generateAuthCaptcha();
-            document.getElementById('authModal').style.display = 'flex';
-        }
+        function openAuthModal() { if (currentUser) return; generateAuthCaptcha(); document.getElementById('authModal').style.display = 'flex'; }
 
         async function checkNewNotificationsBadge() {
             if (!currentUser) return;
@@ -1944,10 +1717,7 @@
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
             const isAdmin = ADMIN_EMAILS.includes(currentUser.email);
 
-            if (siteNotifs) {
-                siteNotifs.forEach(sn => { if (!dismissedIds.includes('sn_' + sn.id)) hasNew = true; });
-            }
-
+            if (siteNotifs) siteNotifs.forEach(sn => { if (!dismissedIds.includes('sn_' + sn.id)) hasNew = true; });
             if (isAdmin) {
                 if (gameReqs) gameReqs.forEach(req => { if (!dismissedIds.includes('req_' + req.id)) hasNew = true; });
                 if (allComments) allComments.forEach(c => {
@@ -1956,21 +1726,14 @@
                 });
                 if (allRatings) allRatings.forEach(r => { if (!dismissedIds.includes('r_' + r.id)) hasNew = true; });
             }
-
             notifBtn.innerText = hasNew ? '🚨' : '🔔';
         }
 
         async function openNotifModal() {
             document.getElementById('notifBtn').innerText = '🔔';
             const modalBody = document.getElementById('notifModalDesc');
-            document.getElementById('notifModalTitle').innerText = currentLang === 'ar' ? 'مركز الإشعارات التفاعلي 🔔' : 'Notification Center 🔔';
-            
-            if (!currentUser) {
-                modalBody.innerHTML = currentLang === 'ar' ? '⚠️ يرجى تسجيل الدخول لعرض إشعاراتك.' : '⚠️ Login required.';
-                document.getElementById('notifModal').style.display = 'flex';
-                return;
-            }
-            modalBody.innerHTML = currentLang === 'ar' ? 'جاري التحميل...' : 'Loading...';
+            if (!currentUser) { modalBody.innerHTML = '⚠️ يرجى تسجيل الدخول لعرض إشعاراتك.'; document.getElementById('notifModal').style.display = 'flex'; return; }
+            modalBody.innerHTML = 'جاري التحميل...';
             document.getElementById('notifModal').style.display = 'flex';
 
             const { data: siteNotifs } = await supabaseClient.from('site_notifications').select('*');
@@ -1982,79 +1745,44 @@
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
             const isAdmin = ADMIN_EMAILS.includes(currentUser.email);
 
-            if (siteNotifs) {
-                siteNotifs.forEach(sn => {
-                    let uniqueKey = 'sn_' + sn.id;
-                    if (!dismissedIds.includes(uniqueKey)) {
-                        let gameName = currentLang === 'ar' ? sn.title_ar : sn.title_en;
-                        notifications.push({ key: uniqueKey, text: `🎮 تم إضافة لعبة جديدة: (${gameName})! حملها الآن 🚀`, date: sn.date, gameId: sn.game_id });
-                    }
-                });
-            }
+            if (siteNotifs) siteNotifs.forEach(sn => {
+                if (!dismissedIds.includes('sn_' + sn.id)) notifications.push({ key: 'sn_' + sn.id, text: `🎮 تم إضافة لعبة جديدة: (${sn.title_ar})!`, date: sn.date, gameId: sn.game_id });
+            });
 
             if (isAdmin) {
-                if (allComments) {
-                    allComments.forEach(c => {
-                        let uniqueKey = 'm_' + c.id;
-                        if (!dismissedIds.includes(uniqueKey) && c.text && c.text.includes('@')) {
-                            notifications.push({ key: uniqueKey, text: `🏷️ منشن جديد للأدمن من (${c.user_email}): "${c.text}"`, date: c.date, gameId: c.game_id });
-                        }
-                    });
-                }
-                if (gameReqs) {
-                    gameReqs.forEach(req => {
-                        let uniqueKey = 'req_' + req.id;
-                        if (!dismissedIds.includes(uniqueKey)) {
-                            notifications.push({ key: uniqueKey, text: `📥 طلب لعبة جديد من (${req.user_email}): [${req.game_name}]`, date: req.date, gameId: null });
-                        }
-                    });
-                }
-                if (allComments) {
-                    allComments.forEach(c => {
-                        let uniqueKey = 'c_' + c.id;
-                        if (!dismissedIds.includes(uniqueKey) && !ADMIN_EMAILS.includes(c.user_email) && !c.text.includes('@')) {
-                            notifications.push({ key: uniqueKey, text: `💬 تعليق جديد من (${c.user_email})`, date: c.date, gameId: c.game_id });
-                        }
-                    });
-                }
-                if (allRatings) {
-                    allRatings.forEach(r => {
-                        let uniqueKey = 'r_' + r.id;
-                        if (!dismissedIds.includes(uniqueKey)) {
-                            notifications.push({ key: uniqueKey, text: `⭐ قام (${r.user_email}) بتقييم لعبة بـ ${r.rating} نجوم`, date: 'الآن', gameId: r.game_id });
-                        }
-                    });
-                }
+                if (allComments) allComments.forEach(c => {
+                    if (!dismissedIds.includes('m_' + c.id) && c.text && c.text.includes('@')) notifications.push({ key: 'm_' + c.id, text: `🏷️ منشن جديد للأدمن من (${c.user_email})`, date: c.date, gameId: c.game_id });
+                });
+                if (gameReqs) gameReqs.forEach(req => {
+                    if (!dismissedIds.includes('req_' + req.id)) notifications.push({ key: 'req_' + req.id, text: `📥 طلب لعبة جديد من (${req.user_email}): [${req.game_name}]`, date: req.date, gameId: null });
+                });
+                if (allComments) allComments.forEach(c => {
+                    if (!dismissedIds.includes('c_' + c.id) && !ADMIN_EMAILS.includes(c.user_email) && !c.text.includes('@')) notifications.push({ key: 'c_' + c.id, text: `💬 تعليق جديد من (${c.user_email})`, date: c.date, gameId: c.game_id });
+                });
+                if (allRatings) allRatings.forEach(r => {
+                    if (!dismissedIds.includes('r_' + r.id)) notifications.push({ key: 'r_' + r.id, text: `⭐ تقييم جديد بـ ${r.rating} نجوم`, date: 'الآن', gameId: r.game_id });
+                });
             }
 
             if (notifications.length === 0) {
-                modalBody.innerHTML = currentLang === 'ar' ? '📭 لا توجد إشعارات جديدة.' : '📭 No new notifications.';
+                modalBody.innerHTML = '📭 لا توجد إشعارات جديدة.';
             } else {
-                let htmlList = '<div style="display:flex; flex-direction:column; gap:10px;">';
-                notifications.forEach(n => {
-                    htmlList += `
-                        <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(168, 85, 247, 0.1); padding:12px; border-radius:10px; border:1px solid rgba(168, 85, 247, 0.3);">
-                            <div onclick="${n.gameId ? `closeModals(); openGameDetails(${n.gameId});` : ''}" style="cursor:${n.gameId ? 'pointer' : 'default'}; flex:1;">
-                                <p style="margin:0 0 4px; font-weight:bold; font-size:13px; color:var(--text-color);">${n.text}</p>
-                                <span style="font-size:11px; color:var(--secondary-text);">${n.date}</span>
-                            </div>
-                            <button onclick="dismissNotification('${n.key}')" style="background:none; border:none; color:var(--error-color); font-size:16px; cursor:pointer;">❌</button>
+                modalBody.innerHTML = '<div style="display:flex; flex-direction:column; gap:10px;">' + notifications.map(n => `
+                    <div style="display:flex; align-items:center; justify-content:space-between; background:rgba(168, 85, 247, 0.1); padding:12px; border-radius:10px; border:1px solid rgba(168, 85, 247, 0.3);">
+                        <div onclick="${n.gameId ? `closeModals(); openGameDetails(${n.gameId});` : ''}" style="cursor:${n.gameId ? 'pointer' : 'default'}; flex:1; text-align:right;">
+                            <p style="margin:0 0 4px; font-weight:bold; font-size:13px; color:var(--text-color);">${n.text}</p>
+                            <span style="font-size:11px; color:var(--secondary-text);">${n.date}</span>
                         </div>
-                    `;
-                });
-                htmlList += '</div>';
-                modalBody.innerHTML = htmlList;
+                        <button onclick="dismissNotification('${n.key}')" style="background:none; border:none; color:var(--error-color); font-size:16px; cursor:pointer;">❌</button>
+                    </div>
+                `).join('') + '</div>';
             }
         }
 
         function dismissNotification(key) {
             let dismissedIds = JSON.parse(localStorage.getItem('mk_dismissed_notifs') || '[]');
-            if (!dismissedIds.includes(key)) {
-                dismissedIds.push(key);
-                localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds));
-            }
-            openNotifModal();
-            checkNewNotificationsBadge();
+            if (!dismissedIds.includes(key)) { dismissedIds.push(key); localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds)); }
+            openNotifModal(); checkNewNotificationsBadge();
         }
 
         async function clearAllNotifications() {
@@ -2062,16 +1790,13 @@
             const { data: gameReqs } = await supabaseClient.from('game_requests').select('*');
             const { data: allComments } = await supabaseClient.from('comments').select('*');
             const { data: allRatings } = await supabaseClient.from('ratings').select('*');
-            
             let dismissedIds = [];
             if (siteNotifs) siteNotifs.forEach(sn => dismissedIds.push('sn_' + sn.id));
             if (gameReqs) gameReqs.forEach(req => dismissedIds.push('req_' + req.id));
             if (allComments) allComments.forEach(c => { dismissedIds.push('c_' + c.id); dismissedIds.push('m_' + c.id); });
             if (allRatings) allRatings.forEach(r => dismissedIds.push('r_' + r.id));
-            
             localStorage.setItem('mk_dismissed_notifs', JSON.stringify(dismissedIds));
-            openNotifModal();
-            checkNewNotificationsBadge();
+            openNotifModal(); checkNewNotificationsBadge();
         }
 
         function closeModals() {
@@ -2085,10 +1810,7 @@
         function previewSelectedImage(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImageBase64 = e.target.result;
-                    document.getElementById('imageNamePreview').innerText = currentLang === 'ar' ? "تم اختيار الصورة ✓" : "Image selected ✓";
-                };
+                reader.onload = function(e) { uploadedImageBase64 = e.target.result; document.getElementById('imageNamePreview').innerText = "تم اختيار الصورة ✓"; };
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -2099,76 +1821,47 @@
             const loginNotice = document.getElementById('loginToCommentNotice');
             const inputContainer = document.getElementById('commentInputBox');
 
-            if (!currentUser) {
-                loginNotice.style.display = 'block';
-                inputContainer.style.display = 'none';
-            } else {
-                loginNotice.style.display = 'none';
-                inputContainer.style.display = 'block';
-            }
+            if (!currentUser) { loginNotice.style.display = 'block'; inputContainer.style.display = 'none'; }
+            else { loginNotice.style.display = 'none'; inputContainer.style.display = 'block'; }
 
             const { data: allComments } = await supabaseClient.from('comments').select('*').eq('game_id', gameId).order('id', { ascending: false });
-            if (!allComments || allComments.length === 0) {
-                commentsList.innerHTML = `<p style="color:var(--secondary-text); font-size:14px;">${currentLang === 'ar' ? 'لا توجد تعليقات بعد.' : 'No comments yet.'}</p>`;
-                return;
-            }
+            if (!allComments || allComments.length === 0) { commentsList.innerHTML = `<p style="color:var(--secondary-text); font-size:14px;">لا توجد تعليقات بعد.</p>`; return; }
 
             commentsList.innerHTML = '';
             allComments.forEach((c) => {
-                const isAdminComment = ADMIN_EMAILS.includes(c.user_email);
+                const isAdmin = ADMIN_EMAILS.includes(c.user_email);
                 const canDelete = currentUser && (ADMIN_EMAILS.includes(currentUser.email) || currentUser.email === c.user_email);
-
                 commentsList.innerHTML += `
-                    <div style="background: var(--bg-color); padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid var(--secondary-text);">
+                    <div style="background: var(--bg-color); padding: 15px; border-radius: 10px; margin-bottom: 15px; border: 1px solid var(--secondary-text); text-align:right;">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                            <strong style="color: ${isAdminComment ? '#f59e0b' : '#38bdf8'}; font-size: 14px;">
-                                ${isAdminComment ? (currentLang === 'ar' ? '👑 [أدمن] ' : '👑 [Admin] ') : ''}${c.user_email}
-                            </strong>
+                            <strong style="color: ${isAdmin ? '#f59e0b' : '#38bdf8'}; font-size: 14px;">${isAdmin ? '👑 [أدمن] ' : ''}${c.user_email}</strong>
                             <span style="font-size: 12px; color: var(--secondary-text);">${c.date}</span>
                         </div>
                         <p style="margin: 0 0 10px 0; font-size: 14px;">${c.text}</p>
                         ${c.image ? `<img src="${c.image}" style="max-width: 100%; max-height: 250px; border-radius: 8px; margin-bottom: 10px;">` : ''}
-                        ${canDelete ? `<button onclick="deleteCommentCloud(${c.id})" style="background:none; border:none; color:var(--error-color); font-size:12px; cursor:pointer;">${currentLang === 'ar' ? '🗑️ مسح' : '🗑️ Delete'}</button>` : ''}
+                        ${canDelete ? `<button onclick="deleteCommentCloud(${c.id})" style="background:none; border:none; color:var(--error-color); font-size:12px; cursor:pointer;">🗑️ مسح</button>` : ''}
                     </div>
                 `;
             });
         }
 
         async function postComment() {
-            if (userChosenCommentEmoji !== targetCommentEmoji) {
-                alert(currentLang === 'ar' ? '❌ رمز الكابتشا غير صحيح!' : '❌ Incorrect captcha!');
-                generateCommentEmojiCaptcha(); return;
-            }
+            if (userChosenCommentEmoji !== targetCommentEmoji) { alert('❌ رمز الكابتشا غير صحيح!'); generateCommentEmojiCaptcha(); return; }
             const text = document.getElementById('commentText').value.trim();
             if (!text && !uploadedImageBase64) return;
 
-            await supabaseClient.from('comments').insert([{
-                game_id: currentGameId,
-                user_email: currentUser.email,
-                text: text,
-                image: uploadedImageBase64,
-                date: new Date().toLocaleString()
-            }]);
-
-            document.getElementById('commentText').value = '';
-            uploadedImageBase64 = '';
-            document.getElementById('imageNamePreview').innerText = '';
-            generateCommentEmojiCaptcha();
-            loadCommentsCloud(currentGameId);
-            checkNewNotificationsBadge();
+            await supabaseClient.from('comments').insert([{ game_id: currentGameId, user_email: currentUser.email, text, image: uploadedImageBase64, date: new Date().toLocaleString() }]);
+            document.getElementById('commentText').value = ''; uploadedImageBase64 = ''; document.getElementById('imageNamePreview').innerText = '';
+            generateCommentEmojiCaptcha(); loadCommentsCloud(currentGameId); checkNewNotificationsBadge();
         }
 
-        async function deleteCommentCloud(commentId) {
-            await supabaseClient.from('comments').delete().eq('id', commentId);
-            loadCommentsCloud(currentGameId);
-        }
+        async function deleteCommentCloud(commentId) { await supabaseClient.from('comments').delete().eq('id', commentId); loadCommentsCloud(currentGameId); }
 
         window.addEventListener('popstate', function() {
             document.getElementById('troubleshootPageView').style.display = 'none';
             document.getElementById('gameDetailsView').style.display = 'none';
             document.getElementById('mainHeaderView').style.display = 'block';
-            currentGameId = null;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            currentGameId = null; window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
